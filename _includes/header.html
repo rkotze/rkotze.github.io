@@ -30,13 +30,13 @@
     <nav class="hide-for-small rk-nav">
         <ul class="nav nav-list">
             <li>
-                <a{% if page.url == "about-me" %} class="active"{% endif %} href="/about-me">
+                <a{% if page.url == "/about-me/" %} class="active"{% endif %} href="/about-me">
                     <span class="icon-nav-user"></span> About me
                 </a>
             </li>
 
             {% for category in site.data.categories %}
-              {% if page.category == category.name %}
+              {% if page.category == category.slug %}
                 <li>
                   <a class="active" href="/{{ category.slug }}/">
                     <span class="{{ category.icon }}"></span>

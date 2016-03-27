@@ -1,14 +1,25 @@
 ---
 layout: default
 ---
-<div id="main">
+<div class="col-sm-8 contentArea">
 
-	{{ content }}
-    <ul>	      
-      {% for post in site.categories[page.category] %}
+	{{ content }}  
 
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+  {% for post in site.categories[page.category] %}
+
+    <article class="listing">
+      <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+    
+      <p class="pubDate">Published 
+        <time datetime="{{ post.date }}" pubdate>
+          {{ post.date | date: "%b %-d, %Y" }}
+        </time>
+      </p>
         
-      {% endfor %}
-    </ul>
+      {{ post.excerpt }}
+
+    </article>
+    
+  {% endfor %}
+
 </div>

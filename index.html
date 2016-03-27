@@ -6,8 +6,7 @@ layout: default
 
   {% for post in site.posts %}
     <article class="listing">
-      <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-    
+      <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>  
     
       <p class="pubDate">Published 
         <time datetime="{{ post.date }}" pubdate>
@@ -15,7 +14,7 @@ layout: default
         </time>
       </p>
         
-      <p>Summary here</p>
+      {{ post.excerpt }}
 
     </article>
   {% endfor %}

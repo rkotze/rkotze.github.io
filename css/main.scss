@@ -25,9 +25,16 @@ $link-color:            #c00;
 $font-family-sans-serif: "Oxygen", "Helvetica Neue", Helvetica, Arial, sans-serif;
 $font-size-base:        16px;
 
+@font-face {
+  font-family: 'Oxygen';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oxygen Light'), local('Oxygen-Light'), url(fonts/Oxygen-Regular.ttf) format('woff');
+}
+
 @import
-        "bootstrap",
         "base",
+        "bootstrap",
         "icon-fonts",
         "visibility",
         "syntax-highlighting"
@@ -221,6 +228,7 @@ article.item, article.listing {
 
 .contentArea {
     background-color: $textBGColor;
+    padding: 0;
 }
 
 .socialbuttons{

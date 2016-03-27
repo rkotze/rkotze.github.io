@@ -1,4 +1,71 @@
-<header class="site-header">
+<header class="span4 head-profile">
+    <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded" src="/images/avatar.jpg" alt="Picture of Richard Kotze" /></a>
+    
+    <div class="mobile-bar clearfix">
+        <h1 class="me">
+            <a href="/"><span>R</span>ichard <span>K</span>otze</a>
+        </h1>
+        
+        <!-- <p class="hide-for-small"><?php echo $me->summary; ?> <a href="/<?php echo $me->urlslug; ?>">more about me</a></p> -->
+        
+        <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
+        <p class="socialbuttons">
+            <a class="icon-twitter icon-font-large" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"></a>
+            <a class="icon-facebook icon-font-large" target="_blank" href="http://www.facebook.com/{{ site.facebook_username }}"></a>
+            <a class="icon-google-plus icon-font-large" target="_blank" href="https://plus.google.com/{{ site.google_username }}"></a>
+            <a class="icon-github icon-font-large" target="_blank" href="https://github.com/{{ site.github_username }}"></a>
+        </p>
+        <p>Software Engineer</p>
+    </div>
+
+    <!-- <form class="search" action="/" method="GET">
+        <div class="input-append">
+
+          <span class="search-bar">
+            <input class="query" name="q" type="text" autocomplete="off" placeholder="Search ..." value="<?php if(isset($search) && !empty($search)) echo $search; ?>" />
+          </span>
+
+          <button class="btn btn-default" type="submit"><i class="icon-search"></i></button>
+        </div>
+    </form> -->
+    
+    <nav class="hide-for-small rk-nav">
+        <ul class="nav nav-list">
+            <li>
+                <a<?php echo $me->urlslug == $this->uri->segment(1) ? ' class="active"' : ''; ?> href="/<?php echo $me->urlslug; ?>">
+                    <span class="icon-nav-user"></span> About me
+                </a>
+            </li>
+
+            <?php 
+                $icons = array(
+                    "top-tips" => "icon-lightning",
+                    "coding" => "icon-code",
+                    "links" => "icon-support",
+                    "web-development" => "icon-notebook",
+                    "fixes" => "icon-wand");
+            ?>
+
+            <?php foreach ($navlist as $item) { ?>
+                <?php if ($item->urlslug == $this->uri->segment(1)) { ?>
+                    <li>
+                        <a class="active" href="/<?php echo $item->urlslug; ?>">
+                            <span class="<?php echo $icons[$item->urlslug]; ?>"></span> 
+                        <?php echo $item->navititle; ?></a>
+                    </li>
+                <?php } else { ?>
+                    <li>
+                        <a href="/<?php echo $item->urlslug; ?>">
+                            <span class="<?php echo $icons[$item->urlslug]; ?>"></span> 
+                        <?php echo $item->navititle; ?></a>
+                    </li>
+                <?php }
+            }
+            ?>
+        </ul>
+    </nav>
+</header>
+<!-- <header class="site-header">
 
   <div class="wrapper">
 
@@ -24,4 +91,4 @@
 
   </div>
 
-</header>
+</header> -->

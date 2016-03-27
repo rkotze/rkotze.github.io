@@ -20,14 +20,14 @@ While this post is not about why I have chose these libraries I thought it would
 
 The _should-sinon_ helps make it easier to read asserts which check function calls are made and provide useful feedback if a test fails. For example:
 
-```javascript
+{% highlight javascript %}
 // without should-sinon: gives a failed message of
 // expected false to be true (confusing)
 stubbedMethod.calledOnce.should.be.true();
 
 // with should-sinon it will give a message expecting 'stubbedMethod' to be called once
 stubbedMethod.should.be.calledOnce();
-```
+{% endhighlight %}
 
 ## Stubbing SuperAgent with Sinon
 
@@ -35,41 +35,41 @@ Checkout the [example gist of stubbing SuperAgent](https://gist.github.com/rkotz
 
 Importantly we setup a _stub_ in the `before` function allowing calls on the `put` function to be watched and return our own fake response.
 
-```javascript
+{% highlight javascript %}
 before(() => {
     putRequest = sinon.stub(superagent, 'put');
 });
-```
+{% endhighlight %}
 
 When the store function is called to make a request to the api and it is possible to return a custom response. Below is an example when SuperAgent put request is called, it will return a new object with an `end` function which update the callback params.
 
-```javascript
+{% highlight javascript %}
 // At the start of the it function
 putRequest.returns({
     end: (cb) => {
         cb(null, {ok: true, body: { "status" : "OK" }});
     }
 });
-```
+{% endhighlight %}
 
 To capture the params of the end callback, _Sinon_ has a `getCall` function to return the params.
 
-```javascript
+{% highlight javascript %}
 let response = myStore.trigger.getCall(0).args[0];
-```
+{% endhighlight %}
 
 To update the state using _Reflux_ the `trigger` callback should fire and using a spy the call can be captured.
 
-```javascript
+{% highlight javascript %}
 successTrigger.should.be.calledOnce();
-```
+{% endhighlight %}
 
 The `putRequest` can be checked if it has been called with the correct url and the expected response is returned.
 
-```javascript
+{% highlight javascript %}
 putRequest.should.be.calledWith(URL);
 
 response.status.should.eql('OK');
-```
+{% endhighlight %}
 
 This is how I go about [stubbing SuperAgent using Sinon](https://gist.github.com/rkotze/77aba69955dd6d97abf5). If you have any feedback or questions please post in the comments below.

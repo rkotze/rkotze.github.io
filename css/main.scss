@@ -3,51 +3,301 @@
 ---
 @charset "utf-8";
 
+/* 
+    Document   : rk_base_style
+    Created on : 06-Dec-2012, 17:06:47
+    Author     : Richard Kotze
+    Description:
+        Manage any custome features on the site
+*/
 
+$backgroundImage:       "/images/flower_chic.png";
+$textBGColor:           #efefef;
+$textColor:             #222;
+$darkRed:               #150001;
+$customFont:            'Helvetica Neue', Helvetica, Arial;
+$red:                   #c00;
+$white:                 #fff;
+$grey:                  #666;
+$spacing-unit:     			30px;
 
-// Our variables
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
-$base-font-weight: 400;
-$small-font-size:  $base-font-size * 0.875;
-$base-line-height: 1.5;
+@import
+        "base",
+        "icon-fonts",
+        "visibility",
+        "syntax-highlighting",
+        "bootstrap"
+;
 
-$spacing-unit:     30px;
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+}
 
-$text-color:       #111;
-$background-color: #fdfdfd;
-$brand-color:      #2a7ae2;
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
 
-$grey-color:       #828282;
-$grey-color-light: lighten($grey-color, 40%);
-$grey-color-dark:  darken($grey-color, 25%);
+body{
+    background-color: $white;
+    color: $textColor;
+}
 
-// Width of the content area
-$content-width:    800px;
+h1, h2, h3 {
+    font-weight: lighter;
+    color: $grey;
+    a:hover{
+        text-decoration: none;
+    }
+}
 
-$on-palm:          600px;
-$on-laptop:        800px;
+h1.me {
+    font-size: 22px;
+    @media #{$small}{
+        font-size: 26px;
+    }
+    margin-bottom: 0;
+    margin-top:8px;
+    span{
+        font-size: 40px;
+        color: $red;
+    }
+    a{
+        &:link, &:visited{
+            color: $grey;
+            text-decoration:none;
+            @include transition(color 0.5s);
+            &:hover{
+                color:darken($grey, 15%);
+                span{
+                    color: darken($red, 15%);
+                }
+            }
+        }
+    }
+}
 
+.rk-image {
+    float:left;
+    margin:10px 10px 0 0;
+    width: 110px;
+}
 
-
-// Use media queries like this:
-// @include media-query($on-palm) {
-//     .wrapper {
-//         padding-right: $spacing-unit / 2;
-//         padding-left: $spacing-unit / 2;
-//     }
-// }
-@mixin media-query($device) {
-    @media screen and (max-width: $device) {
-        @content;
+.search{
+    margin:15px 0;
+    .input-append{
+        display: table;
+        width: 100%; 
+    }
+    .btn {
+      line-height: 30px;
+      display: table-cell;
+    }
+    .query{
+      font-size: 20px;
+      line-height: 30px;
+      height: 30px;
+      width: 96%;
+      color: $darkRed;
+      &:focus{
+          border-color:rgba(204, 0, 0, 0.8);
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(204, 0, 0, .6);
+          -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(204, 0, 0, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(204, 0, 0, .6);
+        }
+    }
+    .search-bar{
+        display: table-cell;
+        width: 100%;
     }
 }
 
 
+.head-profile{
+    color:#888;
+}
 
+article p { 
+    margin-bottom:15px;
+}
+
+article h1, article h2, article h3  {
+    
+}
+
+.listing{
+    padding: 10px;
+    background-color: $textBGColor;
+    h2:first-child{
+        margin-top:-5px;
+    }
+}
+
+.item{
+    padding: 0 20px;
+}
+
+article.item, article.listing {
+    .pubDate { 
+        font-size: 14px; 
+        color:#666; 
+    }
+}
+article.item, article.listing {
+    time { 
+        font-style: italic; 
+    }
+}
+
+.mobile-bar{
+    @media #{$max-small}{
+        background-color:none;
+        border-bottom: 1px solid $red;
+        padding: 0 10px;
+    }
+    .me{
+        @media #{$max-small}{
+            float:left;
+            margin-right:10px;
+        }
+    }
+    .menu-btn{
+        float: right;
+        padding: 0px 20px;
+        margin-top: 7px;
+        font-size: 2.5em;
+        @media #{$small}{
+            display:none;
+        }
+    }
+}
+
+.rk-nav { 
+    &.open{
+        display:block;
+    }
+    ul {
+        font-size: 20px;
+        li{
+            margin: 5px 0;
+            a{
+                text-shadow: none !important;
+                @include border-radius(4px);
+                padding: 10px 15px !important;
+                &.active{
+                    color: $white;
+                    background-color: $red;
+                    cursor:default;
+                }
+
+                span[class^="icon-"]{
+                    margin-right: 10px;
+                }
+            }
+        }
+        li:last-child{
+            border-bottom: none;
+        }
+
+        a:link, a:visited{
+            background-color: $textBGColor;
+            @include transition(all 0.4s);
+        }
+        a:hover{
+            color: $white;
+            background-color: $grey !important;
+            @include transition(all 0.4s);
+        }
+    }
+}
+
+.contentArea {
+    background-color: $textBGColor;
+}
+
+.socialbuttons{
+    clear: left;
+    @media #{$small}{
+        clear: none;
+    }
+    a{
+        width:40px;
+        margin-bottom:10px;
+        @include transition(color 0.5s);
+        &:hover{
+            text-decoration:none;
+        }
+    }
+}
+
+#livefyre-comments{
+    padding: 0 20px;
+    width:auto;
+}
+
+//Comment box
+#disqus_thread{
+    margin: 20px 20px 10px 20px;
+}
+
+.result-text{
+  color: #999;
+  padding: 10px 0 0 10px;
+  font-size: 1.5em;
+}
+
+.result-text > span{
+  color: #333;
+}
+
+.op-buttons.type1 {
+  margin: 20px 20px 10px 20px;
+}
+
+.plea{
+   margin-top: 10px;
+   text-align: center;
+   font-size:0.85em;
+   font-weight: 700;
+}
+
+.pagination {
+    margin:20px 5px;
+    vertical-align: bottom;
+    a, strong{
+        width: 30px;
+        margin-right: 5px;
+        border:1px solid $red;
+        border-radius: 15px;
+        display: inline-block;
+        text-align: center;
+        padding:5px 0;
+        vertical-align: top;
+    }
+    a:hover{
+        text-decoration: none;
+        border-color: darken($red, 15%);
+    }
+    strong {
+        border:1px solid $grey;
+        color: $grey;
+    }
+    span.next a, span.prev a{
+        font-size:40px;
+    }
+
+}
+
+::selection {
+    background-color: $grey; 
+    color:$white;
+}
+::-moz-selection {
+    background-color: $grey;
+    color: $white;
+}
 // Import partials from `sass_dir` (defaults to `_sass`)
-@import
-        "base",
-        "layout",
-        "syntax-highlighting"
-;

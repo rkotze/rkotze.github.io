@@ -19,14 +19,18 @@ $customFont:            'Helvetica Neue', Helvetica, Arial;
 $red:                   #c00;
 $white:                 #fff;
 $grey:                  #666;
-$spacing-unit:     			30px;
+$spacing-unit:     		30px;
+$link-color:            #c00;
+
+$font-family-sans-serif: "Oxygen", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-size-base:        16px;
 
 @import
+        "bootstrap",
         "base",
         "icon-fonts",
         "visibility",
-        "syntax-highlighting",
-        "bootstrap"
+        "syntax-highlighting"
 ;
 
 @mixin border-radius($radius) {
@@ -225,6 +229,7 @@ article.item, article.listing {
         clear: none;
     }
     a{
+        display: inline-block;
         width:40px;
         margin-bottom:10px;
         @include transition(color 0.5s);

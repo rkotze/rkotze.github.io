@@ -1,12 +1,10 @@
-<header class="span4 head-profile">
+<header class="col-sm-4 head-profile">
     <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded" src="/images/avatar.jpg" alt="Picture of Richard Kotze" /></a>
     
     <div class="mobile-bar clearfix">
         <h1 class="me">
             <a href="/"><span>R</span>ichard <span>K</span>otze</a>
         </h1>
-        
-        <!-- <p class="hide-for-small"><?php echo $me->summary; ?> <a href="/<?php echo $me->urlslug; ?>">more about me</a></p> -->
         
         <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
         <p class="socialbuttons">
@@ -32,36 +30,30 @@
     <nav class="hide-for-small rk-nav">
         <ul class="nav nav-list">
             <li>
-                <a<?php echo $me->urlslug == $this->uri->segment(1) ? ' class="active"' : ''; ?> href="/<?php echo $me->urlslug; ?>">
+                <a{% if page.url == "about-me" %} class="active"{% endif %} href="/about-me">
                     <span class="icon-nav-user"></span> About me
                 </a>
             </li>
 
-            <?php 
-                $icons = array(
-                    "top-tips" => "icon-lightning",
-                    "coding" => "icon-code",
-                    "links" => "icon-support",
-                    "web-development" => "icon-notebook",
-                    "fixes" => "icon-wand");
-            ?>
+            {% for category in site.data.categories %}
+              {% if page.category == category.name %}
+                <li>
+                  <a class="active" href="/{{ category.slug }}/">
+                    <span class="{{ category.icon }}"></span>
+                    {{ category.name }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <a href="/{{ category.slug }}/">
+                    <span class="{{ category.icon }}"></span>
+                    {{ category.name }}
+                  </a>
+                </li>
+              {% endif %}
+              
+            {% endfor %}
 
-            <?php foreach ($navlist as $item) { ?>
-                <?php if ($item->urlslug == $this->uri->segment(1)) { ?>
-                    <li>
-                        <a class="active" href="/<?php echo $item->urlslug; ?>">
-                            <span class="<?php echo $icons[$item->urlslug]; ?>"></span> 
-                        <?php echo $item->navititle; ?></a>
-                    </li>
-                <?php } else { ?>
-                    <li>
-                        <a href="/<?php echo $item->urlslug; ?>">
-                            <span class="<?php echo $icons[$item->urlslug]; ?>"></span> 
-                        <?php echo $item->navititle; ?></a>
-                    </li>
-                <?php }
-            }
-            ?>
         </ul>
     </nav>
 </header>

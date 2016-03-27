@@ -11,7 +11,7 @@
         Manage any custome features on the site
 */
 
-$backgroundImage:       "/images/flower_chic.png";
+$backgroundImage:       "/images/island.jpg";
 $textBGColor:           #efefef;
 $textColor:             #222;
 $darkRed:               #150001;
@@ -54,8 +54,15 @@ $font-size-base:        16px;
 }
 
 body{
-    background-color: $white;
     color: $textColor;
+    background-color: $textBGColor;
+    @media #{$small}{
+        background-color: $white;
+        background-image: url($backgroundImage);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: -520px 20%;
+    }
 }
 
 h1, h2, h3 {
@@ -130,6 +137,11 @@ h1.me {
 
 .head-profile{
     color:#888;
+    .keep-right{
+        @media #{$small}{
+            margin-left: 25%;
+        }
+    }
 }
 
 article p { 
@@ -141,15 +153,23 @@ article h1, article h2, article h3  {
 }
 
 .listing{
-    padding: 10px;
-    background-color: $textBGColor;
+    padding: 10px 0;
+    @media #{$small}{
+        padding: 10px 20px;
+    }
     h2:first-child{
-        margin-top:-5px;
+        margin-top:0px;
     }
 }
 
 .item{
-    padding: 0 20px;
+    @media #{$small}{
+        padding: 0 20px;
+    }
+    ul, li {
+        margin: 0 5px;
+        padding: 0 10px;
+    }
 }
 
 article.item, article.listing {
@@ -227,8 +247,8 @@ article.item, article.listing {
 }
 
 .contentArea {
-    background-color: $textBGColor;
-    padding: 0;
+    background-color: $white;
+    min-height: 1080px;
 }
 
 .socialbuttons{

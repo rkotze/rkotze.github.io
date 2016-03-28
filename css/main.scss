@@ -140,6 +140,7 @@ h1.me {
     .keep-right{
         @media #{$small}{
             margin-left: 25%;
+            text-align: right;
         }
     }
 }
@@ -188,7 +189,7 @@ article.item, article.listing {
     @media #{$max-small}{
         background-color:none;
         border-bottom: 1px solid $red;
-        padding: 0 10px;
+        padding: 0;
     }
     .me{
         @media #{$max-small}{
@@ -226,7 +227,7 @@ article.item, article.listing {
                 }
 
                 span[class^="icon-"]{
-                    margin-right: 10px;
+                    margin-left: 10px;
                 }
             }
         }
@@ -235,7 +236,8 @@ article.item, article.listing {
         }
 
         a:link, a:visited{
-            background-color: $textBGColor;
+            background: $textBGColor;
+            // background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $textBGColor);
             @include transition(all 0.4s);
         }
         a:hover{

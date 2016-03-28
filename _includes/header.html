@@ -32,7 +32,7 @@
         <ul class="nav nav-list">
             <li>
                 <a{% if page.url == "/about-me/" %} class="active"{% endif %} href="/about-me">
-                    <span class="icon-nav-user"></span> About me
+                    About me <span class="icon-nav-user"></span>
                 </a>
             </li>
 
@@ -40,15 +40,15 @@
               {% if page.category == category.slug %}
                 <li>
                   <a class="active" href="/{{ category.slug }}/">
-                    <span class="{{ category.icon }}"></span>
                     {{ category.name }}
+                    <span class="{{ category.icon }}"></span>
                   </a>
                 </li>
               {% else %}
                 <li>
                   <a href="/{{ category.slug }}/">
-                    <span class="{{ category.icon }}"></span>
                     {{ category.name }}
+                    <span class="{{ category.icon }}"></span>
                   </a>
                 </li>
               {% endif %}

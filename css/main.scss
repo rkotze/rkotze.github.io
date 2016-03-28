@@ -139,8 +139,17 @@ h1.me {
     color:#888;
     .keep-right{
         @media #{$small}{
+            position: absolute;
+            right: 315px;
             margin-left: 25%;
             text-align: right;
+        }
+
+        .fix-wrapper{
+            @media #{$small}{
+                position: fixed;
+                width: 300px;
+            }
         }
     }
 }

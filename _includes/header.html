@@ -1,62 +1,64 @@
 <header class="col-sm-5 head-profile">
   <div class="keep-right">
-    <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded" src="/images/avatar.jpg" alt="Picture of Richard Kotze" /></a>
-    
-    <div class="mobile-bar clearfix">
-        <h1 class="me">
-            <a href="/"><span>R</span>ichard <span>K</span>otze</a>
-        </h1>
-        
-        <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
-        <p class="socialbuttons">
-            <a class="icon-twitter icon-font-large" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"></a>
-            <a class="icon-facebook icon-font-large" target="_blank" href="http://www.facebook.com/{{ site.facebook_username }}"></a>
-            <a class="icon-google-plus icon-font-large" target="_blank" href="https://plus.google.com/{{ site.google_username }}"></a>
-            <a class="icon-github icon-font-large" target="_blank" href="https://github.com/{{ site.github_username }}"></a>
-        </p>
-        <p>Software Engineer</p>
+    <div class="fix-wrapper">
+      <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded" src="/images/avatar.jpg" alt="Picture of Richard Kotze" /></a>
+      
+      <div class="mobile-bar clearfix">
+          <h1 class="me">
+              <a href="/"><span>R</span>ichard <span>K</span>otze</a>
+          </h1>
+          
+          <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
+          <p class="socialbuttons">
+              <a class="icon-twitter icon-font-large" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"></a>
+              <a class="icon-facebook icon-font-large" target="_blank" href="http://www.facebook.com/{{ site.facebook_username }}"></a>
+              <a class="icon-google-plus icon-font-large" target="_blank" href="https://plus.google.com/{{ site.google_username }}"></a>
+              <a class="icon-github icon-font-large" target="_blank" href="https://github.com/{{ site.github_username }}"></a>
+          </p>
+          <p>Software Engineer</p>
+      </div>
+
+      <!-- <form class="search" action="/" method="GET">
+          <div class="input-append">
+
+            <span class="search-bar">
+              <input class="query" name="q" type="text" autocomplete="off" placeholder="Search ..." value="<?php if(isset($search) && !empty($search)) echo $search; ?>" />
+            </span>
+
+            <button class="btn btn-default" type="submit"><i class="icon-search"></i></button>
+          </div>
+      </form> -->
+      
+      <nav class="hide-for-small rk-nav">
+          <ul class="nav nav-list">
+              <li>
+                  <a{% if page.url == "/about-me/" %} class="active"{% endif %} href="/about-me">
+                      About me <span class="icon-nav-user"></span>
+                  </a>
+              </li>
+
+              {% for category in site.data.categories %}
+                {% if page.category == category.slug %}
+                  <li>
+                    <a class="active" href="/{{ category.slug }}/">
+                      {{ category.name }}
+                      <span class="{{ category.icon }}"></span>
+                    </a>
+                  </li>
+                {% else %}
+                  <li>
+                    <a href="/{{ category.slug }}/">
+                      {{ category.name }}
+                      <span class="{{ category.icon }}"></span>
+                    </a>
+                  </li>
+                {% endif %}
+                
+              {% endfor %}
+
+          </ul>
+          <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+      </nav>
     </div>
-
-    <!-- <form class="search" action="/" method="GET">
-        <div class="input-append">
-
-          <span class="search-bar">
-            <input class="query" name="q" type="text" autocomplete="off" placeholder="Search ..." value="<?php if(isset($search) && !empty($search)) echo $search; ?>" />
-          </span>
-
-          <button class="btn btn-default" type="submit"><i class="icon-search"></i></button>
-        </div>
-    </form> -->
-    
-    <nav class="hide-for-small rk-nav">
-        <ul class="nav nav-list">
-            <li>
-                <a{% if page.url == "/about-me/" %} class="active"{% endif %} href="/about-me">
-                    About me <span class="icon-nav-user"></span>
-                </a>
-            </li>
-
-            {% for category in site.data.categories %}
-              {% if page.category == category.slug %}
-                <li>
-                  <a class="active" href="/{{ category.slug }}/">
-                    {{ category.name }}
-                    <span class="{{ category.icon }}"></span>
-                  </a>
-                </li>
-              {% else %}
-                <li>
-                  <a href="/{{ category.slug }}/">
-                    {{ category.name }}
-                    <span class="{{ category.icon }}"></span>
-                  </a>
-                </li>
-              {% endif %}
-              
-            {% endfor %}
-
-        </ul>
-        <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-    </nav>
   </div>
 </header>

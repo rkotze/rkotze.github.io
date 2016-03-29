@@ -2,7 +2,7 @@
 layout: post
 title:  How to change the hostname on Amazon Linux machine
 date: 2012-10-24 17:00:12 +0000
-permalink: 2012-10-24-change-the-hostname-on-amazon-linux-machine
+permalink: top-tips/how-to-change-the-hostname-on-amazon-linux-machine
 category: top-tips
 meta_description: >
  How to change the hostname on Amazon Linux machine and keep that name when its restarted.

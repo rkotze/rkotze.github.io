@@ -2,6 +2,7 @@
 layout: page
 title: Links to useful websites about web design and development
 permalink: links/
+category: links
 ---
 
 Found these&nbsp;to be a very useful web design sites with excellent tutorials:

@@ -37,6 +37,7 @@ $font-size-base:        16px;
         "bootstrap",
         "icon-fonts",
         "visibility",
+        "text",
         "syntax-highlighting"
 ;
 
@@ -245,7 +246,10 @@ article.item, article.listing {
         }
 
         a:link, a:visited{
-            background: $textBGColor;
+            background: $white;
+            @media #{$small}{
+                background-color: $textBGColor;
+            }
             // background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $textBGColor);
             @include transition(all 0.4s);
         }
@@ -264,6 +268,7 @@ article.item, article.listing {
 
 .socialbuttons{
     clear: left;
+    margin-bottom: 0;
     @media #{$small}{
         clear: none;
     }

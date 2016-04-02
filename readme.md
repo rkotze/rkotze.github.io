@@ -1,3 +1,3 @@
 # Richard Kotze's website
 
-Blogging and more...
+Stuff about software engineering and more ;)

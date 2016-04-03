@@ -43,7 +43,7 @@ var myFunc = function(){
   return arguments;
 };
 myFunc('hello', 'world');
-//output -&gt; [object Arguments] {
+//output -> [object Arguments] {
 //  0: "hello",
 //  1: "bye"
 //}
@@ -85,7 +85,7 @@ String.prototype.format = function() {
 
 //usage
 var urlQuery = "?page_number={0}&amp;page_size={1}".format(1, 20);
-//output -&gt; "?page_number=1&amp;page_size=20"
+//output -> "?page_number=1&amp;page_size=20"
 {% endhighlight %}
 
 Hope you will have a use for these snippets of code in your next app. Happy hacking.

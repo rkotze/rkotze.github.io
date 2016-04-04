@@ -27,7 +27,7 @@ The _calcTime_ uses two JavaScript function to work out time difference:
 * _getTimezoneOffset()_ which is returns the clients machine time difference but not including DST.
 * _getTime()_ this returns the dates in microseconds.
 
-The tweet date with the offset added on and the current date is converted to microseconds. The difference is calculated and converted back to seconds by dividing by 1000. &nbsp;Then we run the value against some conditions and check if its less than a minute ago or hour ago and so on. You can check out the whole script, html and css in this [twitter api demo][5] file.
+The tweet date with the offset added on and the current date is converted to microseconds. The difference is calculated and converted back to seconds by dividing by 1000. &nbsp;Then we run the value against some conditions and check if its less than a minute ago or hour ago and so on.
 
 This script has now been further developed check out, [Create a twitter feed using JSON][6].
 
@@ -98,5 +98,4 @@ function calcTime(strDate, city, offset) {
 [2]: http://dev.twitter.com/doc "Twitter documentation API"
 [3]: http://api.jquery.com/jQuery.getJSON/ "Get JSON method - JQuery"
 [4]: http://www.proglogic.com/code/javascript/time/worldclock.php
-[5]: /demo/twitterfeed.html
 [6]: /web-development/create-your-twitter-feed-using-json/

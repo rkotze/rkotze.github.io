@@ -166,9 +166,6 @@ function local_getTweets(){
 }
 {% endhighlight %}
 
-This twitter feed does have a lot of work left on it but for now this is good enough for anyone to take and play around with. I will be working on it some more and hopefully come out with some new improved features. [Download full demo code zipped up][2] or view the demo of the [Twitter Feed][3].&nbsp;Enjoy.
+This twitter feed does have a lot of work left on it but for now this is good enough for anyone to take and play around with. I will be working on it some more and hopefully come out with some new improved features. Enjoy.
 
 [1]: /twitter-feed-using-jquery-json/
-[2]: /demo/twitterfeed-v1.5.zip "Download twitter feed zip"
-[3]: /demo/twitterfeed-v1.5.php "Demo of twitter feed"
-  

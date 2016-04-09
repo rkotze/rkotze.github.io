@@ -6,8 +6,12 @@ permalink: /projects/mvc-4-bundling-css-and-js-files
 category: projects
 redirect_from: /web-development/building-london-traveller-app
 meta_description: >
- I talk about publishing the London Traveller app to the world and what it's like to use the Ionic Framework.
+ Publishing the London Traveller app to the world and what it's like to use the Ionic Framework.
+excerpt_separator: <!--more-->
 ---
+
+This project was about using Ionic Framework to build a mobile app and publish it to the Android play store.
+<!--more-->
 
 [London Traveller][1] on Android play store, built using&nbsp;[Ionic framework][2].
 

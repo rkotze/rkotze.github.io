@@ -4,9 +4,9 @@ title:  Building London Traveller app
 date:   2015-09-13 17:00:12 +0000
 permalink: /projects/mvc-4-bundling-css-and-js-files
 category: projects
+redirect_from: /web-development/building-london-traveller-app
 meta_description: >
  I talk about publishing the London Traveller app to the world and what it's like to use the Ionic Framework.
-redirect_from: /web-development/building-london-traveller-app
 ---
 
 [London Traveller][1] on Android play store, built using&nbsp;[Ionic framework][2].

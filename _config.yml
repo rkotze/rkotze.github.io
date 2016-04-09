@@ -22,3 +22,9 @@ facebook_username:  webdesign.develop
 markdown: kramdown
 
 exclude: ["readme.md"]
+
+gems:
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from

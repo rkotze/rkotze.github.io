@@ -10,6 +10,6 @@
 - name: Helpful links
   slug: links
   icon: icon-support
-- name: Porfolio
-  slug: web-development
+- name: Projects
+  slug: projects
   icon: icon-notebook

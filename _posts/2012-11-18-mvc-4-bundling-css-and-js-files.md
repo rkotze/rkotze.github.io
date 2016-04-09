@@ -6,9 +6,11 @@ permalink: /top-tips/mvc-4-bundling-css-and-js-files
 category: top-tips
 meta_description: >
  MVC 4 how to bundle your css and javascript files to improve performance.
+excerpt_separator: <!--more-->
 ---
 
 MVC 4 provides an excellent tool to help with optimising your web application called _bundling_. The idea of bundling is quite simple, you tend to have multiple _CSS_ and _JavaScript_ files which can be rolled up into one CSS and JS file. The contents of the files is also _minified_ to reduce the individual file size. It might seem odd at first to _bundle all your files_ into one but the idea is to reduce the number of _http_ calls made, because a web browser can only handle two - four http requests at a time. If you have a lot of request to different files this can make your web app appear slow.
+<!--more-->
 
 Another benefit of MVC bundling package is when you release an update to a CSS file the client will get the latest changes rather than the cached version. Because the file has an appended query string with a hashed version which is automatically updated with the file is changed. You don't even need to rebuild or build the web project after its running.
 

@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Projects
-permalink: /projects
+permalink: /projects/
 category: projects
 redirect_from: /web-development
 ---

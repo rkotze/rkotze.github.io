@@ -13,6 +13,12 @@ meta_description: >
 
 Couple of things to do and not to do.
 
+{% highlight javascript %}
+Array.prototype.immutablePush = (value) => {
+	return this.concat(value);
+}
+{% endhighlight %}
+
 array.push - use a new array with spread operator or concat
 array.splice - use slice with spread operator or concat
 array remove - use concat and slice

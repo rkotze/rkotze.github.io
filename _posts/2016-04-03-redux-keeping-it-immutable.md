@@ -15,7 +15,13 @@ Couple of things to do and not to do.
 
 {% highlight javascript %}
 Array.prototype.immutablePush = (value) => {
-	return this.concat(value);
+	return this.concat([value]);
+}
+{% endhighlight %}
+
+{% highlight javascript %}
+Array.prototype.immutablePush = (value) => {
+	return [...this, value];
 }
 {% endhighlight %}
 

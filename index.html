@@ -4,7 +4,7 @@ layout: default
 
 <div class="col-sm-7 contentArea">
 
-  {% for post in site.posts %}
+  {% for post in paginator.posts %}
     <article class="listing">
       <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>  
     
@@ -18,5 +18,27 @@ layout: default
 
     </article>
   {% endfor %}
+
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <span class="prev"><a href="{{ paginator.previous_page_path }}" class="previous">&#65513;</a></span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <strong>{{ page }}</strong>
+      {% elsif page == 1 %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+      <span class="next"><a href="{{ paginator.next_page_path }}" class="next">&#65515;</a></span>
+    {% endif %}
+
+    Total posts: {{ paginator.total_posts }}
+  </div>
 
 </div>

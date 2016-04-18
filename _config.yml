@@ -18,6 +18,8 @@ github_username:  rkotze
 google_username:  109155264212733458222?rel=author
 facebook_username:  webdesign.develop
 
+paginate: 10
+
 # Build settings
 markdown: kramdown
 
@@ -25,6 +27,7 @@ exclude: ["readme.md"]
 
 gems:
   - jekyll-redirect-from
+  - jekyll-paginate
 
 whitelist:
   - jekyll-redirect-from

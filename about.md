@@ -2,6 +2,8 @@
 layout: page
 title: About me
 permalink: about-me/
+sitemap: 
+ lastmod: 2016-04-20 17:00:12 +0000
 ---
 
 I'm a software engineer and currently deal with mostly JavaScript. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how I want to design a solution. This allows me to be more creative and expressive when solving a problem, making it a very powerful tool. Another language I enjoy programming in is C#, it has a great balance of being flexible with a defined structure.

@@ -2,7 +2,7 @@
 layout: post
 title:  Building London Traveller app
 date:   2015-09-13 17:00:12 +0000
-permalink: /projects/mvc-4-bundling-css-and-js-files
+permalink: /projects/building-london-traveller-app
 category: projects
 redirect_from: /web-development/building-london-traveller-app
 meta_description: >

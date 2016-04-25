@@ -25,6 +25,12 @@ Array.prototype.immutablePush = (value) => {
 }
 {% endhighlight %}
 
+{% highlight javascript %}
+const immutableObject = (currentObject) => {
+	return Object.assign({},currentObject, { name: 'a', location: 'xyz'});
+}
+{% endhighlight %}
+
 array.push - use a new array with spread operator or concat
 array.splice - use slice with spread operator or concat
 array remove - use concat and slice

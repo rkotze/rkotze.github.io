@@ -11,30 +11,36 @@ meta_description: >
 {% highlight javascript %}
 {% endhighlight %}
 
-Couple of things to do and not to do.
+Redux have reducers which is tasked with transforming the state across the application.
+They are pure functions which is a function that does not modify variables outside of its scope
+or depend on them. They are given the same parameters and the output should be the same every time.
+
+Importantly they do not mutate the parameters or make any API calls. 
+They get the previous _state_ and _action_ which is transformed to return a new state.
+
+Below are a few examples on preventing mutation:
+
+Using `Array.prototype.concat` - returns a new array or you can use spread operator in a new array.
 
 {% highlight javascript %}
-Array.prototype.immutablePush = (value) => {
-	return this.concat([value]);
+const immutableArray = (oldState, newState) => {
+	return oldState.concat([newState]);
 }
 {% endhighlight %}
 
 {% highlight javascript %}
-Array.prototype.immutablePush = (value) => {
-	return [...this, value];
+const immutableArray = (oldState, newState) => {
+	return [...oldState, newState];
 }
 {% endhighlight %}
 
-{% highlight javascript %}
-const immutableObject = (currentObject) => {
-	return Object.assign({},currentObject, { name: 'a', location: 'xyz'});
-}
-{% endhighlight %}
-
-array.push - use a new array with spread operator or concat
 array.splice - use slice with spread operator or concat
 array remove - use concat and slice
 
-map function returns a new array
+Don't directly change the `oldState` parameter object, use a new object `{}` or `Object.assign`
 
-Don't directly change the object, use a new object or object.assigns or spread
+{% highlight javascript %}
+const immutableObject = (oldState, newState) => {
+	return Object.assign({}, currentObject, { name: 'a', location: 'xyz'});
+}
+{% endhighlight %}

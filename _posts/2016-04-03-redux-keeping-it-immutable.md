@@ -15,7 +15,8 @@ Redux have reducers which is tasked with transforming the state across the appli
 They are pure functions which is a function that does not modify variables outside of its scope
 or depend on them. They are given the same parameters and the output should be the same every time.
 
-Importantly they do not mutate the parameters or make any API calls. 
+Importantly they do not mutate the parameters or make any API calls.
+This will prevent side effects from happening in your application.
 They get the previous _state_ and _action_ which is transformed to return a new state.
 
 Below are a few examples on preventing mutation:

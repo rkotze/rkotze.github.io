@@ -35,10 +35,7 @@ const immutableArray = (oldState, newState) => {
 }
 {% endhighlight %}
 
-array.splice - use slice with spread operator or concat
-array remove - use concat and slice
-
-Don't directly change the `oldState` parameter object, use a new object `{}` or `Object.assign`
+Don't directly change the `oldState` parameter object as this will mutate the object passed in and could affect the application in a later state. Instead use a new object `{}` or `Object.assign` to create a new object without affecting the old one.
 
 {% highlight javascript %}
 const immutableObject = (oldState, newState) => {

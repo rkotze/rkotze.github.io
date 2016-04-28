@@ -73,3 +73,5 @@ response.status.should.eql('OK');
 {% endhighlight %}
 
 This is how I go about [stubbing SuperAgent using Sinon](https://gist.github.com/rkotze/77aba69955dd6d97abf5). If you have any feedback or questions please post in the comments below.
+
+<script src="https://gist.github.com/rkotze/77aba69955dd6d97abf5.js"></script>

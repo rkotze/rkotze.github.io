@@ -8,7 +8,7 @@ meta_description: >
  Redux uses pure functions and encourages that no mutation takes place.
 ---
 
-Redux has reducers which is tasked with transforming the state across the application.
+Redux has reducers tasked with transforming the state across the application.
 They are pure functions, which is a function that does not modify variables outside of its scope
 or depend on them. They are given the same parameters and the output should be the same every time.
 

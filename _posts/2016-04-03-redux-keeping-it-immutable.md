@@ -40,7 +40,10 @@ const immutableArrayPush = (oldState, newValue) => {
 immutableArrayPush([1,2,3], 4); //=> [1,2,3,4]
 {% endhighlight %}
 
+## Handle object transformation
+
 Don't directly change the `oldState` parameter object, use a new object `{}` or `Object.assign` in the return.
+
 Below the `currentObject` and `newState` are merged if they have similar properties the right most parameter
 will have priority. It then returns a new object.
 
@@ -61,8 +64,8 @@ Below is a way to remove an item from an array without mutating it.
 {% highlight javascript %}
 const immutableArrayRemove = (currentList, removeFrom) => {
 	return currentList
-					.slice(0, removeFrom)
-					.concat(currentList.slice(removeFrom + 1));
+		.slice(0, removeFrom)
+		.concat(currentList.slice(removeFrom + 1));
 };
 
 //usage

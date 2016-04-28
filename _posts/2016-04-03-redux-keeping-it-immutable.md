@@ -41,7 +41,6 @@ immutableArrayPush([1,2,3], 4); //=> [1,2,3,4]
 {% endhighlight %}
 
 Don't directly change the `oldState` parameter object, use a new object `{}` or `Object.assign` in the return.
-
 Below the `currentObject` and `newState` are merged if they have similar properties the right most parameter
 will have priority. It then returns a new object.
 

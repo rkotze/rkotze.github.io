@@ -18,4 +18,17 @@ Below is an example of creating mixing:
 {% highlight javascript %}
 {% endhighlight %}
 
-The next tactic is to use _functional inheritance_ similar to _Mixins_ but you can use closures to enforce private state.
+The next tactic is to use _functional inheritance_ similar to _Mixins_ but you can use closures to enforce private data. We can then utilise privilege methods to manipulate the private data fields. Refactoring the example above to use functional inheritance:
+
+{% highlight javascript %}
+{% endhighlight %}
+
+## Composition creates a different relationship
+
+Classical inheritance typically creates an **is-a** relationship but in a lot of ways we prefer more **has-a** or **uses-a**, which is achieved using composition.
+
+```
+const car = compose(accelerate, brake, steer);
+```
+
+I think this offers more of an expressive, flexible and simpler way of building classes.

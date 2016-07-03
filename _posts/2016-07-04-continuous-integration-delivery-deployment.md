@@ -12,19 +12,21 @@ meta_description: >
 
 ### Continuous integration
 
-Commit your code often as possible to the main branch at least once a day, ensure it builds and passes tests. Feedback is give fast and typically ran on a build server. 
+Developers integrate code often as possible to the main branch at least once a day. The build is checked by an automated build which run tests and information is fed back fast on its state. Any broken changes should be fixed as soon as possible. 
 
 Objective:
 
 **Reduces risk** because you are committing regularly into the main branch should encourage smaller commits making it easy to integrate. Committing into the main branch does required the project to build successfully, pass unit tests and possibly other tests like code style.
 
-**Communication tool** with regular commits developers across teams working on the same code base can see what has changed.
+**Communication tool** with regular commits, developers across teams working on the same code base can see the changes.
+
+**Find bugs quicker** with regular integration any bugs get found sooner and since the changes are small it should be easy to fix.
 
 - http://www.martinfowler.com/articles/continuousIntegration.html
 
 ### Continuous Delivery
 
-Code is deployed to a production like environment to ensure it works as expected and with external services it might use. The deployment to production is controlled by a manual action like a click of a button. This is to allow business to decide if it should be released.
+The project is deployed to a production like environment to ensure it works as expected and with external services it might use. The deployment to production is controlled by a manual action like a click of a button. This is to allow business to decide if it should be released.
 
 - http://martinfowler.com/bliki/ContinuousDelivery.html
 

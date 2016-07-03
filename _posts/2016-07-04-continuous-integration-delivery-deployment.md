@@ -12,7 +12,13 @@ meta_description: >
 
 ### Continuous integration
 
-Commit your code often as possible to the main branch at least once a day, ensure it builds and passes tests. Feedback is give fast and typically ran on a build server. CI reduces risk because you are forced to make small changes and main branch must build. CI is useful communication tool among the team because work can been seen by everyone.
+Commit your code often as possible to the main branch at least once a day, ensure it builds and passes tests. Feedback is give fast and typically ran on a build server. 
+
+Objective:
+
+**Reduces risk** because you are committing regularly into the main branch should encourage smaller commits making it easy to integrate. Committing into the main branch does required the project to build successfully, pass unit tests and possibly other tests like code style.
+
+**Communication tool** with regular commits developers across teams working on the same code base can see what has changed.
 
 - http://www.martinfowler.com/articles/continuousIntegration.html
 

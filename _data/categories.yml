@@ -1,15 +1,12 @@
+- name: Projects
+  slug: projects
+  icon: icon-notebook
+- name: Coding
+  slug: coding
+  icon: icon-code
 - name: Top Tips
   slug: top-tips
   icon: icon-lightning
 - name: Fixes
   slug: fixes
   icon: icon-wand
-- name: Coding
-  slug: coding
-  icon: icon-code
-- name: Helpful links
-  slug: links
-  icon: icon-support
-- name: Projects
-  slug: projects
-  icon: icon-notebook

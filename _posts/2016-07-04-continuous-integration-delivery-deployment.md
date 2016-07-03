@@ -8,12 +8,11 @@ published: false
 meta_description: >
  Simple overview of continuous integration, delivery and deployment
 ---
-{% highlight javascript %}
-{% endhighlight %}
+
 
 ### Continuous integration
 
-Commit your code often as possible to the main branch at least once a day, ensure it builds and passes tests. Feedback is give fast and typically ran on a build server. CI is useful communication tool among the team because work can been seen by everyone.
+Commit your code often as possible to the main branch at least once a day, ensure it builds and passes tests. Feedback is give fast and typically ran on a build server. CI reduces risk because you are forced to make small changes and must make the build work. CI is useful communication tool among the team because work can been seen by everyone.
 
 - http://www.martinfowler.com/articles/continuousIntegration.html
 

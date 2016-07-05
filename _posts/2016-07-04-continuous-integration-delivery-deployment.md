@@ -3,7 +3,6 @@ layout: post
 title:  Continuous integration, delivery and deployment
 date:   2016-07-03 17:00:12 +0000
 permalink: /continuous-integration-delivery-deployment
-category: coding
 meta_description: >
  Succinct overview of continuous integration, delivery and deployment
 ---

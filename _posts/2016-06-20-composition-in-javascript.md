@@ -14,7 +14,7 @@ JavaScript is a very expressive language and is one of the main reasons I enjoy 
 
 One of the ways is _mixins_. This is essentially coping properties and methods from one object to another. It can be achieved by using ES6 `Object.assign()`  which copies one or more objects and returns a new object. Lodash `_.extend()` achieves the same thing if you need older browser support.
 
-Below is an example of creating a mixing:
+Below is an example of creating a mixin:
 
 {% highlight javascript %}
 const vehicleMixin = {

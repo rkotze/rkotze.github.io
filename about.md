@@ -6,13 +6,13 @@ sitemap:
  lastmod: 2016-04-20 17:00:12 +0000
 ---
 
-I'm a software engineer and mostly into JavaScript and Elixir. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how I want to design a solution. This allows me to be more creative and expressive when solving a problem, making it a very powerful tool. Another language I enjoy programming in is C#, it has a great balance of being flexible with a defined structure.
+I'm a software engineer and mostly into JavaScript and Elixir. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how a solution can be designed. I think this can enable an engineer more easily to construct a solution that clearly describes how it fits together, making it a very powerful tool. For similar reasons I Elixir.
 
 I'm an advocate for following XP practices and Agile software development. TDD is a great tool to improve quality, prevent regression and help solve complex problems.
 
-I've built a hybrid mobile app using the Ionic framework and Cordova. Ionic has dealt with a lot of the UI pains to make it feel native and it is a pleasure to use. Android mobile app for using [London underground](https://play.google.com/store/apps/details?id=com.ionicframework.oysterbalance749927){:target="_blank"} and you can read more about [London Traveller](/projects/building-london-traveller-app)
-
 When I can find time I also contribute to open source projects, see my [GitHub account](https://github.com/{{ site.github_username }}){:target="_blank"} to find out more.
+
+I've built a hybrid mobile app using the Ionic framework and Cordova. Ionic has dealt with a lot of the UI pains to make it feel native and it is a pleasure to use. Android mobile app for using [London underground](https://play.google.com/store/apps/details?id=com.ionicframework.oysterbalance749927){:target="_blank"} and you can read more about [London Traveller](/projects/building-london-traveller-app)
 
 Even though I don't actually design the UI for web apps I do enjoy participating in the UI development, to help gain an understanding of how a user might interact with the app. I believe it's important to deliver a quality user experience and ensure it is aesthetically pleasing.
 

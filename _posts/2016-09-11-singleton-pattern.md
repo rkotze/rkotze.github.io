@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "JavaScript singleton pattern"
+title:  "JavaScript Singleton pattern"
 date:   2016-09-11 13:00:12 +0000
 permalink: /patterns/javascript-singleton-pattern
 category: patterns
@@ -9,7 +9,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-The Singleton pattern is to ensure there is only one instance of the class exists. In the case it does exist it returns a reference to that object. This is normally achieved by a method belonging to the class to create an instance of the class.
+The Singleton pattern is to ensure there is only one instance of the class that exists. In the case it does exist it returns a reference to that object. This is normally achieved by a method belonging to the class to create an instance.
 
 <!--more-->
 
@@ -21,33 +21,33 @@ Basic and typical implementation of a Singleton in JavaScript using an object li
 
 {% highlight javascript %}
 const aSingleton = {
-	propA: 'some value',
+  propA: 'some value',
 
-	propB: 3,
+  propB: 3,
 
-	someMethod() {
-		return 'some text';
-	}
+  someMethod() {
+    return 'some text';
+  }
 
 };
 {% endhighlight %}
 
 
-Maybe you want to have private fields and functions? These can be encapsulated inside of a closure and returning an object literal to expose selected items.
+Maybe you want to have private fields and functions? These can be encapsulated inside of a closure and return a object literal to expose the public interface.
 
 {% highlight javascript %}
 const aSingleton = () => {
-	const privateField = 'abc';
+  const privateField = 'abc';
 
-	function privateFunction(){
-		return 'some private data ' + privateField;
-	};
+  function privateFunction(){
+    return 'some private data ' + privateField;
+  };
 
-	return {
-		publicMethod() {
-			return privateFunction();
-		}
-	};
+  return {
+    publicMethod() {
+      return privateFunction();
+    }
+  };
 };
 {% endhighlight %}
 
@@ -56,25 +56,25 @@ Another technique is to instantiate the class when it's needed which can help sa
 {% highlight javascript %}
 
 const ASingleton = (() => {
-	let isInstance;
+  let isInstance;
 
-	function initSingleton() {
-		return {
-			aProp: 'with value',
-			publicMethod() {
-				return 'something valuable';
-			}
-		};
-	}
+  function initSingleton() {
+    return {
+      aProp: 'with value',
+      publicMethod() {
+        return 'something valuable';
+      }
+    };
+  }
 
-	return {
-		getInstance() {
-			if(!isInstance){
-				isInstance = initSingleton();
-			}
-			return isInstance;
-		}
-	};
+  return {
+    getInstance() {
+      if(!isInstance){
+        isInstance = initSingleton();
+      }
+      return isInstance;
+    }
+  };
 }());
 
 ASingleton.getInstance().publicMethod();

@@ -4,6 +4,8 @@ title:  "Stubbing Reflux and SuperAgent with Sinon"
 date:   2016-03-06 12:39:21 +0000
 permalink: top-tips/stubbing-reflux-and-superagent-with-sinon/
 category: top-tips
+redirect_from:
+ - /top-tips/stubbing-reflux-and-superagent-with-sinon/index.php
 ---
 
 To follow on from the testing post I wrote on Findmypast tech blog for [stubbing dependances in commonJS](http://tech.findmypast.com/stubbing-dependencies-in-commonjs/) using proxyquire.

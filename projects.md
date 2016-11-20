@@ -7,5 +7,5 @@ redirect_from: /web-development
 sitemap:
  lastmod: 2016-04-20 17:00:12 +0000
 redirect_from:
- - /projects/index.php
+ - /projects/index.php/
 ---

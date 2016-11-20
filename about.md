@@ -2,8 +2,10 @@
 layout: page
 title: About me
 permalink: about-me/
-sitemap: 
+sitemap:
  lastmod: 2016-04-20 17:00:12 +0000
+redirect_from:
+ - /about-me/index.php/
 ---
 
 I'm a software engineer and mostly into JavaScript and Elixir. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how a solution can be designed. I think this can enable an engineer more easily to construct a solution that clearly describes how it fits together, making it a very powerful tool. For similar reasons I Elixir.

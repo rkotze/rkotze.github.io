@@ -8,7 +8,7 @@ redirect_from:
  - /about-me/index.php/
 ---
 
-I'm a software engineer and mostly into JavaScript and Elixir. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how a solution can be designed. I think this can enable an engineer more easily to construct a solution that clearly describes how it fits together, making it a very powerful tool. For similar reasons I like Elixir.
+I’m a software engineer and mostly into JavaScript and Elixir. Besides JavaScripts flaws, I enjoy writing it because it gives plenty of freedom in how a solution can be designed. This can enable an engineer to construct a solution that clearly fits together, making it a very powerful tool. For similar reasons I like Elixir.
 
 I'm an advocate for following XP practices and Agile software development. TDD is a great tool to improve quality, prevent regression and help solve complex problems.
 
@@ -20,28 +20,34 @@ Even though I don't actually design the UI for web apps I do enjoy participati
 
 Technologies that I have used and have good experience with are:
 
-*   JavaScript
+*   JavaScript ES 6 and ES 7
 *   JavaScript frameworks:
-	*   Angular
 	*   React
+	*	Relay and GraphQL
+	*	Redux
+	*   Angular
 	*   Backbone
 	*   jQuery
 	*   D3
-	*   Sinon
-	*   Mocha and Jasmine
-	*   Should
-	*   WebDriverIO
+* Unit testing
+	*   Mocha
+	*   Jasmine
+	*   Jest
+	*	Sinon
+	*   Should/Chai
+* Acceptance and UI testing
+	*	WebDriverIO
 	*   CucumberJS
 *   Elixir
-*		Hybrid mobile apps using Ionic Framework
 *   NodeJS
+*   Git - version control
+*	Hybrid mobile apps using Ionic Framework
 *   AJAX
 *   C#
-*   Git - source control
 *   MVC.NET
 *   PHP – OOP
   *   CodeIgniter
-*   XHTML / HTML 5
+*   HTML 5
 *   CSS 2.1, CSS3
 *   LESS, SASS
 *   MySQL

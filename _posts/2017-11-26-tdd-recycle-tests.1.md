@@ -1,20 +1,22 @@
 ---
 layout: post
 published: false
-title:  "Recycle tests TDD"
+title:  "Recycle tests TDD and code kata"
 date:   2017-11-26 12:00:12 +0000
-permalink: /coding/recycle-tests-tdd
+permalink: /coding/recycle-tests-tdd-code-kata
 category: coding
 meta_description: >
- The constraints of TDD and how recycling tests could help unblock your work flow. 
+ The constraints of TDD and how recycling tests could help unblock your workflow. 
 excerpt_separator: <!--more-->
 ---
 
-Have you ever written a unit test and it seems to take a long time to make that test green?
+Have you ever written a unit test and it seems to take a long time to make green?
 
-Here is an example of how that might happen using the kata [diamond pattern](https://www.codewars.com/kata/complete-the-pattern-number-9-diamond){:target="_blank"} on Codewars.
+The [diamond pattern](https://www.codewars.com/kata/complete-the-pattern-number-9-diamond){:target="_blank"} kata on Codewars might make you fall into that position again.
 
 <!--more-->
+
+The workshop at Agile Scotland conf by [Seb Rose](http://leanagile.scot/2017/sessions/index.php?session=92){:target="_blank"} motivated me to write this post.
 
 Test-driven development requires you to write a test first which helps you to move a step closer to solving the problem. A classic workflow is *Red, Green, Refactor*. Then means write a failing unit test first (red), make it pass (green) and is there anything that can be done to improve the code quality (refactor). More on classic TDD read [The cycles of TDD](http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html){:target="_blank"} by Uncle Bob.
 

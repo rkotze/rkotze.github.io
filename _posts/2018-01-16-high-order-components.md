@@ -15,7 +15,7 @@ It will also cover examples and conventions.
 
 **Why use HOC:** Promote reuse of logic across React components.
 
-Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be exact same methods used to fetch data but the display is different. See example 1 below.
+Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be exact same methods used to fetch data but the display is different. See example below.
 
 <!--more-->
 
@@ -27,7 +27,101 @@ This is a general compositional pattern and not part of React as such.
 
 First will show the repeated data fetching and how we can transform it into a HOC.
 
-{% highlight javascript %}
+```react
+class VideoBlog extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      videoBlog: null
+    };
+  }
 
-{% endhighlight %}
-_Example 1_
+  componentDidMount() {
+    fetch("http://example.com/videos/124").then(data => {
+      this.setState({
+        videoBlog: data.videoBlog
+      });
+    });
+  }
+
+  render() {
+    return <video src={this.state.videoBlog.src} />;
+  }
+}
+
+class RelatedVideos extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      videoList: []
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://example.com/videos/related/" + this.props.videoId).then(
+      data => {
+        this.setState({
+          videoList: data.videoList
+        });
+      }
+    );
+  }
+
+  render() {
+    return <List data={this.state.videoList} />;
+  }
+}
+```
+
+`VideoBlog` and `RelatedVideo` are not the same output but the implementation is similar. They both fetch data in the `componentDidMount` life cycle method.
+
+What will the above components look like when wrapped in the HOC.
+
+```react
+const VideoBlogWithFetch = withFetch(
+  VideoBlog,
+  () => "http://example.com/videos/124"
+);
+const VideoBlogWithFetch = withFetch(
+  VideoBlog,
+  props => "http://example.com/videos/related/" + props.videoId
+);
+```
+
+### Breakdown of the above
+
+**First param** is the component to be wrapped by the HOC.
+
+**Second param** is a function to build a fetch url.
+
+The data fetched is pushed through a **prop called data** which the wrapped components can access.
+
+This is what the `withFetch` HOC will look like:
+
+```react
+function withFetch(WrapComponent, createRequest) {
+  class WithFetch extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        data: null
+      };
+    }
+
+    componentDidMount() {
+      fetch(createRequest(this.props)).then(data => {
+        this.setState({
+          data
+        });
+      });
+    }
+
+    render() {
+      return <WrapComponent data={this.state.data} {...this.props} />;
+    }
+  }
+
+  WithFetch.displayName = `WithFetch(${getDisplayName(WrapComponent)})`;
+  return WithFetch;
+}
+```

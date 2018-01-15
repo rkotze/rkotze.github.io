@@ -13,13 +13,13 @@ excerpt_separator: <!--more-->
 In this post I will discuss the why and how to use high order components (<abbr title="High Order Component">HOC</abbr>) in ReactJS.
 It will also cover examples and conventions.
 
-**Why use HOC:** Promote reuse of logic across React components.
+**Why use HOC:** Promote _reuse_ of logic across React components.
 
-Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be exact same methods used to fetch data but the display is different. See example below.
+Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be exact same methods used to fetch data but the display is different. An example of this is shown later.
 
 <!--more-->
 
-**How to use HOC:** The core structure of a HOC is a function that takes a _component_ and returns a _new component_. HOC are pure functions with no side-effect because the component passed is wrapped in a new component. Typically data is passed in as props and additional props are passed through.
+**How to use HOC:** The core structure of a HOC is a function that takes a **component** and returns a **new component**. HOC are _pure functions_ with no side-effect because the component passed in, is wrapped in a new component. Typically **data is injected as a prop** and additional props are appended to the component
 
 This is a general compositional pattern and not part of React as such.
 

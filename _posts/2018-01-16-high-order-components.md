@@ -27,7 +27,7 @@ This is a general compositional pattern and not part of React as such.
 
 First will show the repeated data fetching and how we can transform it into a HOC.
 
-```react
+```javascript
 class VideoBlog extends React.Component {
   constructor() {
     super();
@@ -77,7 +77,7 @@ class RelatedVideos extends React.Component {
 
 What will the above components look like when wrapped in the HOC.
 
-```react
+```javascript
 const VideoBlogWithFetch = withFetch(
   VideoBlog,
   () => "http://example.com/videos/124"
@@ -98,7 +98,7 @@ The data fetched is pushed through a **prop called data** which the wrapped comp
 
 This is what the `withFetch` HOC will look like:
 
-```react
+```javascript
 function withFetch(WrapComponent, createRequest) {
   class WithFetch extends React.Component {
     constructor() {

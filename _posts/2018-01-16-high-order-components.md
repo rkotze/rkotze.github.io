@@ -82,8 +82,8 @@ const VideoBlogWithFetch = withFetch(
   VideoBlog,
   () => "http://example.com/videos/124"
 );
-const VideoBlogWithFetch = withFetch(
-  VideoBlog,
+const RelatedVideoWithFetch = withFetch(
+  RelatedVideo,
   props => "http://example.com/videos/related/" + props.videoId
 );
 ```
@@ -125,3 +125,17 @@ function withFetch(WrapComponent, createRequest) {
   return WithFetch;
 }
 ```
+
+**State** now has data property to inject response from api into wrapped component.
+
+**ComponentDidMount** now has a more generic `fetch` call to get data from any URL.
+
+A good convention in HOCs are to update the `displayName` with the name of HOC function and component `displayName`.
+Having this makes it easier to debug errors.
+
+## Other third party HOC
+
+`Relay.createContainer(component, graphqlQuery);`
+
+`ReactRedux.connnect(props, dispatch)(component);`
+

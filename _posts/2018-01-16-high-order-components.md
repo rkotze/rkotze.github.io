@@ -11,7 +11,6 @@ excerpt_separator: <!--more-->
 ---
 
 In this post I will discuss the why and how to use high order components (<abbr title="High Order Component">HOC</abbr>) in ReactJS.
-It will also cover examples and conventions.
 
 **Why use HOC:** Promote _reuse_ of logic across React components.
 
@@ -19,13 +18,17 @@ Components are the typical element for reuse in React but sometimes features don
 
 <!--more-->
 
-**How to use HOC:** The core structure of a HOC is a function that takes a **component** and returns a **new component**. HOC are _pure functions_ with no side-effect because the component passed in, is wrapped in a new component. Typically **data is injected as a prop** and additional props are appended to the component
+**How to use HOC:** The core structure of a HOC is a **function** that takes a **component** and returns a **new component**. HOC are _pure functions_ with no side-effect because the component passed in, is wrapped in a new component. Typically **data is injected as a prop** and additional props are appended to the component.
 
 This is a general compositional pattern and not part of React as such.
 
-## Examples of High order components
+## How do you decide
 
-First will show the repeated data fetching and how we can transform it into a HOC.
+I would recommend first building components in the normal React way. When the application is working as expected review your components to identify shared behaviours. Build the behaviour in a generic enough fashion to work for all existing components. This will help make it easier to identify HOC, even before completing new components but I would hold back and treat it as a refactoring step when deciding to build a new HOC.
+
+## Fetch data High order components
+
+First the working components which repeat the data fetching behaviour. After how we can transform it into a HOC.
 
 ```javascript
 class VideoBlog extends React.Component {
@@ -73,33 +76,30 @@ class RelatedVideos extends React.Component {
 }
 ```
 
-`VideoBlog` and `RelatedVideo` are not the same output but the implementation is similar. They both fetch data in the `componentDidMount` life cycle method.
+`VideoBlog` and `RelatedVideo` are not the same output but the implementation is similar. They both fetch data in `componentDidMount` life cycle.
 
-What will the above components look like when wrapped in the HOC.
+What will the above components look like when wrapped in `withFetch` HOC.
 
 ```javascript
-const VideoBlogWithFetch = withFetch(
-  VideoBlog,
-  () => "http://example.com/videos/124"
-);
-const RelatedVideoWithFetch = withFetch(
-  RelatedVideo,
-  props => "http://example.com/videos/related/" + props.videoId
+const VideoBlog = withFetch(VideoBlogView, "http://example.com/videos/124");
+const RelatedVideo = withFetch(
+  RelatedVideoView,
+  "http://example.com/videos/related/"
 );
 ```
 
 ### Breakdown of the above
 
-**First param** is the component to be wrapped by the HOC.
+**First param** is the component to be wrapped by the HOC. The old `VideoBlog` component changed from a class to just a presentational component called `VideoBlogView` because it no longer needs to manage state. Same applies to `RelatedVideo`.
 
-**Second param** is a function to build a fetch url.
+**Second param** is the fetch url to get data from.
 
-The data fetched is pushed through a **prop called data** which the wrapped components can access.
+The data fetched is pushed through a **prop called** `data` to the wrapped component.
 
-This is what the `withFetch` HOC will look like:
+The `withFetch` HOC looks like this:
 
 ```javascript
-function withFetch(WrapComponent, createRequest) {
+function withFetch(WrapComponent, request) {
   class WithFetch extends React.Component {
     constructor() {
       super();
@@ -109,7 +109,10 @@ function withFetch(WrapComponent, createRequest) {
     }
 
     componentDidMount() {
-      fetch(createRequest(this.props)).then(data => {
+      let url = request;
+      if (this.props.videoId !== undefined) url = request + this.props.videoId;
+
+      fetch(url).then(data => {
         this.setState({
           data
         });
@@ -126,16 +129,16 @@ function withFetch(WrapComponent, createRequest) {
 }
 ```
 
-**State** now has data property to inject response from api into wrapped component.
+**State** now has `data` prop to inject response from API into wrapped component.
 
-**ComponentDidMount** now has a more generic `fetch` call to get data from any URL.
+**ComponentDidMount** has a more generic `fetch` to get data from any URL.
 
-A good convention in HOCs are to update the `displayName` with the name of HOC function and component `displayName`.
-Having this makes it easier to debug errors.
+A good convention in HOCs are to set the `displayName` with the name of HOC function (`withFetch`) and component name (`VideoBlog`) to help with debugging.
 
-## Other third party HOC
+## Third party HOC
 
-`Relay.createContainer(component, graphqlQuery);`
+Below are some librarys you might have used which are using HOCs.
 
-`ReactRedux.connnect(props, dispatch)(component);`
+`Relay.createContainer(component, graphqlQuery);` [RelayJS createContainer](https://facebook.github.io/relay/docs/en/classic/classic-api-reference-relay-container.html) follows a similar function signature to what is shown in the example above. First param is the component to be wrapped and second is the query.
 
+`ReactRedux.connect(props, dispatch)(component);` [React Redux connect](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) has a different function signature of a function returning a function which accepts a parameter of the component to wrap to create a HOC. This is more complex however you might see more of this style because this promotes HOC composition.

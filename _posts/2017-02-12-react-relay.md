@@ -54,8 +54,8 @@ class CommentsRoute extends Relay.Route {
 {% endhighlight %}
 _Snippet 2_ example of creating a `Route`
 
-**Relay.Containers** are high-order components which provide a declarative way to specify the data shape for a component. Important to remember
- that these are _fragments_ use later to _construct a query_. Meaning the container does not preform a network request but provides the data requirements only.
+**Relay.Containers** are [higher-order components](/coding/understanding-higher-order-components) which provide a declarative way to specify the data shape for a component. Important to remember
+that these are _fragments_ use later to _construct a query_. Meaning the container does not preform a network request but provides the data requirements only.
 
 The key defined in the `fragments` object is the same key mapped onto the props of the component. The `CommentsStore` component will now have `this.props.store`.
 

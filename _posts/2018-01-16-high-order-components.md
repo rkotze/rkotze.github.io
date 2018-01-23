@@ -151,3 +151,7 @@ It's worth pointing out that there is a [minor performance loss](https://github.
 ## Conclusion
 
 Once you gain experience in building higher-order components you will start to notice your components become smaller and more focused units of code. This in turn will help make it easier to reason about your application logic. Reusing HOCs with composition means it will be a matter of plugging in relevant components to build complex features with ease.
+
+## Try what you have learned
+
+I've created a code challenge on Codewars to build your own [React JS higher-order component kata](https://www.codewars.com/kata/truncate-paragraph-using-higher-order-component-in-react-js). Please rate the kata when you complete it.

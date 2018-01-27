@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/rkotze
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.richardkotze.com
+  * I am rkotze (https://keybase.io/rkotze) on keybase.
+  * I have a public key ASDOOddrlcNsKtPPxzZvN0LgDjRAvo7USXMLfFF1st9xNwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120ce39d76b95c36c2ad3cfc7366f3742e00e3440be8ed449730b7c5175b2df71370a",
+      "host": "keybase.io",
+      "kid": "0120ce39d76b95c36c2ad3cfc7366f3742e00e3440be8ed449730b7c5175b2df71370a",
+      "uid": "8e3dd25a560d984774dd8cd4dcaa7519",
+      "username": "rkotze"
+    },
+    "merkle_root": {
+      "ctime": 1517046639,
+      "hash": "79082e5fff111daec6c2bb874e92da042ad1dea1248ff8eb38693eee5408666a645737442181a69560bd37483f2d53233b5a7008c649355069bdae03f9dfd076",
+      "hash_meta": "8070d1d1573e70038f2b56b7e025a5822b362d0147d1c377a8ff1df5129fbf93",
+      "seqno": 1990572
+    },
+    "service": {
+      "hostname": "www.richardkotze.com",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.40"
+  },
+  "ctime": 1517046907,
+  "expire_in": 504576000,
+  "prev": "8477cb55fe17a8bcc7c83b3413e274324e8eefa9209e36ef5f2eea8dcb2ce970",
+  "seqno": 14,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgzjnXa5XDbCrTz8c2bzdC4A40QL6O1ElzC3xRdbLfcTcKp3BheWxvYWTFA0p7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwY2UzOWQ3NmI5NWMzNmMyYWQzY2ZjNzM2NmYzNzQyZTAwZTM0NDBiZThlZDQ0OTczMGI3YzUxNzViMmRmNzEzNzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwY2UzOWQ3NmI5NWMzNmMyYWQzY2ZjNzM2NmYzNzQyZTAwZTM0NDBiZThlZDQ0OTczMGI3YzUxNzViMmRmNzEzNzBhIiwidWlkIjoiOGUzZGQyNWE1NjBkOTg0Nzc0ZGQ4Y2Q0ZGNhYTc1MTkiLCJ1c2VybmFtZSI6InJrb3R6ZSJ9LCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTUxNzA0NjYzOSwiaGFzaCI6Ijc5MDgyZTVmZmYxMTFkYWVjNmMyYmI4NzRlOTJkYTA0MmFkMWRlYTEyNDhmZjhlYjM4NjkzZWVlNTQwODY2NmE2NDU3Mzc0NDIxODFhNjk1NjBiZDM3NDgzZjJkNTMyMzNiNWE3MDA4YzY0OTM1NTA2OWJkYWUwM2Y5ZGZkMDc2IiwiaGFzaF9tZXRhIjoiODA3MGQxZDE1NzNlNzAwMzhmMmI1NmI3ZTAyNWE1ODIyYjM2MmQwMTQ3ZDFjMzc3YThmZjFkZjUxMjlmYmY5MyIsInNlcW5vIjoxOTkwNTcyfSwic2VydmljZSI6eyJob3N0bmFtZSI6Ind3dy5yaWNoYXJka290emUuY29tIiwicHJvdG9jb2wiOiJodHRwOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC40MCJ9LCJjdGltZSI6MTUxNzA0NjkwNywiZXhwaXJlX2luIjo1MDQ1NzYwMDAsInByZXYiOiI4NDc3Y2I1NWZlMTdhOGJjYzdjODNiMzQxM2UyNzQzMjRlOGVlZmE5MjA5ZTM2ZWY1ZjJlZWE4ZGNiMmNlOTcwIiwic2Vxbm8iOjE0LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQMBG1fKQQZLa8JccAb8JvMgoIU/FPgoz9xm0jaVxWldKWSya2ADayXXcvJXRoi0Qxx+LV8/ExwcBWtzKV4Bujg2oc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCDa+WTwhbd1inliOuDOoXGY4rkz7DCi385rbeD0nHelXKN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/rkotze
+
+==================================================================

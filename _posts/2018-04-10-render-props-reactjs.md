@@ -4,6 +4,7 @@ title: "Understanding render props"
 date: 2018-04-10 12:00:12 +0000
 permalink: /coding/understanding-render-props-react-js
 category: coding
+published: false
 meta_description: >
  Understand why and how to use render props with React JS 
 excerpt_separator: <!--more-->

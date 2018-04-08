@@ -38,10 +38,14 @@ The prop is called `render` and is assigned a `function` however this does not _
 }}</FetchData>
 ```
 
-As you can see render props is ensuring the parent component knows what to render without having to code it directly into `FetchData` making it reusable. Building your own render props component to better understand the benefits.
+As you can see render props is ensuring the `FetchData` component knows what to render without having to code it directly into it, making it reusable. Below I will go through building a render props component to better understand the benefits.
 
 ## Building your own
 
+Git contributor component
 
+### Start with a not flexible component
+
+### Change to be more reuseable
 
 Here is the [codepen.io example for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"}

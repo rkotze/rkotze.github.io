@@ -44,7 +44,7 @@ Well you might have noticed you are solving the whole of the kata at this point.
 
 ## How to make progress?
 
-First brain storm all cases you need to handle to help reduce the overload. Below are case you need to cover:
+First brain storm all cases you need to handle to help reduce the overload. Below are cases you need to cover:
 
 * Spacing for each row
 * Increment number to row number and then decrement to one to reflect the numbers e.g. 12321
@@ -53,7 +53,7 @@ First brain storm all cases you need to handle to help reduce the overload. Belo
 
 ## Recycling your test
 
-Idea is to take each of these points one at a time and start where you got stuck. Each time you solve one update the **assert** to handle the next point. **Don't** make another assert as the previous one will break. Essentially progress by tweaking the test until it gets to the point it is useful for regression.
+The idea is to take each of these points one at a time and start where you got stuck. Each time you solve one, update the **assert** to handle the next point. **Don't** make another assert as the previous one will break. Essentially progress by tweaking the test until it gets to the point it is useful for regression.
 
 Notable the workflow pattern is different as you will be on the same unit test. It will be something like **red, green, green, green, ...** until you solve it.
 
@@ -61,7 +61,7 @@ Notable the workflow pattern is different as you will be on the same unit test. 
 
 Try again and spend **20 minutes** trying to solve the [diamond pattern kata](https://www.codewars.com/kata/complete-the-pattern-number-9-diamond){:target="\_blank"} using this recycling method.
 
-After the 20 minutes there should be a better feeling of progress instead of overwhelmed and blocked.
+After the 20 minutes there should be a better feeling of progress instead of feeling overwhelmed and blocked.
 
 ## Conclusion
 

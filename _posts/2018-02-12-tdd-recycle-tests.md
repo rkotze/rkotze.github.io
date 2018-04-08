@@ -25,7 +25,7 @@ Each test passing should give you confidence to commit to master and the pace sh
 
 Be strict and spend **20 minutes** trying to solve the [diamond pattern kata](https://www.codewars.com/kata/complete-the-pattern-number-9-diamond){:target="\_blank"} using classic TDD.
 
-** Start now and come back here in 20 minutes**
+**Start now and come back here in 20 minutes**
 
 No problem if you have not solved it. What you need to do is be aware of where you got stuck. Are you stuck about **two or four** unit tests in? Is it testing `pattern(2)`?
 

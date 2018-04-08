@@ -49,13 +49,13 @@ First brain storm all cases you need to handle to help reduce the overload. Belo
 * Spacing for each row
 * Increment number to row number and then decrement to one to reflect the numbers e.g. 12321
 * Add new line at end of each row
-* Reflex the top half of the diamond
+* Reflex the top half of the diamond [??]
 
 ## Recycling your test
 
 Idea is to take each of these points one at a time and start where you got stuck. Each time you solve one update the **assert** to handle the next point. **Don't** make another assert as the previous one will break. Essentially progress by tweaking the test until it gets to the point it is useful for regression.
 
-Notable the workflow pattern is different as you will be on the same unit test. It will be something like **red, green, green, green, ...** until you solve it.
+Notable the workflow pattern is different as you will be on the same unit test. [??] It will be something like **red, green, green, green, ...** until you solve it.
 
 ## Second round
 

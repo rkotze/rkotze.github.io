@@ -44,18 +44,18 @@ Well you might have noticed you are solving the whole of the kata at this point.
 
 ## How to make progress?
 
-First brain storm all cases you need to handle to help reduce the overload. Below are cases you need to cover:
+First brain storm all cases you need to handle to help reduce the overload. Below are **cases** you need to cover:
 
 * Spacing for each row
 * Increment number to row number and then decrement to one to reflect the numbers e.g. 12321
 * Add new line at end of each row
-* Reflex the top half of the diamond
+* Reflect the top half to form the diamond
 
 ## Recycling your test
 
-The idea is to take each of these points one at a time and start where you got stuck. Each time you solve one, update the **assert** to handle the next point. **Don't** make another assert as the previous one will break. Essentially progress by tweaking the test until it gets to the point it is useful for regression.
+The idea is to solve each of these cases one at a time by updating the **assert** to handle the next case. **Don't** make another **assert** as the previous one will break. Essentially progress by tweaking the test until it gets to the point it is **useful for regression** and meets the requirements.
 
-Notable the workflow pattern is different as you will be on the same unit test. It will be something like **red, green, green, green, ...** until you solve it.
+Notably the _TDD workflow pattern_ will differ from the usual **red, green, refactor** as you will be on the same unit test. It will be more like **red, green, tweak test, green, tweak test, green, ...** until you solve it.
 
 ## Second round
 

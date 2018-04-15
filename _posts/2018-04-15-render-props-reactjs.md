@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Render Props"
-date: 2018-04-10 12:00:12 +0000
+date: 2018-04-15 12:00:12 +0000
 permalink: /coding/understanding-render-props-react-js
 category: coding
 published: false

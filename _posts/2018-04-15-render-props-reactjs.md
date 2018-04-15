@@ -10,17 +10,17 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-In this post, I will discuss the why and how to use **Render Prop** with [ReactJS](https://reactjs.org/).
+In this post, I will discuss the why and how to use **Render Props** with [ReactJS](https://reactjs.org/).
 
-**Why use** Render Prop: Promote **reuse** of behaviour across React components.
+**Why use** Render Props: Promote **reuse** of behaviour across React components.
 
 If you have read my post on [higher-order components](/coding/understanding-higher-order-components) this may sound similar. The React community has been working hard on solving reuse across components, one common theme is _passing data to children_. However, we will focus on how to use Render Props and discuss the differences in another post.
 
 <!--more-->
 
-**How to use** Render Prop: The **value of a prop** is assigned a **function** and is called in the component **render** method. The function defines what a _Render Prop component_ should render, allowing you to apply cross-cutting logic to any React component.
+**How to use** Render Props: The **value of a prop** is assigned a **function** and is called in the component **render** method. The function defines what a _Render Prop component_ should render, allowing you to apply cross-cutting logic to any React component.
 
-**Example** of using a Render Prop:
+**Example** of using a Render Props:
 
 ```javascript
 ...

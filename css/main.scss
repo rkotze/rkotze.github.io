@@ -57,19 +57,12 @@ $font-size-base:        16px;
 
 body{
     color: $textColor;
-    background-color: $textBGColor;
-    @media #{$small}{
-        background-color: $white;
-        background-image: url($backgroundImage);
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: -520px 20%;
-    }
+    background-color: $darkRed;
 }
 
 h1, h2, h3 {
     font-weight: lighter;
-    color: $grey;
+    color: $textColor;
     a:hover{
         text-decoration: none;
     }
@@ -156,8 +149,20 @@ h1.me {
     }
 }
 
-article p { 
-    margin-bottom:15px;
+article {
+    p, li { 
+        margin-bottom:20px;
+        font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 1.8;
+        letter-spacing: -.003em;
+    }
+    abbr[title]{
+        text-decoration: none;
+        border-bottom: 1px dotted $textColor;
+    }
 }
 
 article h1, article h2, article h3  {

@@ -10,7 +10,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-In this post, I will discuss the why and how to use **Render Props** with [ReactJS](https://reactjs.org/).
+In this post, I will discuss the why and how to use **Render Props** with ReactJS.
 
 **Why use** Render Props: Promote **reuse** of behaviour across React components.
 
@@ -145,6 +145,8 @@ class FetchContributors extends React.Component {
 The _only_ changes were made in the render method showing how similar the Render Props approach are to normal components. I also renamed the component to `FetchContributors` to better explain the behaviour of the component. Now you can see using `FetchContributors` the two different React views `ContributorProfile` and `ContributorsGraph` can access the same data.
 
 I've built a more detailed [codepen.io example for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
+
+Read more at [ReactJS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.
 
 ## Conclusion
 

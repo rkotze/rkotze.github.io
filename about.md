@@ -58,4 +58,7 @@ Technologies that I have used and have good experience with are:
 
 Articles written for other websites
 
-*   [Sitepoint.com - MySql Views](http://www.sitepoint.com/mysql-views/)
+* [Co-author commits with Git Mob](http://tech.findmypast.com/co-author-commits-with-git-mob/){:target="\_blank"}
+* [Testing React using Enzyme](http://tech.findmypast.com/testing-react-using-enzyme/){:target="\_blank"}
+* [Stubbing dependencies in commonJS](http://tech.findmypast.com/stubbing-dependencies-in-commonjs/){:target="\_blank"}
+* [Sitepoint.com - MySql Views](http://www.sitepoint.com/mysql-views/){:target="\_blank"}

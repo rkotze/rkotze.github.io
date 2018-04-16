@@ -17,7 +17,7 @@ Components are the typical element for reuse in React but sometimes features don
 
 <!--more-->
 
-![Sandy beach path straw fence](/images/beach-sandy-straw-fence1.jpg)
+![Sandy beach path straw fence](/images/beach-sandy-straw-fence.jpg)
 *Photo by Erda Estremera on Unsplash*
 
 **How to use HOC:** The core structure of a HOC is a **function** that takes a **component** as the first parameter and returns a **function** wrapping the first parameter. HOC are _pure functions_ with no side-effects because the component passed in, is wrapped in a new component. Typically **data is injected as a prop** and additional props are appended to the component.

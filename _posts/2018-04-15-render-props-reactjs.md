@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-In this post, I will discuss the why and how to use **Render Props** with React JS.
+In this post, I will discuss the why and how to use React JS **Render Props**.
 
 **Why use** Render Props: Promote **reuse** of behaviour across React components.
 

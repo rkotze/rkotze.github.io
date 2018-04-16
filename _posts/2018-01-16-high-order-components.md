@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Understanding higher-order components"
+title:  "Understanding React JS higher-order components"
 date:   2018-01-20 12:00:12 +0000
 permalink: /coding/understanding-higher-order-components
 category: coding
@@ -9,13 +9,16 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-In this post I will discuss the why and how to use higher-order components (<abbr title="higher-order component">HOC</abbr>) with [ReactJS](https://reactjs.org/).
+In this post I will discuss the why and how to use higher-order components (<abbr title="higher-order component">HOC</abbr>) with [React JS](https://reactjs.org/).
 
 **Why use HOC:** Promote _reuse_ of logic across React components.
 
 Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be similar methods used to fetch data but the display is different. An example of this is shown later.
 
 <!--more-->
+
+![Sandy beach path straw fence](/images/beach-sandy-straw-fence1.jpg)
+*Photo by Erda Estremera on Unsplash*
 
 **How to use HOC:** The core structure of a HOC is a **function** that takes a **component** as the first parameter and returns a **function** wrapping the first parameter. HOC are _pure functions_ with no side-effects because the component passed in, is wrapped in a new component. Typically **data is injected as a prop** and additional props are appended to the component.
 

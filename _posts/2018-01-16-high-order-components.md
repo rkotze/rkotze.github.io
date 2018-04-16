@@ -169,3 +169,5 @@ Once you gain experience in building higher-order components you will start to n
 ## Try what you have learned
 
 I've created a code challenge on Codewars to build your own [React JS higher-order component kata](https://www.codewars.com/kata/truncate-paragraph-using-higher-order-component-in-react-js). Please rate the kata when you complete it.
+
+**Next:** [understand React JS Render Props](/coding/understanding-render-props-react-js)

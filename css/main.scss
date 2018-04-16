@@ -159,6 +159,15 @@ article {
         line-height: 1.8;
         letter-spacing: -.003em;
     }
+    img{
+        width: 100%;
+        + em {
+            text-align: right;
+            color: $grey;
+            display: block;
+            font-size: 15px;
+        }
+    }
     abbr[title]{
         text-decoration: none;
         border-bottom: 1px dotted $textColor;

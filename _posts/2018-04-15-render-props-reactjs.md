@@ -1,22 +1,25 @@
 ---
 layout: post
-title: "Understanding Render Props"
+title: "Understanding React JS Render Props"
 date: 2018-04-15 12:00:12 +0000
 permalink: /coding/understanding-render-props-react-js
 category: coding
-published: false
+published: true
 meta_description: >
  Understand why and how to use Render Props with React JS
 excerpt_separator: <!--more-->
 ---
 
-In this post, I will discuss the why and how to use **Render Props** with ReactJS.
+In this post, I will discuss the why and how to use **Render Props** with React JS.
 
 **Why use** Render Props: Promote **reuse** of behaviour across React components.
 
 If you have read my post on [higher-order components](/coding/understanding-higher-order-components) this may sound similar. The React community has been working hard on solving reuse across components, one common theme is _passing data to children_. However, we will focus on how to use Render Props and discuss the differences in another post.
 
 <!--more-->
+
+![Slovenia mountain range](/images/slovenia-mountains.jpg)
+*Photo by Ales Krivec on Unsplash*
 
 **How to use** Render Props: The **value of a prop** is assigned a **function** and is called in the component **render** method. The function defines what a _Render Prop component_ should render, allowing you to apply cross-cutting logic to any React component.
 
@@ -146,7 +149,7 @@ The _only_ changes were made in the render method showing how similar the Render
 
 I've built a more detailed [codepen.io example for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
 
-Read more at [ReactJS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.
+Read more at [React JS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.
 
 ## Conclusion
 

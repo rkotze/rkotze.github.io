@@ -4,13 +4,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  
   <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <!-- <meta name="twitter:image" content="{{ site.url }}/images/{{ page.image }}" />
+  <meta name="twitter:description" content="{{ page.meta_description }}" /> -->
   {% if page.title %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@richardkotze" />
+    <meta name="twitter:title" content="{{ page.title }}" />
     <meta content="{{ page.title }}" property="og:title">
     <meta content="article" property="og:type">
   {% endif %}
   {% if page.meta_description %}
-    <meta content="{{ page.meta_description }}" property="og:meta_description">
+    <meta content="{{ page.meta_description }}" property="og:description">
   {% endif %}
   {% if page.url %}
     <meta content="{{ site.url }}{{ page.url }}" property="og:url">
@@ -20,7 +26,7 @@
     <meta content="{{ site.url }}/about-me/" property="article:author">
   {% endif %}
   {% if page.image %}
-    <meta content="/images/{{ page.image }}" property="og:image">
+    <meta content="{{ site.url }}/images/{{ page.image }}" property="og:image">
   {% endif %}
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">

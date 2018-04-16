@@ -5,8 +5,9 @@ date: 2018-04-15 12:00:12 +0000
 permalink: /coding/understanding-render-props-react-js
 category: coding
 published: true
+image: "slovenia-mountains.jpg"
 meta_description: >
- Understand why and how to use Render Props with React JS
+ Understand why and how to use React JS Render Props
 excerpt_separator: <!--more-->
 ---
 

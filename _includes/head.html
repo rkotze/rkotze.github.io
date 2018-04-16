@@ -5,6 +5,23 @@
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  {% if page.title %}
+    <meta content="{{ page.title }}" property="og:title">
+    <meta content="article" property="og:type">
+  {% endif %}
+  {% if page.meta_description %}
+    <meta content="{{ page.meta_description }}" property="og:meta_description">
+  {% endif %}
+  {% if page.url %}
+    <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+  {% endif %}
+  {% if page.date %}
+    <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
+    <meta content="{{ site.url }}/about-me/" property="article:author">
+  {% endif %}
+  {% if page.image %}
+    <meta content="/images/{{ page.image }}" property="og:image">
+  {% endif %}
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">

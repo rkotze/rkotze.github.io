@@ -4,8 +4,9 @@ title:  "Understanding React JS higher-order components"
 date:   2018-01-20 12:00:12 +0000
 permalink: /coding/understanding-higher-order-components
 category: coding
+image: beach-sandy-straw-fence.jpg
 meta_description: >
- Understand why and how to use higher-order components with React JS 
+ Understand why and how to use React JS higher-order components 
 excerpt_separator: <!--more-->
 ---
 

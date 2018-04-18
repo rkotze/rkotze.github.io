@@ -20,14 +20,13 @@ If you have read my post on [higher-order components](/coding/understanding-high
 <!--more-->
 
 ![Slovenia mountain range](/images/slovenia-mountains.jpg)
-*Photo by Ales Krivec on Unsplash*
+_Photo by Ales Krivec on Unsplash_
 
 **How to use** Render Props: The **value of a prop** is assigned a **function** and is called in the component **render** method. The function defines what a _Render Prop component_ should render, allowing you to apply cross-cutting logic to any React component.
 
 **Example** of using a Render Props:
 
 ```javascript
-...
 render(){
   <FetchData render={(data) => {
     return <p>{data}</p>
@@ -40,7 +39,6 @@ The prop is called `render` and is assigned a `function` however this does not _
 **Example** of Render Props using `children`:
 
 ```javascript
-...
 render(){
   <FetchData>{(data) => {
     return <p>{data}</p>
@@ -58,51 +56,50 @@ We are going to build a component that fetches contributor data for a repository
 
 ```javascript
 class ListContributors extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       contributorList: []
     };
   }
 
-  fetchContributors = (repoPath) => {
+  fetchContributors = repoPath => {
     fetch(`https://api.github.com/repos/${repoPath}/stats/contributors`)
-      .then((data) => data.json())
-      .then((data) => {
+      .then(data => data.json())
+      .then(data => {
         return data.map(({ total, author }) => ({
-            total: total,
-            username: author.login,
-            avatar: author.avatar_url,
-            id: author.id
-          }));
+          total: total,
+          username: author.login,
+          avatar: author.avatar_url,
+          id: author.id
+        }));
       })
-      .then((contributorList) => {
+      .then(contributorList => {
         this.setState({
           contributorList
         });
       });
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchContributors(this.props.repoPath);
   }
 
-  render(){
+  render() {
     const { contributorList } = this.state;
     return (
       <div>
-      {contributorList.map((contributor) => {
-          return (
-            <ContributorProfile {...contributor} />
-          )})}
+        {contributorList.map(contributor => {
+          return <ContributorProfile {...contributor} />;
+        })}
       </div>
-    )
+    );
   }
 }
 
 // Usage
 
-<ListContributors repoPath="findmypast-oss/git-mob" />
+<ListContributors repoPath="findmypast-oss/git-mob" />;
 ```
 
 The above should render a list of contributors showing author avatar, username, and total commits.
@@ -120,7 +117,6 @@ Let's try refactoring the above view to use Render Props to see how that solves 
 ```javascript
 class FetchContributors extends React.Component {
   // only changes in the render method
-  ...
   render(){
     const { contributorList } = this.state;
     return (

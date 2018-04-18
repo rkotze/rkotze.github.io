@@ -52,7 +52,7 @@ As you can see _Render Props_ is defining what the `FetchData` component should 
 
 The great thing about the Render Props approach is it's like building any React component without the boiler code a HOC needs.
 
-## First build a standard component
+### First build a standard component
 
 We are going to build a component that **fetches contributor** data for a repository from GitHub **without** Render Props.
 
@@ -146,7 +146,7 @@ class FetchContributors extends React.Component {
 
 The _only_ changes here were made in the render method, showing how similar the Render Props approach is to normal components. I also renamed the component to `FetchContributors` to better explain the behaviour of the component. Now you can see that using `FetchContributors` with `ContributorProfile` and `ContributorsGraph` they can access the same data but render two different React components.
 
-## Try it out
+### Try it out
 
 I've built a more detailed [**codepen.io example** for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
 
@@ -154,7 +154,7 @@ I've built a more detailed [**codepen.io example** for fetching git contributors
 
 What we see is that **Render Props** makes it easy to build **reusable components** - without the boiler code of higher-order components. It's very clear where the props are being set from. The setup is straightforward by assigning a prop with a function which tells the component what to render.
 
-## Libraries using Render Props
+### Libraries using Render Props
 
 Build accessible components using [Downshift](https://github.com/paypal/downshift){:target="\_blank"} and the whole of its API is accessed via the `render` props.
 

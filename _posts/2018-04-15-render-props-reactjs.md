@@ -52,7 +52,9 @@ As you can see _Render Props_ is defining what the `FetchData` component should 
 
 The great thing about the Render Props approach is it's like building any React component without the boiler code a HOC needs.
 
-We are going to build a component that fetches contributor data for a repository from GitHub.
+## First build a standard component
+
+We are going to build a component that **fetches contributor** data for a repository from GitHub **without** Render Props.
 
 ```javascript
 class ListContributors extends React.Component {
@@ -106,7 +108,7 @@ The above should render a list of contributors showing author avatar, username, 
 
 The method `fetchContributors` gets contributors from GitHub and transforms the raw JSON object to properties we care about. We then `map` through the list to render out the contributors.
 
-What if we want to use the **same data** but with a **different view**? For example, show a graph instead of a list?
+**What if** we want to use the same data but with a **different view**? For example, show a graph instead of a list.
 
 We could use an if statement to check a prop, however that would become unmaintainable when supporting more than two views.
 
@@ -142,22 +144,26 @@ class FetchContributors extends React.Component {
 }</FetchContributors>
 ```
 
-The _only_ changes here were made in the render method, showing how similar the Render Props approach is to normal components. I also renamed the component to `FetchContributors` to better explain the behaviour of the component. Now you can see that using `FetchContributors`, the two different React views - `ContributorProfile` and `ContributorsGraph` - can access the same data.
-
-## Libraries using Render Props
-
-Build accessible components using [Downshift](https://github.com/paypal/downshift){:target="\_blank"}. Render props is how you access the whole of its API.
-
-RelayJS has a [`QueryRenderer` component](https://facebook.github.io/relay/docs/en/query-renderer.html){:target="\_blank"} which uses the `render` prop.
-
-React state management library [constate](https://github.com/diegohaz/constate){:target="\_blank"}. The API is access through Render Props but uses the `children` prop.
+The _only_ changes here were made in the render method, showing how similar the Render Props approach is to normal components. I also renamed the component to `FetchContributors` to better explain the behaviour of the component. Now you can see that using `FetchContributors` with `ContributorProfile` and `ContributorsGraph` they can access the same data but render two different React components.
 
 ## Try it out
 
-I've built a more detailed [codepen.io example for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
-
-Read more at [React JS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.
+I've built a more detailed [**codepen.io example** for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
 
 ## Conclusion
 
 What we see is that **Render Props** makes it easy to build **reusable components** - without the boiler code of higher-order components. It's very clear where the props are being set from. The setup is straightforward by assigning a prop with a function which tells the component what to render.
+
+## Libraries using Render Props
+
+Build accessible components using [Downshift](https://github.com/paypal/downshift){:target="\_blank"} and the whole of its API is accessed via the `render` props.
+
+RelayJS [`QueryRenderer` component](https://facebook.github.io/relay/docs/en/query-renderer.html){:target="\_blank"} uses the `render` prop.
+
+React state management library [constate](https://github.com/diegohaz/constate){:target="\_blank"}. The API is accessed through the `children` prop.
+
+### Further reading
+
+[React JS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.
+
+Michael Jackson post gives good detail on the evolution to reusing logic across components in ReactJS and why [use a render prop](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce){:target="\_blank"} is best.

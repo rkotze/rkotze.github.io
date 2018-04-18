@@ -144,6 +144,16 @@ class FetchContributors extends React.Component {
 
 The _only_ changes here were made in the render method, showing how similar the Render Props approach is to normal components. I also renamed the component to `FetchContributors` to better explain the behaviour of the component. Now you can see that using `FetchContributors`, the two different React views - `ContributorProfile` and `ContributorsGraph` - can access the same data.
 
+## Libraries using Render Props
+
+Build accessible components using [Downshift](https://github.com/paypal/downshift){:target="\_blank"}. Render props is how you access the whole of its API.
+
+RelayJS has a [`QueryRenderer` component](https://facebook.github.io/relay/docs/en/query-renderer.html){:target="\_blank"} which uses the `render` prop.
+
+React state management library [constate](https://github.com/diegohaz/constate){:target="\_blank"}. The API is access through Render Props but uses the `children` prop.
+
+## Try it out
+
 I've built a more detailed [codepen.io example for fetching git contributors](https://codepen.io/rkotze/pen/oqqopQ){:target="\_blank"} for you to experiment with.
 
 Read more at [React JS docs on Render Props](https://reactjs.org/docs/render-props.html){:target="\_blank"}.

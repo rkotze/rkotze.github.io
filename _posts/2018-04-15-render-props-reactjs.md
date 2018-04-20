@@ -26,7 +26,7 @@ _Photo by Ales Krivec on Unsplash_
 
 **Example** of using a Render Props:
 
-```javascript
+```jsx
 render(){
   <FetchData render={(data) => {
     return <p>{data}</p>
@@ -38,7 +38,7 @@ The prop is called `render` and is assigned a `function` however this does not _
 
 **Example** of Render Props using `children`:
 
-```javascript
+```jsx
 render(){
   <FetchData>{(data) => {
     return <p>{data}</p>
@@ -56,7 +56,7 @@ The great thing about the Render Props approach is it's like building any React 
 
 We are going to build a component that **fetches contributor** data for a repository from GitHub **without** Render Props.
 
-```javascript
+```jsx
 class ListContributors extends React.Component {
   constructor() {
     super();
@@ -116,7 +116,7 @@ Let's try refactoring the above view to use Render Props to see how that solves 
 
 ### Render Props refactor
 
-```javascript
+```jsx
 class FetchContributors extends React.Component {
   // only changes in the render method
   render(){

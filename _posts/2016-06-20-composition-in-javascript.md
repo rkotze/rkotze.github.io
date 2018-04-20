@@ -1,18 +1,23 @@
 ---
 layout: post
 title:  Composition in JavaScript
-date:   2016-06-20 17:00:12 +0000
+date:   2018-03-20 17:00:12 +0000
 permalink: /coding/composition-in-javascript
 category: coding
 meta_description: >
  Using composition instead of classical inheritance in JavaScript
+excerpt_separator: <!--more-->
 ---
 
-JavaScript is a very expressive language and is one of the main reasons I enjoy using it. One amazing feature is the ability to create and inherit from objects without classes and class inheritance. Using compositional tactics we can piece together multiple objects to form new ones.
+Let's look at using **composition** over **classical inheritance** in JavaScript.
 
-## Mixins
+JavaScript is an expressive language and is one reason I enjoy using it. An interesting feature is the ability to create and inherit from objects without classes and class inheritance. Using compositional tactics we can piece together multiple objects to form new ones.
 
-One of the ways is _mixins_. This is essentially coping properties and methods from one object to another. It can be achieved by using ES6 `Object.assign()`  which copies one or more objects and returns a new object. Lodash `_.extend()` achieves the same thing if you need older browser support.
+<!--more-->
+
+## Let's begin with Mixins
+
+One of the ways is _mixins_. This is essentially coping properties and methods from one object to another. It can be achieved by using ES6 `Object.assign()` which copies one or more objects and returns a new object. Lodash `_.extend()` achieves the same result if you need older browser support.
 
 Below is an example of creating a mixin:
 
@@ -88,23 +93,25 @@ const lambo = compose(lamboShell);
 
 lambo.accelerate();
 
-console.log(lambo.get('colour'));
+console.log(lambo.get('colour')); //-> orange
 // we can change the colour
 lambo.set('colour', 'black');
 // see it has changed
-console.log(lambo.get('colour'));
-// try change directly
+console.log(lambo.get('colour')); //-> black
+// try change color directly
 lambo.props.colour = 'silver';
 // Colour used by class stays black
-console.log(lambo.get('colour'));
+console.log(lambo.get('colour')); //-> black
 {% endhighlight %}
 
 ## Composition creates a different relationship
 
-Classical inheritance typically creates an **is-a** relationship but in a lot of ways we prefer more **has-a** or **uses-a**, which is achieved using composition.
+Classical inheritance typically creates an **is-a** relationship but in a way the mental model of **has-a** or **uses-a** is easier to grasp, which is achieved using composition.
 
 ```
-const car = compose(accelerator, brake, steeringWheel);
+const lambo = hasA(accelerator, brake, steeringWheel);
 ```
 
-I think this offers more of an _expressive_, _flexible_ and _simpler_ way of building classes.
+## Conclusion
+
+Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is a little overhead of creating boiler code for example `lamboShell` object is not particularly useful until it is composed. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.

@@ -4,6 +4,7 @@ title:  Composition in JavaScript
 date:   2018-03-20 17:00:12 +0000
 permalink: /coding/composition-in-javascript
 category: coding
+image: "lamborghini-huracan.jpg"
 meta_description: >
  Using composition instead of classical inheritance in JavaScript
 excerpt_separator: <!--more-->
@@ -14,6 +15,8 @@ Let's look at using **composition** over **classical inheritance** in JavaScript
 JavaScript is an expressive language and is one reason I enjoy using it. An interesting feature is the ability to create and inherit from objects without classes and class inheritance. Using compositional tactics we can piece together multiple objects to form new ones.
 
 <!--more-->
+
+![Lamborghini Huracan with text "composition over classical inheritance"](/images/lamborghini-huracan.jpg)
 
 ## Let's begin with Mixins
 

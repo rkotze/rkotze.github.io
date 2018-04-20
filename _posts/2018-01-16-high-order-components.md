@@ -25,7 +25,7 @@ _Photo by Erda Estremera on Unsplash_
 
 Example of a basic HOC:
 
-```javascript
+```jsx
 function withExample(Component) {
   return function(props) {
     return <Component />;
@@ -43,7 +43,7 @@ I would recommend first building components in the normal React way. When the ap
 
 Firstly, here's the working components which have similar data fetching behaviour:
 
-```javascript
+```jsx
 class VideoBlog extends React.Component {
   constructor() {
     super();
@@ -93,7 +93,7 @@ class RelatedVideos extends React.Component {
 
 What will the above components look like when wrapped in `withFetch` HOC?
 
-```javascript
+```jsx
 const VideoBlog = withFetch(VideoBlogView, "http://example.com/videos/124");
 const RelatedVideo = withFetch(
   RelatedVideoView,
@@ -109,7 +109,7 @@ const RelatedVideo = withFetch(
 
 The `withFetch` HOC looks like this:
 
-```javascript
+```jsx
 function withFetch(WrapComponent, request) {
   class WithFetch extends React.Component {
     constructor() {

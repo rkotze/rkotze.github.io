@@ -21,11 +21,11 @@ JavaScript is an expressive language and is one reason I enjoy using it. An inte
 We will use cars to describe and provide examples of composition over inheritance.
 ## What is the difference between inheritance and composition
 
-Inheritance typically creates a**is-a** relationship and composition creates a **has-a** relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about. Rather than trying to identify commonality between classes and building a complex relational structure.
+Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:target="\_blank"} relationship and composition creates a [**has-a**](https://en.wikipedia.org/wiki/Has-a){:target="\_blank"} relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about. Rather than trying to identify commonality between classes and building a complex relational structure.
 
-**Inheritance** is when a class is based on another using the same implementation. A Lamborghini (_subclass_) would gaining methods and properties from a vehicle (_superclass_) like `brake` and `accelerate`. The Lambo will include its own properties like `colour`. This creates a relationship of a Lamborghini **is a** vehicle.
+[**Inheritance**](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)){:target="\_blank"} is when a class is based on another using the same implementation. A Lamborghini (_subclass_) would gaining methods and properties from a vehicle (_superclass_) like `brake` and `accelerate`. The Lambo will include its own properties like `colour`. This creates a relationship of a Lamborghini **is a** vehicle.
 
-**Composition** is about taking simple objects and combining them to build more complex ones. To build a Lamborghini you might define a function for constructing essential features like `engine`, `design` and `brakes`. This creates a relationship of a Lamborghini **has a** engine, brakes and design.
+[**Composition**](https://en.wikipedia.org/wiki/Object_composition){:target="\_blank"} is about taking simple objects and combining them to build more complex ones. To build a Lamborghini you might define a function for constructing essential features like `engine`, `design` and `brakes`. This creates a relationship of a Lamborghini **has a** engine, brakes and design.
 
 ### Mixins is a way of achieving inheritance 
 

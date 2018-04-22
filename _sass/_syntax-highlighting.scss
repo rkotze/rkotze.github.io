@@ -1,3 +1,14 @@
+@import "visibility";
+
+pre.highlight {
+  margin: 0 -15px;
+  border: none;
+  @media #{$small}{
+      margin: 0 0 11px;
+      border: 1px solid #ccc;
+  }
+}
+
 .highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f0f3f3; }
 .highlight .c { color: #0099FF; font-style: italic } /* Comment */

@@ -10,21 +10,30 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-Let's look at using **composition** over **classical inheritance** in JavaScript.
+Let's look at using **composition** instead **classical inheritance** in JavaScript.
 
-JavaScript is an expressive language and is one reason I enjoy using it. An interesting feature is the ability to create and inherit from objects without classes and class inheritance. Using compositional tactics we can piece together multiple objects to form new ones.
+JavaScript is an expressive language and is one reason I enjoy using it. An interesting feature is the ability to **compose** objects from simple objects _without inheritance_.
 
 <!--more-->
 
 ![Lamborghini Huracan with text "composition over classical inheritance"](/images/lamborghini-huracan.jpg)
 
-## Let's begin with Mixins
+We will use cars to describe and provide examples of composition over inheritance.
+## What is the difference between inheritance and composition
 
-One of the ways is _mixins_. This is essentially coping properties and methods from one object to another. It can be achieved by using ES6 `Object.assign()` which copies one or more objects and returns a new object. Lodash `_.extend()` achieves the same result if you need older browser support.
+Inheritance typically creates a**is-a** relationship and composition creates a **has-a** relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about. Rather than trying to identify commonality between classes and building a complex relational structure.
+
+**Inheritance** is when a class is based on another using the same implementation. A Lamborghini (_subclass_) would gaining methods and properties from a vehicle (_superclass_) like `brake` and `accelerate`. The Lambo will include its own properties like `colour`. This creates a relationship of a Lamborghini **is a** vehicle.
+
+**Composition** is about taking simple objects and combining them to build more complex ones. To build a Lamborghini you might define a function for constructing essential features like `engine`, `design` and `brakes`. This creates a relationship of a Lamborghini **has a** engine, brakes and design.
+
+### Mixins is a way of achieving inheritance 
+
+Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially coping properties and methods from one object to another but the context (`this`) will be `lamboShell`, which would lead to mutations of the original `lamboShell`. Ignoring this for the moment we have achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
 
 Below is an example of creating a mixin:
 
-{% highlight javascript %}
+```javascript
 const vehicleMixin = {
   set (name, value) {
     this[name] = value;
@@ -33,6 +42,8 @@ const vehicleMixin = {
   get (name) {
     return this[name];
   },
+  
+  speed: 0,
   
   accelerate () {
     this.speed += 2;
@@ -55,19 +66,52 @@ lambo.accelerate();
 console.log(lambo.get('colour'));
 
 lambo.colour = 'silver'; // will change value potentially breaking the state
+```
 
-{% endhighlight %}
+Using ES6 `Object.assign()` this copies one or more objects to a **target** object and returns the target object. Lodash `_.extend()` achieves the same result if you need older browser support.
 
-## Functional inheritance
+### Composition, piecing it together
 
-The next tactic is to use _functional inheritance_ similar to _mixins_ but you can use closures to enforce private data. We can then utilise privilege methods to manipulate the private data fields. Refactoring the example above to use functional inheritance:
+Taking a different approach to promoting**composition**, the code below defines a function `Lambo` that we can pass in expected car features like an engine. This is a basic implementation of Dependency Injection and uses private fields to reference the newly injected objects. `Lambo` implements its own features using the `Engine` for example to `slowDown` or `speedUp`, adjusting the speed of the Lambo as defined below.
 
-{% highlight javascript %}
-const vehicleMixin = function() {
-  // this makes the props private and can't be changed without using privilege methods
-  const props = Object.assign({}, this.props);
+We can then utilise privilege methods to manipulate the private data fields. 
+
+Refactoring the example above to compose a Lambo:
+
+```javascript
+const Engine = {
+  accelerate (speed, incrementSpeed) {
+    return speed + incrementSpeed;
+  },
+  decelerate (speed, decrementSpeed) {
+    return speed - decrementSpeed;
+  }
+}
+
+const Breaks = {
+  stop(speed) {
+    if(speed > 0) this.stop(speed - 3);
+    
+    return 0;
+  }
+}
+
+const Design = {
+  colour: 'Orange',
+  model: 'Huracan Spyder'
+};
+
+const Lambo = function(Design, Engine, Breaks){
+  const design = Object.create(Design);
+  const engine = Object.create(Engine);
+  const breaks = Object.create(Breaks);
+  const props = {
+    speed: 0,
+    colour: design.colour,
+    model: design.model
+  };
   
-  return Object.assign(this, {
+  return {
     set (name, value) {
       props[name] = value;
     },
@@ -75,46 +119,38 @@ const vehicleMixin = function() {
     get (name) {
       return props[name];
     },
-  
-    accelerate () {
-      props.speed += 2;
-      console.log(`accelerated: ${props.speed}`);
+    
+    log (name) {
+      console.log(`${name}: ${props[name]}`)
     },
-  
-    brake () {
-      props.speed -= 4;
-      console.log(`braking: ${props.speed}`);
+    
+    slowDown() {
+      props.speed = engine.decelerate(props.speed, 3);
+    },
+    
+    speedUp() {
+      props.speed = engine.accelerate(props.speed, 3);
+    },
+    
+    stop(){
+      props.speed = breaks.stop(props.speed);
     }
-  });
+  }
 };
 
-// apply the vehicle methods to any object
-const compose = (target) => vehicleMixin.call(target);
+const lambo = Lambo(Design, Engine, Breaks);
+lambo.speedUp();
+lambo.log('speed'); //-> 3
+lambo.slowDown();
+lambo.log('speed'); //-> 0
 
-const lamboShell = { props: { colour: 'orange', speed: 0 }};
-const lambo = compose(lamboShell);
-
-lambo.accelerate();
-
-console.log(lambo.get('colour')); //-> orange
+lambo.log('colour'); //-> orange
 // we can change the colour
 lambo.set('colour', 'black');
 // see it has changed
-console.log(lambo.get('colour')); //-> black
-// try change color directly
-lambo.props.colour = 'silver';
-// Colour used by class stays black
-console.log(lambo.get('colour')); //-> black
-{% endhighlight %}
-
-## Composition creates a different relationship
-
-Classical inheritance typically creates an **is-a** relationship but in a way the mental model of **has-a** or **uses-a** is easier to grasp, which is achieved using composition.
-
-```
-const lambo = hasA(accelerator, brake, steeringWheel);
+lambo.log('colour'); //-> black
 ```
 
 ## Conclusion
 
-Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is a little overhead of creating boiler code for example `lamboShell` object is not particularly useful until it is composed. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.
+Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is some overhead of reimplementing methods for example `Lambo.slowDown` is essentially an alias of `engine.decelerate`, which would not need to be done using inheritance. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.

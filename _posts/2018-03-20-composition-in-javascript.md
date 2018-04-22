@@ -18,7 +18,6 @@ JavaScript is an expressive language and is one reason I enjoy using it. An inte
 
 ![Lamborghini Huracan with text "composition over classical inheritance"](/images/lamborghini-huracan.jpg)
 
-We will use cars to describe and provide examples of composition over inheritance.
 ## What is the difference between inheritance and composition
 
 Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:target="\_blank"} relationship and composition creates a [**has-a**](https://en.wikipedia.org/wiki/Has-a){:target="\_blank"} relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about. Rather than trying to identify commonality between classes and building a complex relational structure.

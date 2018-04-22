@@ -28,7 +28,7 @@ Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:
 
 ### Mixins is a way of achieving inheritance 
 
-Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially coping properties and methods from one object to another but the context (`this`) will be `lamboShell`, which would lead to mutations of the original `lamboShell`. Ignoring this for the moment we have achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
+Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially copying properties and methods from one object to another. However, in the example below the context (`this`) will be `lamboShell`, which would lead to mutations of the original `lamboShell`. Ignoring this for the moment we have achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
 
 Below is an example of creating a mixin:
 
@@ -67,7 +67,7 @@ console.log(lambo.get('colour'));
 lambo.colour = 'silver'; // will change value potentially breaking the state
 ```
 
-Using ES6 `Object.assign()` this copies one or more objects to a **target** object and returns the target object. Lodash `_.extend()` achieves the same result if you need older browser support.
+Using ES6 `Object.assign()` this copies one or more objects to a **target** object and returns the target object. This is what causes the mutation of properties belonging to `lamboShell` in the above example because it is the target object. Lodash `_.extend()` achieves the same result if you need older browser support.
 
 ### Composition, piecing it together
 
@@ -152,4 +152,4 @@ lambo.log('colour'); //-> black
 
 ## Conclusion
 
-Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is some overhead of reimplementing methods for example `Lambo.slowDown` is essentially an alias of `engine.decelerate`, which would not need to be done using inheritance. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.
+Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is some overhead of reimplementing methods, for example `Lambo.stop` is essentially an alias of `Brakes.stop`, which would not need to be done when using inheritance. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.

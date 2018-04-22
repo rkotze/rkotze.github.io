@@ -72,7 +72,7 @@ Using ES6 `Object.assign()` this copies one or more objects to a **target** obje
 
 ### Composition, piecing it together
 
-Taking a different approach to promoting**composition**, the code below defines a function `Lambo` that we can pass in expected car features like an engine. This is a basic implementation of Dependency Injection and uses private fields to reference the newly injected objects. `Lambo` implements its own features using the `Engine` for example to `slowDown` or `speedUp`, adjusting the speed of the Lambo as defined below.
+Taking a different approach to promoting **composition**, the code below defines a function `Lambo` that we can pass in expected car features like an engine. This is a basic implementation of Dependency Injection and uses private fields to reference the newly injected objects. `Lambo` implements its own features using the `Engine` for example to `slowDown` or `speedUp`, adjusting the speed of the Lambo as defined below.
 
 We can then utilise privilege methods to manipulate the private data fields. 
 

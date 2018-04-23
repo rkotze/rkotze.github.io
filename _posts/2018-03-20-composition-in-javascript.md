@@ -28,7 +28,7 @@ Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:
 
 ### Mixins is a way of achieving inheritance 
 
-Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially copying properties and methods from one object to another. However, in the example below the context (`this`) will be `lamboShell`, which would lead to mutations of the original `lamboShell`. Ignoring this for the moment we have achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
+Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially copying properties and methods from one object to another. This is one way to achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
 
 Below is an example of creating a mixin:
 
@@ -57,7 +57,7 @@ const vehicleMixin = {
 
 const lamboShell = { colour: 'orange', speed: 0 };
 // combines both objects into one
-const lambo = Object.assign(lamboShell, vehicleMixin);
+const lambo = Object.assign({}, lamboShell, vehicleMixin);
 // the lambo can now accelerate
 lambo.accelerate();
 
@@ -67,7 +67,7 @@ console.log(lambo.get('colour'));
 lambo.colour = 'silver'; // will change value potentially breaking the state
 ```
 
-Using ES6 `Object.assign()` this copies one or more objects to a **target** object and returns the target object. This is what causes the mutation of properties belonging to `lamboShell` in the above example because it is the target object. Lodash `_.extend()` achieves the same result if you need older browser support.
+Using ES6 `Object.assign()` this copies one or more objects to a **target** object and returns the target object. Like in the example above it is best to start with an empty object `{}` as this will become the context (`this`) so that no _origin_ properties become mutated. If `lamboShell` was the first parameter in `Object.assigns` then those properties would mutate as well as on the new object. Lodash `_.extend()` achieves the same result if you need older browser support.
 
 ### Composition, piecing it together
 

@@ -95,5 +95,42 @@ async function resolveMyDatas() {
 Example of **async await** to fetch Github profile.
 
 ```javascript
+async function fetchGitProfile(username) {
+  let profile = await fetch(`https://api.github.com/users/${username}`);
+  let { bio, 
+       company, 
+       followers, 
+       following, 
+       repos_url 
+      } = await profile.json();
+  
+  return {
+    bio,
+    company,
+    followers,
+    following,
+    repos_url
+  };
+}
 
+async function includeGitRepos(repoUrl){
+  const repo = await fetch(repoUrl)
+    .then((data) => data.json());
+  
+  return repo.map(({name, stargazers_count}) => ({
+    name,
+    stargazers_count
+  }));
+}
+
+async function resolveGit() {
+  const profile = await fetchGitProfile('rkotze');
+  const repoList = await includeGitRepos(profile.repos_url);
+  console.log({
+     ...profile,
+     repoList
+   });
+};
+
+resolveGit();
 ```

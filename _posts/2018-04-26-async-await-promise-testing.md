@@ -20,6 +20,8 @@ Whenever you wanted to resolve some data asynchronously it has to be done via a 
 
 Promises mostly solved that problem by chaining. Each step resolved data and pass it along to the next function known as a `then`.
 
+## Using promises
+
 Example of the **promise** api:
 
 ```javascript
@@ -39,7 +41,7 @@ new Promise(function(resolve, reject) {
 
 The `fetch` function is available in most browsers and returns a promise. In the example there are two functions, one fetches a Github user and the other gets the users repositories. This builds an Github profile object containing the user profile information and array of repositories.
 
-Example of **promises** to fetch Github profile
+Example of **promises** to fetch Github profile and repositories.
 
 ```javascript
 function fetchGitProfile(username){
@@ -78,21 +80,24 @@ fetchGitProfile('rkotze')
    .then(log);
 ```
 
-This is more probably more understandable than trying to use callback only. However, you still need to understand the promise API for this code to be 100% clear. It's probably fine for most proficient in JavaScript, as promises have been around for quite some time.
+This is probably more understandable than trying to use callbacks only. However, you still need to understand the promise API for this code to be 100% clear. This is probably fine for most developers proficient in JavaScript, as promises have been around for quite some time.
+
+Learm more about Promises [on Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise){:target="\_blank"} and [JavaScript info](https://javascript.info/promise-chaining){:target="\_blank"}.
+
 ## Using **async/await**:
 
-In _ES7_ async and await keywords are available. These need to be used together for resolving asyncronous actions. Importantly `await` must be used within an `async` function and can not be used on its own. Another interesting feature is `async/await` are compatible with promises. If a function returns a promise you can use the `await` to resolve it or if the function returns `await` it is possible to use `.then`.
+In _ES7_ async and await keywords are available. These need to be used together for resolving asynchronous actions. Importantly `await` must be used within an `async` function and can not be used on its own. An interesting feature is `async/await` are compatible with promises. If a function returns a promise you can use the `await` to resolve it or if the function returns `await` it is possible to use `.then`.
 
-Example of `async/await`
+Basics of `async/await`
 
 ```javascript
 async function resolveMyDatas() {
-  await fetchDatas('/a');
-  return await fetchMoreDatas('/b');
+  const datas = await fetchDatas('/a');
+  return await fetchMoreDatas('/b/' + datas.id);
 }
 ```
 
-Example of **async await** to fetch Github profile.
+Example of **async await** to fetch a Github profile and repositories.
 
 ```javascript
 async function fetchGitProfile(username) {
@@ -123,7 +128,7 @@ async function includeGitRepos(repoUrl){
   }));
 }
 
-async function resolveGit() {
+async function resolveGithubProfile() {
   const profile = await fetchGitProfile('rkotze');
   const repoList = await includeGitRepos(profile.repos_url);
   console.log({
@@ -132,5 +137,17 @@ async function resolveGit() {
    });
 };
 
-resolveGit();
+resolveGithubProfile();
+```
+
+In the example above, you can see in `includeGitRepos` function that it is possible to mix in promises with the `await` keyword, `await fetch(repoUrl).then((data) => data.json());`. It is less obvious if you are not familiar with `fetch` API, but this is also returning a promise object. 
+
+Since it is easy to mix like this it is probably best not to mix within a function for consistency reasons. Instead of using the `.then()` inside of an `async/await` function use `await` to resolve all promises.
+
+It is evident `async/await` is syntax sugar for promises and the return object of one of these functions is a promise. Notably the code is cleaner making it easy to read and should be easy to migrate from promises.
+
+### Resolve multiple async calls
+
+```javascript
+
 ```

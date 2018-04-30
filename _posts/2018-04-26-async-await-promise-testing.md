@@ -140,14 +140,22 @@ async function resolveGithubProfile() {
 resolveGithubProfile();
 ```
 
-In the example above, you can see in `includeGitRepos` function that it is possible to mix in promises with the `await` keyword, `await fetch(repoUrl).then((data) => data.json());`. It is less obvious if you are not familiar with `fetch` API, but this is also returning a promise object. 
+In the example above, you can see in `includeGitRepos` function that it is possible to mix in promises with the `await` keyword, `await fetch(repoUrl).then((data) => data.json());`. It is less obvious if you are not familiar with `fetch` API, but this is also returning a promise. 
 
-Since it is easy to mix like this it is probably best not to mix within a function for consistency reasons. Instead of using the `.then()` inside of an `async/await` function use `await` to resolve all promises.
+Since it is easy to mix the two approaches it is probably best not to within a function for consistency reasons. Instead of using the `.then()` inside of an `async/await` function use `await` to resolve all promises.
 
-It is evident `async/await` is syntax sugar for promises and the return object of one of these functions is a promise. Notably the code is cleaner making it easy to read and should be easy to migrate from promises.
+It is evident `async/await` is syntax sugar for promises because the return object of one of these functions is a promise. Notably the code is cleaner making it easy to read and should be easy to migrate from promises.
 
 ### Resolve multiple async calls
 
-```javascript
+In the situation where you don't depend on resolve a fetch to start another, then there is no need to `await` each fetch. Instead you can trigger them in **parallel** and resolve each of them after the request have been made.
 
+```javascript
+async function resolveProfilesInParallel() {
+  const rkotzePromise = fetchGitProfile('rkotze');
+  const octocatPromise = fetchGitProfile('octocat'); 
+  const rkotze = await rkotzePromise;
+  const octocat = await octocatPromise; // this will complete in the same time as the one above.
+  return "done!";
+}
 ```

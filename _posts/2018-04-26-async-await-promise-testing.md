@@ -16,9 +16,9 @@ This post is going to give you lots of code examples of **promises** and _ES7_ *
 
 What do promises solve in our code?
 
-Whenever you wanted to resolve some data asynchronously it has to be done via a callback. What this led to in complex applications is known as "callback hell", when the first data fetch was resolved another data fetch needs to happen after. This would repeat a few times, creating a "nice" sideways pyramid in your code.
+Whenever you wanted to resolve some data **asynchronously** it has to be done via a **callback**. What this led to in complex applications is known as "callback hell", when the first data fetch was resolved another data fetch needs to happen after. This would repeat a few times, creating a "nice" sideways pyramid in your code.
 
-Promises mostly solved that problem by chaining. Each step resolved data and pass it along to the next function known as a `then`.
+**Promises** mostly solved that problem by chaining. Each step resolved data and pass it along to the next `then` function.
 
 ## Using promises
 
@@ -39,7 +39,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-The `fetch` function is available in most browsers and returns a promise. In the example there are two functions, one fetches a Github user and the other gets the users repositories. This builds an Github profile object containing the user profile information and array of repositories.
+The `fetch` function is available in most browsers and returns a promise. In the example below there are two functions, one fetches a Github user and the other gets the user repositories. This builds a Github profile object containing the user profile information and an array of repositories.
 
 Example of **promises** to fetch Github profile and repositories.
 
@@ -80,13 +80,13 @@ fetchGitProfile('rkotze')
    .then(log);
 ```
 
-This is probably more understandable than trying to use callbacks only. However, you still need to understand the promise API for this code to be 100% clear. This is probably fine for most developers proficient in JavaScript, as promises have been around for quite some time.
+This is probably more understandable than trying to use callbacks only. However, you still _need_ to understand the promise API for this code to be _100% clear_. This is probably fine for most developers proficient in JavaScript, as promises have been around for quite some time.
 
 Learm more about Promises [on Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise){:target="\_blank"} and [JavaScript info](https://javascript.info/promise-chaining){:target="\_blank"}.
 
 ## Using **async/await**:
 
-In _ES7_ async and await keywords are available. These need to be used together for resolving asynchronous actions. Importantly `await` must be used within an `async` function and can not be used on its own. An interesting feature is `async/await` are compatible with promises. If a function returns a promise you can use the `await` to resolve it or if the function returns `await` it is possible to use `.then`.
+In _ES7_ **async** and **await** keywords are available. These need to be used together for resolving asynchronous actions. Importantly `await` must be used within an `async` function and can not be used on its own. An interesting feature is `async/await` are compatible with promises. If a function returns a promise you can use the `await` to resolve it or if the `async` function returns it is possible to use `.then`.
 
 Basics of `async/await`
 
@@ -97,7 +97,7 @@ async function resolveMyDatas() {
 }
 ```
 
-Example of **async await** to fetch a Github profile and repositories.
+Example of **async/await** to fetch a Github profile and repositories.
 
 ```javascript
 async function fetchGitProfile(username) {
@@ -144,11 +144,11 @@ In the example above, you can see in `includeGitRepos` function that it is possi
 
 Since it is easy to mix the two approaches it is probably best not to within a function for consistency reasons. Instead of using the `.then()` inside of an `async/await` function use `await` to resolve all promises.
 
-It is evident `async/await` is syntax sugar for promises because the return object of one of these functions is a promise. Notably the code is cleaner making it easy to read and should be easy to migrate from promises.
+It is evident `async/await` is syntax sugar for promises because the return object of one of these functions is a promise. Notably, the code is cleaner making it easy to read and should be easy to migrate from promises.
 
 ### Resolve multiple async calls
 
-In the situation where you don't depend on resolve a fetch to start another, then there is no need to `await` each fetch. Instead you can trigger them in **parallel** and resolve each of them after the request have been made.
+In the situation where you don't depend on resolving a fetch to start another, then there is no need to `await` each fetch. Instead, you can trigger them in **parallel** and resolve each of them after the request have been made.
 
 ```javascript
 async function resolveProfilesInParallel() {

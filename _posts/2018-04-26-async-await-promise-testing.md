@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "Working with promises and async/await"
+title: "Using promises, async/await and testing"
 date: 2018-04-15 12:00:12 +0000
-permalink: /coding/promises-and-async-await
+permalink: /coding/promises-async-await-testing
 category: coding
 published: false
 meta_description: >
- Learn about ES7 async/await and how they are related to promises.
+ Learn about ES7 async/await and how they are related to Promises. Also how to unit test async code. 
 excerpt_separator: <!--more-->
 ---
+
+This post has lots of code examples showing **promises**, **async/await** and **unit testing** async functions. At the end of the post is a coding challenge to test your learning.
 
 What do promises solve in our code?
 
@@ -144,7 +146,7 @@ Since it is easy to mix the two approaches it is probably best not to within a f
 
 It is evident `async/await` is syntax sugar for promises because the return object of one of these functions is a promise. Notably, the code is cleaner making it easy to read and should be easy to migrate from promises.
 
-### Resolve multiple async calls
+### Resolve multiple async calls in Parallel
 
 In the situation where you don't depend on resolving a fetch to start another, then there is no need to `await` each fetch. Instead, you can trigger them in **parallel** and resolve each of them after the request have been made.
 
@@ -153,7 +155,7 @@ async function resolveProfilesInParallel() {
   const rkotzePromise = fetchGitProfile('rkotze');
   const octocatPromise = fetchGitProfile('octocat'); 
   const rkotze = await rkotzePromise;
-  const octocat = await octocatPromise; // this will complete in the same time as the one above.
+  const octocat = await octocatPromise; // this will complete in the same time as rkotzePromise.
   return [rkotze, octocat, "done!"];
 }
 ```
@@ -170,7 +172,7 @@ Promise.all([fetchGitProfile('rkotze'), fetchGitProfile('octocat')]).then(functi
 
 How would you unit test an `async/await` function?
 
-Test frameworks like [Mocha JS](https://mochajs.org/){:target="\_blank"}, [Jest](https://facebook.github.io/jest/){:target="\_blank"} and [Jasmine](https://jasmine.github.io/){:target="\_blank"} support the **async testing**. Below I will show some of the ways this is achieved.
+Test frameworks like [Mocha JS](https://mochajs.org/){:target="\_blank"}, [Jest](https://facebook.github.io/jest/){:target="\_blank"} and [Jasmine](https://jasmine.github.io/){:target="\_blank"} support **async testing**. Below are some of the ways this is achieved.
 
 ```javascript
 describe('github profile', function() {
@@ -184,7 +186,7 @@ describe('github profile', function() {
 });
 ```
 
-Use the `done` callback in the `it` function to tell the framework the test is completed.
+Above uses the `done` callback in the `it` function to tell the framework the test is completed.
 
 ```javascript
 describe('github profile', function() {
@@ -195,4 +197,25 @@ describe('github profile', function() {
 });
 ```
 
-Mocha supports returning a promise to know when the test is complete. Also the above example uses chai plugin [chai-as-promised](https://github.com/domenic/chai-as-promised){:target="\_blank"}.
+Above supports _returning_ a promise to know when the test is complete. Also the example uses chai plugin [chai-as-promised](https://github.com/domenic/chai-as-promised){:target="\_blank"}.
+
+```javascript
+describe('github profile', function() {
+  // mockout the fetch
+  it('fetch profile rkotze', async function() {
+    const profile = await fetchGitProfile('rkotze');
+    expect(profile).to.have.property("bio");
+  });
+});
+```
+
+Above shows how to use _async/await_ within the test.
+
+### Coding challenge
+
+Codewars [kata for async/await](https://www.codewars.com/kata/jokes-youve-been-awaiting-for-dot-dot-dot-promise/javascript){:target="\_blank"}
+
+### Codepen examples of:
+
+- [**Async/await to fetch GitHub profile and repos**](https://codepen.io/rkotze/pen/jxVejY){:target="\_blank"}
+- [**Promises to fetch GitHub profile and repos**](https://codepen.io/rkotze/pen/WJoXVP){:target="\_blank"}

@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Using promises, async/await and testing"
-date: 2018-04-15 12:00:12 +0000
+date: 2018-05-02 12:00:12 +0000
 permalink: /coding/promises-async-await-testing
 category: coding
-published: false
+published: true
 meta_description: >
  Learn about ES7 async/await and how they are related to Promises. Also how to unit test async code. 
 excerpt_separator: <!--more-->
@@ -19,6 +19,9 @@ Whenever you wanted to resolve some data **asynchronously** it has to be done vi
 **Promises** mostly solved that problem by chaining. Each step resolved data and pass it along to the next `then` function.
 
 <!--more-->
+
+![Street art on a wall, Face with sun glasses](/images/street-art.jpg)
+_Photo by Alex Holyoake on Unsplash_
 
 ## Using promises
 

@@ -5,6 +5,7 @@ date: 2018-05-02 12:00:12 +0000
 permalink: /coding/promises-async-await-testing
 category: coding
 published: true
+image: street-art.jpg
 meta_description: >
  Learn about ES7 async/await and how they are related to Promises. Also how to unit test async code. 
 excerpt_separator: <!--more-->

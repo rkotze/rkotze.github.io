@@ -1,24 +1,33 @@
 ---
 layout: post
 title: "HOC vs Render Props"
-date: 2018-04-15 12:00:12 +0000
+date: 2018-05-08 12:00:12 +0000
 permalink: /coding/hoc-vs-render-props
 category: coding
 published: false
 meta_description: >
- Understand why and how to use render props with React JS 
+ Decide when to use higher-order component over Render props.
 excerpt_separator: <!--more-->
 ---
 
-`React.createClass` mixins
+Higher-order components (<abbr title="higher-order component">HOC</abbr>) and Render props are two ways to build cross cutting code in React JS. _How do you decide to use one of the other?_ This is the question I will attempt to answer.
 
-The challenge of building reusable function for components
+<!--more-->
 
-- ES6 classes. They don’t support mixins.
-- Indirection. Mixins that modify state make it tricky to tell where that state is coming from, especially when there’s more than one mixin.
-- Naming collisions. Two mixins that try to update the same piece of state may overwrite one another. The createClass API included a check that would warn you if two mixins had a getInitialState value with the same keys, but it wasn’t airtight.
+Back in the day using `React.createClass`, [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"}  was the way to share cross cutting concerns for components. It was decided to start using ES6 `class` to build React components to manage the state. However, `class` did not support mixins and a new way had to be developed.
 
-https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html
+What was wrong with mixins? 
+
+- Two mixins could implement the same method and that would cause one to override the other. No warning would appear if this was the case either.
+- Interesting thing is mixins can have their own mixins, creating protential for a deep tree of dependencies to jump through.
+- Multiple mixins create lots of indirection making it difficult to identify which ones are modifing the state of the component.
+- Mixins could be modifing the same state key creating a naming collision issue, with some warning.
+
+Dan Abramov has written a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
+
+Eventually HOC evolved into the picture using ES6 classes. What did they solve?
+
+Here is my post on [understanding how higher-order components](/coding/understanding-higher-order-components) work.
 
 
 HOC

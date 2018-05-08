@@ -28,7 +28,7 @@ Example of a basic HOC:
 ```jsx
 function withExample(Component) {
   return function(props) {
-    return <Component />;
+    return <Component {...props} />;
   };
 }
 ```

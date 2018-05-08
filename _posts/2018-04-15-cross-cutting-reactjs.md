@@ -14,20 +14,49 @@ Higher-order components (<abbr title="higher-order component">HOC</abbr>) and Re
 
 <!--more-->
 
-Back in the day using `React.createClass`, [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"}  was the way to share cross cutting concerns for components. It was decided to start using ES6 `class` to build React components to manage the state. However, `class` did not support mixins and a new way had to be developed.
+Back in the day using `React.createClass`, [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"}  was the way to share cross cutting concerns for components. Since the next version of JavaScript, ES6 was on the way the decision was made to use `class` for building React components to manage the state. However, `class` did not support mixins and a new way had to be developed.
 
 What was wrong with mixins? 
 
 - Two mixins could implement the same method and that would cause one to override the other. No warning would appear if this was the case either.
-- Interesting thing is mixins can have their own mixins, creating protential for a deep tree of dependencies to jump through.
+- Interesting thing is mixins can have their own mixins, creating protential for a deep tree of dependencies that would make debugging difficult.
 - Multiple mixins create lots of indirection making it difficult to identify which ones are modifing the state of the component.
-- Mixins could be modifing the same state key creating a naming collision issue, with some warning.
 
-Dan Abramov has written a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
+For more details Dan Abramov wrote a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
 
-Eventually HOC evolved into the picture using ES6 classes. What did they solve?
+## Higher-order components
 
-Here is my post on [understanding how higher-order components](/coding/understanding-higher-order-components) work.
+Eventually, HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **function**. This is where you apply your cross cutting functionality. 
+
+```jsx
+function withExample(Component) {
+  return function(props) {
+    // cross cutting logic added here
+    return <Component {...props} />;
+  };
+}
+```
+
+Read my post on [understanding how higher-order components](/coding/understanding-higher-order-components) to learn more.
+
+
+What do HOC solve?
+
+- Importantly they provided a way to reuse code using ES6 classes.
+- No longer have method name clashing if two HOC implement the same one.
+- It is easy to make small reusable units of code supporting single responsibility.
+- Have mulitple HOC applied to one component using a compose function.
+
+You can start to see similarities between _mixins_ and _HOC_ including mixins downsides:
+
+- There is still an indirection issue, however, not about which HOC is changing the state but which one is providing a certain prop.
+- It is possible two HOC could be using the same prop meaning there is still a naming collision issue.
+
+Higher-order components also being in new problems as well.
+
+- Boiler plate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`)
+- Pass props through
+- Hoist static methods from the wrapped component.
 
 
 HOC

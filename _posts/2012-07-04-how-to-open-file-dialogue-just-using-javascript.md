@@ -6,7 +6,7 @@ update_date: 2018-05-09 17:00:00 +0000
 permalink: /top-tips/how-to-open-file-dialogue-just-using-javascript
 category: top-tips
 meta_description: >
- Open file select dialogue just using javascript or jquery and make it capable of selecting multiple files.
+ Open file select dialogue just using JavaScript, jQuery or React and make it capable of selecting multiple files.
 ---
 
 Say for instance that you want to open the _file select dialogue_ for a user to select an **file to upload**. Like a photo, pdf or any other file type. However, you don't want to use the standard file input HTML element, instead use a styled link or button to show the file window.
@@ -32,6 +32,34 @@ selectDialogueLink.onclick = function () {
 
 document.body.appendChild(selectDialogueLink);
 ```
+
+### Example using React JS
+
+```jsx
+function buildFileSelector(){
+  const fileSelector = document.createElement('input');
+  fileSelector.setAttribute('type', 'file');
+  fileSelector.setAttribute('multiple', 'multiple');
+  return fileSelector;
+}
+
+class FileDialogue extends React.Component {
+  componentDidMount(){
+    this.fileSelector = buildFileSelector();
+  }
+  
+  handleFileSelect = (e) => {
+    e.preventDefault();
+    this.fileSelector.click();
+  }
+  
+  render(){
+    return <a href="" onClick={this.handleFileSelect}>Select files</a>
+  }
+}
+```
+
+See my Codepen using [React JS to open a file dialogue](https://codepen.io/rkotze/pen/zjRXYr){:target="\_blank"}.
 
 ### Example using jQuery:
 

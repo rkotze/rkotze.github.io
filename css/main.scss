@@ -57,7 +57,6 @@ $font-size-base:        16px;
 
 body{
     color: $textColor;
-    background-color: $darkRed;
 }
 
 h1, h2, h3 {
@@ -81,7 +80,7 @@ h1.me {
     }
     a{
         &:link, &:visited{
-            color: $grey;
+            color: $textColor;
             text-decoration:none;
             @include transition(color 0.5s);
             &:hover{
@@ -131,7 +130,7 @@ h1.me {
 
 
 .head-profile{
-    color:#888;
+    color:#000;
     .keep-right{
         @media #{$small}{
             position: absolute;
@@ -271,10 +270,7 @@ article.item, article.listing {
         }
 
         a:link, a:visited{
-            background: $white;
-            @media #{$small}{
-                background-color: $textBGColor;
-            }
+            background-color: $textBGColor;
             // background-image: linear-gradient(to right, rgba(0, 0, 0, 0), $textBGColor);
             @include transition(all 0.4s);
         }

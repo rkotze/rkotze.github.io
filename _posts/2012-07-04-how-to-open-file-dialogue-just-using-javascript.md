@@ -2,6 +2,7 @@
 layout: post
 title:  How to open file dialogue just using JavaScript
 date:   2012-07-04 17:00:12 +0000
+update_date: 2018-05-09 17:00:00 +0000
 permalink: /top-tips/how-to-open-file-dialogue-just-using-javascript
 category: top-tips
 meta_description: >

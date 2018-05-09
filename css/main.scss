@@ -202,9 +202,16 @@ article h1, article h2, article h3  {
 }
 
 article.item, article.listing {
-    .pubDate { 
+    .pubDate, .updateDate { 
         font-size: 14px; 
         color:#666; 
+    }
+    .updateDate {
+        margin-top: -20px;
+    }
+    .symbol {
+        color: $darkRed;
+        font-size: 16px;
     }
 }
 article.item, article.listing {

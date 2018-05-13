@@ -26,7 +26,9 @@ For more details Dan Abramov wrote a post on why [mixins considered harmful](htt
 
 ## Higher-order components
 
-Eventually, HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **function**. This is where you apply your cross cutting functionality. 
+Soon HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **function**. This is where you apply your cross cutting functionality.
+
+**Example** Higher-order components
 
 ```jsx
 function withExample(Component) {
@@ -42,28 +44,48 @@ Read my post on [understanding how higher-order components](/coding/understandin
 
 What do HOC solve?
 
-- Importantly they provided a way to reuse code using ES6 classes.
+- Importantly they provided a way to reuse code when using ES6 classes.
 - No longer have method name clashing if two HOC implement the same one.
 - It is easy to make small reusable units of code supporting single responsibility.
-- Have mulitple HOC applied to one component using a compose function.
+- Have multiple HOC applied to one component, using a compose function for better readability.
 
 You can start to see similarities between _mixins_ and _HOC_ including mixins downsides:
 
 - There is still an indirection issue, however, not about which HOC is changing the state but which one is providing a certain prop.
 - It is possible two HOC could be using the same prop meaning there is still a naming collision issue.
 
-Higher-order components also being in new problems as well.
+Higher-order components come with new problems:
 
-- Boiler plate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`)
-- Pass props through
+- Boiler plate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`) to help with debugging.
+- Ensure all relevant props are passed through to the component.
 - Hoist static methods from the wrapped component.
 
+## Render Props
 
-HOC
+A render prop is where a component's prop is **assigned a function** and this is called in the render method of the component. Calling the function can return React element or component to render.
 
-- ES6 classes. Yep! No problems here. We can use HOCs with components created using ES6 classes.
-- Indirection. We still have the same problem with indirection that we had when we were using mixins. Except this time instead of wondering where our state comes from we’re wondering which HOC provides which props.
-- Naming collisions. Unfortunately we still have this problem too. Two HOCs that try to use the same prop name will collide and overwrite one another, except this time it’s slightly more insidious because React won’t warn us about the prop name collision.
+**Example** of using a Render Props:
+
+```jsx
+render(){
+  <FetchData render={(data) => {
+    return <p>{data}</p>
+  }} />
+}
+```
+
+Read my post to [understand more about render props](/coding/understanding-render-props-react-js).
+
+What do render props solve?
+
+- Reuse code across components when using ES6 classes.
+- Lowest level of indirection as it's clear which component is called and the state is isolated.
+- No naming collision issues for props, state and class methods
+- No need to deal with boiler code and hoisting static methods
+
+
+
+-----
 
 Another problem that both mixins and HOCs share is that they use static composition instead of dynamic composition. Ask yourself: where is the composition happening in the HOC paradigm? Static composition happens once, when the component class is created (e.g. AppWithMouse in the previous example).
 

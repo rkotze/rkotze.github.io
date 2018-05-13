@@ -41,7 +41,6 @@ function withExample(Component) {
 
 Read my post on [understanding how higher-order components](/coding/understanding-higher-order-components) to learn more.
 
-
 What do HOC solve?
 
 - Importantly they provided a way to reuse code when using ES6 classes.
@@ -80,10 +79,12 @@ What do render props solve?
 
 - Reuse code across components when using ES6 classes.
 - Lowest level of indirection as it's clear which component is called and the state is isolated.
-- No naming collision issues for props, state and class methods
-- No need to deal with boiler code and hoisting static methods
+- No naming collision issues for props, state and class methods.
+- No need to deal with boiler code and hoisting static methods.
 
+From this we can generally say Render Props solves the issues identified posed by HOC and in my opinion your go to to create cross cutting logic is Render Props. Because they are easier to construct since they are similar to standard components and callback functions are common place making it relatively easy to understand.
 
+However, I would not dismiss HOC because of this. HOC is statically composed where as Render Props are dynamically composed. Each coming with their own pros and cons. 
 
 -----
 

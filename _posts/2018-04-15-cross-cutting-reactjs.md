@@ -82,9 +82,11 @@ What do render props solve?
 - No naming collision issues for props, state and class methods.
 - No need to deal with boiler code and hoisting static methods.
 
-From this we can generally say Render Props solves the issues identified posed by HOC and in my opinion your go to to create cross cutting logic is Render Props. Because they are easier to construct since they are similar to standard components and callback functions are common place making it relatively easy to understand.
+From this we can generally say Render Props solves the issues posed by HOC and in my opinion it should be your go pattern to creating cross cutting logic. They are easier to setup with less boiler code and hoisting static methods this is because are similar to standard components. They are more prodictable as less things can go wrong with updating state and passing props through.
 
 However, I would not dismiss HOC because of this. HOC is statically composed where as Render Props are dynamically composed. Each coming with their own pros and cons. 
+
+https://news.ycombinator.com/item?id=15651808
 
 -----
 

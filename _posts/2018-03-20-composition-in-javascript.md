@@ -10,7 +10,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-Let's look at using **composition** instead **classical inheritance** in JavaScript.
+Let's look at using **composition** instead of **classical inheritance** in JavaScript.
 
 JavaScript is an expressive language and is one reason I enjoy using it. An interesting feature is the ability to **compose** objects from simple objects _without inheritance_.
 
@@ -18,17 +18,17 @@ JavaScript is an expressive language and is one reason I enjoy using it. An inte
 
 ![Lamborghini Huracan with text "composition over classical inheritance"](/images/lamborghini-huracan.jpg)
 
-## What is the difference between inheritance and composition
+## What is the difference between inheritance and composition?
 
-Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:target="\_blank"} relationship and composition creates a [**has-a**](https://en.wikipedia.org/wiki/Has-a){:target="\_blank"} relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about. Rather than trying to identify commonality between classes and building a complex relational structure.
+Inheritance typically creates a [**is-a**](https://en.wikipedia.org/wiki/Is-a){:target="\_blank"} relationship and composition creates a [**has-a**](https://en.wikipedia.org/wiki/Has-a){:target="\_blank"} relationship. Composition allows us to naturally build complex objects from simple components making it easier to reason about, rather than trying to identify commonality between classes and building a complex relational structure.
 
-[**Inheritance**](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)){:target="\_blank"} is when a class is based on another using the same implementation. A Lamborghini (_subclass_) would gaining methods and properties from a vehicle (_superclass_) like `brake` and `accelerate`. The Lambo will include its own properties like `colour`. This creates a relationship of a Lamborghini **is a** vehicle.
+[**Inheritance**](https://en.wikipedia.org/wiki/Inheritance_(object-oriented_programming)){:target="\_blank"} is when a class is based on another using the same implementation. A Lamborghini (_subclass_) would gain methods and properties from a vehicle (_superclass_) like `brake` and `accelerate`. The Lambo will include its own properties like `colour`. This creates a relationship of a Lamborghini **is a** vehicle.
 
 [**Composition**](https://en.wikipedia.org/wiki/Object_composition){:target="\_blank"} is about taking simple objects and combining them to build more complex ones. To build a Lamborghini you might define a function for constructing essential features like `engine`, `design` and `brakes`. This creates a relationship of a Lamborghini **has a** engine, brakes and design.
 
 ### Mixins is a way of achieving inheritance 
 
-Example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially copying properties and methods from one object to another. This is one way to achieved inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
+An example of inheritance is _mixins_ because `lamboShell` object derives its methods from the `vehicleMixin`. This is essentially copying properties and methods from one object to another. This is one way to achieve inheritance and create a relationship of `lambo` _is a_ `vehicleMixin`
 
 Below is an example of creating a mixin:
 
@@ -152,4 +152,4 @@ lambo.log('colour'); //-> black
 
 ## Conclusion
 
-Constructing code to be **composable** I believe makes it easier to reason about which should improve its readability. There is some overhead of reimplementing methods, for example `Lambo.stop` is essentially an alias of `Brakes.stop`, which would not need to be done when using inheritance. However, this tradeoff I think is worth it to make the code easier to follow, especially when an application becomes complex.
+I believe constructing code to be **composable** makes it easier to reason about - which should improve its readability. There is some overhead of reimplementing methods, for example `Lambo.stop` is essentially an alias of `Brakes.stop`, which would not need to be done when using inheritance. However, I think this tradeoff is worth it to make the code easier to follow, especially when an application becomes complex.

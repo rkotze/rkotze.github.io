@@ -82,6 +82,12 @@ What do render props solve?
 - No naming collision issues for props, state and class methods.
 - No need to deal with boiler code and hoisting static methods.
 
+Minor problems:
+
+- Caution using `shouldComponentUpdate` as the Render prop might close over data it is unaware of.
+- There could also be minor memory issues when defining a closure for every render. But be sure to measure first before making performance changes as it might not be an issue for you app.
+- Another small annoyance is the Render Props callback is not so neat in JSX as it needs to be wrapped in an expression. Constructing a HOC and rendering that does look cleaner.
+
 From this we can generally say Render Props solves the issues posed by HOC and in my opinion it should be your go pattern to creating cross cutting logic. They are easier to setup with less boiler code and hoisting static methods this is because are similar to standard components. They are more prodictable as less things can go wrong with updating state and passing props through.
 
 However, I would not dismiss HOC because of this. HOC is statically composed where as Render Props are dynamically composed. Each coming with their own pros and cons. 

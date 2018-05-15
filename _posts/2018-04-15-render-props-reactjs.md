@@ -22,6 +22,8 @@ If you have read my post on [higher-order components](/coding/understanding-high
 ![Slovenia mountain range](/images/slovenia-mountains.jpg)
 _Photo by Ales Krivec on Unsplash_
 
+Jump to [Higher-order components vs Render Props](/coding/hoc-vs-render-props-react)
+
 **How to use** Render Props: The **value of a prop** is assigned a **function** and is called in the component **render** method. The function defines what a _Render Prop component_ should render, allowing you to apply cross-cutting logic to any React component.
 
 **Example** of using a Render Props:

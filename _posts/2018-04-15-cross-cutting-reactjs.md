@@ -10,25 +10,19 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-Higher-order components (<abbr title="higher-order component">HOC</abbr>) and Render props are two ways to build cross cutting code in React JS. _How do you decide to use one of the other?_ This is the question I will attempt to answer.
+Higher-order components (<abbr title="higher-order component">HOC</abbr>) and Render props are two ways to build cross cutting code in React JS. _How do you decide to use one over the other?_
 
 <!--more-->
 
-Back in the day using `React.createClass`, [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"}  was the way to share cross cutting concerns for components. Since the next version of JavaScript, ES6 was on the way the decision was made to use `class` for building React components to manage the state. However, `class` did not support mixins and a new way had to be developed.
+There reason we have these two approaches is because React decided to use ES6 `class` for building React components to manage the state. Before that, to share cross cutting concerns for components `React.createClass` [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"} was the way to handle that. However, `class` does **not** support mixins and a new way had to be developed.
 
-What was wrong with mixins? 
-
-- Two mixins could implement the same method and that would cause one to override the other. No warning would appear if this was the case either.
-- Interesting thing is mixins can have their own mixins, creating protential for a deep tree of dependencies that would make debugging difficult.
-- Multiple mixins create lots of indirection making it difficult to identify which ones are modifing the state of the component.
-
-For more details Dan Abramov wrote a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
+For more details, Dan Abramov wrote a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
 
 ## Higher-order components
 
 Soon HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **function**. This is where you apply your cross cutting functionality.
 
-**Example** Higher-order components
+**Example** of Higher-order components
 
 ```jsx
 function withExample(Component) {
@@ -39,25 +33,26 @@ function withExample(Component) {
 }
 ```
 
-Read my post on [understanding how higher-order components](/coding/understanding-higher-order-components) to learn more.
+To find out more read my post on [understanding how higher-order components](/coding/understanding-higher-order-components).
 
 What do HOC solve?
 
 - Importantly they provided a way to reuse code when using ES6 classes.
 - No longer have method name clashing if two HOC implement the same one.
-- It is easy to make small reusable units of code supporting single responsibility.
+- It is easy to make small reusable units of code supporting single responsibility principle.
 - Have multiple HOC applied to one component, using a compose function for better readability.
 
-You can start to see similarities between _mixins_ and _HOC_ including mixins downsides:
+You can start to see similarities downsides between _mixins_ and _HOC_:
 
 - There is still an indirection issue, however, not about which HOC is changing the state but which one is providing a certain prop.
-- It is possible two HOC could be using the same prop meaning there is still a naming collision issue.
+- It is possible two HOC could be using the same prop meaning one would overwrite the other silently.
 
 Higher-order components come with new problems:
 
 - Boiler plate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`) to help with debugging.
 - Ensure all relevant props are passed through to the component.
 - Hoist static methods from the wrapped component.
+- It is easy to compose several HOCs together and then this creates a deeply nested tree making it difficult to debug.
 
 ## Render Props
 

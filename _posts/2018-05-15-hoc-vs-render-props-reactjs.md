@@ -2,7 +2,7 @@
 layout: post
 title: "HOC vs Render Props"
 date: 2018-05-08 12:00:12 +0000
-permalink: /coding/hoc-vs-render-props
+permalink: /coding/hoc-vs-render-props-react
 category: coding
 published: true
 image: "colour-star-sky.jpg"

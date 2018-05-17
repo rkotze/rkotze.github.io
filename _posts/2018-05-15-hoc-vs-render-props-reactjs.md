@@ -41,22 +41,22 @@ To find out more read, my post on [understanding how higher-order components](/c
 
 What does HOC solve?
 
-- Importantly they provided a way to reuse code when using ES6 classes.
-- No longer have method name clashing if two HOC implement the same one.
-- It is easy to make small reusable units of code, thereby supporting the single responsibility principle.
-- Apply multiple HOCs to one component by _composing_ them. The readability can be improve using a [compose function](https://github.com/acdlite/recompose#composition){:target="\_blank"} like in recompose library.
+* Importantly they provided a way to reuse code when using ES6 classes.
+* No longer have method name clashing if two HOC implement the same one.
+* It is easy to make small reusable units of code, thereby supporting the single responsibility principle.
+* Apply multiple HOCs to one component by _composing_ them. The readability can be improve using a [compose function](https://github.com/acdlite/recompose#composition){:target="\_blank"} like in Recompose.
 
 You can start to see similarities in the downsides for both _mixins_ and _HOC_:
 
-- There is still an indirection issue, however, not about which HOC is changing the state but which one is providing a certain prop.
-- It is possible two HOC could be using the same prop meaning one would overwrite the other silently.
+* There is still an indirection issue, however, not about which HOC is changing the state but which one is providing a certain prop.
+* It is possible two HOC could be using the same prop meaning one would overwrite the other silently.
 
 Higher-order components come with new problems:
 
-- Boilerplate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`) to help with debugging.
-- Ensure all relevant props are passed through to the component.
-- Hoist static methods from the wrapped component.
-- It is easy to compose several HOCs together and then this creates a deeply nested tree making it difficult to debug.
+* Boilerplate code like setting the `displayName` with the HOC function name e.g. (`withHOC(Component)`) to help with debugging.
+* Ensure all relevant props are passed through to the component.
+* Hoist static methods from the wrapped component.
+* It is easy to compose several HOCs together and then this creates a deeply nested tree making it difficult to debug.
 
 ## Render Props
 
@@ -76,15 +76,17 @@ Read my post to [understand more about render props](/coding/understanding-rende
 
 What do render props solve?
 
-- Reuse code across components when using ES6 classes.
-- The lowest level of indirection - it's clear which component is called and the state is isolated.
-- No naming collision issues for props, state and class methods.
-- No need to deal with boiler code and hoisting static methods.
+* Reuse code across components when using ES6 classes.
+* The lowest level of indirection - it's clear which component is called and the state is isolated.
+* No naming collision issues for props, state and class methods.
+* No need to deal with boiler code and hoisting static methods.
 
 Minor problems:
 
-- Caution using `shouldComponentUpdate` as the render prop might close over data it is unaware of.
-- There could also be minor memory issues when defining a closure for every render. But be sure to measure first before making performance changes as it might not be an issue for your app.
-- Another small annoyance is the render props callback is not so neat in JSX as it needs to be wrapped in an expression. Constructing a HOC and then rendering it - that does look cleaner.
+* Caution using `shouldComponentUpdate` as the render prop might close over data it is unaware of.
+* There could also be minor memory issues when defining a closure for every render. But be sure to measure first before making performance changes as it might not be an issue for your app.
+* Another small annoyance is the render props callback is not so neat in JSX as it needs to be wrapped in an expression. Rendering the result of an HOC does look cleaner.
+
+## Conclusion
 
 From this, we can generally say render props solves the issues posed by HOC, and in my opinion, it should be your go-to pattern for creating cross-cutting logic. Render props are easier to set up, with less boiler code and no need to hoist static methods, as they are similar to standard components. They are also more predictable as fewer things can go wrong with updating state and passing props through.

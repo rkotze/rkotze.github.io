@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Higher-order components vs Render Props"
-date: 2018-05-08 12:00:12 +0000
+date: 2018-05-15 12:00:12 +0000
 permalink: /coding/hoc-vs-render-props-react
 category: coding
 published: true
@@ -87,6 +87,13 @@ Minor problems:
 * There could also be minor memory issues when defining a closure for every render. But be sure to measure first before making performance changes as it might not be an issue for your app.
 * Another small annoyance is the render props callback is not so neat in JSX as it needs to be wrapped in an expression. Rendering the result of an HOC does look cleaner.
 
-## Conclusion
+## HOC or render props
 
-From this, we can generally say render props solves the issues posed by HOC, and in my opinion, it should be your go-to pattern for creating cross-cutting logic. Render props are easier to set up, with less boiler code and no need to hoist static methods, as they are similar to standard components. They are also more predictable as fewer things can go wrong with updating state and passing props through.
+From this, we can generally say **render props** solves the issues posed by HOC, and in my opinion, it should be your go-to pattern for creating cross-cutting logic. Render props are easier to set up, with less boiler code and no need to hoist static methods, as they are similar to standard components. They are also more predictable as fewer things can go wrong with updating state and passing props through.
+
+However, I find **HOC better to compose** over render props, especially when many cross-cutting concerns are applied to a component. Many nested render prop components will look similar to "callback hell", as highlighted by Andrew Clark on Twitter. It's straightforward to create small HOC units and compose them together to build a feature-rich component. [Recompose](https://github.com/acdlite/recompose){:target="\_blank"} is a great example and can be useful to apply to solving your next challenge.
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">But they are! I’ve been working on demos of unreleased React features and all my components are 10 callbacks deep. Super powerful but a PITA to compose more than two or theee. There’s gotta be some way we can make it nicer.<br><br>Render props : callbacks :: async/await : ???</p>&mdash; Andrew Clark (@acdlite) <a href="https://twitter.com/acdlite/status/955954032194895872?ref_src=twsrc%5Etfw">January 24, 2018</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Just remember to use the tool that best helps you solve your problem and don't let the Hype Driven Development pressure you to do otherwise. Render props and HOC are equally great React patterns.

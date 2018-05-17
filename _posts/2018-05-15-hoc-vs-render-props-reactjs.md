@@ -15,7 +15,7 @@ Higher-order components (<abbr title="higher-order component">HOC</abbr>) and re
 
 <!--more-->
 
-The reason we have these two approaches is that React decided to use ES6 `class` for building React components to manage the state. Before that, to share [cross-cutting concerns](https://stackoverflow.com/questions/23700540/cross-cutting-concern-example) for components `React.createClass` [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"} was the way to handle that. However, `class` does **not** support mixins and a new way had to be developed.
+The reason we have these two approaches is that React decided to use ES6 `class` for building React components to manage state. Before that, to share [cross-cutting concerns](https://stackoverflow.com/questions/23700540/cross-cutting-concern-example){:target="\_blank"} for components `React.createClass` [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"} was the way to handle that. However, `class` does **not** support mixins and a new way had to be developed.
 
 For more details, Dan Abramov wrote a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
 
@@ -44,7 +44,7 @@ What does HOC solve?
 - Importantly they provided a way to reuse code when using ES6 classes.
 - No longer have method name clashing if two HOC implement the same one.
 - It is easy to make small reusable units of code, thereby supporting the single responsibility principle.
-- Apply multiple HOCs to one component by _composing_ the functions - this can improve readability.
+- Apply multiple HOCs to one component by _composing_ them. The readability can be improve using a [compose function](https://github.com/acdlite/recompose#composition){:target="\_blank"} like in recompose library.
 
 You can start to see similarities in the downsides for both _mixins_ and _HOC_:
 

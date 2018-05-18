@@ -17,7 +17,7 @@ Higher-order components (<abbr title="higher-order component">HOC</abbr>) and re
 
 The reason we have these two approaches is that React decided to use ES6 `class` for building React components to manage state. Before that, to share [cross-cutting concerns](https://stackoverflow.com/questions/23700540/cross-cutting-concern-example){:target="\_blank"} for components `React.createClass` [**mixins**](https://github.com/facebook/react/blob/0.14-stable/docs/docs/05-reusable-components.md#mixins){:target="\_blank"} was the way to handle that. However, `class` does **not** support mixins and a new way had to be developed.
 
-For more details, Dan Abramov wrote a post on why [mixins considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
+For more details, Dan Abramov wrote a post on why [mixins are considered harmful](https://reactjs.org/blog/2016/07/13/mixins-considered-harmful.html){:target="\_blank"}.
 
 ![Colourful starry night](/images/colour-star-sky.jpg)
 _Photo by Kristopher Roller on Unsplash_
@@ -37,7 +37,7 @@ function withExample(Component) {
 }
 ```
 
-To find out more read, my post on [understanding how higher-order components](/coding/understanding-higher-order-components).
+To find out more, read my post on [understanding higher-order components](/coding/understanding-higher-order-components).
 
 What does HOC solve?
 

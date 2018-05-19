@@ -24,7 +24,7 @@ _Photo by Kristopher Roller on Unsplash_
 
 ## Higher-order components
 
-Soon HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **function**. This is where you apply your crosscutting functionality.
+Soon HOC evolved into the picture to support code reuse. Essentially these are similar to the decorator pattern, a **function** that takes a **component** as the first parameter and returns a **new component**. This is where you apply your crosscutting functionality.
 
 **Example** of Higher-order components
 

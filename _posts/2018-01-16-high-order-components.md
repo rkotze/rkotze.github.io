@@ -10,11 +10,11 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-In this post I will discuss the why and how to use higher-order components (<abbr title="higher-order component">HOC</abbr>) with [React JS](https://reactjs.org/).
+In this post I will discuss _why_ and _how_ to use higher-order components (<abbr title="higher-order component">HOC</abbr>) with [React JS](https://reactjs.org/).
 
 **Why use HOC:** Promote _reuse_ of logic across React components.
 
-Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be similar methods used to fetch data but the display is different. An example of this is shown later.
+Components are the typical element for reuse in React but sometimes features don't fit into this standard. There might be similar methods used to fetch data but maybe the display is different. An example of this is shown later.
 
 <!--more-->
 
@@ -37,11 +37,11 @@ This is a general compositional pattern and not part of React as such.
 
 ## How do you decide to use HOCs?
 
-I would recommend first building components in the normal React way. When the application is working as expected, review your components to identify shared behaviours. Build the behaviour in a generic enough fashion to work for all existing components. Following this will improve your experience in identifing HOCs even before completing components, but I would hold back and treat it as a refactoring step when deciding to build a new HOC.
+I would recommend first building components in the normal React way. When the application is working as expected, review your components to identify shared behaviours. Build the behaviour in a generic enough fashion to work for all existing components. By doing this, you will gain experience in being able to identify HOCs even before completing components, but I would hold back and treat it as a refactoring step when deciding to build a new HOC.
 
 ## Fetch data higher-order components
 
-Firstly, here's the working components which have similar data fetching behaviour:
+Firstly, here's the working components which have a similar data fetching behaviour:
 
 ```jsx
 class VideoBlog extends React.Component {
@@ -91,7 +91,7 @@ class RelatedVideos extends React.Component {
 
 `VideoBlog` and `RelatedVideo` are not the same output but the implementation is similar. They both fetch data in a `componentDidMount` life cycle.
 
-What will the above components look like when wrapped in `withFetch` HOC?
+What will the above components look like when wrapped in a `withFetch` HOC?
 
 ```jsx
 const VideoBlog = withFetch(VideoBlogView, "http://example.com/videos/124");
@@ -158,13 +158,13 @@ A library that promotes HOC composition is [Recompose](https://github.com/acdlit
 
 > A React utility belt for function components and higher-order components.
 
-In the first part of Recompose documentation they provide a good [explanation about enhancers](https://github.com/acdlite/recompose/blob/master/docs/API.md)
+In the first part of the Recompose documentation they provide a good [explanation about enhancers](https://github.com/acdlite/recompose/blob/master/docs/API.md)
 
 It's worth pointing out that there is a [minor performance loss](https://github.com/acdlite/recompose/blob/master/docs/performance.md) when you start composing with many HOCs.
 
 ## Conclusion
 
-Once you gain experience in building higher-order components you will start to notice your components become smaller and more focused units of code. This in turn will help make it easier to reason about your application logic. Reusing HOCs with composition means it will be a matter of plugging in relevant components to build complex features with ease.
+Once you gain experience in building higher-order components you will start to notice your components become smaller and are more focused units of code. This in turn will help make it easier to reason about your application logic. Reusing HOCs with composition means it will be a matter of plugging in relevant components to build complex features with ease.
 
 ## Try what you have learned
 

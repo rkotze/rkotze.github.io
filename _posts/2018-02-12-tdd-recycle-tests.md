@@ -4,6 +4,7 @@ title:  "Recycle tests in TDD and code kata"
 date:   2018-02-12 12:00:12 +0000
 permalink: /coding/recycle-tests-tdd-code-kata
 category: coding
+image: "experimental-painting.jpg"
 meta_description: >
  The constraints of TDD and how recycling tests could help unblock your workflow for solving complex problems. 
 excerpt_separator: <!--more-->
@@ -16,6 +17,9 @@ What is a long time, you might ask? In my opinion if you spend more than **5 min
 This exercise is to help **unblock** the solving of complex tests consistently and quicker.
 
 <!--more-->
+
+![Blue and shiny experimental painting](/images/experimental-painting.jpg)
+_Photo by Lurm on Unsplash_
 
 The [diamond pattern](https://www.codewars.com/kata/complete-the-pattern-number-9-diamond){:target="\_blank"} kata on Codewars might make you fall into that position.
 

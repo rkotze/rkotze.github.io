@@ -11,11 +11,11 @@
           <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
           <p class="socialbuttons">
               <a class="icon-twitter icon-font-large" target="_blank" href="https://twitter.com/{{ site.twitter_username }}"></a>
-              <a class="icon-facebook icon-font-large" target="_blank" href="http://www.facebook.com/{{ site.facebook_username }}"></a>
-              <a class="icon-google-plus icon-font-large" target="_blank" href="https://plus.google.com/{{ site.google_username }}"></a>
               <a class="icon-github icon-font-large" target="_blank" href="https://github.com/{{ site.github_username }}"></a>
           </p>
           <p>Software Engineer</p>
+          <p> 
+            <a href="/about-me">About me</a></p>
       </div>
 
       <!-- <form class="search" action="/" method="GET">
@@ -31,12 +31,6 @@
       
       <nav class="hide-for-small rk-nav">
           <ul class="nav nav-list">
-              <li>
-                  <a{% if page.url == "/about-me/" %} class="active"{% endif %} href="/about-me">
-                      About me <span class="icon-nav-user"></span>
-                  </a>
-              </li>
-
               {% for category in site.data.categories %}
                 {% if page.category == category.slug %}
                   <li>

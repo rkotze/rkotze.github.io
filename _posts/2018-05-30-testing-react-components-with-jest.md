@@ -12,6 +12,7 @@ excerpt_separator: <!--more-->
 
 **How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank"} and Kent C. Dodds [React testing library](https://github.com/kentcdodds/react-testing-library){:target="\_blank"}
 
+<!--more-->
 ## A quick reflection
 
 When React was in it's `0.x` versions it was a real struggle to test your components. Lots of ideas and opinions but no clear test setup. One way was to render a component into a headless browser or an emulated DOM environment using the now deprecated method `React.render(<MyApp />, document.body)`. Then find the component in the DOM `dom = React.findDOMNode(component)`.
@@ -30,13 +31,19 @@ These things are not typical of unit testing in other frameworks and languages l
 
 However I find it a good idea to take a step back from what you're use too and decide what is a unit test. It is normal for people have different views on this and I like how Martin Fowler sets this out:
 
-> But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing.[1][unit-testing]
+> But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing. [Martin Fowler]
 
-Kent C. Dodds in the _React testing library_ has defined how React unit tests should be written and this precedent is really useful for aligning a team on how to approach testing in their app. This principle is:
+Kent C. Dodds has done something similar in _React testing library_. By defining a clear way React unit tests should be written, this precedent is really useful for aligning a team on how to approach testing in their app. This principle is:
 
 > [The more your tests resemble the way your software is used, the more confidence they can give you.](https://twitter.com/kentcdodds/status/977018512689455106){:target="\_blank"}
 
-This is about testing parts of your React component.
+This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up like a unit test environment makes it fast.
 
-[unit-testing][But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing]
+## Setup time to write the first test
 
+I'm going to add this to an existing project and see how long it takes to setup to start writing a passing unit test.
+I'm going to add this to an existing project and see how long it takes to setup to start writing a passing unit test.
+
+
+
+[Martin Fowler]: https://martinfowler.com/bliki/UnitTest.html

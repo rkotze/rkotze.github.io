@@ -191,11 +191,11 @@ article h1, article h2, article h3  {
     @media #{$small}{
         padding: 0 20px;
     }
-    ul, li {
+    ul, ol, li {
         margin: 0 5px;
         padding: 0 10px;
     }
-    ul {
+    ul, ol {
         margin-bottom: 15px;
     }
 }

@@ -20,9 +20,12 @@ _Photo by Barn Images on Unsplash_
 
 ## A quick reflection
 
-When React was in it's `0.x` versions it was a real struggle to test your components. Lots of ideas and opinions but no clear test setup. One way was to render a component into a headless browser or an emulated DOM environment using the now deprecated method `React.render(<MyApp />, document.body)`. Then find the component in the DOM `dom = React.findDOMNode(component)`.
+When React was in it's `0.x` versions it was a real struggle to test your components. Lots of ideas and opinions but no clear test setup. One way was to render a component into a headless browser or an emulated DOM environment using the now deprecated method `React.render(<MyApp />, document.body)`. Then find the component in the DOM `dom = React.findDOMNode(component)`. Rendering a component to the DOM meant you had to wait until
+the lifecycle events where completed before querying for it.
 
-I worked on a React project where we decided to use JSDOM v3.x and this had some [painful setup](https://github.com/jsdom/jsdom/tree/3.x#contextify){:target="\_blank"} especially using a Windows OS. Having to install Python 2.7 and Visual Studios Express to compile native modules for your machine. All this to run tests locally but eventually, it would run _fairly_ consistently. Setting up a CI pipeline also had its challenges. I'm glad a lot of effort from the JavaScript community has gone into improving JSDOM. Now it has become the default DOM environment to test your React app in. It is as simple as `npm i jsdom -D` and with a little setup, it works.
+I worked on a React project where we decided to use JSDOM v3.x and this had some [painful setup](https://github.com/jsdom/jsdom/tree/3.x#contextify){:target="\_blank"} especially using a Windows OS. Having to install Python 2.7 and Visual Studios Express to compile native modules for your machine. All this to run tests locally but eventually, it would run _fairly_ consistently. Setting up a CI pipeline also had similar challenges. 
+
+I'm glad a lot of effort from the JavaScript community has gone into improving JSDOM. Now it has become the default DOM environment to test your React app in. It is as simple as `npm i jsdom -D` and with a little setup, it works.
 
 ## The debate of how to test your component
 
@@ -32,17 +35,17 @@ I have often had regular debates with colleagues about what kind of testing you'
 - You start off writing unit tests and feel you're testing too many functions at once
 - Having access to the DOM in the test and triggering events makes it feel like UI testing
 
-These things are not typical of unit testing in other frameworks and languages like C#.NET, Python, JavaScript. Frameworks that followed the MVC pattern would separate out your views from your classes. The classes would be tested in a unit test runner and the view might be tested using another framework designed for UIs.
+These things are not typical of unit testing in other frameworks and languages like C#.NET, Python, JavaScript. Frameworks that followed the MVC pattern would separate out your views from your classes. The classes would be tested in a unit test runner and the view might be tested using another framework designed for the UI.
 
 However, I find it a good idea to take a step back from what you are use too and decide what is a **unit**. It is normal for people to have different views on this and I like how Martin Fowler sets this out:
 
-> But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing. [Martin Fowler]
+> But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing. [Martin Fowler]{:target="\_blank"}
 
-React is different to other libraries on how it handles the view and application state. This is why it worth defining what a unit could be in a React application. Kent C. Dodds has done something to the point in _React testing library_. By defining a clear way React unit tests should be written, this precedent is really useful for aligning a team. This core principle is:
+React is different to other libraries on how it handles the view and application state. This is why it worth defining what a unit could be in a React application. Kent C. Dodds has done something to the point in _React testing library_. By defining a clear way unit tests should be written in React, this precedent is really useful for aligning a team. This core principle is:
 
-> [The more your tests resemble the way your software is used, the more confidence they can give you.](https://twitter.com/kentcdodds/status/977018512689455106){:target="\_blank"}
+> The more your tests resemble the way your software is used, the more confidence they can give you. [Kent C Dodds]{:target="\_blank"}
 
-More details are proved in the React testing library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up like a _unit test environment makes it fast_.
+More details are proved in the React testing library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
 
 ## From setup to writing the first test
 
@@ -51,9 +54,9 @@ I'm going to add React testing library to an existing project to see how long it
 Here are the steps I took get going:
 
 1. `npm i jest react-testing-library dom-testing-library -D`
-1. Update `package.json` scripts test with `jest`
-1. Write a test for "hello world"
-1. Had to add a `.babelrc` file for jest to parse the React component JSX
+1. Update `package.json` test scripts section with `jest` allowing me to run `npm test`
+1. Write a test for a "hello world" component
+1. Added a `.babelrc` file for Jest to compile from ES6/7 and JSX to JavaScript the environment can interpret. This is helpful and beats compiling the code first then running the test suite.
 
 First basic test to get started:
 
@@ -73,9 +76,9 @@ test('first hello test', () => {
 
 **Time:** 13 mins & 30 secs
 
-Here are the [commits][react testing library commit] added to an existing project.
+Here are the [commits][react testing library commit]{:target="\_blank"} added to an existing project.
 
-This is a great time, very little spent on configuring the test setup to fit in the project. What helped a lot was using _Jest_ as it already comes with _JSDOM_ and expects `.babelrc` file in case you're using something like JSX which it needs to compiled.
+This is a great time, very little spent on configuring the test setup to fit in the project. What helped a lot was using _Jest_ as it already comes with _JSDOM_ and expects `.babelrc` file in case you need to transform from ES6.
 
 I spent about 10 minutes after this looking into running the tests without the `.babelrc` as I would prefer to just use the `webpack.config.js` file, but there does not seem to be a clear solution. If anyone knows how, please let me know.
 
@@ -140,16 +143,17 @@ test('Click button to fetch git mob contributors and display in a list', async (
 ```
 
 1. Mock `fetch` using `jest.fn().mockImplementation` with the response we want
-1. Then following the example provided by React testing library we click the button to trigger the fetch
+1. Then following the example provided by React testing library, by clicking a button to trigger the fetch
 1. Wait for the contributors to be rendered
 1. Assert on the expected outcomes
 
-Here is the [commit][complex test commit] showing the full implementation of the above.
+Here is the [commit][complex test commit]{:target="\_blank"} showing the full implementation of the above.
 
 ## Conclusion
 
-I find the React testing library API intuitive and easy to use. I did not run into any major issues that blocked me from testing in these two cases. It did not take long at all to set up the testing environment and get a basic Hello World example passing. This is a **huge** improvement from two years ago when it felt like it took forever to get started with testing and battling through flaky environments. Jest has obviously put a lot of effort into helping developers getting started quickly, especially for React applications.
+I find the React testing library API intuitive and easy to use. I did not run into any major issues that blocked me from testing in these two cases. It did not take long at all to set up the testing environment and get a basic "Hello World" example passing. This is a **huge** improvement from two years ago when it felt like it took forever to get started with testing and battling through flaky environments. Jest has obviously put a lot of effort into helping developers getting started quickly, especially for React applications.
 
 [Martin Fowler]: https://martinfowler.com/bliki/UnitTest.html
+[Kent C Dodds]: https://twitter.com/kentcdodds/status/977018512689455106
 [react testing library commit]: https://github.com/rkotze/universal-react-starter/commit/13cf721d561200bf09bbed43f0bbe116fb29f837
 [complex test commit]: https://github.com/rkotze/universal-react-starter/commit/de44c12c2490838b619b194710ada9f1aff60d68

@@ -45,7 +45,7 @@ React is different to other libraries on how it handles the view and application
 
 > The more your tests resemble the way your software is used, the more confidence they can give you. [Kent C Dodds]{:target="\_blank"}
 
-More details are proved in the React testing library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
+More details are provided in the React testing library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
 
 ## From setup to writing the first test
 

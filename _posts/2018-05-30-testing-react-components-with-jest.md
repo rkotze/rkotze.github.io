@@ -53,7 +53,7 @@ I'm going to add react-testing-library to an existing project to see how long it
 
 Here are the steps I took get going:
 
-1. `npm i jest react-testing-library dom-testing-library -D`
+1. `npm i jest react-testing-library jest-dom -D`
 1. Update `package.json` test scripts section with `jest` allowing me to run `npm test`
 1. Write a test for a "hello world" component
 1. Added a `.babelrc` file for Jest to compile from ES6/7 and JSX to JavaScript the environment can interpret. This is helpful and beats compiling the code first then running the test suite.
@@ -63,7 +63,7 @@ First basic test to get started:
 ```javascript
 import React from 'react';
 import { render } from 'react-testing-library';
-import 'dom-testing-library/extend-expect';
+import 'jest-dom/extend-expect';
 
 const Hello = () => <h1>Hello World</h1>
 
@@ -89,7 +89,7 @@ I've created a simple component to fetch the contributors for the repository `gi
 ```javascript
 import React from 'react';
 import { render, Simulate, wait } from 'react-testing-library'
-import 'dom-testing-library/extend-expect';
+import 'jest-dom/extend-expect';
 import { FetchGitMobContributors } from './fetch-git-mob-contributors';
 
 beforeEach(function () {
@@ -142,12 +142,14 @@ test('Click button to fetch git mob contributors and display in a list', async (
 });
 ```
 
-1. Mock `fetch` using `jest.fn().mockImplementation` with the response we want
+1. Mock `fetch` using `jest.fn()` with the response we want
 1. Then following the example provided by react-testing-library, by clicking a button to trigger the fetch
 1. Wait for the contributors to be rendered
 1. Assert on the expected outcomes
 
 Here is the [commit][complex test commit]{:target="\_blank"} showing the full implementation of the above.
+
+I've made some updates to the [react-testing-library branch][Updates to test branch]{:target="\_blank"} which align with the code snippets above.
 
 ## Conclusion
 
@@ -157,3 +159,4 @@ I find the react-testing-library API intuitive and easy to use. I did not run in
 [Kent C Dodds]: https://twitter.com/kentcdodds/status/977018512689455106
 [react testing library commit]: https://github.com/rkotze/universal-react-starter/commit/13cf721d561200bf09bbed43f0bbe116fb29f837
 [complex test commit]: https://github.com/rkotze/universal-react-starter/commit/de44c12c2490838b619b194710ada9f1aff60d68
+[Updates to test branch]: https://github.com/rkotze/universal-react-starter/compare/react-testing-library

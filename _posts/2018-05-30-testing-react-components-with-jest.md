@@ -7,11 +7,11 @@ category: coding
 published: true
 image: "testing-tools.jpg"
 meta_description: >
- How to test React applications using Kent C. Dodds React testing library and Jest
+ How to test React applications using Kent C. Dodds react-testing-library and Jest
 excerpt_separator: <!--more-->
 ---
 
-**How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank"} and Kent C. Dodds [React testing library](https://github.com/kentcdodds/react-testing-library){:target="\_blank"}
+**How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank"} and [Kent C. Dodds](https://github.com/kentcdodds){:target="\_blank"} [react-testing-library](https://github.com/kentcdodds/react-testing-library){:target="\_blank"}
 
 <!--more-->
 
@@ -37,19 +37,19 @@ I have often had regular debates with colleagues about what kind of testing you'
 
 These things are not typical of unit testing in other frameworks and languages like C#.NET, Python, JavaScript. Frameworks that followed the MVC pattern would separate out your views from your classes. The classes would be tested in a unit test runner and the view might be tested using another framework designed for the UI.
 
-However, I find it a good idea to take a step back from what you are use too and decide what is a **unit**. It is normal for people to have different views on this and I like how Martin Fowler sets this out:
+However, I find it a good idea to take a step back from what you are use to and decide what is a **unit**. It is normal for people to have different views on this and I like how Martin Fowler sets this out:
 
 > But really it's a situational thing - the team decides what makes sense to be a unit for the purposes of their understanding of the system and its testing. [Martin Fowler]{:target="\_blank"}
 
-React is different to other libraries on how it handles the view and application state. This is why it worth defining what a unit could be in a React application. Kent C. Dodds has done something to the point in _React testing library_. By defining a clear way unit tests should be written in React, this precedent is really useful for aligning a team. This core principle is:
+React is different to other libraries on how it handles the view and application state. This is why it worth defining what a unit could be in a React application. Kent C. Dodds has done something to the point in _react-testing-library_. By defining a clear way unit tests should be written in React, this precedent is really useful for aligning a team. This core principle is:
 
 > The more your tests resemble the way your software is used, the more confidence they can give you. [Kent C Dodds]{:target="\_blank"}
 
-More details are provided in the React testing library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
+More details are provided in the react-testing-library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
 
 ## From setup to writing the first test
 
-I'm going to add React testing library to an existing project to see how long it takes to setup and start writing a passing unit test.
+I'm going to add react-testing-library to an existing project to see how long it takes to setup and start writing a passing unit test.
 
 Here are the steps I took get going:
 
@@ -92,9 +92,9 @@ import { render, Simulate, wait } from 'react-testing-library'
 import 'dom-testing-library/extend-expect';
 import { FetchGitMobContributors } from './fetch-git-mob-contributors';
 
-beforeAll(function () {
+beforeEach(function () {
 
-  global.fetch = jest.fn().mockImplementation(async () => {
+  global.fetch = jest.fn(async () => {
     return {
       ok: true,
       json: function () {
@@ -143,7 +143,7 @@ test('Click button to fetch git mob contributors and display in a list', async (
 ```
 
 1. Mock `fetch` using `jest.fn().mockImplementation` with the response we want
-1. Then following the example provided by React testing library, by clicking a button to trigger the fetch
+1. Then following the example provided by react-testing-library, by clicking a button to trigger the fetch
 1. Wait for the contributors to be rendered
 1. Assert on the expected outcomes
 
@@ -151,7 +151,7 @@ Here is the [commit][complex test commit]{:target="\_blank"} showing the full im
 
 ## Conclusion
 
-I find the React testing library API intuitive and easy to use. I did not run into any major issues that blocked me from testing in these two cases. It did not take long at all to set up the testing environment and get a basic "Hello World" example passing. This is a **huge** improvement from two years ago when it felt like it took forever to get started with testing and battling through flaky environments. Jest has obviously put a lot of effort into helping developers getting started quickly, especially for React applications.
+I find the react-testing-library API intuitive and easy to use. I did not run into any major issues that blocked me from testing in these two cases. It did not take long at all to set up the testing environment and get a basic "Hello World" example passing. This is a **huge** improvement from two years ago when it felt like it took forever to get started with testing and battling through flaky environments. Jest has obviously put a lot of effort into helping developers getting started quickly, especially for React applications.
 
 [Martin Fowler]: https://martinfowler.com/bliki/UnitTest.html
 [Kent C Dodds]: https://twitter.com/kentcdodds/status/977018512689455106

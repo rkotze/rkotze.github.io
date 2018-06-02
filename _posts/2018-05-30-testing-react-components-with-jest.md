@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "React testing library & Jest"
+title: "react-testing-library & Jest"
 date: 2018-05-28 12:00:12 +0000
 permalink: /coding/react-testing-library-jest
 category: coding

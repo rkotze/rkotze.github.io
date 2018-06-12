@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-For an object to become an Iterable it needs to implement the minimum interface required, which is an object with a `next` method returning an object with the properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using JavaScripts `for..of` loop.
+For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using JavaScripts `for..of` loop.
 
 Example of defining an iterator
 
@@ -39,7 +39,7 @@ let iterator = {
 }
 ```
 
-Below is a `for..of` for the above iterator. Without the `[Symbol.iterator]` the for loop will not work. Copy and paste the code to try it out first hand.
+Below is a `for..of` using the above iterator. Without the `[Symbol.iterator]` the for loop will not work. Copy and paste the code to try it out.
 
 ```javascript
 for(let number of iterator){
@@ -47,7 +47,7 @@ for(let number of iterator){
 }
 ```
 
-You're might be looking at this code example and thinking this looks pretty verbose and got some annoy boiler code. ES6 has some good syntax sugar to help make this all look clean. It's called generators:
+You might be looking at this code example and thinking it is pretty verbose and got some annoy boiler code. ES6 has some good syntax sugar to help make this all look clean.
 
 Example below of a generator:
 
@@ -59,6 +59,8 @@ function* firstGenerator() {
   }
 }
 
+console.log(firstGenerator().next()) // { value: 1, done: false }
+
 let iteratorGen = {
   [Symbol.iterator]: firstGenerator
 }
@@ -66,4 +68,8 @@ let iteratorGen = {
 for(let number2 of iteratorGen) {
   console.log(number2);
 }
+// -> 1, 2
 ```
+
+The key features to defining a generator is `function*` and `yield`. Yield essentially pauses the execution of the next line until it is called again. In the above example you can see by calling the `firstGenerator` function we have access to `next` which returns value and iterator done state. This is the same as defining our `firstIterator`. Returning at then end of the function will set `done` to `true`. 
+

@@ -47,7 +47,7 @@ for(let number of iterator){
 }
 ```
 
-You might be looking at this code example and thinking it is pretty verbose and got some annoy boiler code. ES6 has some good syntax sugar to help make this all look clean.
+You might be looking at this code example and thinking it is pretty verbose and got some annoy boiler code. ES6 has delightful syntax sugar to help make this all look clean.
 
 Example below of a generator:
 
@@ -71,5 +71,26 @@ for(let number2 of iteratorGen) {
 // -> 1, 2
 ```
 
-The key features to defining a generator is `function*` and `yield`. Yield essentially pauses the execution of the next line until it is called again. In the above example you can see by calling the `firstGenerator` function we have access to `next` which returns value and iterator done state. This is the same as defining our `firstIterator`. Returning at then end of the function will set `done` to `true`. 
+The key features to defining a generator is `function*` and `yield`. Yield essentially pauses the execution when it is reached until the `next` method is called. In the above example you can see by calling the `firstGenerator` function we have access to `next` method which returns `value` and iterator `done` state. This is the same as defining our `firstIterator` except its more concise and easy to read.
 
+_I feel_ the asterisk makes this a bit awkward, in terms for remembering to use it and its position on the function keyword. This is probably because it's new syntax and we will eventually get use to it.
+
+```javascript
+function* returnExample(){
+  yield "hello";
+  return "world";
+  yield "not reached"
+}
+const gen = returnExample();
+console.log(gen.next()) // => { value: "hello", done: false }
+console.log(gen.next()) // => { value: "world", done: true }
+console.log(gen.next()) // => { value: undefined, done: true }
+```
+
+In the above example you can see `return` ends the generator and sets the state to done. Anything after that is not reached.
+
+Delegate to another generator.
+
+Pass parameters to a generator.
+
+It is not possible to `new` a generator and in ES7 this will throw an error if `new` is used.

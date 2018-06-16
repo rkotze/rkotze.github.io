@@ -13,20 +13,25 @@ excerpt_separator: <!--more-->
 
 For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using JavaScripts `for..of` loop.
 
-Example of defining an iterator
+<!--more-->
+
+## Build your first iterator
 
 ```javascript
-function firstIterator(){
-  let numberedArray = [1, 2];
+function tenMultiplesOfThree(){
+  let start = 1;
+  const multiple = 3;
   return {
     next: function() {
-      if (numberedArray.length) {
+      if (start <= 10) {
+        const product = multiple * start;
+        start++;       
         return {
-          value: numberedArray.shift(),
+          value: product,
           done: false
         };
       }
-
+      
       return {
         done: true
       };
@@ -35,7 +40,7 @@ function firstIterator(){
 }
 
 let iterator = {
-  [Symbol.iterator] : firstIterator
+  [Symbol.iterator] : tenMultiplesOfThree
 }
 ```
 
@@ -45,35 +50,71 @@ Below is a `for..of` using the above iterator. Without the `[Symbol.iterator]` t
 for(let number of iterator){
   console.log(number);
 }
+// -> 3, 6, 9, 12, 15, 18, 21, 24, 27, 30
 ```
+
+### Built-in iterators
+
+`String`, `Array`, `TypedArray`, `Map` and `Set` implement the Symbol.iterator method on their prototype.
+
+```javascript
+for(let letter of "abc") {
+  console.log(letter);
+}
+// -> "a" "b" "c"
+``` 
+
+## Using generators
 
 You might be looking at this code example and thinking it is pretty verbose and got some annoy boiler code. ES6 has delightful syntax sugar to help make this all look clean.
 
 Example below of a generator:
 
 ```javascript
-function* firstGenerator() {
-  let numberedArray = [1, 2];
-  while(numberedArray.length){
-    yield numberedArray.shift();
+function* firstTenMultiples(multiple = 3) {
+  let start = 1;
+  while(start <= 10){
+    yield multiple * start;
+    start++;
   }
 }
 
-console.log(firstGenerator().next()) // { value: 1, done: false }
+console.log(firstTenMultiples().next());
 
 let iteratorGen = {
-  [Symbol.iterator]: firstGenerator
+  [Symbol.iterator]: firstTenMultiples
 }
 
-for(let number2 of iteratorGen) {
-  console.log(number2);
+for(let number of iteratorGen) {
+  console.log(number);
 }
-// -> 1, 2
+// -> 3, 6, 9, 12, 15, 18, 21, 24, 27, 30
 ```
 
-The key features to defining a generator is `function*` and `yield`. Yield essentially pauses the execution when it is reached until the `next` method is called. In the above example you can see by calling the `firstGenerator` function we have access to `next` method which returns `value` and iterator `done` state. This is the same as defining our `firstIterator` except its more concise and easy to read.
+The key features to defining a generator is `function*`. Yield essentially pauses the execution of the function body when it is reached until the next call is made. In the above example you can see by calling the `firstTenMultiples` function we have access to `next` method which returns `value` and iterator state `done`. This is the same as defining our own iterator except its more concise and easy to read.
 
-_I feel_ the asterisk makes this a bit awkward, in terms for remembering to use it and its position on the function keyword. This is probably because it's new syntax and we will eventually get use to it.
+_I feel_ the asterisk makes this a bit awkward, in terms for remembering to use it and its position on the function keyword. I'm sure this is new syntax we will get use to.
+
+```javascript
+function* firstTenMultiples(multiple = 3) {
+  let start = 1;
+  while(start <= 10){
+    yield multiple * start;
+    start++;
+  }
+}
+
+let multiplesOfFour = firstTenMultiples(4);
+
+for(let number of multiplesOfFour) {
+  console.log(number);
+}
+// -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40
+```
+
+Just playing around with generators and as you can see above I did not need to assign the generator function to `[Symbol.iterator]` for `for..of` loop to work. Inspecting the called result of `firstTenMultiples(4)` you can see on the `__proto__` it does have `[Symbol.iterator]` implemented. This confirms calling a generator function returns a generator object which is iterable.
+
+## Generator finished
 
 ```javascript
 function* returnExample(){
@@ -89,7 +130,33 @@ console.log(gen.next()) // => { value: undefined, done: true }
 
 In the above example you can see `return` ends the generator and sets the state to done. Anything after that is not reached.
 
-Delegate to another generator.
+## Delegate to another generator
+
+```javascript
+function* countToThree(){
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+function* firstTenMultiples(multiple = 3) {
+  let start = 1;
+  yield* countToThree();
+  while(start <= 10){
+    yield multiple * start;
+    start++;
+  }
+}
+
+let multiplesOfFour = firstTenMultiples(4);
+
+for(let number of multiplesOfFour) {
+  console.log(number);
+}
+// -> 1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40
+```
+
+In the above example `firstTenMultiples` uses `yield*` to delegate to `countToThree` function. This result in listing one to three first then multiples of four.
 
 Pass parameters to a generator.
 

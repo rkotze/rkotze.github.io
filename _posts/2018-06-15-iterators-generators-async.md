@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Async iterators in JavaScript"
-date: 2018-06-15 12:00:12 +0000
-permalink: /coding/async-iterators-in-javascript
+title: "Iterators and Generators in ES6 JavaScript"
+date: 2018-06-17 12:00:12 +0000
+permalink: /coding/iterators-generators-es6-javascript
 category: coding
 published: false
 image: street-art.jpg
 meta_description: >
- Async iterators in JavaScript 
+ Lots of examples of using iterators and generators in ES6 JavaScript 
 excerpt_separator: <!--more-->
 ---
 
@@ -55,7 +55,7 @@ for(let number of iterator){
 
 ### Built-in iterators
 
-`String`, `Array`, `TypedArray`, `Map` and `Set` implement the Symbol.iterator method on their prototype.
+`String`, `Array`, `TypedArray`, `Map` and `Set` implement the Symbol.iterator method on their prototype. It is also possible to iterate of a collection of DOM elements like a `NodeList`.
 
 ```javascript
 for(let letter of "abc") {
@@ -114,7 +114,7 @@ for(let number of multiplesOfFour) {
 
 Just playing around with generators and as you can see above I did not need to assign the generator function to `[Symbol.iterator]` for `for..of` loop to work. Inspecting the called result of `firstTenMultiples(4)` you can see on the `__proto__` it does have `[Symbol.iterator]` implemented. This confirms calling a generator function returns a generator object which is iterable.
 
-## Generator finished
+### Generator finished
 
 ```javascript
 function* returnExample(){
@@ -130,7 +130,7 @@ console.log(gen.next()) // => { value: undefined, done: true }
 
 In the above example you can see `return` ends the generator and sets the state to done. Anything after that is not reached.
 
-## Delegate to another generator
+### Delegate to another generator
 
 ```javascript
 function* countToThree(){
@@ -158,6 +158,49 @@ for(let number of multiplesOfFour) {
 
 In the above example `firstTenMultiples` uses `yield*` to delegate to `countToThree` function. This result in listing one to three first then multiples of four.
 
-Pass parameters to a generator.
+### Pass a parameter via `next()` method
 
-It is not possible to `new` a generator and in ES7 this will throw an error if `new` is used.
+```javascript
+function* firstTenMultiples(multiple = 3) {
+  let start = 1;
+  while(start <= 10){
+    let reset = yield multiple * start;
+    start++;
+    if(reset) start = 1;
+  }
+}
+
+let multiplesOfFour = firstTenMultiples(4);
+
+console.log(multiplesOfFour.next().value); // 4
+console.log(multiplesOfFour.next().value); // 8
+console.log(multiplesOfFour.next().value); // 12
+console.log(multiplesOfFour.next(true).value); // 4 (reset to start from beginning)
+console.log(multiplesOfFour.next().value); // 8
+console.log(multiplesOfFour.next().value); // 12
+```
+
+In the above example I pass in a parameter to reset the generator to start again. The last `yield` expression which paused the generator will use the parameter value as the result. Assigning `yield` to the variable `reset`, the value is `undefined` until a parameter is passed in making `reset` equal `true`.
+
+### Destructing values from iterator
+
+```javascript
+const [a, b, c] = firstTenMultiples(5);
+// -> a = 5, b = 10, c = 15
+```
+
+### Spread values from iterator
+
+```javascript
+const multiplesOfSix = [...firstTenMultiples(6)];
+// -> [6, 12, 18, 24, 30, 36, 42, 48, 54, 60]
+```
+
+
+Hopefully you find all these examples useful to getting started with iterators and generators. The benefit of these features is they yield results on demand which help compute expensive sequences or handle infinity sequences.
+
+References:
+
+- [function*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*){:target="\_blank"}
+- [for..of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of){:target="\_blank"}
+- [Iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators){:target="\_blank"}

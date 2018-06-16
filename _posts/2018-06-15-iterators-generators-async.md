@@ -5,7 +5,7 @@ date: 2018-06-17 12:00:12 +0000
 permalink: /coding/iterators-generators-es6-javascript
 category: coding
 published: false
-image: street-art.jpg
+image: fish-street-art.jpg
 meta_description: >
  Lots of examples of using iterators and generators in ES6 JavaScript 
 excerpt_separator: <!--more-->
@@ -14,6 +14,9 @@ excerpt_separator: <!--more-->
 For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using JavaScripts `for..of` loop.
 
 <!--more-->
+
+![Street art of cartoon fish](/images/fish-street-art.jpg)
+_Photo by Sunyu on Unsplash_
 
 ## Build your first iterator
 

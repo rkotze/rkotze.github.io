@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using JavaScripts `for..of` loop.
+For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using `for..of` loop.
 
 <!--more-->
 
@@ -115,7 +115,7 @@ for(let number of multiplesOfFour) {
 // -> 4, 8, 12, 16, 20, 24, 28, 32, 36, 40
 ```
 
-From the above you can see I did not need to assign the generator function to `[Symbol.iterator]` for `for..of` loop to work. Inspecting the called result of `firstTenMultiples(4)` you can see on the `__proto__` it does have `[Symbol.iterator]` implemented. This confirms calling a **generator function** returns a **generator object** which is _iterable_.
+From the above you can see I did not need to assign the generator function to `[Symbol.iterator]` for `for..of` loop to work. Inspecting the called result of `firstTenMultiples(4)` you can see on the `__proto__` it does have `[Symbol.iterator]` implemented. When calling a **generator function** it returns a **generator object** which is _iterable_.
 
 ### Generator finished
 

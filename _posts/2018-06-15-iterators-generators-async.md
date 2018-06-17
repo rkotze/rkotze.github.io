@@ -203,6 +203,6 @@ Hopefully, you find all these examples useful to getting started with iterators 
 
 References:
 
-- [function\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function\*){:target="\_blank"}
+- [function\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*){:target="\_blank"}
 - [for..of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of){:target="\_blank"}
 - [Iterators and generators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_Generators){:target="\_blank"}

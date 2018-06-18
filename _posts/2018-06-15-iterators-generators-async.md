@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-For an object to become an iterator it needs to know how to access values in a collection and keeping track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties `value` and `done`. It must have the `[Symbol.iterator]` as well as this is key to using `for..of` loop.
+For an object to become an iterator it needs to know how to access values in a collection and to keep track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties: `value` and `done`. It must have the `[Symbol.iterator]` as well, as this is key to using the `for..of` loop.
 
 <!--more-->
 
@@ -69,7 +69,7 @@ for(let letter of "abc") {
 
 ## Generators
 
-You might be looking at the first code example and thinking it is pretty verbose and got some boiler code. ES6 has got some syntax sugar to help make this all look clean and succinct.
+You might be looking at the first code example and thinking it is pretty verbose with some boiler code. ES6 has some syntax sugar to help make this all look clean and succinct.
 
 An example below of a generator:
 
@@ -94,7 +94,7 @@ for(let number of iteratorGen) {
 // -> 3, 6, 9, 12, 15, 18, 21, 24, 27, 30
 ```
 
-The key features to defining a _generator_ are `function*`. Yield essentially pauses the execution of the function body when it is reached until the next call is made. In the above example you can see by calling the `firstTenMultiples` function we have access to `next` method which returns `value` and iterator state `done`. This is the same as defining our own iterator except its more concise and easy to read.
+The key features to defining a _generator_ are `function*`. Essentially, `yield` pauses the execution of the function body when it is reached until the next call is made. In the above example you can see by calling the `firstTenMultiples` function we have access to `next` method which returns `value` and iterator state `done`. This is the same as defining our own iterator, except it's more concise and easy to read.
 
 _I feel_ the asterisk makes this a bit awkward, in terms of remembering to use it and its position on `function`. I'm sure this is new syntax we will get used to.
 
@@ -159,7 +159,7 @@ for(let number of multiplesOfFour) {
 // -> 1, 2, 3, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40
 ```
 
-In the above example `firstTenMultiples` uses `yield*` to _delegate_ to `countToThree` generator function. This result in listing one to three first then multiples of four.
+In the above example `firstTenMultiples` uses `yield*` to _delegate_ to `countToThree` generator function. This results in listing one to three first, then multiples of four.
 
 ### Pass in a value via `next()` method
 
@@ -199,7 +199,7 @@ const multiplesOfSix = [...firstTenMultiples(6)];
 // -> [6, 12, 18, 24, 30, 36, 42, 48, 54, 60]
 ```
 
-Hopefully, you find all these examples useful to getting started with iterators and generators.
+Hopefully, you find all these examples useful to get started with iterators and generators.
 
 References:
 

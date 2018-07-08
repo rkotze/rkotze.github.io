@@ -96,8 +96,14 @@ reactContributors.next().then((data) => {
 });
 ```
 
-Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. Once done reading the steam, the loop is exited and the `finally` block is hit to release the stream. This has to be done because once a reader is locked another one cannot be created until the current one is released. 
+Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling [`body.getReader()`]{:target="\_blank"}. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. 
+
+Once done reading the steam, the loop is exited and the `finally` block is hit to release the stream. This has to be done because once a reader is locked another one cannot be created until the current one is released.
+
+
 
 References:
 
 - [Proposal async iteration](https://github.com/tc39/proposal-async-iteration){:target="\_blank"}
+
+[`body.getReader()`]: https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader

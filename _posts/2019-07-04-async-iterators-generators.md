@@ -63,7 +63,7 @@ If you're a bit confused I've written a post about [`async/await` and promises](
 
 ## Async generator around Fetch API
 
-Async iterators enable you to read streams in the browser. For example using `fetch` the `response.body` is a [`ReadableStream`](https://streams.spec.whatwg.org/){:target="\_blank"} which can be iterated over. To show the chunked responses the `next` method is called directly. See below for getting React contributors from GitHub.
+Async iterators enable you to read streams in the browser. For example using `fetch` the `response.body` is a [`ReadableStream`](https://streams.spec.whatwg.org/){:target="\_blank"} which can be iterated over. To read the chunked responses the `next().then` is called directly. See below for getting React contributors from GitHub.
 
 ```javascript
 async function* streamContributors(repoPath) {  
@@ -96,14 +96,14 @@ reactContributors.next().then((data) => {
 });
 ```
 
-Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling [`body.getReader()`]{:target="\_blank"}. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. 
+Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. 
 
-Once done reading the steam, the loop is exited and the `finally` block is hit to release the stream. This has to be done because once a reader is locked another one cannot be created until the current one is released.
+When reading the chunked data in the resolved promise it is in `Uint8Array` format which needs to be decoded using `TextDecoder`.
 
-
+Once done reading the steam, the loop is exited and the `finally` block is hit to release the stream. This must be done because once a reader is locked another one cannot be created until the current one is released. 
 
 References:
 
 - [Proposal async iteration](https://github.com/tc39/proposal-async-iteration){:target="\_blank"}
-
-[`body.getReader()`]: https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader
+- [ReadableStreams](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream){:target="\_blank"}
+- [TextDecoder](https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder){:target="\_blank"}

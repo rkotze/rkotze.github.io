@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Async Iterators and Generators in JavaScript"
-date: 2018-07-04 12:00:12 +0000
+date: 2018-07-10 12:00:12 +0000
 permalink: /coding/async-iterators-generators-javascript
 category: coding
 published: true
@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-Async iterators will enable JavaScript engineers to read steams like lines of text from a web service or a file. It will be worth [understanding sync iterators](/coding/iterators-generators-es6-javascript) first in a previous post I wrote before reading this. 
+Async iterators will enable JavaScript engineers to read steams like lines of text from a web service or a file. It will be worth reading my previous post [understanding sync iterators](/coding/iterators-generators-es6-javascript) first before carrying on. 
 
 It may seem plausible for a `for-of` loop to iterate through lines in a file but ultimately it can't execute until it has received the whole contents.
 
@@ -26,7 +26,7 @@ for (const line of fetchFile(fileName)) {
 ![Girl walking away](/images/girl-walking-away.jpg)
 _Photo by Daniel von Appen on Unsplash_
 
-A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration and the `next()` method returns a promise. On the face of it a _iterator_ looks similar to a _async iterator_ except a _promise_ is returned requiring us to use `then` method to access the `value` and `done` state. See the example below:
+A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration and the `next()` method returns a promise. On the face of it a _iterator_ looks similar to a _async iterator_ except a _promise_ is returned requiring the use of the `then` method to access the `value` and `done` state. See the example below:
 
 ```javascript
 const { value, done } = syncIterator.next();

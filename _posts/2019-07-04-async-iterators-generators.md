@@ -26,7 +26,7 @@ for (const line of fetchFile(fileName)) {
 ![Girl walking away](/images/girl-walking-away.jpg)
 _Photo by Daniel von Appen on Unsplash_
 
-A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration and the `next()` method return a promise. On the face of it an _iterator_ looks similar to an _async iterator_ except a _promise_ is returned requiring us to use `then` method to access the `value` and `done` state. See the example below:
+A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration and the `next()` method returns a promise. On the face of it a _iterator_ looks similar to a _async iterator_ except a _promise_ is returned requiring us to use `then` method to access the `value` and `done` state. See the example below:
 
 ```javascript
 const { value, done } = syncIterator.next();
@@ -42,7 +42,7 @@ asyncIterator.next().then((data) => {
 });
 ```
 
-You can of course use `async/await` to read the data from the stream to make it cleaner, see below:
+You can, of course, use `async/await` to read the data from the stream to make it cleaner, see below:
 
 ```javascript
 async function readData(asyncIterator){
@@ -99,7 +99,7 @@ reactContributors.next().then((data) => {
 });
 ```
 
-Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. 
+Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data, however, `yield` will pause the loop until the `next` method is called. 
 
 When reading the chunked data in the resolved promise it is in a `Uint8Array` which needs to be decoded using `TextDecoder`.
 
@@ -107,7 +107,7 @@ Once done reading the steam, the loop is exited and the `finally` block is hit t
 
 ## Search for contributor
 
-I've modified the above code which you can see below. It now searches the stream for a React contributor from GitHub. The `Uint8Array` is converted to text in the `streamContributors` function, as we are now interested in searching the text. A new _async_ `search` function takes a stream and username as parameters. In there the `for-await-of` loop is used to iterate through each chunk. If the user is found it will return the avatar URL. The final part is calling the `search` function which returns a promise because it is async. The data is access by through the resolved promised and is logged out to the console. 
+I've modified the above code which you can see below. It now searches the stream for a React contributor from GitHub. The `Uint8Array` is converted to text in the `streamContributors` function, as we are now interested in searching the text. A new _async_ `search` function takes a stream and username as parameters. In there the `for-await-of` loop is used to iterate through each chunk. If the user is found it will return the avatar URL. The final part is calling the `search` function which returns a promise because it is async. The data is accessed through the resolved promised and is logged out to the console. 
 
 ```javascript
 async function* streamContributors(repoPath) {  

@@ -98,7 +98,7 @@ reactContributors.next().then((data) => {
 
 Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data however, `yield` will pause the loop until the `next` method is called. 
 
-When reading the chunked data in the resolved promise it is in `Uint8Array` format which needs to be decoded using `TextDecoder`.
+When reading the chunked data in the resolved promise it is in a `Uint8Array` which needs to be decoded using `TextDecoder`.
 
 Once done reading the steam, the loop is exited and the `finally` block is hit to release the stream. This must be done because once a reader is locked another one cannot be created until the current one is released. 
 

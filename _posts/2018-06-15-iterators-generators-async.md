@@ -201,6 +201,8 @@ const multiplesOfSix = [...firstTenMultiples(6)];
 
 Hopefully, you find all these examples useful to get started with iterators and generators.
 
+**Next to read** is my post on [async iterators and generators](/coding/async-iterators-generators-javascript).
+
 References:
 
 - [function\*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*){:target="\_blank"}

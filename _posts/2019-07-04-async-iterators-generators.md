@@ -26,11 +26,34 @@ for (const line of fetchFile(fileName)) {
 ![Girl walking away](/images/girl-walking-away.jpg)
 _Photo by Daniel von Appen on Unsplash_
 
-A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration and the `next()` method returns a promise. On the face of it a _iterator_ looks similar to a _async iterator_ except a _promise_ is returned requiring the use of the `then` method to access the `value` and `done` state. See the example below:
+On an iterable object the `next()` method returns an object of `{ value, done }` and these values need to be known when it returns. This means that if we did use an iterator on a async data source, the iteration would finish before the data is resolved.
 
 ```javascript
-const { value, done } = syncIterator.next();
+const syncIterator = {
+  [Symbol.iterator]: function* () {
+    const asyncData = [Promise.resolve('A'), Promise.resolve('B')];
 
+    while (asyncData.length) {
+      yield asyncData.shift();
+    }
+  }
+}
+
+for (const item of syncIterator) {
+  console.log("iterate");
+  item.then(console.log);
+}
+console.log("done");
+// iterate
+// iterate
+// done
+// A
+// B
+```
+
+A new protocol has been added `[Symbol.asyncIterator]` to enable asynchronous iteration. On the face of it a _iterator_ looks similar to a _async iterator_ except a _promise_ is returned when calling the `next()`. Resolving the promise will give access to iterator state object. See the example below:
+
+```javascript
 asyncIterator.next().then((data) => {
     console.log(data); // {value: 'a'  done: false}
     return asyncIterator.next();
@@ -99,7 +122,7 @@ reactContributors.next().then((data) => {
 });
 ```
 
-Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We await on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data, however, `yield` will pause the loop until the `next` method is called. 
+Defining an async generator is similar to a generator except it has async at the start, `async function* streamContributors`. We `await` on the fetch to resolve the response. Then the body is accessible and a reader is created and locked by calling `body.getReader()`. In a `try/catch` an infinite loop is used to continually read data, however, `yield` will pause the loop until the `next` method is called. 
 
 When reading the chunked data in the resolved promise it is in a `Uint8Array` which needs to be decoded using `TextDecoder`.
 
@@ -107,7 +130,7 @@ Once done reading the steam, the loop is exited and the `finally` block is hit t
 
 ## Search for contributor
 
-I've modified the above code which you can see below. It now searches the stream for a React contributor from GitHub. The `Uint8Array` is converted to text in the `streamContributors` function, as we are now interested in searching the text. A new _async_ `search` function takes a stream and username as parameters. In there the `for-await-of` loop is used to iterate through each chunk. If the user is found it will return the avatar URL. The final part is calling the `search` function which returns a promise because it is async. The data is accessed through the resolved promised and is logged out to the console. 
+I've modified the above code which you can see below. It now searches the stream for a React contributor on GitHub. The `Uint8Array` is converted to text in the `streamContributors` function, as we are now interested in searching the text. A new _async_ `search` function takes the parameters, stream and username. In there the `for-await-of` loop is used to iterate through each chunk. If the user is found it will return the avatar URL. The final part is calling the `search` function which returns a promise and when it resolves it will log out the avatar url.
 
 ```javascript
 async function* streamContributors(repoPath) {  
@@ -143,7 +166,7 @@ async function search(stream, username){
 }
 
 search(streamContributors('facebook/react'), 'acdlite').then((data) => {
-  console.log(data);
+  console.log(data); // { avatarUrl : "https://avatars0.githubusercontent.com/u/3624098?v=4"}
 });
 ```
 

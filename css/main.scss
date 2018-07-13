@@ -93,16 +93,6 @@ h1.me {
     }
 }
 
-.socialbuttons a.icon-codewars {
-    width: 34px;
-    height: 34px;
-    padding: 4px;
-    border-radius: 4px;
-    background-color: $red;
-    vertical-align: text-bottom;
-    margin: 0 0 0 10px; 
-}
-
 .rk-image {
     float: right;
     margin: 10px 0 0 10px;
@@ -332,6 +322,24 @@ article.item, article.listing {
         @include transition(color 0.5s);
         &:hover{
             text-decoration:none;
+        }
+    }
+
+    a.icon-codewars {
+        width: 34px;
+        height: 34px;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: $red;
+        vertical-align: text-bottom;
+        text-align: center;
+        margin: 0;
+        @media #{$small}{
+            margin: 0 0 0 10px;
+        }
+        @include transition(background-color 0.5s);
+        &:hover{
+            background-color:darken($red, 15%);
         }
     }
 }

@@ -22,23 +22,23 @@ _Photo by Rebecca Oliver on Unsplash_
 
 ## Steps for connecting to GitHub with SSH:
 
-See troubleshooting section below if you have any issues with the steps.
+See the troubleshooting section below if you have any issues with the steps.
 
 1. `ssh-keygen -t rsa -C "your@email.here"` - Three additional question from the command:
-  - Path and file name of where you want to put the key. Default will be added to your user profile `.ssh` directory
+  - Path and file name of where you want to put the key. The default will be added to your user profile `.ssh` directory
   - Create a passphrase (this can be left empty)
   - Enter passphrase again
-1. Ensure your `ssh-agent` has started, by running `ssh-agent` in command line
-1. Add your private key using `ssh-add ~/.ssh/private_key_file`
+1. Ensure your `ssh-agent` has started, by running the `ssh-agent` command
+1. Add your private key using `ssh-add ~/.path_to/private_key_file`
 1. You can confirm it has been added using `ssh-add -l`. This will show a list of added keys
-1. Add you public key to GitHub `settings -> SSH and GPG keys`
+1. Add your public key to GitHub `settings -> SSH and GPG keys`
   - Open your public key file and copy/paste into GitHub SSH Keys
 
 **Important**: You will need to let Git know the SSH client to use. Add/Update the environment variable `GIT_SSH` with the path to OpenSSH client e.g. `C:\cmder\vendor\git-for-windows\usr\bin\ssh.exe`
 
 With this setup, you **should now be able to push/pull/clone** a GitHub repository.
 
-You might get asked when pushing for the first time:
+You might get asked when connecting for the first time:
 
 > The authenticity of host 'github.com (ip.ad.dre.ss)' can't be established. <br/>
 > RSA key fingerprint is SHA256:nTsAg6kXaklskaeeseweRYHXTxdCARteiKw6E5SY8. <br />
@@ -50,13 +50,13 @@ You decide, but "yes" if you want to connect and push your code.
 
 ### `ssh-agent`
 
-This error appear: **unable to start ssh-agent service, error :1058**
+Error message: **unable to start ssh-agent service, error :1058**
 
 > I found that the service was disabled. Type in services in the start menu and open the Services app. Look for **OpenSSH Authentication Agent** and set it to Automatic.
 
 ### `ssh-add path/to/private_key`
 
-Error: **Could not open a connection to your authentication agent.**
+Error message: **Could not open a connection to your authentication agent.**
 
 > This might be `ssh-add` does not know where the `ssh-agent` is to run. Cmder has a start up script you can use for every new terminal. In `cmder/config/user-profile.cmd` add or uncomment the line `call "%GIT_INSTALL_ROOT%/cmd/start-ssh-agent.cmd"`
 

@@ -1,10 +1,11 @@
 ---
 layout: post
-title:  Use OpenSSH to push to GitHub on Windows
-date:   2018-07-25 12:00:12 +0000
-permalink: top-tips/use-openssh-push-github-windows
+title:  Connecting to GitHub with OpenSSH on Windows
+date:   2018-07-24 08:00:12 +0000
+permalink: top-tips/connecting-github-with-openssh-windows
 category: top-tips
-published: false
+published: true
+image: retro-arcade-gaming.jpg
 meta_description: >
  How to setup OpenSSH with Git on Windows using commander
 excerpt_separator: <!--more-->
@@ -15,6 +16,9 @@ Here are the steps to setup **OpenSSH** with **Git** to connect to a repository 
 I use Windows as my main OS and **Cmder** as my console emulator. Installing the full version you will get _Git for Windows_ which has loads of Unix commands available in your PATH including OpenSSH. The version of Cmder I'm using is 1.3.0.
 
 <!--more-->
+
+![Retro arcade showing Pacman](/images/retro-arcade-gaming.jpg)
+_Photo by Rebecca Oliver on Unsplash_
 
 ## Steps for connecting to GitHub with SSH:
 

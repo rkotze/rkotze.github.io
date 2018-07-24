@@ -40,6 +40,8 @@ C:\path\to\PuTTY\pageant.exe c:\pathtoprivate-ssh-key.ppk`
 
 Try out [SublimeGit package][2]. You have most of the Git functionality and you don't need to leave Sublime.
 
+See my post for [**connecting to GitHub with OpenSSH on Windows**](/top-tips/connecting-github-with-openssh-windows)
+
 [1]: https://sourceforge.net/projects/gitextensions/
 [2]: https://packagecontrol.io/packages/SublimeGit
   

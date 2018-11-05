@@ -11,6 +11,8 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
+**What is a generator in programming terms?** It is a special function that can be used to control the iteration behaviour of a loop.
+
 For an object to become an iterator it needs to know how to access values in a collection and to keep track of its position in the list. This is achieved by an object implementing a `next` method and returning the next value in the sequence. This method should return an object containing two properties: `value` and `done`. It must have the `[Symbol.iterator]` as well, as this is key to using the `for..of` loop.
 
 <!--more-->

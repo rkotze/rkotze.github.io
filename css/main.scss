@@ -171,6 +171,9 @@ article {
         text-decoration: none;
         border-bottom: 1px dotted $textColor;
     }
+    .noWidth img{
+        width:auto;
+    }
 }
 
 article h1, article h2, article h3  {

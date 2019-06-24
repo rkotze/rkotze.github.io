@@ -19,7 +19,7 @@ github_username:  rkotze
 google_username:  109155264212733458222?rel=author
 facebook_username:  webdesign.develop
 
-paginate: 10
+paginate: 12
 permalink: "/:categories/:title"
 
 # Build settings

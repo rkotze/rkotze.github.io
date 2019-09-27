@@ -7,11 +7,11 @@ category: projects
 published: true
 full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
 meta_description: >
- Co-author commits with Git Mob in VS Code which will show in GitHub
+  Co-author commits with Git Mob in VS Code which will show in GitHub
 excerpt_separator: <!--more-->
 ---
 
-With the creation of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in VS Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for _co-authoring commits_ to GitHub. See [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank"} repository to get started.
+With the creation of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in VS Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank"} to GitHub. See [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank"} repository to get started.
 
 <!--more-->
 
@@ -35,7 +35,6 @@ The title bar has an action to open your `.git-coauthors` file to allow you to m
 
 If there are any ideas you want to see in Git Mob VS Code please create an issue or fork the repository and make a pull request.
 
-If you like the project please [**share**](https://twitter.com/intent/tweet?hashtags=pairProgramming,gitmob&text=Co-author%20commits%20using%20Git%20Mob%20VS%20Code%20extension%20https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} with your friends and [**star**](git-mob-vs-code){:target="\_blank"} the repository. 
+If you like the project please [**share**](https://twitter.com/intent/tweet?hashtags=pairProgramming,gitmob&text=Co-author%20commits%20using%20Git%20Mob%20VS%20Code%20extension%20https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} with your friends and [**star**](git-mob-vs-code){:target="\_blank"} the repository.
 
 You can read more about [Git Mob in this post](https://tech.findmypast.com/co-author-commits-with-git-mob/){:target="\_blank"}.
-

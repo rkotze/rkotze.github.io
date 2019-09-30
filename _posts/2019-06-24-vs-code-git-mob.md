@@ -11,7 +11,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-With the creation of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in VS Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank"} to GitHub. See [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank"} repository to get started.
+As the co-creator of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in VS Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank"} to GitHub. See [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank"} repository to get started.
 
 <!--more-->
 

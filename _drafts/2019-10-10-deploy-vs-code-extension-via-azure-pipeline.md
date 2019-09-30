@@ -12,14 +12,14 @@ excerpt_separator: <!--more-->
 
 I struggled with Azure pipelines because of the amount of options. While it's great to have these options it's difficult to know what to do to achieve your goal. The goal in this case to publish my extension to VS Code marketplace. The initial setup for continuous integration (CI) is easy and Azure has done a great job there, including getting started guides. My extension is [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"}.
 
-I'll provide step by step instructions to help you build your CI and continuous delivery (CD) pipeline for your VS Code extension via Azure DevOps platform.
+I'll provide **bite size** instructions to help you build your CI and continuous delivery (CD) pipeline for your VS Code extension via Azure DevOps platform. Follow these steps I estimate it will take **15-25mins** to get it all running.
 
 <!--more-->
 
 - [Setup a build and test](#setup-a-build-and-test)
-- [Deploy to VS Code marketplace]()
-- [Why have a delivery pipeline?]()
-- [Why use Azure pipeline?]()
+- [Deploy to VS Code marketplace](#deploy-to-vs-code-marketplace)
+- [Why have a delivery pipeline?](#why-have-a-delivery-pipeline)
+- [What I like Azure pipeline](#what-i-like-azure-pipeline)
 
 ### Setup a build and test
 
@@ -149,7 +149,7 @@ steps:
 
 Generally a build and test pipeline give you confidence that your app is functioning as you expect it. Including a delivery step will help reduce the over head of remembering the commands to run to release into production. However, there is a lot more about the importance of having a pipeline, you can read more from my post on [CI and continuous delivery (CD)](/continuous-integration-delivery-deployment)
 
-### Why use Azure pipeline?
+### What I like Azure pipeline
 
 As far as Azure pipelines are concerned I thought it would be worth trying to see how well it worked and the benefits of using it.
 

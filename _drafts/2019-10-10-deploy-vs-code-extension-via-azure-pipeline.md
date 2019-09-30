@@ -10,33 +10,41 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-I struggled with Azure pipelines because of the amount of options. While it's great to have these options it's difficult to know what to do to achieve your goal. The goal in this case to publish my extension to VS code marketplace. The initial setup is super easy and Azure has done a great job there and there is plenty of documentation.
+I struggled with Azure pipelines because of the amount of options. While it's great to have these options it's difficult to know what to do to achieve your goal. The goal in this case to publish my extension to VS Code marketplace. The initial setup for continuous integration (CI) is easy and Azure has done a great job there, including getting started guides. My extension is [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"}.
 
-I'll provide a step by step instructions to help you build and deploy your VS code extension via Azure pipeline.
+I'll provide step by step instructions to help you build your CI and continuous delivery (CD) pipeline for your VS Code extension via Azure DevOps platform.
 
 <!--more-->
 
-- [Setup a build and test]()
+- [Setup a build and test](#setup-a-build-and-test)
 - [Deploy to VS Code marketplace]()
 - [Why have a delivery pipeline?]()
 - [Why use Azure pipeline?]()
 
 ### Setup a build and test
 
-1. Sign up to [Azure devops](https://azure.microsoft.com/en-gb/services/devops/){:target="\_blank"}
-1. Create a project which you can customise. If you have an open source project it will be worth making it public. Which means people can read status and view errors of the build pipeline. [Create a project](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops){:target="\_blank"}
-1. Create a new build pipeline and connect with your GitHub repository. (Or where ever you are hosting your repository)
-1. Create a folder and file called `.azure-pipelines/azure-pipelines.yml`
+This section is about building the extension, running automated tests and building a `.vsix` package as an artifact to be used in the deployment stage. The artifact file name contains the version number from the `package.json`.
 
-The yml file below will
+1. Sign up to [Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/){:target="\_blank"} it's free.
+1. Create a project. It can be customised at any time. If you have an open source project it will be worth making it public. This allows people to read the status and errors of the build pipeline. [Create a project](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops){:target="\_blank"}
+1. In your Git repository create a file called `.azure-pipelines/azure-pipelines.yml` to push up. Below is the code for the file.
+1. Create a new build pipeline, connect your repository and reference the above file.
 
-1. Customise the package name depending if building on master branch or is a pull request
+### The `azure-pipelines.yml` file steps explained
+
+This is in reference to each point under the section `steps:`.
+
+1. Customise the package name depending if built from master branch or pull request
 1. Install project dependencies
 1. Run unit tests
-1. Globally install **vsce** which is used to build and deploy VS code extension. In this case it will build a **vsix** package. This will be used to deploy later.
-1. Keep track of branch if needed
-1. Stage generated files ready to be published artifacts
+1. Globally install **vsce** which is used to build and deploy VS Code extensions. In this case it will build a **vsix** package, which will be used to deploy at a later stage.
+1. Keep track of branch when needed for PRs
+1. Copy generated files ready to be published artifacts
 1. Finally publish files as artifacts. Now **ready** to deploy to VS Code marketplace.
+
+Worth noting  _script_, _bash_ and _tasks_ are essentially types of _steps_. This will explain the [Azure yaml schema](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema){:target="\_blank"}
+
+`azure-pipelines.yml` file to test and build a `.vsix` file to deploy. 
 
 ```yml
 # CI and PR build script
@@ -102,9 +110,44 @@ steps:
       targetPath: $(Build.ArtifactStagingDirectory)
 ```
 
+### Deploy to VS Code marketplace
+
+The next stage is to take the built artifact and deploy it. The YAML example is only to view the commands to release the artifact but to build a release you need the create that in the Azure DevOps app.
+
+1. In the left hand navigation bar under Pipelines select Releases
+1. Open the **New** dropdown and select **New release pipeline**
+1. You will be asked to select a template, unfortnately there is not one for deploying extensions to the marketplace. Select **Empty job**.
+1. You will only need one stage, name it what you like.
+1. Select **Add an artifact** box
+1. Source type is **Build** and Source will be the first item in the dropdown. It will be the name of your Git repository.
+1. Default version is set to **latest** but you can of course change this.
+1. Click the **Add** button when you're ready.
+1. In stages box click the small link **1 Jobs, 0 task**.
+1. On **Agent Job** click the plus button and search for "bash" task. Then click add.
+1. **Type** select **Inline**
+1. Copy the commands from the yaml example below starting from `sudo ...` to `.vsix`
+1. Under the **Advanced** tab, working directory click the ellipsis (...) button on the right and select the folder which has a "(Build)" suffix.
+1. We need to set an environment variable called `MARKET_KEY`.
+
+YAML example showing how to release you VS Code extension to the marketplace. 
+
+```yml
+steps:
+  - bash: |
+      sudo npm install -g vsce
+
+      PACKAGE_VERSION=$(cat git-mob-vs-code/version.txt)
+
+      vsce publish -p $MARKET_KEY --packagePath git-mob-vs-code/git-mob-$PACKAGE_VERSION.vsix
+    workingDirectory: '$(System.DefaultWorkingDirectory)/_rkotze.git-mob-vs-code'
+    displayName: Deploy
+    env:
+      MARKET_KEY: $(vscekey)
+```
+
 ### Why have a delivery pipeline?
 
-Generally a build and test pipeline give you confidence that your app is functioning as you expect it. It will also do the same for contributors new to the project. When you include a delivery step it helps by reducing the over head of remembering what commands to run to release into production.
+Generally a build and test pipeline give you confidence that your app is functioning as you expect it. Including a delivery step will help reduce the over head of remembering the commands to run to release into production. However, there is a lot more about the importance of having a pipeline, you can read more from my post on [CI and continuous delivery (CD)](/continuous-integration-delivery-deployment)
 
 ### Why use Azure pipeline?
 

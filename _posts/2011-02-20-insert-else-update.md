@@ -1,11 +1,11 @@
 ---
 layout: post
-title:  Insert else update
-date:   2011-02-20 17:00:12 +0000
+title: Insert else update MySQL
+date: 2011-02-20 17:00:12 +0000
 permalink: /coding/insert-else-update
 category: coding
 meta_description: >
- Useful MySql insert update query, which updates when entry exists or inserts if not.
+  Useful MySql insert update query, which updates when entry exists or inserts if not.
 ---
 
 Here is something that I recently found very useful. If you have a table in your MySQL database which you want to insert a record if it does not exist but update the row if it does. MySQL 5.x has a very neat piece of script to handle this with out any conditional statements.

@@ -4,7 +4,7 @@ title: "Deploy VS code extension via Azure pipeline"
 date: 2019-09-26 12:00:12 +0000
 permalink: /coding/deploy-vscode-extension-azure-pipeline
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
+full_image_url: https://user-images.githubusercontent.com/10452163/66151454-418a6e80-e60f-11e9-99a4-621c67d20c8c.jpg
 meta_description: >
   Learn how deploy your VS code extension to the marketplace via Azure pipeline
 excerpt_separator: <!--more-->
@@ -15,6 +15,9 @@ This post is to help developers new to Azure DevOps releases and deploying a VS 
 I'll provide **bite size** instructions to help you build a release for your VS Code extension using Azure DevOps platform. This will take about **5-10mins**.
 
 <!--more-->
+
+![vs-code-release](https://user-images.githubusercontent.com/10452163/66151454-418a6e80-e60f-11e9-99a4-621c67d20c8c.jpg)
+_Build a release pipeline to VS Code marketplace_
 
 This article assumes you have built a `.vsix` artifact from am Azure DevOps pipeline. If not, I will be posting fairly soon on how to make a build pipeline for your VS Code extension. I wanted to keep these posts about Azure pipeline focus on small specific tasks.
 

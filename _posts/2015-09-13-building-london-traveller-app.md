@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  Building London Traveller app
-date:   2015-09-13 17:00:12 +0000
+title: Building London Traveller app
+date: 2015-09-13 17:00:12 +0000
 permalink: /projects/building-london-traveller-app
 category: projects
-redirect_from: /web-development/building-london-traveller-app
 meta_description: >
- Publishing the London Traveller app to the world and what it's like to use the Ionic Framework.
+  Publishing the London Traveller app to the world and what it's like to use the Ionic Framework.
 excerpt_separator: <!--more-->
 ---
 
 This project was about using Ionic Framework to build a mobile app and publish it to the Android play store.
+
 <!--more-->
 
 [London Traveller][1] on Android play store, built using&nbsp;[Ionic framework][2].
@@ -63,4 +63,3 @@ The great thing about Ionic is it's so fast to develop with, it might be the too
 [10]: https://facebook.github.io/react-native/
 [11]: https://www.nativescript.org/
 [12]: http://xamarin.com/
-  

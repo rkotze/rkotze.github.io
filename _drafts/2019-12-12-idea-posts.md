@@ -47,3 +47,7 @@ volumes:
 Anonymous volumes reference the directory in the container and docker handles where the files are stored. The mount is outside of your project. This is good for using node_modules that was built for the image.
 
 Docker compose down does not remove anonymous volumes but would remove named & anonymous. However, stopping the containers and using `docker-compose rm` will remove only anonymous volumes.
+
+# Graphql server validation errors
+
+Make it part of the mutation payload object.

@@ -41,7 +41,7 @@ _Azure release pipeline UI showing areas covered in these steps_
 1. **Type** select **Inline**
 1. Copy the commands from the **YAML example** below starting from `sudo ...` to `.vsix`
 1. Under the **Advanced** tab, working directory click the ellipsis (...) button on the right and select the folder which contains the `.vsix` artifact file.
-1. Using your marketplace **Personal Access Token** (PAT) we will set an environment variable called `MARKET_KEY`. [Get & save PAT securely](#get--save-pat-securely)
+1. Using your marketplace **Personal Access Token** (PAT) we will set an environment variable called `MARKET_KEY`. [Get & save <abbr title="Personal Access Token">PAT</abbr> securely](#get--save-pat-securely)
 1. In the environment variables tab add **name** `MARKET_KEY` and **value** `$(nameOfSecureVariable)`
 1. Ensure you save these changes and you should be ready to **"create a release"**.
 
@@ -55,7 +55,7 @@ _Azure release pipeline UI showing areas covered in these steps_
 Important points:
 
 - `vsce publish` is the app & command to deploy to VS Code marketplace
-- `-p $MARKET_KEY` send your PAT to authorise publishing
+- `-p $MARKET_KEY` send your <abbr title="Personal Access Token">PAT</abbr> to authorise publishing
 - `--packagePath git-mob-$PACKAGE_VERSION.vsix` the extension package to publish
 
 ```yml
@@ -74,13 +74,13 @@ steps:
 
 Here is the [Git Mob release pipeline](https://dev.azure.com/TinkerTaylor/VS%20code%20extensions/_release?definitionId=1&view=mine&_a=releases) for reference.
 
-### Get & save PAT securely
+### Get & save <abbr title="Personal Access Token">PAT</abbr> securely
 
 1. To publish to the marketplace you will need a Personal Access Token which is explained here on [publishing extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension){:target="\_blank"}.
 1. Once you have a key, it will need to be stored securely and the release pipeline to access it. Ensure your work is saved and lets move to store that token.
 1. Click the **variables** tab on the top left.
 1. Insure Pipeline variables is selected on the left and click the **+ Add** button.
-1. Add a name e.g. "vscekey" and the value is your PAT. Ensure the **pad lock is locked** to make it a **secret**.
+1. Add a name e.g. "vscekey" and the value is your <abbr title="Personal Access Token">PAT</abbr>. Ensure the **pad lock is locked** to make it a **secret**.
 1. You secret variable is now ready to be accessed by the release pipeline.
 1. Finish the final steps above to complete the release pipeline.
 

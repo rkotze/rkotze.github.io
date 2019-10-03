@@ -51,3 +51,8 @@ Docker compose down does not remove anonymous volumes but would remove named & a
 # Graphql server validation errors
 
 Make it part of the mutation payload object.
+
+# Implement JWT authentication for GraphQL server
+
+- Express middleware
+- The role of access token and refresh tokens

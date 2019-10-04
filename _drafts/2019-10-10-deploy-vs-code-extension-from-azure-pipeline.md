@@ -10,7 +10,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-This post is to help developers new to Azure DevOps releases and deploying a VS Code extension. Azure pipelines comes with lots of great options but it's difficult to know what to do to achieve your goal. The goal in this case to deploy my VS Code extension, [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} to the marketplace.
+This post is to help developers who are new to Azure DevOps releases and deploying a VS Code extension. Azure pipelines come with lots of great options but it can be difficult to know what to do to achieve your goal. The goal in this case is to deploy my VS Code extension, [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} to the marketplace.
 
 I'll provide **bite size** instructions to help you build a release for your VS Code extension using Azure DevOps platform. This will take about **5-10mins**.
 
@@ -19,11 +19,11 @@ I'll provide **bite size** instructions to help you build a release for your VS 
 ![vs-code-release](https://user-images.githubusercontent.com/10452163/66151454-418a6e80-e60f-11e9-99a4-621c67d20c8c.jpg)
 _Build a release pipeline to VS Code marketplace_
 
-This article assumes you have built a `.vsix` artifact from am Azure DevOps pipeline. If not, I will be posting fairly soon on how to make a build pipeline for your VS Code extension. I wanted to keep these posts about Azure pipeline focus on small specific tasks.
+This article assumes you have built a `.vsix` artifact from am Azure DevOps pipeline. If not, I will be posting fairly soon on how to make a build pipeline for your VS Code extension. I wanted to keep these posts about Azure pipeline separate, to focus on small specific tasks.
 
 ### Deploy to VS Code marketplace
 
-We will create a "release" to deploy the built artifact to the marketplace. The YAML example at the end of the steps is illustrative for the commands needed to release the artifact via Azure DevOps pipeline.
+We will create a "release" to deploy the built artifact to the marketplace. The YAML example at the end of the steps illustrates the commands needed to release the artifact via Azure DevOps pipeline.
 
 ![Azure release pipeline UI screenshot](https://user-images.githubusercontent.com/10452163/66149404-f1111200-e60a-11e9-860e-d6531bc2bd3b.png)
 _Azure release pipeline UI showing areas covered in these steps_
@@ -77,11 +77,11 @@ Here is the [Git Mob release pipeline](https://dev.azure.com/TinkerTaylor/VS%20c
 ### Get & save <abbr title="Personal Access Token">PAT</abbr> securely
 
 1. To publish to the marketplace you will need a Personal Access Token which is explained here on [publishing extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension){:target="\_blank"}.
-1. Once you have a key, it will need to be stored securely and the release pipeline to access it. Ensure your work is saved and lets move to store that token.
+1. Once you have a key, it will need to be stored privately so it can be used in the release pipeline without it being revealed in the build log. Ensure your work is saved and now let's store that token.
 1. Click the **variables** tab on the top left.
 1. Insure Pipeline variables is selected on the left and click the **+ Add** button.
-1. Add a name e.g. "vscekey" and the value is your <abbr title="Personal Access Token">PAT</abbr>. Ensure the **pad lock is locked** to make it a **secret**.
-1. You secret variable is now ready to be accessed by the release pipeline.
-1. Finish the final steps above to complete the release pipeline.
+1. Add a name e.g. "vscekey" and the value is your <abbr title="Personal Access Token">PAT</abbr>. Ensure the **padlock is locked** to make it a **secret**.
+1. Your secret variable is now ready to be accessed by the release pipeline.
+1. Finish the remaining steps above to complete the release pipeline.
 
 I hope this has helped you to deploy your extension. Please comment below if this was useful or you came across an issue which could help others.

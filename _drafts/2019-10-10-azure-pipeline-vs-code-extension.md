@@ -10,9 +10,9 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-For most of my published open source projects I've added a simple continuous integration pipeline using Travis CI. This time round I wanted a way to also deploy a project after successful integration stage. I also want to try a new pipeline and Azure devOps caught my attention. My goal here is to deploy my VS Code extension [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} to the marketplace.
+For most of my published open source projects I've added a simple continuous integration pipeline using Travis CI. This time around I wanted a way to deploy a project after successful integration and try a new pipeline. Azure DevOps caught my attention. The goal here is to build, test and deploy my VS Code extension [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} to the marketplace.
 
-I'll provide **bite size** instructions to help you build your CI and continuous delivery (CD) pipeline for your VS Code extension via Azure DevOps platform. Following these steps I estimate it will take **15-25mins** to get it all working.
+I'll provide **bite size** instructions to help you build a CI and continuous delivery (CD) pipeline for your VS Code extension on Azure DevOps platform. Following these steps I estimate it will take **15-25mins** to get it all working.
 
 <!--more-->
 
@@ -41,9 +41,9 @@ This is in reference to each point under the section `steps:`.
 1. Copy generated files ready to be published artifacts
 1. Finally publish files as artifacts. Now **ready** to deploy to VS Code marketplace.
 
-Worth noting  _script_, _bash_ and _tasks_ are essentially types of _steps_. This will explain the [Azure yaml schema](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema){:target="\_blank"}
+Worth noting _script_, _bash_ and _tasks_ are essentially types of _steps_. This will explain the [Azure yaml schema](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema){:target="\_blank"}
 
-`azure-pipelines.yml` file to test and build a `.vsix` file to deploy. 
+`azure-pipelines.yml` file to test and build a `.vsix` file to deploy.
 
 ```yml
 # CI and PR build script

@@ -1,5 +1,11 @@
 # Richard Kotze's website
 
-Stuff about software engineering and more ;)
+Opinions about software engineering and sharing knowledge about technologies I learn ;)
 
-- Run locally: `jekyll serve --drafts`
+## Setup
+
+- [Install on windows](https://jekyllrb.com/docs/installation/windows/) 
+- `gem install jekyll-redirect-from jekyll-paginate`
+
+## Run
+- `jekyll serve --drafts`

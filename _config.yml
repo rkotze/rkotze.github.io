@@ -8,8 +8,7 @@
 # Site settings
 title: Richard Kotze - Software Engineer
 description: > # this means to ignore newlines until "baseurl:"
-  I'm a software engineer and I will post about JavaScript, ES6, React and other languages.
-  Generally all the things I learn.
+  Opinions about software engineering and sharing knowledge about technologies I learn
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.richardkotze.com" # the base hostname & protocol for your site
 tobe_url: "https://www.richardkotze.com"

@@ -6,9 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Richard Kotze - Software Engineer
+title: Richard Kotze - All things about Software Engineering. JavaScript.
 description: > # this means to ignore newlines until "baseurl:"
-  Opinions about software engineering and sharing knowledge about technologies I learn
+  Opinions about software engineering and sharing knowledge about technologies I learn.
+  JavaScript, ES6, ReactJS, GraphQL and Docker
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.richardkotze.com" # the base hostname & protocol for your site
 tobe_url: "https://www.richardkotze.com"

@@ -29,6 +29,7 @@ $font-size-base:        16px;
   font-family: 'Oxygen';
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: local('Oxygen Light'), local('Oxygen-Light'), url(fonts/Oxygen-Regular.ttf) format('woff');
 }
 
@@ -159,7 +160,9 @@ article {
         letter-spacing: -.003em;
     }
     img{
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        height: auto;
         + em {
             text-align: right;
             color: $grey;
@@ -170,9 +173,6 @@ article {
     abbr[title]{
         text-decoration: none;
         border-bottom: 1px dotted $textColor;
-    }
-    .noWidth img{
-        width:auto;
     }
 }
 

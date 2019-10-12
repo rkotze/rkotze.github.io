@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Deploy VS code extension via Azure pipeline"
-date: 2019-09-26 12:00:12 +0000
+date: 2019-10-11 12:00:12 +0000
 permalink: /coding/deploy-vscode-extension-azure-pipeline
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/66151454-418a6e80-e60f-11e9-99a4-621c67d20c8c.jpg

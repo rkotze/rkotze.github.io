@@ -11,7 +11,15 @@ See all the ideas.
 
 <!--more-->
 
+# Unit test your VS Code extension with Jest
 
+An issue with unit testing vscode extensions is the `vscode` dependency, which is needed to utilise the editors features but will error when running unit tests. Also this is a dependency outside the scope of your project, so the answer is to mock the API.
+The dependency is fine when running end-to-end tests, however unit tests give quicker feedback on the details.
+
+- Link to getting started with vs code extensions
+- How to setup Jest
+- How to mock vscode API
+- Example of a mock in action
 
 # Graphql server validation errors
 

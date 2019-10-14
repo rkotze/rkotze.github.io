@@ -21,6 +21,12 @@ The dependency is fine when running end-to-end tests, however unit tests give qu
 - How to mock vscode API
 - Example of a mock in action
 
+# Hidden code crouching bug
+
+- Opinion on the value of limiting WIP to the number of pairs you have
+- The danger of having doing simple tasks solo
+- The challenge of reviewing code #honest
+
 # Graphql server validation errors
 
 Make it part of the mutation payload object.

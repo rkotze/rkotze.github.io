@@ -100,6 +100,39 @@ h1.me {
     width: 110px;
 }
 
+article {
+    div.post-tags {
+        font-size: 14px;
+        color: $grey;
+        margin-top: -20px;
+
+        ul.post-tags {
+            display: inline;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul.post-tags li {
+            display: inline;
+            list-style: none;
+            margin: 0;
+            padding: 0 5px;
+            a {
+                font-size: 14px;
+            }
+        }
+
+        ul.post-tags li:after {
+            content: ",";
+            color: $textColor;
+        }
+
+        ul.post-tags li:last-child:after {
+            content: "";
+        }
+    }
+}
+
 .search{
     margin:15px 0;
     .input-append{
@@ -150,7 +183,7 @@ h1.me {
 }
 
 article {
-    p, li { 
+    p, li, div { 
         margin-bottom:20px;
         font-family: Georgia,Cambria,"Times New Roman",Times,serif;
         font-weight: 400;

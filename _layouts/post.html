@@ -23,6 +23,16 @@ layout: default
         <span><span class="symbol">&#x1f79c;</span> Updated on: {{ page.update_date | date: "%b %-d, %Y" }}</span>
       </p>
       {% endif %}
+      
+      {% if page.tags.size > 0 %}
+      <div class="post-tags"><span class="symbol">&#x2606;</span> Tags 
+        <ul class="post-tags">
+          {% for tag in page.tags %}
+            <li><a href="/tag/{{ tag | downcase }}">{{ tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
     </header>
 
     <div class="post-content" itemprop="articleBody">

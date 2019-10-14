@@ -12,6 +12,8 @@ excerpt_separator: <!--more-->
 
 This post will be covering two topics, installing Bcrypt NodeJS dependency and not linking project host node_modules to your docker container.
 
+<!--more-->
+
 Using **Bcrypt** NodeJS package to encrypt passwords comes with a minor challenge which is when installed it needs to be compiled using node-gyp, python 2.x and compiled to the operating system (OS) architecture. One frustration could be during development. A developer might be working on Windows but the docker container which the app runs against is a Linux system. This will throw an **error** when running the app.
 
 ```

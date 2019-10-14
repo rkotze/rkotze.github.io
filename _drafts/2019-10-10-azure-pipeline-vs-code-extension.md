@@ -21,7 +21,7 @@ I'll provide **bite size** instructions to help you build a CI and continuous de
 
 ### Setup a build and test
 
-This section is about building the extension, running automated tests and creating a `.vsix` package, known as an artifact in build pipelines. We will this artifact later in the deployment stage. The artifact file name contains the version number from the `package.json`. 
+This section is about building the extension, running automated tests and creating a `.vsix` package, known as an 'artifact' in build pipelines. We will use this artifact later in the deployment stage. The artifact file name contains the version number from the `package.json`. 
 
 Let's get started:
 
@@ -134,4 +134,4 @@ _Screen 2: select azure-pipelines.yml file_
 
 I've created a separate post for the deployment pipeline to keep this post concise. Azure DevOps pipeline separates build pipelines and releases. See [deploy to VS Code marketplace](/coding/deploy-vscode-extension-azure-pipeline).
 
-I hope the post helped you build a pipeline for your VS Code extension. Please comment below if you have questions or improvements to the post. If you did find it useful, please take a moment to share this via Twitter.
+I hope this post helps you build a pipeline for your VS Code extension. Please comment below if you have questions or improvements to the post. If you did find it useful, please take a moment to share this via Twitter.

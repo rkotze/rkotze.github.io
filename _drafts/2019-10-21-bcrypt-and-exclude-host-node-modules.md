@@ -12,11 +12,11 @@ excerpt_separator: <!--more-->
 
 This post will be covering two topics, installing _Bcrypt_ NodeJS as a package dependency and not linking project host node_modules to your docker container.
 
-Using **Bcrypt** package to encrypt passwords comes with a minor challenge which is when installed it needs to be compiled using node-gyp, python 2.x and compiled to the operating system (OS) architecture. This means a few prerequisite dependencies are needed to build an the app on a dev machine. However, _docker_ solves the need to communicate this in your "get started" documentation.
-
-This does mean that every time you change your application code you will need to rebuild the docker image to check those changes. The rebuild is an additional step which will add time for every change to check, creating slow feedback loop and causing engineering frustration. This can be solved by using docker [named volumes](https://success.docker.com/article/different-types-of-volumes){:target="\_blank" rel="noopener"}, which will link your application files on your _host_ to the docker container. Unfortunately this will lead to another issue for cross-platforms.
+Using **Bcrypt** package to encrypt passwords comes with a minor challenge which is when installed it needs to be compiled using node-gyp, python 2.x and compiled to the operating system (OS) architecture. This means a few prerequisite dependencies are needed to build an the app on a dev machine. However, _docker_ solves the need to communicate this in your "get started" documentation. Unfortnately this will create a slow feedback loop during development.
 
 <!--more-->
+
+Every time there is a code change to the application the docker image will need a rebuild to check those changes. The rebuild is an additional step which will add time for every change to check, creating slow feedback loop and causing engineering frustration. This can be solved by using docker [named volumes](https://success.docker.com/article/different-types-of-volumes){:target="\_blank" rel="noopener"}, which will link your application files on your _host_ to the docker container. 
 
 The next challenge would be during development, an engineer might be working on _Windows_ OS but the _docker image_ built is Linux. This will throw an **error** when running the app because Bcrypt dependency will be compiled against the host (Windows) but it will be running against Linux. Causing the error below:
 
@@ -36,7 +36,6 @@ RUN apk add --no-cache make gcc g++ python && \
 ```
 
 This will install all the prerequisites needed to for Bcrypt, then install your `package.json` dependencies and then _compile Bcrypt_. Afters it will remove the prerequisites to keep the docker image small as possible.
-
 
 ### Solution to second problem, Bcrypt compiled against different OS
 

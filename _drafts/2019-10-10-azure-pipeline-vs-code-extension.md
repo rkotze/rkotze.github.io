@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Build a CD Azure pipeline for your VS Code extension"
-date: 2019-10-11 12:00:12 +0000
+date: 2019-10-16 6:00:12 +0000
 permalink: /coding/build-ci-azure-pipeline-vscode-extension
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
@@ -10,7 +10,7 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-For most of my published open source projects I've added a simple continuous integration (CI) pipeline using Travis CI. This time around I wanted a way to deploy a project after successful integration and try a new pipeline. Azure DevOps caught my attention. The goal here is to build, test and deploy my VS Code extension [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank"} to the marketplace.
+For most of my published open source projects I've added a simple continuous integration (CI) pipeline using Travis CI. This time around I wanted a way to deploy a project after successful integration and try a new pipeline. Azure DevOps caught my attention. The goal here is to build, test and deploy my VS Code extension [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank" rel="noopener"} to the marketplace.
 
 I'll provide **bite size** instructions to help you build a CI and continuous delivery (CD) pipeline for your VS Code extension on Azure DevOps platform. Following these steps I estimate it will take **15-25mins** to get it all working.
 
@@ -25,7 +25,7 @@ This section is about building the extension, running automated tests and creati
 
 Let's get started:
 
-1. Sign up to [Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/){:target="\_blank"} it's free.
+1. Sign up to [Azure DevOps](https://azure.microsoft.com/en-gb/services/devops/){:target="\_blank" rel="noopener"} it's free.
 1. Create a project. It can be customised at any time. If you have an open source project it will be worth making it public. This allows people to read the status and errors of the build pipeline. [Create a project](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops){:target="\_blank" rel="noopener"}
 1. In your Git repository create a file called `.azure-pipelines/azure-pipelines.yml`. Below is the code for the file.
 1. Copy the `azure-pipelines.yml` code. I've explained each of the steps as well.
@@ -36,7 +36,7 @@ Let's get started:
 
 
 1. The `trigger` is set to `master` meaning that every push to master will trigger build.
-1. `pool.vmImage` mean it will build on an Ubuntu virtual machine (VM).
+1. `pool.vmImage` means it will build on an Ubuntu virtual machine (VM).
 1. Customise the package name depending if built from master branch or pull request
 1. Install project dependencies
 1. Run unit tests
@@ -47,7 +47,7 @@ Let's get started:
 
 Keep in mind that variables are not persisted between steps like `PACKAGE_VERSION`, they will need to be redefined. However, files are persisted through the build stage, which is why we create a `version.txt` file.
 
-You will have noticed properties under _steps_ like _script_, _bash_ and _tasks_, these are types of _steps_. This is explained in the [Azure yaml schema](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema){:target="\_blank"} documentation.
+You will have noticed properties under _steps_ like _script_, _bash_ and _tasks_, these are types of _steps_. This is explained in the [Azure yaml schema](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema){:target="\_blank" rel="noopener"} documentation.
 
 **`azure-pipelines.yml` file** to test and build a `.vsix` file to deploy.
 
@@ -120,15 +120,15 @@ steps:
 1. In your new Azure project, go to Pipelines on the left hand navigation.
 1. On the top right click "New Pipeline".
 1. Connect your repository (GitHub)
-1. Under the configure your pipeline select "Existing Azure pipeline YAML file" (See screen 1)
-1. Select the `.azure-pipelines/azure-pipelines.yml` from the dropdown.
+1. Under the configure your pipeline select "Existing Azure pipeline YAML file" (See figure 1 below)
+1. Select the `.azure-pipelines/azure-pipelines.yml` from the dropdown. (See figure 2 below)
 1. You should see the file loaded in. If it looks correct to you then click the "run" button on the top right to test it.
 
 ![Configure pipeline](https://user-images.githubusercontent.com/10452163/66701137-d0267c00-ecf0-11e9-9e90-f1040aa05840.png)
-_Screen 1: select Existing Azure pipeline YAML file_
+_Figure 1: select Existing Azure pipeline YAML file_
 
 ![Select file](https://user-images.githubusercontent.com/10452163/66701241-06183000-ecf2-11e9-9264-57ef6f093572.png)
-_Screen 2: select azure-pipelines.yml file_
+_Figure 2: select azure-pipelines.yml file_
 
 ### Deploy to VS Code marketplace
 

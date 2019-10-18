@@ -4,7 +4,7 @@ title: "Build a CD Azure pipeline for your VS Code extension"
 date: 2019-10-16 6:00:12 +0000
 permalink: /coding/build-ci-azure-pipeline-vscode-extension
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
+full_image_url: https://user-images.githubusercontent.com/10452163/67111285-821be780-f1cc-11e9-93d4-eef2f262c9c6.jpg
 meta_description: >
   Learn how to build a continuous delivery pipeline for your VS Code extension using Azure DevOps Pipeline
 excerpt_separator: <!--more-->
@@ -16,12 +16,14 @@ I'll provide **bite size** instructions to help you build a CI and continuous de
 
 <!--more-->
 
+![Build and test pipeline](https://user-images.githubusercontent.com/10452163/67111285-821be780-f1cc-11e9-93d4-eef2f262c9c6.jpg)
+
 - [Setup a build and test](#setup-a-build-and-test)
 - [Deploy to VS Code marketplace](#deploy-to-vs-code-marketplace)
 
 ### Setup a build and test
 
-This section is about building the extension, running automated tests and creating a `.vsix` package, known as an 'artifact' in build pipelines. We will use this artifact later in the deployment stage. The artifact file name contains the version number from the `package.json`. 
+This section is about building the extension, running automated tests and creating a `.vsix` package, known as an 'artifact' in build pipelines. We will use this artifact later in the deployment stage. The artifact file name contains the version number from the `package.json`.
 
 Let's get started:
 
@@ -33,7 +35,6 @@ Let's get started:
 1. The steps continue after the yml code
 
 ### The `azure-pipelines.yml` file steps explained
-
 
 1. The `trigger` is set to `master` meaning that every push to master will trigger build.
 1. `pool.vmImage` means it will build on an Ubuntu virtual machine (VM).

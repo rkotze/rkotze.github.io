@@ -18,26 +18,26 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-  
+  <meta property="og:site_name" content="Richard Kotze" />
+  <meta property="og:locale" content="en_GB" />
   <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@richardkotze" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta content="article" property="og:type">
   {% if page.title %}
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@richardkotze" />
-    <meta name="twitter:title" content="{{ page.title }}" />
-    <meta content="{{ page.title }}" property="og:title">
-    <meta content="article" property="og:type">
+  <meta content="{{ page.title }}" property="og:title">
   {% endif %}
   {% if page.meta_description %}
-    <meta content="{{ page.meta_description }}" property="og:description">
+    <meta property="og:description" content="{{ page.meta_description }}">
   {% endif %}
   {% if page.url %}
-    <meta content="{{ site.url }}{{ page.url }}" property="og:url">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   {% endif %}
   {% if page.date %}
-    <meta content="{{ page.date | date_to_xmlschema }}" property="article:published_time">
-    <meta content="{{ site.url }}/about-me/" property="article:author">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    <meta property="article:author" content="{{ site.url }}/about-me/">
   {% endif %}
   {% if page.image %}
     <meta content="{{ site.url }}/images/{{ page.image }}" property="og:image">

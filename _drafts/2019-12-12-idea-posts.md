@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "ideas"
-date: 2019-10-16 12:00:12 +0000
+title: "Idea/Draft posts"
+date: 2019-10-21 13:00:12 +0000
 permalink: /ideas
 category: coding
 excerpt_separator: <!--more-->

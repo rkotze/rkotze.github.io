@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Install Bcyrpt in Docker image and exclude host node_modules"
-date: 2019-10-16 11:00:12 +0000
+date: 2019-10-21 11:00:12 +0000
 permalink: /coding/install-bcrypt-docker-image-exclude-host-node-modules
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
@@ -16,7 +16,7 @@ Using **Bcrypt** package to encrypt passwords comes with a minor challenge which
 
 <!--more-->
 
-Every time there is a code change to the application the docker image will need a rebuild to check those changes. The rebuild is an additional step which will add time for every change to check, creating slow feedback loop and causing engineering frustration. This can be solved by using docker [named volumes](https://success.docker.com/article/different-types-of-volumes){:target="\_blank" rel="noopener"}, which will link your application files on your _host_ to the docker container. 
+Every time there is a code change to the application the docker image will need a rebuild to check those changes. The rebuild is an additional step which will add time for every change to check, creating slow feedback loop and causing engineering frustration. This can be solved by using docker [named volumes](https://success.docker.com/article/different-types-of-volumes){:target="\_blank" rel="noopener"}, which will link your application files on your _host_ to the docker container.
 
 The next challenge would be during development, an engineer might be working on _Windows_ OS but the _docker image_ built is Linux. This will throw an **error** when running the app because Bcrypt dependency will be compiled against the host (Windows) but it will be running against Linux. Causing the error below:
 
@@ -24,7 +24,7 @@ The next challenge would be during development, an engineer might be working on 
 Error: /app/node_modules/bcrypt/lib/binding/bcrypt_lib.node: invalid ELF header
 ```
 
-### Solution to first problem, setup Dockerfile to build Bcrypt 
+### Solution to first problem, setup Dockerfile to build Bcrypt
 
 What you can run in your _Dockerfile_ is this:
 

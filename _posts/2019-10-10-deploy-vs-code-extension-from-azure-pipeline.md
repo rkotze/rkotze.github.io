@@ -19,7 +19,7 @@ I'll provide **bite size** instructions to help you build a release for your VS 
 ![vs-code-release](https://user-images.githubusercontent.com/10452163/66151454-418a6e80-e60f-11e9-99a4-621c67d20c8c.jpg)
 _Build a release pipeline to VS Code marketplace_
 
-This article assumes you have built a `.vsix` artifact from am Azure DevOps pipeline. If not, I will be posting fairly soon on how to make a build pipeline for your VS Code extension. I wanted to keep these posts about Azure pipeline separate, to focus on small specific tasks.
+This article assumes you have built a `.vsix` artifact from am Azure DevOps pipeline. If not, I have created a post on how to make a [continuous delivery pipeline for your VS Code extension](/coding/build-ci-azure-pipeline-vscode-extension). I wanted to keep this post about deploying via Azure pipeline specifically, to keep the steps focused.
 
 ### Deploy to VS Code marketplace
 

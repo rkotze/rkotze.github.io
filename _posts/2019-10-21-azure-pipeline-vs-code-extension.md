@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Build a CD Azure pipeline for your VS Code extension"
-date: 2019-10-16 6:00:12 +0000
+date: 2019-10-21 6:00:12 +0000
 permalink: /coding/build-ci-azure-pipeline-vscode-extension
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/67111285-821be780-f1cc-11e9-93d4-eef2f262c9c6.jpg

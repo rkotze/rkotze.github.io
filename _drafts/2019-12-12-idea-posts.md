@@ -23,6 +23,27 @@ The dependency is fine when running end-to-end tests, however unit tests give qu
 
 # Hidden code crouching bug
 
+How do you create a predictable and consistent software delivery team?
+
+One thing that could affect consistency is the number of items in progress in your left to right value stream. If you have a left to right flow of work which has columns **To Do**, **In Progress**, **Review** and **Done**, then the columns "in progress" and "review" are your <abbr title="Work in progress">WIP</abbr>. Review is for another team member to review the code changes.
+
+In your team you are flexible on pair programming and generally decide that we will pair if someone needs help or the work is complex. This causes an issue with items piling up in review because the easy items move quickly to review and the engineer decides to start a new work, but they take on another easy task that skips over to review fairly soon while the other pair on a complex issue. When the complex task moves over to review finally the pair is free to review the small items.
+
+The pair working on the complex issue could review items immediately but this comes at the cost of losing your line of thought to solving the issue they were working on. It will become frustrating if more things more to review quickly.
+
+If there is feedback for code changes then the engineer starting a new task needs to address those, this means one item in the flow is not being worked on. Typically things nearest to done are of higher priority, so best to stop what is in progress but this will mean another costly context switch as well.
+
+Then the person soloing goes on annual leave with work in progress and the other team members are not sure where they left off.
+
+How can we mitigate these issues?
+
+- Be strict on pairing, so pair on the simple tasks. 
+- Limit the WIP to the number of pairs you have for the day.
+- I recommend that each work item is similar in complexing to each other. This should help with getting items into review in a similar time frame.
+
+
+- You could agree that pairing on simple tasks means it could skip review.
+
 - Opinion on the value of limiting WIP to the number of pairs you have
 - The danger of having doing simple tasks solo
 - The challenge of reviewing code #honest

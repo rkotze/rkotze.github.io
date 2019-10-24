@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 
 This post will be covering two topics, installing _Bcrypt_ NodeJS as a package dependency and prevent linking node_modules from host machine to your docker container.
 
-Using **Bcrypt** package to encrypt passwords comes with a minor challenge which is when installed it needs to be compiled to the operating system (OS) architecture using node-gyp, python 2.x. These prerequisite dependencies are needed to build an the app on a dev machine, which needs to be documented. However, _docker_ solves the need to communicate this in your "get started" documentation. Unfortunately this will create a problem of slow feedback loop during development.
+Using **Bcrypt** package to encrypt passwords comes with a minor challenge: when installed it needs to be compiled to the operating system (OS) architecture using node-gyp, python 2.x. These prerequisite dependencies are needed to build an app on a dev machine, which needs to be documented. However, _docker_ solves the need to communicate this in your "get started" documentation. Unfortunately this will create a problem of slow feedback loop during development.
 
 <!--more-->
 
@@ -29,7 +29,7 @@ Error: /app/node_modules/bcrypt/lib/binding/bcrypt_lib.node: invalid ELF header
 
 ### Solution to first problem, setup Dockerfile to build Bcrypt
 
-What you can run in your _Dockerfile_ is this:
+In your _Dockerfile_ run this:
 
 ```docker
 RUN apk add --no-cache make gcc g++ python && \
@@ -38,7 +38,7 @@ RUN apk add --no-cache make gcc g++ python && \
   apk del make gcc g++ python
 ```
 
-This will install all the prerequisites needed for Bcrypt, then install node_modules and then _compile Bcrypt_. Afters it will remove the prerequisites to keep the docker image small as possible.
+This will install all the prerequisites needed for Bcrypt, then install node_modules and then _compile Bcrypt_. Afterwards it will remove the prerequisites to keep the docker image small as possible.
 
 ### Solution to second problem, Bcrypt compiled against different OS
 
@@ -46,7 +46,7 @@ You might want to setup a `docker-compose.yml` file with a `volumes` field which
 
 What is possible is to prevent the `node_modules` being linked from the host to the container is to use an **anonymous volume**.
 
-Example snippet of `docker-compose` file
+Example snippet of `docker-compose` file:
 
 ```yml
 volumes:
@@ -54,7 +54,7 @@ volumes:
   - /usr/src/app/node_modules # anonymous volume for node_modules only
 ```
 
-Anonymous volumes reference the directory in the container and docker handles where the files are stored. The mount is outside of your project this keeps the `node_modules` intact that was built for the image.
+Anonymous volumes reference the directory in the container and docker handles where the files are stored. The mount is outside of your project. This keeps the `node_modules` intact that were built for the image.
 
 Each time you run `docker-compose up` it will create another anonymous volume for newly created containers. Unfortunately running `docker-compose down` does not remove anonymous volumes however, using the flag `-v` would remove **named & anonymous**. If you _don't_ want to remove named volumes you can **stop** the containers, then run `docker-compose rm -vf` will remove only anonymous volumes.
 

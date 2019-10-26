@@ -23,11 +23,15 @@ The dependency is fine when running end-to-end tests, however unit tests give qu
 
 # Hidden code crouching bug
 
-Typically speed of delivery is a key measure for an Agile software engineering teams but sometimes you notice a pattern that some weeks you end with high or low points. This affects how predictable your delivery is, so how can you make delivery more consistent for a software delivery team? This post will focus more on pace of delivery.
+Typically speed of delivery is a key measure for an Agile software engineering teams but sometimes you notice a pattern that some weeks you end with high or low points. This affects how predictable your delivery is, so how can you make delivery more consistent for a software delivery team? 
+
+This post will focus more on pace of delivery and around the teams processes to do that. It won't cover tooling to reduce overheads like automation. The reason you want to achieve predictable delivery, is so that a team can confidently estimate what can be done in a sprint. This can also help product and business estimate how long a feature could take to deliver. 
+
+## Limit work in progress
+
+Lets say tasks move left to right through different states on a board which contains the columns **To Do**, **In Progress**, **Review** and **Done**. The <abbr title="Work in progress">WIP</abbr> columns are In Progress and Review. How do you determine the limit? This should be agreed among the team but, I would recommend limiting to the number by team members plus one or if you pair program, then the number of pairs plus one. If you agree to one of those options then the next rule should be when a ticket moves to review that pair should check if there are any work items they can review. Taking on another ticket without a review would break the teams WIP rule.
 
 
-
-One thing that could affect consistency is the number of items in progress in your left to right value stream. If you have a left to right flow of work which has columns **To Do**, **In Progress**, **Review** and **Done**, then the columns "in progress" and "review" are your <abbr title="Work in progress">WIP</abbr>. Review is for another team member to review the code changes.
 
 In your team you are flexible on pair programming and generally decide that we will pair if someone needs help or the work is complex. This causes an issue with items piling up in review because the easy items move quickly to review and the engineer decides to start a new work, but they take on another easy task that skips over to review fairly soon while the other pair on a complex issue. When the complex task moves over to review finally the pair is free to review the small items.
 

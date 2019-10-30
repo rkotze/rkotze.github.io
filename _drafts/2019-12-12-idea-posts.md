@@ -30,6 +30,28 @@ Make it part of the mutation payload object.
 - Express middleware
 - The role of access token and refresh tokens
 
+# Consistent complexity scoring
+
+In your team you are flexible on pair programming and generally decide that we will pair if someone needs help or the work is complex. This causes an issue with items piling up in review because the easy items move quickly to review and the engineer decides to start a new work, but they take on another easy task that skips over to review fairly soon while the other pair on a complex issue. When the complex task moves over to review finally the pair is free to review the small items.
+
+The pair working on the complex issue could review items immediately but this comes at the cost of losing your line of thought to solving the issue they were working on. It will become frustrating if more things move to review quickly.
+
+If there is feedback for code changes then the engineer starting a new task needs to address those, this means one item in the flow is not being worked on. Typically things nearest to done are of higher priority, so best to stop what is in progress but this will mean another costly context switch as well.
+
+Then the person soloing goes on annual leave with work in progress and the other team members are not sure where they left off.
+
+How can we mitigate these issues?
+
+- Be strict on pairing, so pair on the simple tasks.
+- Limit the WIP to the number of pairs you have for the day.
+- I recommend that each work item is similar in complexing to each other. This should help with getting items into review in a similar time frame.
+
+* You could agree that pairing on simple tasks means it could skip review.
+
+* Opinion on the value of limiting WIP to the number of pairs you have
+* The danger of having doing simple tasks solo
+* The challenge of reviewing code #honest
+
 # Azure pipeline thoughts
 
 ### Why have a delivery pipeline?

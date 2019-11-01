@@ -16,14 +16,21 @@ layout: default
         <span class="symbol">&#x25ce;</span> Published on:
         <time pubdate datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
           {{ page.date | date: "%b %-d, %Y" }}
-        </time>
+        </time>  
       </p>
       {% if page.update_date %}
       <p class="updateDate">
         <span><span class="symbol">&#x1f79c;</span> Updated on: {{ page.update_date | date: "%b %-d, %Y" }}</span>
       </p>
       {% endif %}
-      
+      <p class="top-article-follow">
+        <a href="https://twitter.com/intent/follow?screen_name=richardkotze&tw_p=followbutton" 
+        rel="noopener nofollow"
+        target="_blank"
+        class="icon-twitter"> 
+          <span>Follow on Twitter</span>
+        </a>
+      </p>
       {% if page.tags.size > 0 %}
       <div class="post-tags"><span class="symbol">&#x2606;</span> Tags 
         <ul class="post-tags">
@@ -40,7 +47,11 @@ layout: default
     </div>
 
     <p class="end-article-follow">
-      <a href="https://twitter.com/intent/follow?screen_name=richardkotze&tw_p=followbutton" class="icon-twitter icon-font-large follow-button"> 
+      <a 
+      href="https://twitter.com/intent/follow?screen_name=richardkotze&tw_p=followbutton" 
+      rel="noopener nofollow"
+      target="_blank" 
+      class="icon-twitter icon-font-large follow-button"> 
         <span>Follow @richardkotze</span>
       </a>
     </p>

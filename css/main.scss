@@ -101,6 +101,9 @@ h1.me {
 }
 
 article {
+    p.top-article-follow {
+        margin-top: -20px;
+    }
     div.post-tags {
         font-size: 14px;
         color: $grey;

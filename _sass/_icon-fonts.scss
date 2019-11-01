@@ -23,6 +23,10 @@
 	text-transform: none;
 	line-height: 1;
 	-webkit-font-smoothing: antialiased;
+
+	span {
+		font-family: Georgia,Cambria,"Times New Roman",Times,serif;
+	}
 }
 .icon-facebook:before {
 	content: "\e000";

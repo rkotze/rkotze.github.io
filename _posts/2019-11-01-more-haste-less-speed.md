@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "More haste, less speed"
-date: 2019-10-30 06:00:12 +0000
+date: 2019-11-04 06:00:12 +0000
 permalink: /opinion/more-haste-less-speed
 category: opinion
 full_image_url: https://user-images.githubusercontent.com/10452163/67992561-2a05cc00-fc35-11e9-916d-c7fbf8c1dc78.jpg

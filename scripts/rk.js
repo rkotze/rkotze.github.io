@@ -1,13 +1,13 @@
 $(document).ready(function(){ 
     
-    $(".menu-btn").on("click touchstart", function(){
+    $(".menu-checkbox").on("click touchstart", function(e){
         var rkNav = $(".rk-nav");
-        if(rkNav.css("display") == "none"){
+        if(e.target.checked){
             rkNav.addClass("open");
         }else{
             rkNav.removeClass("open");
         }
-        return false;
+        // return false;
     });
     
 });

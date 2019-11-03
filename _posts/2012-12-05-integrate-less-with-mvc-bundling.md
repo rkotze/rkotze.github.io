@@ -29,7 +29,7 @@ public class LessTransform : IBundleTransform
 }
 {% endhighlight %}
 
-In the global.asax file add RegisterBundles method with the following code to run the _LESS transform_ and bundle into _CSS_. The [bundle process is better explained][5] in my previous post if you are uncertain on how to implement it.
+In the global.asax file add RegisterBundles method with the following code to run the _LESS transform_ and bundle into _CSS_. The [bundle process is better explained][3] in my previous post if you are uncertain on how to implement it.
 
 {% highlight csharp %}
 //Global asax
@@ -63,7 +63,6 @@ _1\. Found useful code on The Official Microsoft ASP.NET Site - [Bundling and Mi
 [2]: http://lesscss.org/
 [3]: /top-tips/mvc-4-bundling-css-and-js-files
 [4]: http://nuget.org/packages/dotless
-[5]: http://www.richardkotze.com/web-development/mvc-4-bundling-css-and-js-files/
 [6]: https://gist.github.com/2002958
 [7]: http://www.asp.net/mvc/tutorials/mvc-4/bundling-and-minification
   

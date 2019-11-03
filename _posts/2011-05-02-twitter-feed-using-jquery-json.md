@@ -98,4 +98,4 @@ function calcTime(strDate, city, offset) {
 [2]: http://dev.twitter.com/doc "Twitter documentation API"
 [3]: http://api.jquery.com/jQuery.getJSON/ "Get JSON method - JQuery"
 [4]: http://www.proglogic.com/code/javascript/time/worldclock.php
-[6]: /web-development/create-your-twitter-feed-using-json/
+[6]: /coding/create-your-twitter-feed-using-json

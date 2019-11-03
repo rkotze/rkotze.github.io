@@ -258,10 +258,16 @@ article.item, article.listing {
     }
 }
 
+.flex-container{
+    display: block;
+    @media #{$medium}{
+       display: flex; 
+    }
+}
+
 .mobile-bar{
     @media #{$max-small}{
-        background-color:none;
-        border-bottom: 1px solid $red;
+        background-color: transparent;
         padding: 0;
     }
     .me{
@@ -353,8 +359,11 @@ article.item, article.listing {
 .socialbuttons{
     clear: left;
     margin-bottom: 0;
+    border-top: 1px solid $red;
+    padding-top: 10px;
     @media #{$small}{
         clear: none;
+        border-top: none;
     }
     a{
         display: inline-block;

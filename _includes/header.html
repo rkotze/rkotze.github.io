@@ -1,22 +1,26 @@
 <header class="col-sm-5 head-profile">
   <div class="keep-right">
     <div class="fix-wrapper">
-      <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded" src="/images/profile.jpg" alt="Picture of Richard Kotze" /></a>
-      
-      <div class="mobile-bar clearfix">
+      <div class="flex-container">
+        <div class="mobile-bar">
           <h1 class="me">
-              <a href="/"><span>R</span>ichard <span>K</span>otze</a>
+            <a href="/"><span>R</span>ichard <span>K</span>otze</a>
           </h1>
-          
+
           <a class="menu-btn" href="#"><span class="icon-reorder"></span></a>
           <p class="socialbuttons">
-              <a class="icon-twitter icon-font-large" target="_blank" rel="noopener" href="https://twitter.com/{{ site.twitter_username }}"></a>
-              <a class="icon-github icon-font-large" target="_blank" rel="noopener" href="https://github.com/{{ site.github_username }}"></a>
-              <a class="icon-codewars" target="_blank" rel="noopener" href="https://www.codewars.com/users/richkotze"><img src="/images/codewars.svg" alt="Codewars logo" /></a>
-            </p>
-          <p>Software Engineer</p>
-          <p> 
-            <a href="/about-me">About me</a></p>
+            <a class="icon-twitter icon-font-large" target="_blank" rel="noopener"
+              href="https://twitter.com/{{ site.twitter_username }}"></a>
+            <a class="icon-github icon-font-large" target="_blank" rel="noopener"
+              href="https://github.com/{{ site.github_username }}"></a>
+            <a class="icon-codewars" target="_blank" rel="noopener" href="https://www.codewars.com/users/richkotze"><img
+                src="/images/codewars.svg" alt="Codewars logo" /></a>
+          </p>
+          <p>Agile software engineering</p>
+        </div>
+        <a class="hide-for-medium" href="/" title="About Richard Kotze"><img class="rk-image img-rounded"
+            src="/images/profile.jpg" alt="Picture of Richard Kotze" />
+        </a>
       </div>
 
       <!-- <form class="search" action="/" method="GET">
@@ -29,33 +33,34 @@
             <button class="btn btn-default" type="submit"><i class="icon-search"></i></button>
           </div>
       </form> -->
-      
-      <nav class="hide-for-small rk-nav">
-          <ul class="nav nav-list">
-              {% for category in site.data.categories %}
-                {% if page.category == category.slug %}
-                  <li>
-                    <a class="active" href="/{{ category.slug }}/">
-                      {{ category.name }}
-                      <span class="{{ category.icon }}"></span>
-                    </a>
-                  </li>
-                {% else %}
-                  <li>
-                    <a href="/{{ category.slug }}/">
-                      {{ category.name }}
-                      <span class="{{ category.icon }}"></span>
-                    </a>
-                  </li>
-                {% endif %}
-                
-              {% endfor %}
 
-          </ul>
-          <p class="rss-subscribe">
-          Subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a>
+      <nav class="hide-for-small rk-nav">
+        <ul class="nav nav-list">
+          {% for category in site.data.categories %}
+          {% if page.category == category.slug %}
+          <li>
+            <a class="active" href="/{{ category.slug }}/">
+              {{ category.name }}
+              <span class="{{ category.icon }}"></span>
+            </a>
+          </li>
+          {% else %}
+          <li>
+            <a href="/{{ category.slug }}/">
+              {{ category.name }}
+              <span class="{{ category.icon }}"></span>
+            </a>
+          </li>
+          {% endif %}
+
+          {% endfor %}
+
+        </ul>
+        <p class="rss-subscribe">
+          <a href="/about-me">About me</a>
+          | <a href="{{ "/feed.xml" | prepend: site.baseurl }}">RSS</a>
           | <a href="{{ "/links" | prepend: site.baseurl }}">Helpful links</a>
-          </p>
+        </p>
       </nav>
     </div>
   </div>

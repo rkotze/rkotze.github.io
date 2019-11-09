@@ -2,7 +2,7 @@
 layout: post
 title: "Manage complex state with React useReducer and useContext"
 date: 2019-11-07 06:00:12 +0000
-permalink: /coding/react-hooks-usereducer-context
+permalink: /coding/react-hooks-usereducer-usecontext
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/67992561-2a05cc00-fc35-11e9-916d-c7fbf8c1dc78.jpg
 meta_description: >
@@ -10,19 +10,19 @@ meta_description: >
 excerpt_separator: <!--more-->
 ---
 
-This post will cover managing complex state at a feature level rather than the entire site. [**React hooks**](https://reactjs.org/docs/hooks-intro.html){:target="\_blank" rel="noopener"} have enabled us to have cleaner functional components which enable us to rationalise our component logic with easy.
+This post will cover managing complex state at a feature level rather than the entire site. [**React hooks**](https://reactjs.org/docs/hooks-intro.html){:target="\_blank" rel="noopener"} have enabled developers to have cleaner functional components which help to rationalise our component logic with easy.
 
-Take `useState` hook, it's one line of code which then can be used to manage the state of a component rather than having to create a `class` that comes with boiler code. This is great because we are keeping simple things simple!
+Take `useState` hook, it's one line of code that can be used to manage the state of a component rather than having to create a `class` component with the addition of boiler code. This is great because we are keeping simple things clear!
 
-However, there are features which are inherently complex as they have many nested child components which need to alter the state of the component.
+However, there are features that are inherently complex as they could have many nested child components and need to alter the state.
 
 **What options** are there to manage this complexity in _React_?
 
 <!--more-->
 
-Generally is good practice to **keep it simple**, which might lead you down the path of passing the `setState` function down the stack of components. The downside here is the mutation of state can become difficult to follow, for example four actions can affect the state in different ways making it unclear what shape the state object looks like. You could end up with many independent copies of the same data. 
+Generally is good practice to **keep it simple**, which might lead you down the path of passing the `setState` callback down the stack of components. The downside here is the mutation of state can become difficult to follow, by allowing child components to alter the state directly will make it unclear what the state object should look like. By not having a single source of truth where the mutation is managed then the result could be unexpected and requires an overhead to work out. 
 
-It is also worth considering how easy is it to test changes to state. Unit testing changes to state through rendering components can be tricky and takes extra time to build compared to pure functions.
+It is also worth considering how easy is it to _test_ changes to state. Unit testing state through rendering components can be tricky and takes more time to build compared to pure functions.
 
 Ideally you want to make it **easy** to follow changes to the component state and create unit tests which give confidence in the functionality working.
 
@@ -34,7 +34,7 @@ Since the release of [_React 16.8_](https://github.com/facebook/react/blob/maste
 const [todoList, dispatch] = useReducer(toDoReducer, initialState);
 ```
 
-We can also use _React Context_. The benefit of combining `useReducer` with context is being able to call the `dispatch` function anywhere down the component tree without passing through props.
+We can also use _React Context_. The benefit of combining `useReducer` with context is being able to call the `dispatch` function anywhere down the component tree without passing through props. Preventing the need to follow it through the component tree to find the callback.
 
 ```jsx
 const TodosDispatch = React.createContext(null);
@@ -49,7 +49,7 @@ function App() {
 }
 ```
 
-To access the context in child components the `useContext` hook is needed.
+To access the context in child components the React hook `useContext` can be used.
 
 ```javascript
 const dispatch = useContext(TodosDispatch);
@@ -57,12 +57,12 @@ const dispatch = useContext(TodosDispatch);
 
 This idea is recommended in the React docs, [avoid passing callback down](https://reactjs.org/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down){:target="\_blank" rel="noopener"}
 
-### Example using useReducer and React context
+### Example React todo app with useReducer and useContext
 
-#### **Key points** demoed in the codesandbox
+#### **Key points** demoed in the CodeSandbox
 
 - Key functions:
-  - `TodosContext` is where the reducer `dispatch` function will be stored
+  - `TodosContext` is where the reducer `dispatch` callback will be stored
   - `toDoReducer` transforms the task list state based on actions e.g. add task
   - `initialState` contains one task object in an Array
   - `addAction`, `markAction`, `deleteAction` are all action creators which describe how to change the state
@@ -72,7 +72,7 @@ This idea is recommended in the React docs, [avoid passing callback down](https:
   - `TaskList` reads the `todoList` state and renders a numbered task list
   - `Action` is a generic button component which has access to `dispatch` to trigger add, done, undo and delete actions.
 
-Explore the codesandbox below to see how it's all connected
+Explore the CodeSandbox ([useReducer and useContext React todo app](https://codesandbox.io/s/react-todo-reducer-and-context-mz1mo){:target="\_blank" rel="noopener"}) below to see how it's all connected. 
 
 <iframe
      src="https://codesandbox.io/embed/todo-reducer-and-context-mz1mo?autoresize=1&fontsize=14"
@@ -82,8 +82,6 @@ Explore the codesandbox below to see how it's all connected
      sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
    ></iframe>
 
-Hope this help you tackle how to manage state in your next React feature you build.
+Hope this help you tackle managing state in your next React feature you build.
 
 If you like this post please [share on Twitter](https://twitter.com/share?text=Manage complex state with React useReducer and useContext @richardkotze &url=https://www.richardkotze.com/coding/react-hooks-usereducer-context&hashtags=javascript,reactjs){:target="\_blank" rel="noopener"}.
-
-

@@ -61,6 +61,8 @@ This idea is recommended in the React docs, [avoid passing callback down](https:
 
 #### **Key points** demoed in the CodeSandbox
 
+You can see how clean and simple the _unit tests_ are for the reducer in the `todo.spec.js` file. This will give confidence that the logic works as expected when state changes. These unit tests help manage complexity preventing regression when the reducer is updated to handle a new action.
+
 - Key functions:
   - `TodosContext` is where the reducer `dispatch` callback will be stored
   - `toDoReducer` transforms the task list state based on actions e.g. add task

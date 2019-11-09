@@ -70,7 +70,7 @@ This idea is recommended in the React docs, [avoid passing callback down](https:
   - `App` calls `useReducer` and passes the `dispatch` function into `TodosDispatch.Provider`
   - `InputTask` user can enter task name and calls the `addAction` on submit
   - `TaskList` reads the `todoList` state and renders a numbered task list
-  - `Action` is a generic button component which has access to `dispatch` to trigger add, done, undo and delete actions.
+  - `Action` is a generic button component which has access to `dispatch` to trigger done, undo and delete actions.
 
 Explore the CodeSandbox ([useReducer and useContext React todo app](https://codesandbox.io/s/react-todo-reducer-and-context-mz1mo){:target="\_blank" rel="noopener"}) below to see how it's all connected. 
 

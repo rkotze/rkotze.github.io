@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Install Bcyrpt in Docker image and exclude host node_modules"
+title: "Install Bcrypt in Docker image and exclude host node_modules"
 date: 2019-10-28 06:00:12 +0000
 permalink: top-tips/install-bcrypt-docker-image-exclude-host-node-modules
 category: top-tips

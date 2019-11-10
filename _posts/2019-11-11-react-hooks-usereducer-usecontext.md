@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Manage complex state with React useReducer and useContext"
-date: 2019-11-07 06:00:12 +0000
+date: 2019-11-11 06:00:12 +0000
 permalink: /coding/react-hooks-usereducer-usecontext
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/68551611-a43d0a00-0406-11ea-963e-6f501b6a13ae.jpg

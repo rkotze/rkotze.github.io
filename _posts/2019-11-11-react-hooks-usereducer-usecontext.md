@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Manage complex state with React useReducer and useContext"
-date: 2019-11-07 06:00:12 +0000
+date: 2019-11-11 06:00:12 +0000
 permalink: /coding/react-hooks-usereducer-usecontext
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/67992561-2a05cc00-fc35-11e9-916d-c7fbf8c1dc78.jpg
+full_image_url: https://user-images.githubusercontent.com/10452163/68551611-a43d0a00-0406-11ea-963e-6f501b6a13ae.jpg
 meta_description: >
   Manage complex state with React Hooks for a feature which has many nested child components. Combining useReducer and useContext.
 excerpt_separator: <!--more-->
@@ -19,6 +19,9 @@ However, there are features that are inherently complex as they could have many 
 **What options** are there to manage this complexity in _React_?
 
 <!--more-->
+
+![Person holding plasma ball](https://user-images.githubusercontent.com/10452163/68551611-a43d0a00-0406-11ea-963e-6f501b6a13ae.jpg)
+_Photo by Ramón Salinero on Unsplash_
 
 Generally is good practice to **keep it simple**, which might lead you down the path of passing the `setState` callback down the stack of components. The downside here is the mutation of state can become difficult to follow, by allowing child components to alter the state directly will make it unclear what the state object should look like. By not having a single source of truth where the mutation is managed then the result could be unexpected and requires an overhead to work out. 
 

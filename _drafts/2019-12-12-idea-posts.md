@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Idea/Draft posts"
-date: 2019-10-21 13:00:12 +0000
+date: 2019-11-12 13:00:12 +0000
 permalink: /ideas
 category: coding
 excerpt_separator: <!--more-->
@@ -10,6 +10,17 @@ excerpt_separator: <!--more-->
 See all the ideas.
 
 <!--more-->
+
+# Implement JWT authentication for GraphQL server
+
+This will be **part one** of two posts looking at using [JSON Web Tokens](https://jwt.io/){:target="\_blank" rel="noopener"} (JWT) for authentication and authorisation. The technology that I will cover to integrate this in is NodeJS Express and Apollo GraphQL server.
+
+It will helpful if you are familiar with Express and GraphQL to fully benefit from this post but you will get the general idea.
+
+First lets cover the basic flow of JWT authentication for HTTP requests and responses.
+
+- Express middleware
+- The role of access token and refresh tokens
 
 # Unit test your VS Code extension with Jest
 
@@ -24,11 +35,6 @@ The dependency is fine when running end-to-end tests, however unit tests give qu
 # Graphql server validation errors
 
 Make it part of the mutation payload object.
-
-# Implement JWT authentication for GraphQL server
-
-- Express middleware
-- The role of access token and refresh tokens
 
 # Consistent complexity scoring
 

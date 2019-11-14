@@ -11,17 +11,6 @@ See all the ideas.
 
 <!--more-->
 
-# Implement JWT authentication for GraphQL server
-
-This will be **part one** of two posts looking at using [JSON Web Tokens](https://jwt.io/){:target="\_blank" rel="noopener"} (JWT) for authentication and authorisation. The technology that I will cover to integrate this in is NodeJS Express and Apollo GraphQL server.
-
-It will helpful if you are familiar with Express and GraphQL to fully benefit from this post but you will get the general idea.
-
-First lets cover the basic flow of JWT authentication for HTTP requests and responses.
-
-- Express middleware
-- The role of access token and refresh tokens
-
 # Unit test your VS Code extension with Jest
 
 An issue with unit testing vscode extensions is the `vscode` dependency, which is needed to utilise the editors features but will error when running unit tests. Also this is a dependency outside the scope of your project, so the answer is to mock the API.

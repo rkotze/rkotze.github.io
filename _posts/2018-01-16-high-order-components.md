@@ -8,6 +8,7 @@ image: beach-sandy-straw-fence.jpg
 meta_description: >
  Understand why and how to use React JS higher-order components 
 excerpt_separator: <!--more-->
+tags: javascript react
 ---
 
 In this post I will discuss _why_ and _how_ to use higher-order components (<abbr title="higher-order component">HOC</abbr>) with [React JS](https://reactjs.org/).

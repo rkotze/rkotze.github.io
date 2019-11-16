@@ -9,6 +9,7 @@ image: "testing-tools.jpg"
 meta_description: >
   How to test React applications using Kent C. Dodds react-testing-library and Jest
 excerpt_separator: <!--more-->
+tags: javascript react unit-testing
 ---
 
 **How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank" rel="noopener"} and [Kent C. Dodds](https://github.com/kentcdodds){:target="\_blank" rel="noopener"} [react-testing-library](https://github.com/kentcdodds/react-testing-library){:target="\_blank" rel="noopener"}

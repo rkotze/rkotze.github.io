@@ -9,6 +9,7 @@ image: girl-walking-away.jpg
 meta_description: >
  Useful examples of using async iterators and generators in ES6 JavaScript 
 excerpt_separator: <!--more-->
+tags: javascript
 ---
 
 Async iterators will enable JavaScript engineers to read steams like lines of text from a web service or a file. It will be worth reading my previous post [understanding sync iterators](/coding/iterators-generators-es6-javascript) first before carrying on. 

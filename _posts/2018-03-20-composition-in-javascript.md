@@ -8,6 +8,7 @@ image: "lamborghini-huracan.jpg"
 meta_description: >
  Using composition instead of classical inheritance in JavaScript
 excerpt_separator: <!--more-->
+tags: javascript
 ---
 
 Let's look at using **composition** instead of **classical inheritance** in JavaScript.

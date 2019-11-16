@@ -9,6 +9,7 @@ published: true
 meta_description: >
  How to stub a React component using Sinon.
 excerpt_separator: <!--more-->
+tags: javascript react unit-testing
 ---
 
 Stubbing a React component is easy with Sinon. You can replace a component with a Sinon stub which is rendered as a child in the component under tests.

@@ -7,6 +7,7 @@ category: patterns
 meta_description: >
  What and how to implement the singleton in JavaScript
 excerpt_separator: <!--more-->
+tags: javascript tutorial
 ---
 
 The Singleton pattern is to ensure there is only one instance of the class that exists. In the case it does exist it returns a reference to that object. This is normally achieved by a method belonging to the class to create an instance.

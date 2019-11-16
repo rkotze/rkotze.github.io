@@ -1,0 +1,33 @@
+---
+layout: default 
+---
+<div class="col-sm-7 contentArea">
+
+    <article class="item">
+      <header class="post-header">
+        <h1 class="post-title">{{ page.tag | capitalize }}</h1>
+      </header>
+  
+      <div class="post-content">
+        {{ content }}
+      </div>
+    </article>
+
+    {% for post in site.tags[page.tag] %}
+
+    <article class="listing">
+      <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+    
+      <p class="pubDate">Published 
+        <time datetime="{{ post.date }}" pubdate>
+          {{ post.date | date: "%b %-d, %Y" }}
+        </time>
+      </p>
+        
+      {{ post.excerpt }}
+
+    </article>
+    
+  {% endfor %}
+  
+  </div>

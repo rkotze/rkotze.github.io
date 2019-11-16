@@ -8,6 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/67111285-821b
 meta_description: >
   Learn how to build a continuous delivery pipeline for your VS Code extension using Azure DevOps Pipeline
 excerpt_separator: <!--more-->
+tags: javascript tutorial
 ---
 
 For most of my published open source projects I've added a simple continuous integration (CI) pipeline using Travis CI. This time around I wanted a way to deploy a project after successful integration and try a new pipeline. Azure DevOps caught my attention. The goal here is to build, test and deploy my VS Code extension [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank" rel="noopener"} to the marketplace.

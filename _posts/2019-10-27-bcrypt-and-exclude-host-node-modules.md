@@ -8,6 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/67439286-bdb0
 meta_description: >
   Learn how to build a Dockerfile to compile Bcrypt and don't link host node_modules with docker-compose
 excerpt_separator: <!--more-->
+tags: javascript
 ---
 
 This post will be covering two topics, installing _Bcrypt_ NodeJS as a dependency and prevent *linking node_modules* from host machine to your docker container.

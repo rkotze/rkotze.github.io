@@ -9,6 +9,7 @@ image: street-art.jpg
 meta_description: >
  Learn about ES7 async/await and how they are related to Promises. Also how to unit test async code. 
 excerpt_separator: <!--more-->
+tags: javascript
 ---
 
 This post has lots of code examples showing **promises**, **async/await** and **unit testing** async functions. There is a coding challenge at the end to test your learning.

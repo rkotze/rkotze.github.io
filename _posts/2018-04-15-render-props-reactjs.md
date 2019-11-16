@@ -9,6 +9,7 @@ image: "slovenia-mountains.jpg"
 meta_description: >
  Understand why and how to use React JS Render Props
 excerpt_separator: <!--more-->
+tags: javascript react
 ---
 
 In this post, I will discuss the why and how to use React JS **Render Props**.

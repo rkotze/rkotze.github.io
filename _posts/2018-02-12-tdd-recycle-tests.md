@@ -8,6 +8,7 @@ image: "experimental-painting.jpg"
 meta_description: >
  The constraints of TDD and how recycling tests could help unblock your workflow for solving complex problems. 
 excerpt_separator: <!--more-->
+tags: javascript unit-testing
 ---
 
 Have you ever written a unit test and it seems to take a **long time to make green**?

@@ -9,6 +9,7 @@ image: "colour-star-sky.jpg"
 meta_description: >
  Decide when to use higher-order component over Render props.
 excerpt_separator: <!--more-->
+tags: javascript react
 ---
 
 Higher-order components (<abbr title="higher-order component">HOC</abbr>) and render props are two ways to build cross cutting code in React JS. _How do you decide to use one over the other?_

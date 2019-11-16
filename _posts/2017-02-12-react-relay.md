@@ -7,6 +7,7 @@ category: coding
 meta_description: >
  Understand how React Relay works. 
 excerpt_separator: <!--more-->
+tags: javascript react
 ---
 
 As with any new tech it can be overwhelming and confusing how all the parts work together. Especially with the combo of Relay and GraphQL. Hopefully this post will help demystify some things in Relay.

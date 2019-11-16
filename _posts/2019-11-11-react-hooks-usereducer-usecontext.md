@@ -8,6 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/68551611-a43d
 meta_description: >
   Manage complex state with React Hooks for a feature which has many nested child components. Combining useReducer and useContext.
 excerpt_separator: <!--more-->
+tags: javascript react tutorial
 ---
 
 This post will cover managing complex state at a feature level rather than the entire site. [**React hooks**](https://reactjs.org/docs/hooks-intro.html){:target="\_blank" rel="noopener"} have enabled developers to have cleaner functional components which help to rationalise our component logic with ease.

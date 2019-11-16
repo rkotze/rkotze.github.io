@@ -9,6 +9,7 @@ image: fish-street-art.jpg
 meta_description: >
  Lots of examples of using iterators and generators in ES6 JavaScript 
 excerpt_separator: <!--more-->
+tags: javascript
 ---
 
 **What is a generator in programming terms?** It is a special function that can be used to control the iteration behaviour of a loop.

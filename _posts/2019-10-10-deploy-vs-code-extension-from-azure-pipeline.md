@@ -8,6 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/66151454-418a
 meta_description: >
   Learn how deploy your VS code extension to the marketplace via Azure pipeline
 excerpt_separator: <!--more-->
+tags: javascript tutorial
 ---
 
 This post is to help developers who are new to Azure DevOps releases and deploying a VS Code extension. Azure pipelines come with lots of great options but it can be difficult to know what to do to achieve your goal. The goal in this case is to deploy my VS Code extension, [Git Mob](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank" rel="noopener"} to the marketplace.

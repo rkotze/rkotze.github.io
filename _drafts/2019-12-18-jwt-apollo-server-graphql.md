@@ -4,7 +4,7 @@ title: "JWT tokens for authentication using Apollo GraphQL server"
 date: 2019-11-16 06:00:12 +0000
 permalink: /coding/json-web-tokens-using-apollo-graphql
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/68551611-a43d0a00-0406-11ea-963e-6f501b6a13ae.jpg
+full_image_url: https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg
 meta_description: >
   How to build JWT tokens into a GraphQL server for authentication
 excerpt_separator: <!--more-->
@@ -17,6 +17,9 @@ It will help if you are familiar with [Express](https://expressjs.com/){:target=
 First, let's cover the basic flow of JWT authentication when a request is made.
 
 <!--more-->
+
+![River between mountains](https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg)
+_Photo by Lustig Photography on Unsplash_
 
 Below is a flow of actions when a request arrives at the server which is intercepted with our custom authentication middleware:
 

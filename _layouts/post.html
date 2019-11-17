@@ -12,17 +12,28 @@ layout: default
 
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
-      <p class="pubDate post-meta">
-        <span class="symbol">&#x25ce;</span> Published on:
-        <time pubdate datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-          {{ page.date | date: "%b %-d, %Y" }}
-        </time>  
-      </p>
-      {% if page.update_date %}
-      <p class="updateDate">
-        <span><span class="symbol">&#x1f79c;</span> Updated on: {{ page.update_date | date: "%b %-d, %Y" }}</span>
-      </p>
-      {% endif %}
+      <div class="post-meta-container">
+        <p class="pubDate post-meta">
+          <span class="symbol">&#x25ce;</span> Published on:
+          <time pubdate datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {{ page.date | date: "%b %-d, %Y" }}
+          </time>  
+        </p>
+        {% if page.update_date %}
+        <p class="updateDate">
+          <span><span class="symbol">&#x1f79c;</span> Updated on: {{ page.update_date | date: "%b %-d, %Y" }}</span>
+        </p>
+        {% endif %}
+        {% if page.tags.size > 0 %}
+        <div class="container-tags"><span class="symbol">&#x2606;</span> Tags 
+          <ul class="post-tags">
+            {% for tag in page.tags %}
+              <li><a href="/tags/{{ tag | downcase }}">{{ tag }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+      </div>
       <p class="top-article-follow">
         <a href="https://twitter.com/intent/follow?screen_name=richardkotze&tw_p=followbutton" 
         rel="noopener nofollow"
@@ -31,15 +42,6 @@ layout: default
           <span>Follow on Twitter</span>
         </a>
       </p>
-      {% if page.tags.size > 0 %}
-      <div class="post-tags"><span class="symbol">&#x2606;</span> Tags 
-        <ul class="post-tags">
-          {% for tag in page.tags %}
-            <li><a href="/tags/{{ tag | downcase }}">{{ tag }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
     </header>
 
     <div class="post-content" itemprop="articleBody">

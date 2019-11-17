@@ -18,17 +18,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+  <title>{% if page.title %}{{ page.title | escape }}{%elsif page.tag %}{{ page.tag | capitalize }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta property="og:site_name" content="Richard Kotze" />
   <meta property="og:locale" content="en_GB" />
   <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@richardkotze" />
-  <meta name="twitter:title" content="{{ page.title }}" />
+  {% if page.title %}<meta name="twitter:title" content="{{ page.title }}" />{% endif %}
   <meta content="article" property="og:type">
-  {% if page.title %}
-  <meta content="{{ page.title }}" property="og:title">
-  {% endif %}
+  {% if page.title %}<meta content="{{ page.title }}" property="og:title">{% endif %}
   {% if page.meta_description %}
     <meta property="og:description" content="{{ page.meta_description }}">
   {% endif %}
@@ -46,7 +44,7 @@
     <meta content="{{ page.full_image_url }}" property="og:image">
   {% endif %}
 
-  <link rel="stylesheet" href="{{ "/css/main.css?v=8" | prepend: site.baseurl }}">
+  <link rel="stylesheet" href="{{ "/css/main.css?v=9" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
   <link rel="icon" type="image/png" href="/css/favicon-16x16.png" sizes="16x16" />

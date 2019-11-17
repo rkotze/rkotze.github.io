@@ -108,12 +108,25 @@ table th, table td {
 
 article {
   p.top-article-follow {
-    margin-top: -20px;
+    margin-top: 0;
+    @media #{$small} {
+      margin-top: -20px;
+    }
   }
-  div.post-tags {
+  .post-meta-container {
+    display: block;
+    margin-bottom: 0;
+    @media #{$small} {
+      display: flex;
+    }
+  }
+  div.container-tags {
     font-size: 14px;
     color: $grey;
-    margin-top: -20px;
+    margin-left: 0;
+    @media #{$small} {
+      margin-left: 10px;
+    }
 
     ul.post-tags {
       display: inline;
@@ -125,10 +138,8 @@ article {
       display: inline;
       list-style: none;
       margin: 0;
-      padding: 0 5px;
-      a {
-        font-size: 14px;
-      }
+      padding: 0 3px;
+      font-size: 14px;
     }
 
     ul.post-tags li:after {

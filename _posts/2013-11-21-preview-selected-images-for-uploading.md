@@ -6,6 +6,7 @@ permalink: /top-tips/preview-selected-images-for-uploading
 category: top-tips
 meta_description: >
  Explain and show example of how to preview selected images before upload using JavaScript / jQuery.
+tags: javascript
 ---
 
 This is the&nbsp;continuation of how to [open a multi select file dialogue just using JavaScript][1].&nbsp;In this tutorial I will explain how to&nbsp;preview&nbsp;the selected files before upload.

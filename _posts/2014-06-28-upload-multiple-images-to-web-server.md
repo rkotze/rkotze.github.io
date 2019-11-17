@@ -6,6 +6,7 @@ permalink: /top-tips/upload-multiple-images-to-web-server
 category: top-tips
 meta_description: >
  Take the preview images and upload multiple photos to the server using AJAX
+tags: javascript
 ---
 
 This is a&nbsp;continuation from [preview selected images tutorial][1], I will now explain how to take the multiple selected&nbsp;file data and upload it to the server

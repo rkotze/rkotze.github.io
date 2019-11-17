@@ -8,6 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/68999707-54ee
 meta_description: >
   How to build JWT tokens into a GraphQL server for authentication
 excerpt_separator: <!--more-->
+tags: javascript node graphql tutorial
 ---
 
 This will be **part one** of two posts looking at using [JSON Web Tokens](https://jwt.io/){:target="\_blank" rel="noopener"} (JWT) for authentication and authorisation. The technology that I will cover to integrate this in is NodeJS Express and Apollo GraphQL server.
@@ -155,21 +156,25 @@ function setTokens(user) {
 
 ### Express middleware to validate tokens
 
-First, let's look at validating the tokens and returns the decoded contents. When using the `verify` method from the `jsonwebtoken` package it returns the decoded user object we signed it with. If the token is invalid then it throws an error, which is why it's wrapped in a `try` `catch` block.
+First, let's look at validating the tokens and returns the decoded contents. When using the `verify` method from the `jsonwebtoken` package it returns the decoded user object we signed earlier. If the token is invalid then it throws an error, which is why it's wrapped in a `try` `catch` block.
 
-If the access token fails then it falls through to refresh token and if that fails we return `null` which will indicate the token is invalid.
+If either the access or refresh token fails `null` is returned to indicate the token is invalid.
 
 ```javascript
 // module `validate-tokens`
 const { verify } = require("jsonwebtoken");
 
-function validateTokens({ accessToken, refreshToken }) {
+function validateAccessToken(token) {
   try {
-    return verify(accessToken, "<your secret key for access token>");
-  } catch {}
+    return verify(token, "<your secret key for access token>");
+  } catch {
+    return null
+  }
+}
 
+function validateRefreshToken(token) {
   try {
-    return verify(refreshToken, "<your secret key for refresh token>");
+    return verify(token, "<your secret key for refresh token>");
   } catch {
     return null;
   }
@@ -186,7 +191,7 @@ Generating new tokens means we don't need to keep hitting our database to authen
 
 ```javascript
 // module `validate-tokens-middleware`
-const { validateTokens } = require("./validate-tokens");
+const { validateAccessToken, validateRefreshToken } = require("./validate-tokens");
 const userRepo = require("../users/users-repository");
 const { setTokens } = require("./set-tokens");
 
@@ -195,23 +200,25 @@ async function validateTokensMiddleware(req, res, next) {
   const accessToken = req.headers["x-access-token"];
   if (!accessToken && !refreshToken) return next();
 
-  const decodedToken = validateTokens({ accessToken, refreshToken });
+  const decodedAccessToken = validateAccessToken(accessToken);
   if (
-    decodedToken &&
-    decodedToken.user &&
-    typeof decodedToken.user.count === "undefined"
+    decodedAccessToken &&
+    decodedAccessToken.user
   ) {
-    // Valid access token
-    req.user = decodedToken.user;
+    req.user = decodedAccessToken.user;
     return next();
   }
 
-  if (decodedToken && typeof decodedToken.user.count === "number") {
+  const decodedRefreshToken = validateRefreshToken(refreshToken);
+  if (
+    decodedRefreshToken && 
+    decodedRefreshToken.user
+  ) {
     // valid refresh token
-    const user = await userRepo.get({ userId: decodedToken.user.id });
+    const user = await userRepo.get({ userId: decodedRefreshToken.user.id });
     // valid user and user token not invalidated
-    if (!user || user.tokenCount !== decodedToken.user.count) return next();
-    req.user = decodedToken.user;
+    if (!user || user.tokenCount !== decodedRefreshToken.user.count) return next();
+    req.user = decodedRefreshToken.user;
     // refresh the tokens
     const userTokens = setTokens(user);
     res.set({

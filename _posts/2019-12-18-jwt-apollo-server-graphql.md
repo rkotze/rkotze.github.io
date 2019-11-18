@@ -28,7 +28,7 @@ Below is the flow of actions for when a request arrives at the server and is int
 1. Validate access token, append user data to request object and continue, else fall back to refresh token
 1. Validate refresh token by checking the user is in the database, generate new tokens, append user data to request and continue with the request
 1. Each GraphQL endpoint will determine what data to show based on the user data appended to the request
-1. Endpoints requiring authentication with invalid tokens will return an empty and throw an authentication error.
+1. Endpoints requiring authentication with invalid tokens will throw an authentication error.
 
 There are two tokens generated: `access-token` and `refresh-token`. The access token has a short expiry of 15 minutes and if still valid we send that request straight through to the resolver instead of querying our user table. The refresh token has a longer expiry of 7 days and at this point, we check the user is still valid in our database and that will generate new tokens for the session.
 
@@ -257,6 +257,6 @@ async function loggedInUser(_, __, { req }) {
 }
 ```
 
-You can test this out by making a query for the logged-in user via GraphQL Playground client. Make a query to login and access the tokens. Copy and paste the tokens and set the headers before making the for a logged-in user.
+You can test this out by making a query for the logged-in user via GraphQL Playground client. Make a query to login and access the tokens. Copy and paste the tokens and set the headers before making the request for a logged-in user.
 
 This is the **end of part one** and you learned how to make an authenticated backend for front-end (BFF) using <abbr title="JSON Web Tokens">JWT</abbr>. Please do provide feedback in the comments below for any improvements or found something difficult to follow and I will make the adjustments as soon as possible.

@@ -11,9 +11,9 @@ excerpt_separator: <!--more-->
 tags: javascript node graphql tutorial
 ---
 
-This will be **part one** of two posts looking at using [JSON Web Tokens](https://jwt.io/){:target="\_blank" rel="noopener"} (JWT) for authentication and authorisation. The technology that I will cover to integrate this in is NodeJS Express and Apollo GraphQL server.
+This will be **part one** of two posts looking at using [JSON Web Tokens](https://jwt.io/){:target="\_blank" rel="noopener"} (JWT) for authentication and authorisation. I'll be integrating tokens into NodeJS Express and Apollo GraphQL server.
 
-It will help if you are familiar with [Express](https://expressjs.com/){:target="\_blank" rel="noopener"} and [Apollo GraphQL](https://www.apollographql.com/){:target="\_blank" rel="noopener"} to fully benefit from this post but reading this will give you a good idea of how to use JWT for authentication in Node applications.
+It will help if you are familiar with [Express](https://expressjs.com/){:target="\_blank" rel="noopener"} and [Apollo GraphQL](https://www.apollographql.com/){:target="\_blank" rel="noopener"} to fully benefit from this post, but reading this will give you a good idea of how to use JWT for authentication in Node applications.
 
 First, let's cover the basic flow of JWT authentication when a request is made.
 
@@ -22,15 +22,15 @@ First, let's cover the basic flow of JWT authentication when a request is made.
 ![River between mountains](https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg)
 _Photo by Lustig Photography on Unsplash_
 
-Below is a flow of actions when a request arrives at the server which is intercepted with our custom authentication middleware:
+Below is the flow of actions for when a request arrives at the server and is intercepted with our custom authentication middleware:
 
 1. If access token exists carry on, else skip authentication check
 1. Validate access token, append user data to request object and continue, else fall back to refresh token
 1. Validate refresh token by checking the user is in the database, generate new tokens, append user data to request and continue with the request
-1. Each Graphql endpoint will determine what data to show based on the user data appended to the request.
+1. Each GraphQL endpoint will determine what data to show based on the user data appended to the request
 1. Endpoints requiring authentication with invalid tokens will return an empty and throw an authentication error.
 
-There are two tokens generated `access-token` and `refresh-token`. The access token has a short expiry of 15 minutes and if still valid we send that request straight through to the resolver instead of querying our user table. The refresh token has a longer expiry of 7 days and at this point, we check the user is still valid in our database which will generate new tokens for the session.
+There are two tokens generated: `access-token` and `refresh-token`. The access token has a short expiry of 15 minutes and if still valid we send that request straight through to the resolver instead of querying our user table. The refresh token has a longer expiry of 7 days and at this point, we check the user is still valid in our database and that will generate new tokens for the session.
 
 It's **important** to note that signed tokens can be decoded and the contents revealed, so **don't store sensitive data** inside. However, there are options to encrypt tokens but this is not covered in this tutorial. [Learn more about JWT.](https://jwt.io/introduction/){:target="\_blank" rel="noopener"}
 
@@ -51,7 +51,7 @@ Steps:
 npm i apollo-server-express jsonwebtoken express graphql
 ```
 
-In your main entry file include the code below. The important part is adding the request and response objects to the `ApolloServer` context. This will allow access to the request object in the resolvers which will contain user information decoded from a token.
+In your main entry file include the code below. The important part is adding the request and response objects to the `ApolloServer` context. This will allow access to the request object in the resolvers that contain user information decoded from a token.
 
 ```javascript
 const { ApolloServer } = require("apollo-server-express");
@@ -62,7 +62,7 @@ const apolloServer = new ApolloServer({
 });
 ```
 
-This code will be directly after the above and you can see the Express `app` is passed into the `apolloServer.applyMiddleware`.
+The following code should be directly after the above, and you can see the Express `app` is passed into the `apolloServer.applyMiddleware`.
 
 ```javascript
 const app = express();
@@ -75,11 +75,11 @@ app.listen({ port: process.env.PORT }, () =>
 );
 ```
 
-With this basic set up of the Apollo Server, it will give you access to [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/){:target="\_blank" rel="noopener"} to test out the schema and run queries. You'll find it under `localhost:<port>/graphql`.
+This basic set up of the Apollo Server will give you access to [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/){:target="\_blank" rel="noopener"} to test out the schema and run queries. You'll find it under `localhost:<port>/graphql`.
 
 ### Login and sign tokens
 
-First, we need to generate valid tokens for the client to send when making requests to authorised endpoints. Let's create a login Graphql **mutation**.
+First, we need to generate valid tokens for the client to send when making requests to authorised endpoints. Let's create a login GraphQL **mutation**.
 
 **Type definition**
 
@@ -117,9 +117,9 @@ Taking the valid user details we will **sign** these details to generate our tok
 
 The **access token** is set a short 15-minute expiry date to handle a regular succession of querying without needing to check against our data source each time.
 
-The **refresh token** is set a longer expiry date of 7 days and when using this token the user details are checked against the data source. Another difference is we store a `count` value which we use to invalidate the user token by incrementing it and forcing the user to log in again.
+The **refresh token** is set a longer expiry date of 7 days and when using this token the user details are checked against the data source. Another difference is we store a `count` value that is used to invalidate the user token by incrementing it and forcing the user to log in again.
 
-Both tokens should use **different secret keys** to generate them and remember not to hard code secret information and commit to source control.
+Both tokens should use **different secret keys** to generate them and remember **not** to hard code secret information and commit to source control.
 
 ```javascript
 // module `set-tokens`
@@ -183,7 +183,7 @@ function validateRefreshToken(token) {
 
 Using the `validateTokens` function in the express middleware we can validate the tokens. The middleware will be called for every request to your server and for each request we will require the client to attach two headers `x-access-token` and `x-refresh-token` to access authorised endpoints.
 
-To tell the difference between the **decoded** tokens the code below looks for the `decodedToken.user.count` property to be defined indicating it is the refresh token. The important thing with the refresh is to check the count in the token matches what is return from the user data source token count. If it does not match then we don't regenerate the tokens.
+To tell the difference between the **decoded** tokens, the code below looks for the `decodedToken.user.count` property to be defined indicating it is the refresh token. The important thing with the refresh is to check the count in the token matches what is returned from the user data source token count. If it does not match then we don't regenerate the tokens.
 
 When the tokens are refreshed the data is sent back on the response object with the same header keys. To enable the client to read those headers the `Access-Control-Expose-Headers` needs to be set with the `keys` you want to expose. 
 
@@ -234,7 +234,7 @@ async function validateTokensMiddleware(req, res, next) {
 
 ### Access endpoint with valid tokens
 
-You have a GraphQL endpoint which returns the logged in user details. When the query is made, first get the request (`req`) object from the context which is the third parameter in resolvers functions. Check if the `req.user` object is **not** empty to make the database query for the user otherwise throw `AuthenticationError` object.
+You have a GraphQL endpoint which returns the logged in user details. When the query is made, first get the request (`req`) object from the context which is the third parameter in resolvers functions. Check if the `req.user` object is **not** empty to make the database query for the user, otherwise throw `AuthenticationError` object.
 
 ```javascript
 const { gql } = require("apollo-server-express");

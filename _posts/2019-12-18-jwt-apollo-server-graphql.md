@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JWT tokens for authentication using Apollo GraphQL server"
-date: 2019-11-16 06:00:12 +0000
+date: 2019-11-18 06:00:12 +0000
 permalink: /coding/json-web-tokens-using-apollo-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg

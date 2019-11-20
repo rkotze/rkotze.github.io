@@ -17,11 +17,20 @@ This post will show an example of how to send JSON web tokens (JWT) for each req
 
 <!--more-->
 
+This tutorial will show the key parts needed to send and recieve tokens from your app meaning there is no complete example output to try at the end.
+
+In the examples below I use [Apollo Boost](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost){:target="\_blank" rel="noopener"} and [Apollo React Hooks](https://www.apollographql.com/docs/react/api/react-hooks/){:target="\_blank" rel="noopener"}.
+
+```
+npm i apollo-boost @apollo/react-hooks
+```
+
 These are the steps needed for your web app to handle authentication with the server
 
 1. [Login and store tokens]()
 1. [Send tokens on each request]()
 1. [Update client with new tokens]()
+1. [Access authorised GraphQL endpoint]()
 
 ### Login and store tokens
 
@@ -99,4 +108,88 @@ After saving you will need to update your web app to show the user has successfu
 
 ### Send tokens on each request
 
+Below is the main entry file to render your app. When you create a new `ApolloClient` you can configure it to **intercept** requests sent to the server. The `request` property allows you to attach headers before the request is sent by using `operations.setContext` and supplying the headers `x-access-token` and `x-refresh-token`. We can get the tokens from the local storage which we saved earlier when a user has logged in, using the `getTokens` function from manage tokens module. Your main app module needs to be wrapped in the `ApolloProvider` for the **request interceptor** to work.
+
+```javascript
+// main entry file to render app
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+import { getTokens } from "./manage-tokens";
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  request: operation => {
+    const tokens = getTokens();
+    if (tokens && tokens.accessToken) {
+      operation.setContext({
+        headers: {
+          "x-access-token": tokens.accessToken,
+          "x-refresh-token": tokens.refreshToken
+        }
+      });
+    }
+  }
+});
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
+  document.getElementById("root")
+);
+```
+
 ### Update client with new tokens
+
+The user might return a couple days later to your app and by then the access token would have expired but the refresh token will still be valid. On successful response from the GraphQL server new ("refreshed") access and refresh tokens will be returned in the headers. These will need to be updated in the browser local storage.
+
+Below Apollo boost allows you to change the fetch implementation. This means you can use the native browser `fetch` API to access the **headers** and save to local storage.
+
+Only certain headers can be read by the client and in the previous post this is handled. [How to make custom headers accessible for the client]().
+
+```javascript
+import { saveTokens } from "./manage-tokens";
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  fetch: async (uri, options) => {
+    const initialRequest = await fetch(uri, options);
+    const { headers } = initialRequest;
+    const accessToken = headers.get("x-access-token");
+    const refreshToken = headers.get("x-refresh-token");
+    if (accessToken && refreshToken) {
+      saveTokens({
+        accessToken: accessToken,
+        refreshToken: refreshToken
+      });
+    }
+    return initialRequest;
+  },
+  request: operation => {
+   // you done this part
+  }
+});
+```
+
+### Access authorised GraphQL endpoint
+
+You should now be able to run your `LoggedIn` component which calls an authorised GraphQL endpoint and successfully get the user data.
+
+```javascript
+function LoggedIn(){
+  const { loading, data } = useQuery(gql`
+    query {
+      loggedInUser {
+        name
+        username
+      }
+    }
+  `);
+
+  if(loading) return <Loading />
+
+  if(data.loggedInUser) return <UserProfile data={data.loggedInUser} />
+
+  return <p><a href="/sign-in">Sign in</a></p>
+}
+```

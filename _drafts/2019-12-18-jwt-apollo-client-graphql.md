@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Send JWT tokens from client to GraphQL server"
-date: 2019-11-18 06:00:12 +0000
+date: 2019-11-20 06:00:12 +0000
 permalink: /coding/send-jwt-client-apollo-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg
@@ -11,13 +11,11 @@ excerpt_separator: <!--more-->
 tags: javascript node graphql tutorial
 ---
 
-# Sending tokens from client side app
-
-This post will show an example of how to send JSON web tokens (JWT) for each request to the GraphQL server. Also on response the tokens might have changed because the refresh token was used, meaning the tokens on the client will need to be updated. This is the second part of using [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql).
+This is the continuation of [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql) and will show an example of how to send <abbr title="JSON web token">JWT</abbr>s for each request from the client to the GraphQL server. How to handle updated tokens when a user returns for a new session in the client.
 
 <!--more-->
 
-This tutorial will show the key parts needed to send and recieve tokens from your app meaning there is no complete example output to try at the end.
+This tutorial will focus on the **key** features needed to send and receive tokens meaning there is no _complete example_ output to try at the end. The aim is to help you integrate authentication into your app.
 
 In the examples below I use [Apollo Boost](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost){:target="\_blank" rel="noopener"} and [Apollo React Hooks](https://www.apollographql.com/docs/react/api/react-hooks/){:target="\_blank" rel="noopener"}.
 
@@ -25,12 +23,10 @@ In the examples below I use [Apollo Boost](https://github.com/apollographql/apol
 npm i apollo-boost @apollo/react-hooks
 ```
 
-These are the steps needed for your web app to handle authentication with the server
-
-1. [Login and store tokens]()
-1. [Send tokens on each request]()
-1. [Update client with new tokens]()
-1. [Access authorised GraphQL endpoint]()
+1. [Login and store tokens](#login-and-store-tokens)
+1. [Send tokens on each request](#send-tokens-on-each-request)
+1. [Update client with new tokens](#update-client-with-new-tokens)
+1. [Access authorised GraphQL endpoint](#access-authorised-graphql-endpoint)
 
 ### Login and store tokens
 
@@ -45,7 +41,7 @@ mutation Login($username: String!, $password: String!) {
 }
 ```
 
-These functions will be used to manage tokens object which is saved in the browser local storage.
+These functions will be used to manage the tokens object which will be saved in the browser local storage.
 The native JSON functions are used to handle the storing of the token object since local storage only saves data as a string.
 
 ```javascript
@@ -65,7 +61,7 @@ export function deleteTokens() {
 }
 ```
 
-Below is an example component which is missing the username and password fields to provide focus on the important functions. Essentially we call the mutation when the form is submitted and take the user login details from the component state. A successful response from `await login` will return `data.login` object, containing the tokens which is stored using `saveTokens`.
+Below is an example component which is missing the _username_ and _password_ input fields as I want focus on the important functions. Essentially we call the mutation when the form is submitted and take the user login details from the component state. A successful response from `await login` will return `data.login` object containing the tokens and is saved using `saveTokens`.
 
 ```javascript
 import React, { useState } from "react";
@@ -108,7 +104,7 @@ After saving you will need to update your web app to show the user has successfu
 
 ### Send tokens on each request
 
-Below is the main entry file to render your app. When you create a new `ApolloClient` you can configure it to **intercept** requests sent to the server. The `request` property allows you to attach headers before the request is sent by using `operations.setContext` and supplying the headers `x-access-token` and `x-refresh-token`. We can get the tokens from the local storage which we saved earlier when a user has logged in, using the `getTokens` function from manage tokens module. Your main app module needs to be wrapped in the `ApolloProvider` for the **request interceptor** to work.
+Below is the main entry file to render your app. When you create a new `ApolloClient` you can configure it to **intercept requests** sent to the server. The `request` property allows you to attach headers before the request is sent by using `operations.setContext` and supplying the headers `x-access-token` and `x-refresh-token`. We can get the tokens using the `getTokens` function which reads from local storage. This data will only be avaiable if a user has successfully logged in. For the **request interceptor** to work your main _app_ module needs to be wrapped in the `ApolloProvider` and supplied an `ApolloClient`.
 
 ```javascript
 // main entry file to render app
@@ -141,14 +137,16 @@ ReactDOM.render(
 
 ### Update client with new tokens
 
-The user might return a couple days later to your app and by then the access token would have expired but the refresh token will still be valid. On successful response from the GraphQL server new ("refreshed") access and refresh tokens will be returned in the headers. These will need to be updated in the browser local storage.
+When the user returns for a different session to your app the access token would have expired but the refresh token will still be valid. On successful response from the GraphQL server a new "refreshed" access and refresh tokens will be returned in the headers. These will need to be read and saved in the browser local storage.
 
-Below Apollo boost allows you to change the fetch implementation. This means you can use the native browser `fetch` API to access the **headers** and save to local storage.
+Below _Apollo Boost_ allows you to change the **fetch** implementation. This means you can use the native browser `fetch` API to access the **headers** and save to local storage.
 
-Only certain headers can be read by the client and in the previous post this is handled. [How to make custom headers accessible for the client]().
+Only certain headers can be read by the client and in the previous post this is handled. [How to make custom headers accessible for the client](/coding/json-web-tokens-using-apollo-graphql#express-middleware-to-validate-tokens).
 
 ```javascript
 import { saveTokens } from "./manage-tokens";
+
+// ...
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -169,14 +167,16 @@ const client = new ApolloClient({
    // you done this part
   }
 });
+
+// ...
 ```
 
 ### Access authorised GraphQL endpoint
 
-You should now be able to run your `LoggedIn` component which calls an authorised GraphQL endpoint and successfully get the user data.
+You should now be able to call an authorised GraphQL endpoint and successfully get the data. For example below the component run the GraphQL query to fetch logged in user data.
 
 ```javascript
-function LoggedIn(){
+function FetchUserProfile(){
   const { loading, data } = useQuery(gql`
     query {
       loggedInUser {
@@ -193,3 +193,8 @@ function LoggedIn(){
   return <p><a href="/sign-in">Sign in</a></p>
 }
 ```
+
+That should be all that is needed to fetch data from an authenticated GraphQL endpoint.
+If you have any feedback please use the comments below or tweet me.
+
+Thanks for reading.

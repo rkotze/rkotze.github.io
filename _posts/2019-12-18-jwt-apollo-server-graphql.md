@@ -185,6 +185,8 @@ Using the `validateTokens` function in the express middleware we can validate th
 
 To tell the difference between the **decoded** tokens, the code below looks for the `decodedToken.user.count` property to be defined indicating it is the refresh token. The important thing with the refresh is to check the count in the token matches what is returned from the user data source token count. If it does not match then we don't regenerate the tokens.
 
+### Enable client to read custom headers 
+
 When the tokens are refreshed the data is sent back on the response object with the same header keys. To enable the client to read those headers the `Access-Control-Expose-Headers` needs to be set with the `keys` you want to expose. 
 
 Generating new tokens means we don't need to keep hitting our database to authenticate the user and we essentially trust the user is who they say they are for the session time of 15 minutes.

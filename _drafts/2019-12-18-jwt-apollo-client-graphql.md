@@ -44,6 +44,8 @@ mutation Login($username: String!, $password: String!) {
 These functions will be used to manage the tokens object which will be saved in the browser local storage.
 The native JSON functions are used to handle storing of the token object, since local storage only saves data as a string.
 
+Keeping your tokens secure, localStorage is might not the place. Have a read through this: [Is it safe to store a jwt in localStorage with reactjs?](https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs)
+
 ```javascript
 // module for saving tokens to local storage
 const TOKEN_KEY = "stampTokens";

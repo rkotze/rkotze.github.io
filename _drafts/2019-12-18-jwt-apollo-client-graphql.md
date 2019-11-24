@@ -203,4 +203,6 @@ These tokens are very much like a password or credit card number because they ca
 
 Using cookies can put your site at risk of <abbr title="Cross-Site Request Forgery">CSRF</abbr> because JavaScript can also read cookies. If you're dealing with money and sensitive information then you want to use `httpOnly` and secure cookies which can not be accessed by JavaScript. [CSRF protection with JSON Web Tokens](https://stackoverflow.com/questions/35291573/csrf-protection-with-json-web-tokens/35347022#35347022){:target="\_blank" rel="noopener"}
 
+I'll investigate further into make a more secure method of handling authentication using `httpOnly` cookies and graphql. Make this another post in the near future.
+
 If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.

@@ -23,10 +23,11 @@ In the examples below I use [Apollo Boost](https://github.com/apollographql/apol
 npm i apollo-boost @apollo/react-hooks
 ```
 
-1. [Login and store tokens](#login-and-store-tokens)
-1. [Send tokens on each request](#send-tokens-on-each-request)
-1. [Update client with new tokens](#update-client-with-new-tokens)
-1. [Access authorised GraphQL endpoint](#access-authorised-graphql-endpoint)
+- [Login and store tokens](#login-and-store-tokens)
+- [Send tokens on each request](#send-tokens-on-each-request)
+- [Update client with new tokens](#update-client-with-new-tokens)
+- [Access authorised GraphQL endpoint](#access-authorised-graphql-endpoint)
+- [Securely storing JWT tokens](#securely-storing-jwt-tokens)
 
 ### Login and store tokens
 
@@ -43,8 +44,6 @@ mutation Login($username: String!, $password: String!) {
 
 These functions will be used to manage the tokens object which will be saved in the browser local storage.
 The native JSON functions are used to handle storing of the token object, since local storage only saves data as a string.
-
-Keeping your tokens secure, localStorage is might not the place. Have a read through this: [Is it safe to store a jwt in localStorage with reactjs?](https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs)
 
 ```javascript
 // module for saving tokens to local storage
@@ -96,7 +95,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={submitLogin}>
-      // input fields for username and password call setLoginDetails
+      {/* input fields for username and password call setLoginDetails */}
     </form>
   );
 }
@@ -197,6 +196,11 @@ function FetchUserProfile(){
 ```
 
 That should be all that is needed to fetch data from an authenticated GraphQL endpoint.
-If you have any feedback please use the comments below or tweet me.
 
-Thanks for reading.
+### Securely storing JWT tokens
+
+These tokens are very much like a password or credit card number because they can be used to access and do actions under a user's identity. You must consider the risks when using localStorage to store this information. Ensure your site is well protected from <abbr title="Cross-site scripting">XSS</abbr> because any 3rd party JavaScript library can read from localStorage. [Is it safe to store a JWT in localStorage with React?](https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs){:target="\_blank" rel="noopener"}
+
+Using cookies can put your site at risk of <abbr title="Cross-Site Request Forgery">CSRF</abbr> because JavaScript can also read cookies. If you're dealing with money and sensitive information then you want to use `httpOnly` and secure cookies which can not be accessed by JavaScript. [CSRF protection with JSON Web Tokens](https://stackoverflow.com/questions/35291573/csrf-protection-with-json-web-tokens/35347022#35347022){:target="\_blank" rel="noopener"}
+
+If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.

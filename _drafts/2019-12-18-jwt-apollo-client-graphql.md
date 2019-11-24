@@ -4,7 +4,7 @@ title: "Send JWT tokens from client to GraphQL server"
 date: 2019-11-20 06:00:12 +0000
 permalink: /coding/send-jwt-client-apollo-graphql
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/68999707-54ee5200-08bc-11ea-90dd-4509735e0b22.jpg
+full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg
 meta_description: >
   How to send JWT tokens to an Apollo GraphQL server for authentication
 excerpt_separator: <!--more-->
@@ -13,9 +13,12 @@ tags: javascript node graphql tutorial
 
 This is the continuation of [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql) and will show an example of how to send <abbr title="JSON web token">JWT</abbr>s for each request from the client to the GraphQL server, and how to handle updated tokens when a user returns for a new session in the client.
 
+This tutorial will focus on the **key** features needed to send and receive tokens, meaning there is no _complete example_ output to try at the end. The aim is to help you integrate authentication into your own app.
+
 <!--more-->
 
-This tutorial will focus on the **key** features needed to send and receive tokens, meaning there is no _complete example_ output to try at the end. The aim is to help you integrate authentication into your own app.
+![ropes weaved together](https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg)
+_Photo by Clint Adair on Unsplash_
 
 In the examples below I use [Apollo Boost](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost){:target="\_blank" rel="noopener"} and [Apollo React Hooks](https://www.apollographql.com/docs/react/api/react-hooks/){:target="\_blank" rel="noopener"}.
 

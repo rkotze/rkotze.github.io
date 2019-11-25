@@ -11,6 +11,20 @@ See all the ideas.
 
 <!--more-->
 
+# Using HTTPOnly cookies for JWT GraphQL server
+
+On the server:
+- Add cookie parser
+- Add the cors middleware, add domain and set to true
+- ApolloServer and middleware set cors to false
+- Update login to create httpOnly Cookies
+- Middleware to read from cookies
+
+Client-side
+- Remove the fetch and request interceptors
+- Add credentials includes
+- Have a logged in indicator (maybe local storage)
+
 # Unit test your VS Code extension with Jest
 
 An issue with unit testing vscode extensions is the `vscode` dependency, which is needed to utilise the editors features but will error when running unit tests. Also this is a dependency outside the scope of your project, so the answer is to mock the API.

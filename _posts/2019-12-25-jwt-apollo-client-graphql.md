@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Send JWT tokens from client to GraphQL server"
-date: 2019-11-20 06:00:12 +0000
+date: 2019-11-25 06:00:12 +0000
 permalink: /coding/send-jwt-client-apollo-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg

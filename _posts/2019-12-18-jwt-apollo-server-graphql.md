@@ -36,7 +36,7 @@ It's **important** to note that signed tokens can be decoded and the contents re
 
 ## Getting started
 
-I will be starting from a point where you have set up a Node server using Express and [Apollo Server](https://www.apollographql.com/docs/apollo-server/){:target="\_blank" rel="noopener"}. Here is a list of npm packages to install:
+I will be starting from a point where you have set up a Node server using Express and [Apollo Server](https://www.apollographql.com/docs/apollo-server/){:target="\_blank" rel="noopener"}. Part **two** of this tutorial, [send JWT tokens from client to GraphQL server](/coding/send-jwt-client-apollo-graphql)
 
 Steps:
 
@@ -46,6 +46,8 @@ Steps:
 1. [Access endpoint with valid tokens](#access-endpoint-with-valid-tokens)
 
 ### Basic set up of Apollo Server
+
+Here is a list of npm packages to install:
 
 ```bash
 npm i apollo-server-express jsonwebtoken express graphql
@@ -168,7 +170,7 @@ function validateAccessToken(token) {
   try {
     return verify(token, "<your secret key for access token>");
   } catch {
-    return null
+    return null;
   }
 }
 
@@ -185,15 +187,18 @@ Using the `validateTokens` function in the express middleware we can validate th
 
 To tell the difference between the **decoded** tokens, the code below looks for the `decodedToken.user.count` property to be defined indicating it is the refresh token. The important thing with the refresh is to check the count in the token matches what is returned from the user data source token count. If it does not match then we don't regenerate the tokens.
 
-### Enable client to read custom headers 
+### Enable client to read custom headers
 
-When the tokens are refreshed the data is sent back on the response object with the same header keys. To enable the client to read those headers the `Access-Control-Expose-Headers` needs to be set with the `keys` you want to expose. 
+When the tokens are refreshed the data is sent back on the response object with the same header keys. To enable the client to read those headers the `Access-Control-Expose-Headers` needs to be set with the `keys` you want to expose.
 
 Generating new tokens means we don't need to keep hitting our database to authenticate the user and we essentially trust the user is who they say they are for the session time of 15 minutes.
 
 ```javascript
 // module `validate-tokens-middleware`
-const { validateAccessToken, validateRefreshToken } = require("./validate-tokens");
+const {
+  validateAccessToken,
+  validateRefreshToken
+} = require("./validate-tokens");
 const userRepo = require("../users/users-repository");
 const { setTokens } = require("./set-tokens");
 
@@ -203,23 +208,18 @@ async function validateTokensMiddleware(req, res, next) {
   if (!accessToken && !refreshToken) return next();
 
   const decodedAccessToken = validateAccessToken(accessToken);
-  if (
-    decodedAccessToken &&
-    decodedAccessToken.user
-  ) {
+  if (decodedAccessToken && decodedAccessToken.user) {
     req.user = decodedAccessToken.user;
     return next();
   }
 
   const decodedRefreshToken = validateRefreshToken(refreshToken);
-  if (
-    decodedRefreshToken && 
-    decodedRefreshToken.user
-  ) {
+  if (decodedRefreshToken && decodedRefreshToken.user) {
     // valid refresh token
     const user = await userRepo.get({ userId: decodedRefreshToken.user.id });
     // valid user and user token not invalidated
-    if (!user || user.tokenCount !== decodedRefreshToken.user.count) return next();
+    if (!user || user.tokenCount !== decodedRefreshToken.user.count)
+      return next();
     req.user = decodedRefreshToken.user;
     // refresh the tokens
     const userTokens = setTokens(user);
@@ -253,7 +253,7 @@ const { AuthenticationError } = require("apollo-server-express");
 // logged in user resolver
 const isEmpty = require("lodash/isEmpty");
 async function loggedInUser(_, __, { req }) {
-  if(isEmpty(req.user)) throw new AuthenticationError("Must authenticate");
+  if (isEmpty(req.user)) throw new AuthenticationError("Must authenticate");
   const user = await users.get({ userId: req.user.id });
   return user;
 }
@@ -261,4 +261,6 @@ async function loggedInUser(_, __, { req }) {
 
 You can test this out by making a query for the logged-in user via GraphQL Playground client. Make a query to login and access the tokens. Copy and paste the tokens and set the headers before making the request for a logged-in user.
 
-This is the **end of part one** and you learned how to make an authenticated backend for front-end (BFF) using <abbr title="JSON Web Tokens">JWT</abbr>. Please do provide feedback in the comments below for any improvements or found something difficult to follow and I will make the adjustments as soon as possible.
+This is the **end of part one** and you learned how to make an authenticated backend for front-end (BFF) using <abbr title="JSON Web Tokens">JWT</abbr>. Part **two** is here [send JWT tokens from client to GraphQL server](/coding/send-jwt-client-apollo-graphql).
+
+Add any feedback in the comments below for improvements or found something difficult to follow and I will make the adjustments as soon as possible.

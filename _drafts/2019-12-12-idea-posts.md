@@ -13,6 +13,8 @@ See all the ideas.
 
 # Using HTTPOnly cookies for JWT GraphQL server
 
+Apollo play ground settings: "request.credentials": "include"
+
 On the server:
 - Add cookie parser
 - Add the cors middleware, add domain and set to true

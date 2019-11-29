@@ -27,70 +27,70 @@ Client-side
 - Add credentials includes
 - Have a logged in indicator (maybe local storage)
 
-This is the continuation of [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql) and will show an example of how to send <abbr title="JSON web token">JWT</abbr>s for each request from the client to the GraphQL server, and how to handle updated tokens when a user returns for a new session in the client.
-
-This tutorial will focus on the **key** features needed to send and receive tokens, meaning there is no _complete example_ output to try at the end. The aim is to help you integrate authentication into your own app.
+In the previous article I talked about [security concerns around storing tokens](/coding/send-jwt-client-apollo-graphql#securely-storing-jwt-tokens) in localStorage. I thought it would be worth exploring how to use `httpOnly` cookies when making requests from a React client-side app. This will include making changes to the [Apollo Graphql Server](/coding/json-web-tokens-using-apollo-graphql) to manage cookies from the client. In this post I will go through the changes need to enable storing <abbr title="JSON web token">JWT</abbr>s in **httpOnly** cookies from sending headers.
 
 <!--more-->
 
-Parts that change
+- [Using HTTPOnly cookies for JWT GraphQL server](#using-httponly-cookies-for-jwt-graphql-server)
+    - [Changes to the Apollo Graphql server](#changes-to-the-apollo-graphql-server)
+    - [Changes to the React app](#changes-to-the-react-app)
 
-### Login and store tokens
+### Changes to the Apollo Graphql server
 
-```
-mutation Login($username: String!, $password: String!) {
+
+### Changes to the React app
+
+Instead of login and store tokens the Login mutation can return the user data
+
+```javascript
+// old
+`mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {
     refreshToken
     accessToken
   }
-}
+}`
 
-mutation Login($username: String!, $password: String!) {
+// change
+`mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {
     id
     name
     username
   }
+}`
+```
+
+It's useful to know if the user is logged in client-side and have quick access to public information in localStorage. I recommend replacing the token storage to store public user data.
+
+```javascript
+// CHANGES - replace token store with user data
+const USER_KEY = "loggedInUser";
+export function saveUser(tokens) {
+  localStorage.setItem(USER_KEY, JSON.stringify(tokens));
+}
+
+export function getUser() {
+  return JSON.parse(localStorage.getItem(USER_KEY));
+}
+
+export function deleteUser() {
+  localStorage.removeItem(USER_KEY);
 }
 ```
 
 
-
 ```javascript
-// module for saving tokens to local storage
-const TOKEN_KEY = "stampTokens";
-// tokens = { accessToken: "xyz", refreshToken: "abc" }
-export function saveTokens(tokens) {
-  localStorage.setItem(TOKEN_KEY, JSON.stringify(tokens));
-}
-
-export function getTokens() {
-  return JSON.parse(localStorage.getItem(TOKEN_KEY));
-}
-
-export function deleteTokens() {
-  localStorage.removeItem(TOKEN_KEY);
-}
-```
-
-
-```javascript
-import React, { useState } from "react";
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import { saveTokens } from "./manage-tokens";
-
+// Changes to login form
+// ...
 function LoginForm() {
-  const [loginDetails, setLoginDetails] = useState({
-    username: "",
-    password: ""
-  });
-
+  // ...
   const [login, { data }] = useMutation(gql`
     mutation Login($username: String!, $password: String!) {
       login(username: $username, password: $password) {
-        refreshToken
-        accessToken
+        id
+        name
+        username
       }
     }
   `);
@@ -99,112 +99,30 @@ function LoginForm() {
     e.preventDefault();
     const { data } = await login({ variables: loginDetails });
     if (data && data.login) {
-      saveTokens(data.login);
+      saveUser(data.login);
     }
   }
-
-  return (
-    <form onSubmit={submitLogin}>
-      {/* input fields for username and password call setLoginDetails */}
-    </form>
-  );
+  // ...
 }
 ```
 
-After saving, you will need to update your web app to show that the user has successfully logged in.
-
-### Send tokens on each request
-
-Below is the main entry file to render your app. When you create a new `ApolloClient` you can configure it to **intercept requests** sent to the server. The `request` property allows you to attach headers before the request is sent by using `operations.setContext` and supplying the headers `x-access-token` and `x-refresh-token`. We can get the tokens using the `getTokens` function which reads from local storage. This data will only be available if a user has successfully logged in. For the **request interceptor** to work your main _app_ module needs to be wrapped in the `ApolloProvider` and supplied an `ApolloClient`.
+The most noticeable change will be where the `ApolloClient` is used. All of the **interceptor** code written for sending and receiving headers is removed. This is replaced with `credentials: "include"` which ensures the cookies are sent on each request. This is great as it does simplify the main app file making our developer lives that little bit easier.
 
 ```javascript
-// main entry file to render app
+// Changes to ApolloClient
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { getTokens } from "./manage-tokens";
 
 const client = new ApolloClient({
   uri: '/graphql',
-  request: operation => {
-    const tokens = getTokens();
-    if (tokens && tokens.accessToken) {
-      operation.setContext({
-        headers: {
-          "x-access-token": tokens.accessToken,
-          "x-refresh-token": tokens.refreshToken
-        }
-      });
-    }
-  }
+  credentials: "include"
 });
-
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById("root")
-);
-```
-
-### Update client with new tokens
-
-When the user returns for a different session to your app, the access token would have expired but the refresh token will still be valid. On successful response from the GraphQL server, a new "refreshed" access and refresh tokens will be returned in the headers. These will need to be read and saved in the browser local storage.
-
-Below _Apollo Boost_ allows you to change the **fetch** implementation. This means you can use the native browser `fetch` API to access the **headers** and save to local storage.
-
-Only certain headers can be read by the client and in the previous post this is handled. [How to make custom headers accessible for the client](/coding/json-web-tokens-using-apollo-graphql#express-middleware-to-validate-tokens).
-
-```javascript
-import { saveTokens } from "./manage-tokens";
-
-// ...
-
-const client = new ApolloClient({
-  uri: '/graphql',
-  fetch: async (uri, options) => {
-    const initialRequest = await fetch(uri, options);
-    const { headers } = initialRequest;
-    const accessToken = headers.get("x-access-token");
-    const refreshToken = headers.get("x-refresh-token");
-    if (accessToken && refreshToken) {
-      saveTokens({
-        accessToken: accessToken,
-        refreshToken: refreshToken
-      });
-    }
-    return initialRequest;
-  },
-  request: operation => {
-   // you have done this part
-  }
-});
-
 // ...
 ```
 
-### Access authorised GraphQL endpoint
+On any page request you can fetch the user information from the server which will also ensure the user is still authorised. However you will also have access to the user information in localStorage when you need it to display in the UI or build user related _GraphQL_ queries.
 
-You should now be able to call an authorised GraphQL endpoint and successfully get the data. For example, the component below runs the GraphQL query to fetch logged in user data:
-
-```javascript
-function FetchUserProfile(){
-  const { loading, data } = useQuery(gql`
-    query {
-      loggedInUser {
-        name
-        username
-      }
-    }
-  `);
-
-  if(loading) return <Loading />
-
-  if(data.loggedInUser) return <UserProfile data={data.loggedInUser} />
-
-  return <p><a href="/sign-in">Sign in</a></p>
-}
-```
-
-
+These are all the changes need to use _httpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it. 
 
 If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.

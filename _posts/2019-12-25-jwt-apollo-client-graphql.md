@@ -8,7 +8,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f3
 meta_description: >
   How to send JWT tokens from React app to an Apollo GraphQL server for authentication
 excerpt_separator: <!--more-->
-tags: javascript react node graphql tutorial
+tags: javascript react graphql tutorial
 ---
 
 This is the continuation of [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql) and will show an example of how to send <abbr title="JSON web token">JWT</abbr>s for each request from the client to the GraphQL server, and how to handle updated tokens when a user returns for a new session in the client.

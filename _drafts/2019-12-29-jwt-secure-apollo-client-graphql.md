@@ -1,15 +1,31 @@
 ---
 layout: post
-title: "Send JWT tokens from React app to GraphQL server"
-date: 2019-11-25 06:00:12 +0000
-permalink: /coding/send-jwt-client-apollo-graphql
+title: "Securely manage JWT tokens for a React app"
+date: 2019-11-29 06:00:12 +0000
+permalink: /coding/jwt-secure-client-react-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg
 meta_description: >
-  How to send JWT tokens from React app to an Apollo GraphQL server for authentication
+  How to store JWT tokens securely for a React App to communicate to Apollo GraphQL server
 excerpt_separator: <!--more-->
 tags: javascript react node graphql tutorial
 ---
+
+# Using HTTPOnly cookies for JWT GraphQL server
+
+Apollo play ground settings: "request.credentials": "include"
+
+On the server:
+- Add cookie parser
+- Add the cors middleware, add domain and set to true
+- ApolloServer and middleware set cors to false
+- Update login to create httpOnly Cookies
+- Middleware to read from cookies
+
+Client-side
+- Remove the fetch and request interceptors
+- Add credentials includes
+- Have a logged in indicator (maybe local storage)
 
 This is the continuation of [JWT for authentication using Apollo Graphql server](/coding/json-web-tokens-using-apollo-graphql) and will show an example of how to send <abbr title="JSON web token">JWT</abbr>s for each request from the client to the GraphQL server, and how to handle updated tokens when a user returns for a new session in the client.
 
@@ -17,24 +33,9 @@ This tutorial will focus on the **key** features needed to send and receive toke
 
 <!--more-->
 
-![ropes weaved together](https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg)
-_Photo by Clint Adair on Unsplash_
-
-In the examples below I use [Apollo Boost](https://github.com/apollographql/apollo-client/tree/master/packages/apollo-boost){:target="\_blank" rel="noopener"} and [Apollo React Hooks](https://www.apollographql.com/docs/react/api/react-hooks/){:target="\_blank" rel="noopener"}.
-
-```
-npm i apollo-boost @apollo/react-hooks
-```
-
-- [Login and store tokens](#login-and-store-tokens)
-- [Send tokens on each request](#send-tokens-on-each-request)
-- [Update client with new tokens](#update-client-with-new-tokens)
-- [Access authorised GraphQL endpoint](#access-authorised-graphql-endpoint)
-- [Securely storing JWT tokens](#securely-storing-jwt-tokens)
+Parts that change
 
 ### Login and store tokens
-
-With the login **GraphQL mutation** below you can see it will return refresh and access tokens. This data will need be saved somewhere on the client.
 
 ```
 mutation Login($username: String!, $password: String!) {
@@ -43,10 +44,17 @@ mutation Login($username: String!, $password: String!) {
     accessToken
   }
 }
+
+mutation Login($username: String!, $password: String!) {
+  login(username: $username, password: $password) {
+    id
+    name
+    username
+  }
+}
 ```
 
-These functions will be used to manage the tokens object which will be saved in the browser local storage.
-The native JSON functions are used to handle storing of the token object, since local storage only saves data as a string.
+
 
 ```javascript
 // module for saving tokens to local storage
@@ -65,7 +73,6 @@ export function deleteTokens() {
 }
 ```
 
-Below is an example component which is missing the _username_ and _password_ input fields, as I want focus on the important functions. Essentially we call the mutation when the form is submitted, and take the user login details from the component state. A successful response from `await login` will return a `data.login` object containing the tokens and is saved using `saveTokens`.
 
 ```javascript
 import React, { useState } from "react";
@@ -198,14 +205,6 @@ function FetchUserProfile(){
 }
 ```
 
-That should be all that is needed to fetch data from an authenticated GraphQL endpoint.
 
-### Securely storing JWT tokens
-
-These tokens are very much like a password or credit card number because they can be used to access and do actions under a user's identity. You must consider the risks when using localStorage to store this information. Ensure your site is well protected from <abbr title="Cross-site scripting">XSS</abbr> because any 3rd party JavaScript library can read from localStorage. [Is it safe to store a JWT in localStorage with React?](https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs){:target="\_blank" rel="noopener"}
-
-Using cookies can put your site at risk of <abbr title="Cross-Site Request Forgery">CSRF</abbr> because JavaScript can also read cookies. If you're dealing with money and sensitive information then you want to use `httpOnly` and secure cookies which can not be accessed by JavaScript. [CSRF protection with JSON Web Tokens](https://stackoverflow.com/questions/35291573/csrf-protection-with-json-web-tokens/35347022#35347022){:target="\_blank" rel="noopener"}
-
-I'll investigate further into make a more secure method of handling authentication using `httpOnly` cookies and graphql. Make this another post in the near future.
 
 If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.

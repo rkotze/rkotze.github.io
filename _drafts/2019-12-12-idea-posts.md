@@ -11,21 +11,6 @@ See all the ideas.
 
 <!--more-->
 
-# Using HTTPOnly cookies for JWT GraphQL server
-
-Apollo play ground settings: "request.credentials": "include"
-
-On the server:
-- Add cookie parser
-- Add the cors middleware, add domain and set to true
-- ApolloServer and middleware set cors to false
-- Update login to create httpOnly Cookies
-- Middleware to read from cookies
-
-Client-side
-- Remove the fetch and request interceptors
-- Add credentials includes
-- Have a logged in indicator (maybe local storage)
 
 # Unit test your VS Code extension with Jest
 

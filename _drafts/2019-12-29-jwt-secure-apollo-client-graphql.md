@@ -6,14 +6,10 @@ permalink: /coding/jwt-secure-client-react-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg
 meta_description: >
-  How to store JWT tokens securely for a React App to communicate to Apollo GraphQL server
+  Store JWT tokens securely in HTTPOnly cookies for a React App to communicate to Apollo GraphQL server
 excerpt_separator: <!--more-->
 tags: javascript react node graphql tutorial
 ---
-
-# Using HTTPOnly cookies for JWT GraphQL server
-
-Apollo play ground settings: "request.credentials": "include"
 
 On the server:
 - Add cookie parser
@@ -22,18 +18,18 @@ On the server:
 - Update login to create httpOnly Cookies
 - Middleware to read from cookies
 
-Client-side
-- Remove the fetch and request interceptors
-- Add credentials includes
-- Have a logged in indicator (maybe local storage)
-
 In the previous article I talked about [security concerns around storing tokens](/coding/send-jwt-client-apollo-graphql#securely-storing-jwt-tokens) in localStorage. I thought it would be worth exploring how to use `httpOnly` cookies when making requests from a React client-side app. This will include making changes to the [Apollo Graphql Server](/coding/json-web-tokens-using-apollo-graphql) to manage cookies from the client. In this post I will go through the changes need to enable storing <abbr title="JSON web token">JWT</abbr>s in **httpOnly** cookies from sending headers.
 
 <!--more-->
 
-- [Using HTTPOnly cookies for JWT GraphQL server](#using-httponly-cookies-for-jwt-graphql-server)
-    - [Changes to the Apollo Graphql server](#changes-to-the-apollo-graphql-server)
-    - [Changes to the React app](#changes-to-the-react-app)
+<!-- omit in toc -->### Why change from localStorage to cookies
+
+From what I learned you do again some more security. **HttpOnly** cookies can't be accessed by the JavaScript and this would prevent a third party script for example accessing the user tokens in an <abbr title="Cross-site scripting">XSS</abbr> attack. Also setting the cookies to **secure** only, meaning they can only be sent on _https_ connections ensures that data can't be intercepted on communication to the server. The [**SameSite**](https://web.dev/samesite-cookies-explained/){:target="\_blank" rel="noopener"} attribute of a cookie can help mitigate <abbr title="Cross-Site Request Forgery">CSRF</abbr> attacks, which is [supported on most browsers](https://caniuse.com/#feat=same-site-cookie-attribute){:target="\_blank" rel="noopener"}. In the release of a future version of [Chrome 80 will remove SameSite=None cookies](https://www.chromestatus.com/feature/5633521622188032){:target="\_blank" rel="noopener"}.
+
+Developer experience wise the code is simplified on the client-side by a lot. Testing GraphQL queries in _Apollo Playground_ are potentially easier because you won't need to manually add the token headers for each request. On the Apollo Server there are significant changes to the code to support cookies however it does seem less complex than managing headers overall.
+
+- [Changes to the Apollo Graphql server](#changes-to-the-apollo-graphql-server)
+- [Changes to the React app](#changes-to-the-react-app)
 
 ### Changes to the Apollo Graphql server
 
@@ -122,6 +118,11 @@ const client = new ApolloClient({
 ```
 
 On any page request you can fetch the user information from the server which will also ensure the user is still authorised. However you will also have access to the user information in localStorage when you need it to display in the UI or build user related _GraphQL_ queries.
+
+
+<!-- omit in toc -->### Testing in Apollo playground
+
+When testing in Apollo playground you will need to make a change to the settings to allow the cookies storing the tokens to be sent on each request. Click the gear or cog icon in the top right to access setting and look for the option `"request.credentials"` and the value must be set to `"include"`. Now you should be able to successfully make requests after you have run the **Login** mutation.
 
 These are all the changes need to use _httpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it. 
 

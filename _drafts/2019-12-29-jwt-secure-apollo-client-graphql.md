@@ -1,28 +1,24 @@
 ---
 layout: post
-title: "Securely manage JWT tokens for a React app"
+title: "Securely manage JWT tokens for React apps"
 date: 2019-11-29 06:00:12 +0000
 permalink: /coding/jwt-secure-client-react-graphql
 category: coding
-full_image_url: https://user-images.githubusercontent.com/10452163/69498077-e4f35380-0edb-11ea-820a-627f259180b9.jpg
+full_image_url: https://user-images.githubusercontent.com/10452163/69915611-ee833b00-1448-11ea-9e62-7afd5fb49431.jpg
 meta_description: >
   Store JWT tokens securely in HTTPOnly cookies for a React App to communicate to Apollo GraphQL server
 excerpt_separator: <!--more-->
 tags: javascript react node graphql tutorial
 ---
 
-On the server:
-- Add cookie parser
-- Add the cors middleware, add domain and set to true
-- ApolloServer and middleware set cors to false
-- Update login to create httpOnly Cookies
-- Middleware to read from cookies
-
 In the previous article I talked about [security concerns around storing tokens](/coding/send-jwt-client-apollo-graphql#securely-storing-jwt-tokens) in localStorage. I thought it would be worth exploring how to use `httpOnly` cookies when making requests from a React client-side app. This will include making changes to the [Apollo Graphql Server](/coding/json-web-tokens-using-apollo-graphql) to manage cookies from the client. In this post I will go through the changes need to enable storing <abbr title="JSON web token">JWT</abbr>s in **httpOnly** cookies from sending headers.
 
 <!--more-->
 
-<!-- omit in toc -->### Why change from localStorage to cookies
+![Chain locked tricycle to post](https://user-images.githubusercontent.com/10452163/69915611-ee833b00-1448-11ea-9e62-7afd5fb49431.jpg)
+_Photo by Florian Klauer on Unsplash_
+
+<!-- omit in toc -->### Why change from localStorage to cookies?
 
 From what I learned you do again some more security. **HttpOnly** cookies can't be accessed by the JavaScript and this would prevent a third party script for example accessing the user tokens in an <abbr title="Cross-site scripting">XSS</abbr> attack. Also setting the cookies to **secure** only, meaning they can only be sent on _https_ connections ensures that data can't be intercepted on communication to the server. The [**SameSite**](https://web.dev/samesite-cookies-explained/){:target="\_blank" rel="noopener"} attribute of a cookie can help mitigate <abbr title="Cross-Site Request Forgery">CSRF</abbr> attacks, which is [supported on most browsers](https://caniuse.com/#feat=same-site-cookie-attribute){:target="\_blank" rel="noopener"}. In the release of a future version of [Chrome 80 will remove SameSite=None cookies](https://www.chromestatus.com/feature/5633521622188032){:target="\_blank" rel="noopener"}.
 

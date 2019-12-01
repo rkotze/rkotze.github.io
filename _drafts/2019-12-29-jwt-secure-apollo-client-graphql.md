@@ -22,7 +22,7 @@ _Photo by Florian Klauer on Unsplash_
 
 From what I learned you do again some more security. **HttpOnly** cookies can't be accessed by the JavaScript and this would prevent a third party script for example accessing the user tokens in an <abbr title="Cross-site scripting">XSS</abbr> attack. Also setting the cookies to **secure** only, meaning they can only be sent on _https_ connections ensures that data can't be intercepted on communication to the server. The [**SameSite**](https://web.dev/samesite-cookies-explained/){:target="\_blank" rel="noopener"} attribute of a cookie can help mitigate <abbr title="Cross-Site Request Forgery">CSRF</abbr> attacks, which is [supported on most browsers](https://caniuse.com/#feat=same-site-cookie-attribute){:target="\_blank" rel="noopener"}. In the release of a future version of [Chrome 80 will remove SameSite=None cookies](https://www.chromestatus.com/feature/5633521622188032){:target="\_blank" rel="noopener"}.
 
-Developer experience wise the code is simplified on the client-side by a lot. Testing GraphQL queries in _Apollo Playground_ are potentially easier because you won't need to manually add the token headers for each request. On the Apollo Server there are significant changes to the code to support cookies however it does seem less complex than managing headers overall.
+Developer experience wise the code is simplified on the client-side by a lot. Testing GraphQL queries in _Apollo Playground_ are potentially easier because you won't need to manually add the token headers for each request. On the Apollo Server, there are significant changes to the code to support cookies however it does seem less complex than managing headers overall.
 
 - [Changes to the Apollo Graphql server](#changes-to-the-apollo-graphql-server)
 - [Changes to the React app](#changes-to-the-react-app)
@@ -37,7 +37,7 @@ You will need to install [cors](https://www.npmjs.com/package/cors){:target="\_b
 npm i cors cookie-parser
 ```
 
-Starting with the main server file where `ApolloServer` is instantiated you will need to adjust the _cors_ and provide options to the cors middleware. After that you can add the cookieParser.
+Starting with the main server file where `ApolloServer` is instantiated you will need to adjust the _cors_ and provide options to the cors middleware. After that, you can add the cookie parser.
 
 ```javascript
 const server = new ApolloServer({
@@ -66,7 +66,7 @@ server.applyMiddleware({
   });
 ```
 
-In the login mutation you will want to replace the logic for returning tokens with creating cookies. I've also thought it would be hand to return the user data.
+In the login mutation, you will want to replace the logic for returning tokens with creating cookies. I've also thought it would be hand to return the user data.
 
 ```javascript
 async function login(_, { email, password }, { res }) {
@@ -97,7 +97,7 @@ function tokenCookies({ accessToken, refreshToken }) {
 }
 ```
 
-Changes to the middleware for validating tokens for each request. The function will need to read the cookies sent on the request which can be accessed `req.cookies`. The main change is to the refresh token, if token in invalid then clear the cookies and when it is valid send updated tokens by updating the cookies. For me this seems less complicated than sending new headers on response.
+Changes to the middleware for validating tokens for each request. The function will need to read the cookies sent on the request which can be accessed `req.cookies`. The main change is to the refresh token if a token is invalid then clear the cookies and when it is valid to send refreshed tokens by updating the cookies. For me, this seems less complicated than sending new headers on the response. In the login mutation, you will want to replace the logic for returning tokens with creating cookies. I also thought it would be hand to return the user data.
 
 ```javascript
 async function validateTokensMiddleware(req, res, next) {
@@ -142,7 +142,7 @@ async function logout(_, __, { res }) {
 
 Below are the code snippet changes from this post [send JWT tokens from React app to GraphQL server](/coding/send-jwt-client-apollo-graphql).
 
-Instead of login and store tokens the Login mutation can return the user data
+Instead of login and store tokens, the Login mutation can return the user data.
 
 ```javascript
 // old
@@ -223,12 +223,11 @@ const client = new ApolloClient({
 // ...
 ```
 
-On any page request you can fetch the user information from the server which will also ensure the user is still authorised. However you will also have access to the user information in localStorage when you need it to display in the UI or build user related _GraphQL_ queries.
-
+On any page request, you can fetch the user information from the server which will also ensure the user is still authorised. However, you will also have access to the user information in localStorage when you need it to display in the UI or build user-related _GraphQL_ queries.
 
 <!-- omit in toc -->### Testing in Apollo playground
 
-When testing in Apollo playground you will need to make a change to the settings to allow the cookies storing the tokens to be sent on each request. Click the gear or cog icon in the top right to access setting and look for the option `"request.credentials"` and the value must be set to `"include"`. Now you should be able to successfully make requests after you have run the **Login** mutation.
+When testing in Apollo playground you will need to make a change to the settings to allow the cookies to be sent on each request. Click the gear or cog icon in the top right to access setting and look for the option `"request.credentials"` and the value must be set to `"include"`. Now you should be able to successfully make requests after you have run the **Login** mutation.
 
 These are all the changes need to use _httpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it. 
 

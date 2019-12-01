@@ -33,8 +33,77 @@ Developer experience wise the code is simplified on the client-side by a lot. Te
 
 ### Changes to the Apollo Graphql server
 
+Below are the code snippet changes from this post [JWT tokens for authentication using Apollo GraphQL server](/coding/json-web-tokens-using-apollo-graphql)
+
+You will need to install [cors](https://www.npmjs.com/package/cors){:target="\_blank" rel="noopener"} & [cookieParser](https://www.npmjs.com/package/cookie-parser){:target="\_blank" rel="noopener"} express middleware packages to install:
+
+```
+npm i cors cookie-parser
+```
+
+Starting with the main server file where `ApolloServer` is instantiated you will need to adjust the _cors_ and provide options to the cors middleware. After that you can add the cookieParser.
+
+```javascript
+const server = new ApolloServer({
+  schema,
+  context: ({ req, res }) => ({ req, res }),
+  cors: false // <- ADD
+});
+
+const corsConfig = process.env.NODE_ENV !== 'production' ? 
+  { 
+    "origin": "http://localhost:3000" ,
+    "credentials": true
+  } : 
+  { 
+    "origin": "https://your-website.com",
+    "credentials": true
+  }
+
+const app = express();
+app.use(cors(corsConfig));
+app.use(cookieParser());
+app.use(validateTokensMiddleware);
+server.applyMiddleware({ 
+  app, 
+  cors: false // <- ADD 
+  });
+```
+
+In the login mutation you will want to replace the logic for returning tokens with creating cookies. I've also thought it would be hand to return the user data.
+
+```javascript
+async function login(_, { email, password }, { res }) {
+  const user = await users.get({ email });
+  if (!user.data) return null;
+
+  const foundUser = user.data;
+
+  if (!validatePassword(password, foundUser.password)) return null;
+
+  const tokens = setTokens(foundUser);
+  const cookies = tokenCookies(tokens);
+  res.cookie(...cookies.access);
+  res.cookie(...cookies.refresh);
+  return user.data;
+}
+
+function tokenCookies({ accessToken, refreshToken }) {
+  const cookieOptions = { httpOnly: true, 
+    // secure: true, //for HTTPS only
+    // domain: "your-website.com",
+    // SameSite: lax
+  };
+  return {
+    access: ["access", accessToken, cookieOptions],
+    refresh: ["refresh", refreshToken, cookieOptions]
+  };
+}
+```
 
 ### Changes to the React app
+
+Below are the code snippet changes from this post [send JWT tokens from React app to GraphQL server](/coding/send-jwt-client-apollo-graphql).
 
 Instead of login and store tokens the Login mutation can return the user data
 

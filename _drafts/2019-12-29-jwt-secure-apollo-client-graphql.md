@@ -101,6 +101,47 @@ function tokenCookies({ accessToken, refreshToken }) {
 }
 ```
 
+Changes to the middleware for validating tokens for each request. The function will need to read the cookies sent on the request which can be accessed `req.cookies`. The main change is to the refresh token, if token in invalid then clear the cookies and when it is valid send updated tokens by updating the cookies. For me this seems less complicated than sending new headers on response.
+
+```javascript
+async function validateTokensMiddleware(req, res, next) {
+  const refreshToken = req.cookies["refresh"];
+  const accessToken = req.cookies["access"];
+
+  // ... access token logic does NOT change
+
+  const decodedRefreshToken = validateRefreshToken(refreshToken);
+  if (decodedRefreshToken && decodedRefreshToken.user) {
+    const user = await userRepo.get({ userId: decodedRefreshToken.user.id });
+    if (!user.data || user.data.tokenCount !== decodedRefreshToken.user.count) {
+      // remove cookies if token not valid
+      res.clearCookie("access");
+      res.clearCookie("refresh");
+      return next();
+    }
+
+    const userTokens = setTokens(user.data);
+    req.user = userTokens.user;
+    // update the cookies with new tokens
+    const cookies = tokenCookies(userTokens);
+    res.cookie(...cookies.access);
+    res.cookie(...cookies.refresh);
+    return next();
+  }
+  next();
+}
+```
+
+You will need a logout Graphql mutation to clear the cookies when the user wants to logout.
+
+```javascript
+async function logout(_, __, { res }) {
+  res.clearCookie("access");
+  res.clearCookie("refresh");
+  return true;
+}
+```
+
 ### Changes to the React app
 
 Below are the code snippet changes from this post [send JWT tokens from React app to GraphQL server](/coding/send-jwt-client-apollo-graphql).
@@ -195,4 +236,4 @@ When testing in Apollo playground you will need to make a change to the settings
 
 These are all the changes need to use _httpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it. 
 
-If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.
+If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Securely manage JWT tokens for a React app @richardkotze &url=https://www.richardkotze.com/coding/jwt-secure-client-react-graphql&hashtags=javascript,reactjs,graphql,infoSec){:target="\_blank" rel="noopener"}.

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Securely manage JWT tokens for React apps"
-date: 2019-11-29 06:00:12 +0000
+date: 2019-12-02 06:00:12 +0000
 permalink: /coding/jwt-secure-client-react-graphql
 category: coding
 full_image_url: https://user-images.githubusercontent.com/10452163/69915611-ee833b00-1448-11ea-9e62-7afd5fb49431.jpg

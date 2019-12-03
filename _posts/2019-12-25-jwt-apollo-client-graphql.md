@@ -117,7 +117,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { getTokens } from "./manage-tokens";
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: "/graphql",
   request: operation => {
     const tokens = getTokens();
     if (tokens && tokens.accessToken) {
@@ -153,7 +153,7 @@ import { saveTokens } from "./manage-tokens";
 // ...
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: "/graphql",
   fetch: async (uri, options) => {
     const initialRequest = await fetch(uri, options);
     const { headers } = initialRequest;
@@ -168,7 +168,7 @@ const client = new ApolloClient({
     return initialRequest;
   },
   request: operation => {
-   // you have done this part
+    // you have done this part
   }
 });
 
@@ -180,7 +180,7 @@ const client = new ApolloClient({
 You should now be able to call an authorised GraphQL endpoint and successfully get the data. For example, the component below runs the GraphQL query to fetch logged in user data:
 
 ```javascript
-function FetchUserProfile(){
+function FetchUserProfile() {
   const { loading, data } = useQuery(gql`
     query {
       loggedInUser {
@@ -190,11 +190,15 @@ function FetchUserProfile(){
     }
   `);
 
-  if(loading) return <Loading />
+  if (loading) return <Loading />;
 
-  if(data.loggedInUser) return <UserProfile data={data.loggedInUser} />
+  if (data.loggedInUser) return <UserProfile data={data.loggedInUser} />;
 
-  return <p><a href="/sign-in">Sign in</a></p>
+  return (
+    <p>
+      <a href="/sign-in">Sign in</a>
+    </p>
+  );
 }
 ```
 
@@ -202,10 +206,10 @@ That should be all that is needed to fetch data from an authenticated GraphQL en
 
 ### Securely storing JWT tokens
 
+Below are topics you need to consider when using localStorage for JWT tokens. I've written a post moving the above solution to [securely manage JWT tokens for React apps](/coding/jwt-secure-client-react-graphql) using _httpOnly_ cookies.
+
 These tokens are very much like a password or credit card number because they can be used to access and do actions under a user's identity. You must consider the risks when using localStorage to store this information. Ensure your site is well protected from <abbr title="Cross-site scripting">XSS</abbr> because any 3rd party JavaScript library can read from localStorage. [Is it safe to store a JWT in localStorage with React?](https://stackoverflow.com/questions/44133536/is-it-safe-to-store-a-jwt-in-localstorage-with-reactjs){:target="\_blank" rel="noopener"}
 
 Using cookies can put your site at risk of <abbr title="Cross-Site Request Forgery">CSRF</abbr> because JavaScript can also read cookies. If you're dealing with money and sensitive information then you want to use `httpOnly` and secure cookies which can not be accessed by JavaScript. [CSRF protection with JSON Web Tokens](https://stackoverflow.com/questions/35291573/csrf-protection-with-json-web-tokens/35347022#35347022){:target="\_blank" rel="noopener"}
-
-I'll investigate further into make a more secure method of handling authentication using `httpOnly` cookies and graphql. Make this another post in the near future.
 
 If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Send JWT tokens from client to GraphQL server @richardkotze &url=https://www.richardkotze.com/coding/send-jwt-client-apollo-graphql&hashtags=javascript,reactjs,graphql){:target="\_blank" rel="noopener"}.

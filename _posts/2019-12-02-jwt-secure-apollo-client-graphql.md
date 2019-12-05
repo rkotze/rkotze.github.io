@@ -46,24 +46,25 @@ const server = new ApolloServer({
   cors: false // <- ADD
 });
 
-const corsConfig = process.env.NODE_ENV !== 'production' ? 
-  { 
-    "origin": "http://localhost:3000" ,
-    "credentials": true
-  } : 
-  { 
-    "origin": "https://your-website.com",
-    "credentials": true
-  }
+const corsConfig =
+  process.env.NODE_ENV !== "production"
+    ? {
+        origin: "http://localhost:3000",
+        credentials: true
+      }
+    : {
+        origin: "https://your-website.com",
+        credentials: true
+      };
 
 const app = express();
 app.use(cors(corsConfig));
 app.use(cookieParser());
 app.use(validateTokensMiddleware);
-server.applyMiddleware({ 
-  app, 
-  cors: false // <- ADD 
-  });
+server.applyMiddleware({
+  app,
+  cors: false // <- ADD
+});
 ```
 
 In the login mutation, you will want to replace the logic for returning tokens with creating cookies. I've also thought it would be handy to return the user data.
@@ -85,10 +86,11 @@ async function login(_, { email, password }, { res }) {
 }
 
 function tokenCookies({ accessToken, refreshToken }) {
-  const cookieOptions = { httpOnly: true, 
+  const cookieOptions = {
+    httpOnly: true
     // secure: true, //for HTTPS only
     // domain: "your-website.com",
-    // SameSite: lax
+    // SameSite: None
   };
   return {
     access: ["access", accessToken, cookieOptions],
@@ -117,7 +119,7 @@ async function validateTokensMiddleware(req, res, next) {
     }
 
     const userTokens = setTokens(user.data);
-    req.user = userTokens.user;
+    req.user = decodedRefreshToken.user;
     // update the cookies with new tokens
     const cookies = tokenCookies(userTokens);
     res.cookie(...cookies.access);
@@ -151,16 +153,14 @@ Instead of login and store tokens, the login mutation can return the user data.
     refreshToken
     accessToken
   }
-}`
-
-// change
+}`// change
 `mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {
     id
     name
     username
   }
-}`
+}`;
 ```
 
 It's useful to know if the user is logged in client-side and have quick access to public information in localStorage. I recommend replacing the token storage to store public user data.
@@ -180,7 +180,6 @@ export function deleteUser() {
   localStorage.removeItem(USER_KEY);
 }
 ```
-
 
 ```javascript
 // Changes to login form
@@ -217,7 +216,7 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import { getTokens } from "./manage-tokens";
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: "/graphql",
   credentials: "include"
 });
 // ...
@@ -229,6 +228,6 @@ On any page request, you can fetch the user information from the server which wi
 
 When testing in Apollo playground you will need to make a change to the settings to allow the cookies to be sent on each request. Click the gear or cog icon in the top right to access settings and look for the option `"request.credentials"` and the value must be set to `"include"`. Now you should be able to successfully make requests after you have run the **Login** mutation.
 
-These are all the changes need to use _HttpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it. 
+These are all the changes need to use _HttpOnly_ cookies and hopefully this has helped you migrate from localStorage approach if you feel you needed it.
 
 If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Securely manage JWT tokens for a React app @richardkotze &url=https://www.richardkotze.com/coding/jwt-secure-client-react-graphql&hashtags=javascript,reactjs,graphql,infoSec){:target="\_blank" rel="noopener"}.

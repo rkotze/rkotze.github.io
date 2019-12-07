@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 tags: javascript react unit-testing
 ---
 
-**How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank" rel="noopener"} and [Kent C. Dodds](https://github.com/kentcdodds){:target="\_blank" rel="noopener"} [react-testing-library](https://github.com/kentcdodds/react-testing-library){:target="\_blank" rel="noopener"}
+**How do you unit test your React components?** There are plenty testing libraries to help support testing your React app. I'm going to look at using [Jest](https://facebook.github.io/jest){:target="\_blank" rel="noopener"} and [Kent C. Dodds](https://github.com/kentcdodds){:target="\_blank" rel="noopener"} [@testing-library/react](https://github.com/testing-library/react-testing-library){:target="\_blank" rel="noopener"}
 
 <!--more-->
 
@@ -24,7 +24,7 @@ _Photo by Barn Images on Unsplash_
 When React was in it's `0.x` versions it was a real struggle to test your components. Lots of ideas and opinions but no clear test setup. One way was to render a component into a headless browser or an emulated DOM environment using the now deprecated method `React.render(<MyApp />, document.body)`. Then find the component in the DOM `dom = React.findDOMNode(component)`. Rendering a component to the DOM meant you had to wait until
 the lifecycle events where completed before querying for it.
 
-I worked on a React project where we decided to use JSDOM v3.x and this had some [painful setup](https://github.com/jsdom/jsdom/tree/3.x#contextify){:target="\_blank" rel="noopener"} especially using a Windows OS. Having to install Python 2.7 and Visual Studios Express to compile native modules for your machine. All this to run tests locally but eventually, it would run _fairly_ consistently. Setting up a CI pipeline also had similar challenges.
+I worked on a React project where we decided to use JSDOM v3.x and this had some [painful set up](https://github.com/jsdom/jsdom/tree/3.x#contextify){:target="\_blank" rel="noopener"} especially using a Windows OS. Having to install Python 2.7 and Visual Studios Express to compile native modules for your machine. All this to run tests locally but eventually, it would run _fairly_ consistently. Setting up a CI pipeline also had similar challenges.
 
 I'm glad a lot of effort from the JavaScript community has gone into improving JSDOM. Now it has become the default DOM environment to test your React app in. It is as simple as `npm i jsdom -D` and with a little setup, it works.
 
@@ -48,13 +48,13 @@ React is different to other libraries on how it handles the view and application
 
 More details are provided in the react-testing-library on this principle. This approach means testing your components in a similar way to how a user would use your app. Technically the library queries and interacts with the rendered DOM nodes. To me this is similar to UI testing which is typically slow but setting it up in a _unit test environment makes it fast_.
 
-## From setup to writing the first test
+## From set up to writing the first test
 
 I'm going to add react-testing-library to an existing project to see how long it takes to setup and start writing a passing unit test.
 
 Here are the steps I took get going:
 
-1. `npm i jest react-testing-library jest-dom -D`
+1. `npm i jest @testing-library/react @testing-library/jest-dom -D`
 1. Update `package.json` test scripts section with `jest` allowing me to run `npm test`
 1. Write a test for a "hello world" component
 1. Added a `.babelrc` file for Jest to compile from ES6/7 and JSX to JavaScript the environment can interpret. This is helpful and beats compiling the code first then running the test suite.
@@ -63,8 +63,8 @@ First basic test to get started:
 
 ```javascript
 import React from "react";
-import { render } from "react-testing-library";
-import "jest-dom/extend-expect";
+import { render } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
 const Hello = () => <h1>Hello World</h1>;
 
@@ -89,8 +89,8 @@ I've created a simple component to fetch the contributors for the repository `gi
 
 ```javascript
 import React from "react";
-import { render, Simulate, wait } from "react-testing-library";
-import "jest-dom/extend-expect";
+import { render, Simulate, wait } from "@testing-library/react";
+import "@testing-library/jest-dom";
 import { FetchGitMobContributors } from "./fetch-git-mob-contributors";
 
 beforeEach(function() {

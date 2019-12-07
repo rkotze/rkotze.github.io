@@ -18,6 +18,69 @@ Essentially a mock is about replacing the actual implementation with a set of fu
 
 <!--more-->
 
-First thing we are going to look at is most React app make a http call to an service. In this example we make an a call to the [SWAPI](https://swapi.co/){:target="\_blank" rel="noopener"} API to get the names of characters in Star Wars. What we want to test is when that character is selected we show details of them.
+First thing we are going to look at is with most React apps they make a http call to an service. In this example we make an a call to the [SWAPI](https://swapi.co/){:target="\_blank" rel="noopener"} API to get the names of characters in Star Wars. What we want to test is when that character is selected we show details of them.
 
+**First we write a test** which checks that our fetch React hook is called with "people" as the first parameter and returns fake data to be rendered into a select list. The test also asserts there are three items and one contains Luke Skywalker.
 
+```javascript
+// list-character.spec.js
+import React from "react";
+import { render } from "@testing-library/react";
+
+import { ListPeople } from "./list-characters";
+import { useTheFetch } from "./use-the-fetch";
+jest.mock("./use-the-fetch");
+
+describe("list characters", () => {
+  it("lists three", () => {
+    useTheFetch.mockReturnValue({
+      loading: false,
+      data: {
+        results: [
+          {
+            name: "Luke Skywalker"
+          },
+          {
+            name: "C-3PO"
+          },
+          {
+            name: "Darth Vader"
+          }
+        ]
+      }
+    });
+    const { getAllByText, container } = render(<ListPeople />);
+    const selectList = getAllByText((_content, element) => {
+      return element.tagName.toLowerCase() === "option";
+    });
+
+    expect(useTheFetch).toBeCalledWith("people");
+    expect(container).toHaveTextContent("Luke Skywalker");
+    expect(selectList).toHaveLength(3);
+  });
+});
+```
+
+Below we call `useTheFetch` hook which get our Star Wars character data. The helpful thing about mocks in this case is we can design the response we want from the function before it's implemented. Essentially we can design the specification for our next function. In this case `useTheFetch` exists as an empty module. 
+
+```javascript
+// list-character.js
+import React from "react";
+import { useTheFetch } from "./use-the-fetch";
+
+export function ListPeople() {
+  const { data } = useTheFetch("people");
+  return (
+    <select>
+      {data.results.map(character => (
+        <option key={character.name}>{character.name}</option>
+      ))}
+    </select>
+  );
+}
+```
+
+```javascript
+// use-the-fetch.js
+export function useTheFetch(path) {}
+```

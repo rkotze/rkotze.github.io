@@ -35,7 +35,7 @@ npx create-react-app your-app-name
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { ListPeople } from "./list-characters";
+import { ListCharacters } from "./list-characters";
 import { useTheFetch } from "./use-the-fetch";
 jest.mock("./use-the-fetch");
 
@@ -57,7 +57,7 @@ describe("list characters", () => {
         ]
       }
     });
-    const { getAllByText, container } = render(<ListPeople />);
+    const { getAllByText, container } = render(<ListCharacters />);
     const selectList = getAllByText((_content, element) => {
       return element.tagName.toLowerCase() === "option";
     });
@@ -76,7 +76,7 @@ Below we call `useTheFetch` hook which get our Star Wars character data. The hel
 import React from "react";
 import { useTheFetch } from "./use-the-fetch";
 
-export function ListPeople() {
+export function ListCharacters() {
   const { data } = useTheFetch("people");
   return (
     <select>

@@ -20,6 +20,15 @@ Essentially a mock is about replacing the actual implementation with a set of fu
 
 First thing we are going to look at is with most React apps they make a http call to an service. In this example we make an a call to the [SWAPI](https://swapi.co/){:target="\_blank" rel="noopener"} API to get the names of characters in Star Wars. What we want to test is when that character is selected we show details of them.
 
+### Getting started
+
+You can go ahead an use [create react app](https://github.com/facebook/create-react-app){:target="\_blank" rel="noopener"} which comes with [react-testing-library](https://github.com/testing-library/react-testing-library){:target="\_blank" rel="noopener"} installed.
+
+```
+npx create-react-app your-app-name
+```
+
+
 **First we write a test** which checks that our fetch React hook is called with "people" as the first parameter and returns fake data to be rendered into a select list. The test also asserts there are three items and one contains Luke Skywalker.
 
 ```javascript
@@ -84,3 +93,64 @@ export function ListPeople() {
 // use-the-fetch.js
 export function useTheFetch(path) {}
 ```
+
+### Testing custom React Hooks
+
+To test the custom hook we are creating two more dependencies will need to be installed. [`@testing-library/react-hooks`](https://github.com/testing-library/react-hooks-testing-library){:target="\_blank" rel="noopener"} is a helpful utility to make testing hooks clean and easy to test.
+
+```
+npm i -D @testing-library/react-hooks react-test-renderer
+```
+
+```javascript
+// use-the-fetch.spec.js
+import { renderHook, act } from "@testing-library/react-hooks";
+import { useTheFetch } from "./use-the-fetch";
+import { getStarWars } from "./base-fetch";
+jest.mock("./base-fetch");
+
+describe("use the fetch", () => {
+  it("initial data state is loading and data empty", () => {
+    const { result } = renderHook(() => useTheFetch("people"));
+
+    expect(result.current).toStrictEqual({ loading: true, data: null });
+  });
+
+  it("data is fetched and not loading", async () => {
+    const fakeSWData = { result: [{ name: "Luke Skywalker" }] };
+    getStarWars.mockResolvedValue(fakeSWData);
+    const { result, waitForNextUpdate } = renderHook(() =>
+      useTheFetch("people")
+    );
+
+    await waitForNextUpdate();
+
+    expect(getStarWars).toBeCalledWith("people");
+    expect(result.current).toStrictEqual({
+      loading: false,
+      data: fakeSWData
+    });
+  });
+});
+```
+
+```javascript
+// use-the-fetch.js
+import { useState, useEffect } from "react";
+import { getStarWars } from "./base-fetch";
+export function useTheFetch(path) {
+  const [result, setResult] = useState({ loading: true, data: null });
+  async function fetchData() {
+    const data = await getStarWars(path);
+    setResult({ loading: false, data });
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return result;
+}
+
+```
+
+You can play around with the above code examples in the GitHub repo I created [Star Wars React app tests](https://github.com/rkotze/starwars-react-app-tests){:target="\_blank" rel="noopener"}

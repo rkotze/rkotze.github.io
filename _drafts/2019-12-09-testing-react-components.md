@@ -93,6 +93,42 @@ export function ListCharacters() {
 export function useTheFetch(path) {}
 ```
 
+Add in the loading state test.
+
+```javascript
+// list-character.spec.js
+// ...
+  it("loading state", () => {
+    useTheFetch.mockReturnValue({
+      loading: true,
+      data: null
+    });
+
+    const { container } = render(<ListCharacters />);
+
+    expect(useTheFetch).toHaveBeenCalled();
+    expect(container).toHaveTextContent("Loading");
+  });
+// ...
+```
+
+```javascript
+// list-characters.js
+export function ListCharacters() {
+  const { loading, data } = useTheFetch("people");
+
+  return (
+    <select>
+      {!loading &&
+        data.results.map(character => (
+          <option key={character.name}>{character.name}</option>
+        ))}
+      {loading && <option>Loading ...</option>}
+    </select>
+  );
+}
+```
+
 ### Testing custom React Hooks
 
 To test the custom hook `useTheFetch` two more dependencies will need to be installed. [`@testing-library/react-hooks`](https://github.com/testing-library/react-hooks-testing-library){:target="\_blank" rel="noopener"} is a helpful utility to make testing hooks clean and easy. This is because hooks can't be used outside of a functional React component. Another option is to test the hooks effect by the output of an component but this maybe not ideal for a unit test

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Mocking React hooks when unit testing using Jest"
-date: 2019-12-07 12:00:12 +0000
+date: 2019-12-09 06:00:12 +0000
 permalink: /coding/mocking-react-hooks-unit-testing-jest
 category: coding
 published: true

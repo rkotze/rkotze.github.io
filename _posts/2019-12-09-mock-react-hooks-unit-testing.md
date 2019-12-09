@@ -12,26 +12,26 @@ excerpt_separator: <!--more-->
 tags: javascript react unit-testing
 ---
 
-This won't be a deep dive into unit testing React components but I will present some options for mocking external services. This is seen good practice at the unit test level as we don't want these tests dependant on external API which will slow the feedback down and make the test fragile. Mocking is typically used quite loosely and there is plenty of nuances when we throw _spies_ and _stubs_ in the mix. However, they do have a particular meaning and they are all placed under the generic term of [Test Double](https://martinfowler.com/bliki/TestDouble.html){:target="\_blank" rel="noopener"} as described by Martin Fowler.
+This won't be a deep dive into unit testing React components but I will present some options for mocking external services. This is seen as good practice at the unit test level, as we don't want these tests dependant on an external API which will slow the feedback down and make the test fragile. Mocking is typically used quite loosely and there are plenty of nuances when we throw _spies_ and _stubs_ in the mix. However, they do have a particular meaning and they are all placed under the generic term of [Test Double](https://martinfowler.com/bliki/TestDouble.html){:target="\_blank" rel="noopener"} as described by Martin Fowler.
 
 <!--more-->
 
-Essentially a mock is about replacing the actual implementation with a set of functions that enable you to assert how the subject under test was used. Using test libraries like [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} we get this functionality to use in our asserts, for example was a method called and with the expected parameters. Jest has built a simple API for managing mocks and does not break out into a more generic Test Double library which I find gets confusing quick.
+Essentially a mock is about replacing the actual implementation with a set of functions that enable you to assert how the subject under test was used. Using test libraries like [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} we get this functionality to use in our asserts. For example, was a method called and with the expected parameters? Jest has built a simple API for managing mocks and does not break out into a more generic Test Double library - which gets confusing quick.
 
 ![red-puzzle-piece](https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg)
 _Photo by Ryoji Iwata on Unsplash_
 
-The first thing we are going to look at is with most React apps they make an Http call to an external service. In this example we make an a call to [SWAPI](https://swapi.co/){:target="\_blank" rel="noopener"} to get the names of characters from Star Wars. What we want to test is when that character is selected we show details of them.
+The first thing we are going to look at is the fact that most React apps make an Http call to an external service. In this example we make an a call to [SWAPI](https://swapi.co/){:target="\_blank" rel="noopener"} to get the names of characters from Star Wars. What we want to test is when a specific character is selected we show details of that character.
 
 ### Getting started
 
-You can go ahead and use [create react app](https://github.com/facebook/create-react-app){:target="\_blank" rel="noopener"} which comes with [react-testing-library](https://github.com/testing-library/react-testing-library){:target="\_blank" rel="noopener"} installed, which I've post about to help get started [react-testing-library & Jest](/coding/react-testing-library-jest).
+You can go ahead and use [create react app](https://github.com/facebook/create-react-app){:target="\_blank" rel="noopener"} which comes with [react-testing-library](https://github.com/testing-library/react-testing-library){:target="\_blank" rel="noopener"} installed, which I've posted about to help you get started [react-testing-library & Jest](/coding/react-testing-library-jest).
 
 ```
 npx create-react-app your-app-name
 ```
 
-**First we write a test** which checks that our fetch [React hook](https://reactjs.org/docs/hooks-intro.html){:target="\_blank" rel="noopener"} is called with "people" as the first parameter and returns fake data to be rendered into a select list. The test also asserts there are three items and one contains Luke Skywalker. Here my GitHub repository containing these code examples, [Star Wars React app tests](https://github.com/rkotze/starwars-react-app-tests){:target="\_blank" rel="noopener"}.
+**First we write a test** which checks that our fetch [React hook](https://reactjs.org/docs/hooks-intro.html){:target="\_blank" rel="noopener"} is called with "people" as the first parameter and returns fake data to be rendered into a select list. The test also asserts there are three items and one contains Luke Skywalker. Here is my GitHub repository containing these code examples, [Star Wars React app tests](https://github.com/rkotze/starwars-react-app-tests){:target="\_blank" rel="noopener"}.
 
 ```javascript
 // list-character.spec.js
@@ -96,7 +96,7 @@ export function ListCharacters() {
 export function useTheFetch(path) {}
 ```
 
-Add in the loading state test.
+Add in the loading state test:
 
 ```javascript
 // list-character.spec.js
@@ -134,7 +134,7 @@ export function ListCharacters() {
 
 ### Testing custom React Hooks
 
-To test the custom hook `useTheFetch` two more dependencies will need to be installed. [`@testing-library/react-hooks`](https://github.com/testing-library/react-hooks-testing-library){:target="\_blank" rel="noopener"} is a helpful utility to make testing hooks clean and easy. This is because hooks can't be used outside of a functional React component. Another option is to test the hooks effect by the output of a component but this maybe not ideal for a unit test.
+To test the custom hook `useTheFetch` two more dependencies will need to be installed. [`@testing-library/react-hooks`](https://github.com/testing-library/react-hooks-testing-library){:target="\_blank" rel="noopener"} is a helpful utility to make testing hooks clean and easy. This is because hooks can't be used outside of a functional React component. Another option is to test the hook's effect by the output of a component, but this maybe not ideal for a unit test.
 
 ```
 npm i -D @testing-library/react-hooks react-test-renderer
@@ -142,7 +142,7 @@ npm i -D @testing-library/react-hooks react-test-renderer
 
 Below I mock the `base-fetch` module which is responsible for making requests to the SWAPI endpoints and returning a JSON object. Instead of mocking out `fetch` which is a built-in browser API we simply create a wrapper around it. When mocking it's **important** [not to mock things you don't own](https://github.com/testdouble/contributing-tests/wiki/Don't-mock-what-you-don't-own){:target="\_blank" rel="noopener"} because you don't have control over the API and does not enable you to make good design decisions.
 
-The two tests below check the initial state which is loading and then an updated state when the data has been fetched. There are more cases to handle like errors but this is kept simple to illustrate the approach.
+The two tests below check the initial state which is loading and then an updated state when the data has been fetched. There are more cases to handle, like errors, but here we keep it simple to illustrate the approach.
 
 The mock method `getStarWars.mockResolvedValue` is used to emulate a promise and provide a return value which is why this test uses `async/await`.
 
@@ -199,7 +199,7 @@ export function useTheFetch(path) {
 
 ### Thoughts on Test Doubles
 
-Test Doubles are helpful tool in <abbr title="Test-driven development">TDD</abbr> and enabling you to better design your code. However, it is possible to mock too much which might make your tests fragile and unreliable. A general rule I like to follow is to mock only the edges of your app and these are points of contact which deal with external services/libraries. To provide a bit more context to mocking read this post about [mocking is a code smell](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a){:target="\_blank" rel="noopener"}.
+Test Doubles are helpful tools in <abbr title="Test-driven development">TDD</abbr> and enabling you to better design your code. However, it is possible to mock too much which might make your tests fragile and unreliable. A general rule I like to follow is to mock only the edges of your app and these are the points of contact which deal with external services/libraries. To provide a bit more context to mocking read this post about [mocking is a code smell](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a){:target="\_blank" rel="noopener"}.
 
 ### Summary
 

@@ -16,7 +16,14 @@ I've built a hybrid mobile app using the Ionic framework and Cordova. Ionic has 
 
 Even though I don't actually design the UI for web apps I do enjoy participating in the UI development, to help gain an understanding of how a user might interact with the app. I believe it's important to deliver a quality user experience and ensure it is aesthetically pleasing.
 
-Technologies that I have used and have good experience with are:
+Articles written for other websites
+
+- [Co-author commits with Git Mob](http://tech.findmypast.com/co-author-commits-with-git-mob/){:target="\_blank" rel="noopener"}
+- [Testing React using Enzyme](http://tech.findmypast.com/testing-react-using-enzyme/){:target="\_blank" rel="noopener"}
+- [Stubbing dependencies in commonJS](http://tech.findmypast.com/stubbing-dependencies-in-commonjs/){:target="\_blank" rel="noopener"}
+- [Sitepoint.com - MySql Views](http://www.sitepoint.com/mysql-views/){:target="\_blank" rel="noopener"}
+
+**Technologies** that I have used and have good experience with are:
 
 - JavaScript
 - JavaScript frameworks:
@@ -56,10 +63,3 @@ Technologies that I have used and have good experience with are:
 - AWS - Amazon web services
 - VS Code
 - Visual Studios
-
-Articles written for other websites
-
-- [Co-author commits with Git Mob](http://tech.findmypast.com/co-author-commits-with-git-mob/){:target="\_blank" rel="noopener"}
-- [Testing React using Enzyme](http://tech.findmypast.com/testing-react-using-enzyme/){:target="\_blank" rel="noopener"}
-- [Stubbing dependencies in commonJS](http://tech.findmypast.com/stubbing-dependencies-in-commonjs/){:target="\_blank" rel="noopener"}
-- [Sitepoint.com - MySql Views](http://www.sitepoint.com/mysql-views/){:target="\_blank" rel="noopener"}

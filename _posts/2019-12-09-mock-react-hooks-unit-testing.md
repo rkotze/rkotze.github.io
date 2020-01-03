@@ -5,7 +5,7 @@ date: 2019-12-09 06:00:12 +0000
 permalink: /coding/mocking-react-hooks-unit-testing-jest
 category: coding
 published: true
-image: "https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg"
+full_image_url: "https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg"
 meta_description: >
   Examples on mocking React hooks to unit test using Jest and react-testing-library
 excerpt_separator: <!--more-->
@@ -72,7 +72,7 @@ describe("list characters", () => {
 });
 ```
 
-Below we call `useTheFetch` hook which gets our Star Wars character data. The helpful thing about mocks is we can design the response we want from the function before it's implemented. Essentially we can design the specification for our next function and `useTheFetch` exists only as an empty module. 
+Below we call `useTheFetch` hook which gets our Star Wars character data. The helpful thing about mocks is we can design the response we want from the function before it's implemented. Essentially we can design the specification for our next function and `useTheFetch` exists only as an empty module.
 
 ```javascript
 // list-character.js
@@ -101,17 +101,17 @@ Add in the loading state test:
 ```javascript
 // list-character.spec.js
 // ...
-  it("loading state", () => {
-    useTheFetch.mockReturnValue({
-      loading: true,
-      data: null
-    });
-
-    const { container } = render(<ListCharacters />);
-
-    expect(useTheFetch).toHaveBeenCalled();
-    expect(container).toHaveTextContent("Loading");
+it("loading state", () => {
+  useTheFetch.mockReturnValue({
+    loading: true,
+    data: null
   });
+
+  const { container } = render(<ListCharacters />);
+
+  expect(useTheFetch).toHaveBeenCalled();
+  expect(container).toHaveTextContent("Loading");
+});
 // ...
 ```
 
@@ -194,7 +194,6 @@ export function useTheFetch(path) {
 
   return result;
 }
-
 ```
 
 ### Thoughts on Test Doubles
@@ -203,7 +202,7 @@ Test Doubles are helpful tools in <abbr title="Test-driven development">TDD</abb
 
 ### Summary
 
-We have looked at how you can mock a custom React hook which fetches data from an external service and unit test it to the specification defined by the mock. Hopefully, this gives you a better set of tools and approach to test your React apps. 
+We have looked at how you can mock a custom React hook which fetches data from an external service and unit test it to the specification defined by the mock. Hopefully, this gives you a better set of tools and approach to test your React apps.
 
 You can play around with the above code examples in the GitHub repo I created [Star Wars React app tests](https://github.com/rkotze/starwars-react-app-tests){:target="\_blank" rel="noopener"}.
 

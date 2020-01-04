@@ -5,20 +5,20 @@ date: 2020-01-02 06:00:12 +0000
 permalink: /coding/unit-test-vs-code-extension-jest
 category: coding
 published: true
-image: "https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg"
+full_image_url: "https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg"
 meta_description: >
   Examples using Jest for mocking and unit testing a VS Code extension
 excerpt_separator: <!--more-->
 tags: javascript vs-code unit-testing
 ---
 
-An issue with unit testing vscode extensions is the `vscode` dependency, which is needed to utilise the editors features will error when running unit tests. Essentially it is a third party dependency which is out of your control, so the best thing to do mock the API. I will be using [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} and explaining how to use it's mocking features to handle the VS Code dependency.
+An issue with unit testing <abbr title="Visual Studio Code">VS Code</abbr> extensions is the `vscode` dependency, which is needed to utilise the editors features will error when running unit tests. Essentially it is a third party dependency which is out of your control, so the best thing to do mock the API. I will be using [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} and explaining how to use it's mocking features to handle the VS Code dependency.
 
 <!--more-->
 
 If you are just getting started with building your [first VS Code extension](https://code.visualstudio.com/api/get-started/your-first-extension){:target="\_blank" rel="noopener"}, the docs have a simple step-by-step guide to quickly get you coding.
 
-Once you have set up your project you will notice it has the normal `package.json`. VS Code extensions does read from the `package.json` as a config to manage UI elements, so you may notice some new properties and add new ones when developing your extension. To set up Jest install the dev dependency as usual and update the npm _test script_ to run Jest.
+Once you have set up your project you will notice it has the normal `package.json`. VS Code extensions does read from the `package.json` as a config to manage UI elements, so you may notice some new properties and add new ones when developing your extension. To set up **Jest**, install as a dev dependency as usual and update the npm _test script_ to run Jest.
 
 ```bash
 npm i -D jest
@@ -32,14 +32,19 @@ npm i -D jest
 }
 ```
 
-### Set up <abbr title="Visual Studio Code">VS Code</abbr> Jest mock
+### Set up VS Code Jest mock
 
-Jest provides a few options for mocking but because we want to mock common parts of the vscode API the easiest option is to create a `__mock__` folder in the project root folder and add a file with the same name as the module to be mocked (`vscode.js`).
+Jest provides a few options for mocking but because we want to mock the whole of _vscode node module_ the easiest option is to create a `__mock__` folder one the same level as the node_modules folder (typically the root folder) and add a file with the same name as the module to be mocked (`vscode.js`).
 
-Below is a _mock_ of the _vscode_ dependency. It's not the entire API so you should adjust it to your needs.
+You won't need to import the module into your test file, the mock is automatically applied. Jest calls this [manual mocks](https://jestjs.io/docs/en/manual-mocks){:target="\_blank" rel="noopener"}.
+
+The **great thing** about this approach is it keeps your test files clean from all the mock set up code, making it easy to reason about. The **minor downside** is new programmers to your code base will need to be made aware of the `__mock__` folder because there no explicit connection that the VS Code module is mocked.
+
+Below is the _mock_ of the _VS Code_ dependency. It's not the entire API so you should adjust it to your needs.
 
 ```javascript
 // vscode.js
+
 const languages = {
   createDiagnosticCollection: jest.fn()
 };
@@ -99,4 +104,86 @@ const vscode = {
 module.exports = vscode;
 ```
 
-- Example of a mock in action
+### Example of using VS Code mock
+
+I'm going to take code examples from one of my open source projects, [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank" rel="noopener"} which I've used this approach in.
+
+Below is an example of using adjusting the editor's status bar depending if _prepare-commit-msg_ Git hook is being used. Here you can see I don't need to import `vscode` module into my test file to mock it.
+
+```javascript
+// git-mob-hook-status.spec.js
+
+const { hasPrepareCommitMsgTemplate } = require("../prepare-commit-msg-file");
+const { gitMobHookStatus } = require("./git-mob-hook-status");
+
+jest.mock("./../prepare-commit-msg-file");
+
+describe("Hook or template status", function() {
+  let mockContext;
+  beforeAll(function() {
+    mockContext = {
+      subscriptions: []
+    };
+  });
+
+  afterEach(function() {
+    hasPrepareCommitMsgTemplate.mockReset();
+  });
+
+  it("using git template for co-authors", () => {
+    hasPrepareCommitMsgTemplate.mockReturnValue(false);
+    const statusBar = gitMobHookStatus({ context: mockContext })();
+    expect(statusBar).toEqual(
+      expect.objectContaining({
+        text: "$(file-code) Git Mob",
+        tooltip: "Using .gitmessage template"
+      })
+    );
+  });
+
+  it("using git prepare commit msg for co-authors", () => {
+    hasPrepareCommitMsgTemplate.mockReturnValue(true);
+    const statusBar = gitMobHookStatus({ context: mockContext })();
+    expect(statusBar).toEqual(
+      expect.objectContaining({
+        text: "$(zap) Git Mob",
+        tooltip: "Using prepare-commit-msg hook"
+      })
+    );
+  });
+});
+```
+
+```javascript
+// git-mob-hook-status.js
+const vscode = require("vscode");
+const { hasPrepareCommitMsgTemplate } = require("../prepare-commit-msg-file");
+
+function gitMobHookStatus({ context }) {
+  const myStatusBarItem = vscode.window.createStatusBarItem(
+    vscode.StatusBarAlignment.Left,
+    10
+  );
+  context.subscriptions.push(myStatusBarItem);
+  return function() {
+    myStatusBarItem.text = "$(file-code) Git Mob";
+    myStatusBarItem.tooltip = "Using .gitmessage template";
+    if (hasPrepareCommitMsgTemplate()) {
+      myStatusBarItem.text = "$(zap) Git Mob";
+      myStatusBarItem.tooltip = "Using prepare-commit-msg hook";
+    }
+    myStatusBarItem.show();
+    return myStatusBarItem;
+  };
+}
+
+exports.gitMobHookStatus = gitMobHookStatus;
+```
+
+You can view the source code here: 
+
+- [git-mob-hook-status.spec.js](https://github.com/rkotze/git-mob-vs-code/blob/a440b57dc3f991105aba30b41e7d77af118de73a/src/status-bar/git-mob-hook-status.spec.js){:target="\_blank" rel="noopener"}
+- [git-mob-hook-status.js](https://github.com/rkotze/git-mob-vs-code/blob/a440b57dc3f991105aba30b41e7d77af118de73a/src/status-bar/git-mob-hook-status.js){:target="\_blank" rel="noopener"}
+
+What if you want to check a function is using the `vscode` mocked module?
+

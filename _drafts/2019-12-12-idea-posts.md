@@ -11,6 +11,8 @@ See all the ideas.
 
 <!--more-->
 
+# How to make a chrome extension
+
 # Graphql server validation errors
 
 Make it part of the mutation payload object.

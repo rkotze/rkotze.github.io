@@ -1,16 +1,18 @@
 ---
 layout: post
-title: "Unit test your VS Code extension with Jest"
+title: "Unit test & mock your VS Code extension with Jest"
 date: 2020-01-02 06:00:12 +0000
-permalink: /coding/unit-test-vs-code-extension-jest
+permalink: /coding/unit-test-mock-vs-code-extension-jest
 category: coding
 published: true
 full_image_url: "https://user-images.githubusercontent.com/10452163/70393368-f0b53e80-19e0-11ea-85fd-e7b415a4a31b.jpg"
 meta_description: >
   Examples using Jest for mocking and unit testing a VS Code extension
 excerpt_separator: <!--more-->
-tags: javascript vs-code unit-testing
+tags: javascript vs-code unit-testing tutorial
 ---
+
+If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Unit test & mock your VS Code extension with Jest @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}.
 
 An issue with unit testing <abbr title="Visual Studio Code">VS Code</abbr> extensions is the `vscode` dependency, which is needed to utilise the editors features will error when running unit tests. Essentially it is a third party dependency which is out of your control, so the best thing to do mock the API. I will be using [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} and explaining how to use it's mocking features to handle the VS Code dependency.
 
@@ -32,7 +34,7 @@ npm i -D jest
 }
 ```
 
-### Set up VS Code Jest mock
+## Set up VS Code Jest mock
 
 Jest provides a few options for mocking but because we want to mock the whole of _vscode node module_ the easiest option is to create a `__mock__` folder one the same level as the node_modules folder (typically the root folder) and add a file with the same name as the module to be mocked (`vscode.js`).
 
@@ -104,7 +106,7 @@ const vscode = {
 module.exports = vscode;
 ```
 
-### Example of using VS Code mock
+## Example of using VS Code mock
 
 I'm going to take code examples from one of my open source projects, [Git Mob for VS Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank" rel="noopener"} which I've used this approach in.
 
@@ -185,5 +187,30 @@ You can view the source code here:
 - [git-mob-hook-status.spec.js](https://github.com/rkotze/git-mob-vs-code/blob/a440b57dc3f991105aba30b41e7d77af118de73a/src/status-bar/git-mob-hook-status.spec.js){:target="\_blank" rel="noopener"}
 - [git-mob-hook-status.js](https://github.com/rkotze/git-mob-vs-code/blob/a440b57dc3f991105aba30b41e7d77af118de73a/src/status-bar/git-mob-hook-status.js){:target="\_blank" rel="noopener"}
 
-What if you want to check a function is using the `vscode` mocked module?
+### What if you want to check a `vscode` method is called?
 
+You can import the `vscode` mock. Below we want to check `onDidSaveTextDocument` event is subscribed to when a user makes changes to the co-author file.
+
+```javascript
+const vscode = require("../__mocks__/vscode");
+
+// ...
+test("Reload co-author list when git-coauthors file saved", () => {
+  reloadOnSave(coAuthorProviderStub);
+  expect(vscode.workspace.onDidSaveTextDocument).toHaveBeenCalledWith(
+    expect.any(Function)
+  );
+  // ...
+});
+// ...
+```
+
+As you can see it is the standard Jest mock API meaning you are not limited in any with the **manual mock** approach, so for example you can also modify the implementation using `mockImplementation`.
+
+See the full source file here for further examples:
+
+- [reload-on-save.spec.js](https://github.com/rkotze/git-mob-vs-code/blob/baf86ae15bf359bf409a6a3bdc7ac74850640433/src/reload-on-save.spec.js){:target="\_blank" rel="noopener"}
+
+One of the key benefits of writing **unit tests** is the quick feedback and if you like following a <abbr title="Test-driven development">TDD</abbr> approach this will be helpful for you to build your extension confidently.
+
+If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Mocking React hooks when unit testing using Jest @richardkotze &url=https://www.richardkotze.com/coding/mocking-react-hooks-unit-testing-jest&hashtags=javascript,reactjs,testing){:target="\_blank" rel="noopener"}.

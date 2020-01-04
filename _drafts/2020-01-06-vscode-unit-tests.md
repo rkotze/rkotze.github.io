@@ -12,8 +12,6 @@ excerpt_separator: <!--more-->
 tags: javascript vs-code unit-testing tutorial
 ---
 
-If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Unit test & mock your VS Code extension with Jest @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}.
-
 An issue with unit testing <abbr title="Visual Studio Code">VS Code</abbr> extensions is the `vscode` dependency, which is needed to utilise the editors features will error when running unit tests. Essentially it is a third party dependency which is out of your control, so the best thing to do mock the API. I will be using [Jest](https://jestjs.io/docs/en/mock-functions){:target="\_blank" rel="noopener"} and explaining how to use it's mocking features to handle the VS Code dependency.
 
 <!--more-->
@@ -213,4 +211,4 @@ See the full source file here for further examples:
 
 One of the key benefits of writing **unit tests** is the quick feedback and if you like following a <abbr title="Test-driven development">TDD</abbr> approach this will be helpful for you to build your extension confidently.
 
-If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Mocking React hooks when unit testing using Jest @richardkotze &url=https://www.richardkotze.com/coding/mocking-react-hooks-unit-testing-jest&hashtags=javascript,reactjs,testing){:target="\_blank" rel="noopener"}.
+If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Unit test & mock your VS Code extension with Jest @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}.

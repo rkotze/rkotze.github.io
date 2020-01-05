@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unit test & mock VS Code extension API with Jest"
-date: 2020-01-02 06:00:12 +0000
+date: 2020-01-06 06:00:12 +0000
 permalink: /coding/unit-test-mock-vs-code-extension-api-jest
 category: coding
 published: true

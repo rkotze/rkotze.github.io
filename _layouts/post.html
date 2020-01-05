@@ -14,14 +14,14 @@ layout: default
       <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
       <div class="post-meta-container">
         <p class="pubDate post-meta">
-          <span class="symbol">&#x25ce;</span> Published on:
+          <span class="symbol">&#x25ce;</span> Published:
           <time pubdate datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
             {{ page.date | date: "%b %-d, %Y" }}
           </time>  
         </p>
         {% if page.update_date %}
         <p class="updateDate">
-          <span><span class="symbol">&#x1f79c;</span> Updated on: {{ page.update_date | date: "%b %-d, %Y" }}</span>
+          <span><span class="symbol">&#x1f79c;</span> Updated: {{ page.update_date | date: "%b %-d, %Y" }}</span>
         </p>
         {% endif %}
         {% if page.tags.size > 0 %}

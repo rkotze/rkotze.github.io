@@ -36,6 +36,8 @@ npm i apollo-boost @apollo/react-hooks
 
 With the login **GraphQL mutation** below you can see it will return refresh and access tokens. This data will need be saved somewhere on the client.
 
+While the approach below will use localStorage I've written a post about using [httpOnly cookies for securing JWT](/coding/jwt-secure-client-react-graphql).
+
 ```
 mutation Login($username: String!, $password: String!) {
   login(username: $username, password: $password) {

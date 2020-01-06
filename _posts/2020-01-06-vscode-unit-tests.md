@@ -214,4 +214,4 @@ See the full source file here for further examples:
 
 One of the key benefits of writing **unit tests** is the quick feedback, and if you like following the <abbr title="Test-driven development">TDD</abbr> approach this will be helpful for you to build your extension confidently.
 
-If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Unit test & mock your VS Code extension with Jest @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-api-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}.
+Comments below or [tweet me](https://twitter.com/share?text=Unit test and mock your VS Code extension with Jest by @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-api-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}.

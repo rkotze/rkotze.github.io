@@ -11,7 +11,13 @@ See all the ideas.
 
 <!--more-->
 
-# How to make a chrome extension
+# Quirks of modern javascript
+
+
+
+# Dockerise create react app run on windows
+
+# How to make a chrome extension / don't need a bundler
 
 # Graphql server validation errors
 

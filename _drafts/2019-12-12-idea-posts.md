@@ -11,15 +11,15 @@ See all the ideas.
 
 <!--more-->
 
+# Web services
+
 # Quirks of modern javascript
-
-
 
 # Dockerise create react app run on windows
 
 # How to make a chrome extension 
 
-# Don't need a bundler
+# Build a web app without the need for a bundler
 
 The browsers are rolling out updates to support more of the latest features in modern JavaScript. How much can we write without using an app bundler like [Webpack](https://webpack.js.org/), [Rollup.js](https://rollupjs.org/guide/en/) or [Parcel](https://parceljs.org/)? Below I will go through a few _JavaScript features_ we can use when building a new web app.
 
@@ -50,6 +50,21 @@ console.log(hello); // => hello
 
 count += 5;
 console.log(count) // => 6
+```
+
+## Making HTTP requests
+
+You will pleased to know that `async/await` is supported in the browser which will make using native `fetch` API even easier to work with.
+
+```javascript
+async function getRecipe() {
+  const res = await fetch(
+    "https://api.github.com/search/repositories?q=tetris+language:assembly&sort=stars&order=desc"
+  );
+  const data = await res.json();
+  console.log(data);
+  return data;
+}
 ```
 
 ## JavaScript Modules

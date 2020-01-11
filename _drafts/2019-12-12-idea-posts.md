@@ -17,7 +17,95 @@ See all the ideas.
 
 # Dockerise create react app run on windows
 
-# How to make a chrome extension / don't need a bundler
+# How to make a chrome extension 
+
+# Don't need a bundler
+
+The browsers are rolling out updates to support more of the latest features in modern JavaScript. How much can we write without using an app bundler like [Webpack](https://webpack.js.org/), [Rollup.js](https://rollupjs.org/guide/en/) or [Parcel](https://parceljs.org/)? Below I will go through a few _JavaScript features_ we can use when building a new web app.
+
+It may not be a surprise but a lot of the features are not supported by Internet Explorer but Edge seems to do a decent job.
+
+Bundlers do provide additional features which we probably want any, but I think this is a good test to think about what the latest browsers support.
+
+## Variables
+
+`let` and `const` for declaring variables is supported in browsers including destructuring assignment.
+
+### Examples
+
+```javascript
+const letters = ["a", "b", "c", "d", "e"];
+const starter = {
+  hello: "hello",
+  world: "world"
+};
+let count = 1;
+
+const [a, b, ...rest] = letters;
+console.log(a, b); // => a b
+console.log(rest); // => ["c", "d", "e"]
+
+const { hello } = starter;
+console.log(hello); // => hello
+
+count += 5;
+console.log(count) // => 6
+```
+
+## JavaScript Modules
+
+With most applications you will want to separate your app into modules. Typically you will create a new file which will export an object or function which can then be imported in the main file for example. This means it would need to support a module system.
+
+Modern browsers do support ECMAScript modules by adding a script tag with the `type="module"` and here are some points to note about this approach. See [module browser support](https://caniuse.com/#feat=es6-module).
+
+- Each module has own scope which is not the global one
+- They are always in strict mode, even when "use strict" directive is not provided
+- The module may import other modules using import directive
+- The module may export bindings using export
+
+Another interesting attribute of a module script is it behaves like a `defer`ed script, in that is will not block the parsing of the HTML and execute after parsing has completed. In the example below you can see the script tag is in the head but our imported module will reference the `div` tag further down the file.
+
+### Example use of module script tag
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
+```
+
+```javascript
+// index.js
+import { startApp } from "./todo-app.js";
+
+startApp();
+```
+
+```javascript
+// todo-app.js
+export function startApp() {
+  const appBox = document.getElementById("app");
+
+  appBox.innerHTML += "I was imported";
+}
+```
+
+It is also possible to do an inline import, see below:
+
+```html
+<script type="module">
+  import { startApp } from "./todo-app.js";
+
+  startApp();
+</script>
+```
+
+Read more details about [module script tag](https://hospodarets.com/native-ecmascript-modules-the-first-overview) here.
 
 # Graphql server validation errors
 

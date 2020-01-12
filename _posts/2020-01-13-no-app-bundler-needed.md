@@ -5,7 +5,7 @@ date: 2020-01-12 06:00:12 +0000
 permalink: /coding/no-app-bundler-needed
 category: coding
 published: true
-full_image_url: "https://user-images.githubusercontent.com/10452163/71785934-7981c300-2ffd-11ea-8cfd-4fc2ae8c74a3.jpg"
+full_image_url: "https://user-images.githubusercontent.com/10452163/72224705-51eaa780-3575-11ea-8fcb-4aa0861595f6.jpg"
 meta_description: >
   Exploring new language features supported in the browser without a bundler.
 excerpt_separator: <!--more-->
@@ -16,9 +16,12 @@ The browsers are rolling out updates to support more of the latest features of J
 
 <!--more-->
 
-It may not be a surprise but a lot of the features are **not** supported by _Internet Explorer_ but _Edge_ seems to do a decent job.
+![coffee mug with pinecones](https://user-images.githubusercontent.com/10452163/72224705-51eaa780-3575-11ea-8fcb-4aa0861595f6.jpg)
+_Photo by Tetiana Shadrina on Unsplash_
 
-The idea behind this post is to start considering the need for a bundler, because it has become the norm to use one for lots of JS apps. A bundler is an additional dependency which you may need to configure quite extensively to get the output you need adding significant complexity before building any app features. I'm not saying we don't need them but it could be possible to start a project without it and add it in at a later stage when you find the need it. Perhaps you have a small enough project where its not needed, perhaps a Chrome extension for example.
+Unsurprisingly, _Internet Explorer_ doesn't support many of these features, however, _Edge_ seems to do a decent job.
+
+The idea behind this post is to begin to consider whether or not a bundler is really needed, because it has become the norm to use one for lots of JS apps. A bundler is an additional dependency which you may need to configure quite extensively to get the output you need, adding significant complexity before building any app features. I'm not saying we don't need them, but it could be possible to start a project without a bundler, and add it in at a later stage when you find the need. Perhaps you have a small enough project where it's not needed: perhaps a Chrome extension for example.
 
 ## New language features added in the browser
 
@@ -60,7 +63,7 @@ arrowLog("point"); // => ->: point
 
 ## Async/Await and making HTTP requests
 
-You will pleased to know that `async/await` is supported in the browser which will make using native `fetch` API even easier to work with.
+You will be pleased to know that `async/await` is supported in the browser which will make using native `fetch` API even easier to work with.
 
 ```javascript
 async function getRecipe() {
@@ -80,8 +83,8 @@ With most applications you will want to separate your app into modules. Typicall
 
 Modern browsers do support ECMAScript modules by adding a script tag with the `type="module"` and here are some points to note about this approach. See [module browser support](https://caniuse.com/#feat=es6-module){:target="\_blank" rel="noopener"}.
 
-- Each module has its' own scope which is not the global one
-- They are always in strict mode, even when "use strict" directive is not provided
+- Each module has its own scope which is not the global one
+- Strict mode is always 'on', even when "use strict" directive is not provided
 - The module may import other modules using _import directive_
 - The module may export bindings using _export_
 
@@ -129,4 +132,4 @@ It is also possible to do an inline import, see below:
 
 Read more details about [module script tag](https://hospodarets.com/native-ecmascript-modules-the-first-overview){:target="\_blank" rel="noopener"} here.
 
-Potentially you could have a small project or start a new one without the need of a bundler. If you decide to not use a bundler, I'd like to hear what challenges you faced and what you tried to do to solve them? Let me know on [Twitter](https://twitter.com/share?text=Unit test and mock your VS Code extension with Jest by @richardkotze &url=https://www.richardkotze.com/coding/unit-test-mock-vs-code-extension-api-jest&hashtags=javascript,vscode,testing,tdd,agile){:target="\_blank" rel="noopener"}. or in the comments below.
+Potentially you could have a small project or start a new one without the need of a bundler. If you decide to not use a bundler, I'd like to hear what challenges you faced and what you tried to do to solve them? Let me know on [Twitter](https://twitter.com/share?text=No app bundler needed for your next project? by @richardkotze &url=https://www.richardkotze.com/coding/no-app-bundler-needed&hashtags=javascript,programming,coding){:target="\_blank" rel="noopener"}, or in the comments below.

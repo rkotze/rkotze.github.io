@@ -21,15 +21,20 @@ See all the ideas.
 
 # Build a web app without the need for a bundler
 
-The browsers are rolling out updates to support more of the latest features in modern JavaScript. How much can we write without using an app bundler like [Webpack](https://webpack.js.org/), [Rollup.js](https://rollupjs.org/guide/en/) or [Parcel](https://parceljs.org/)? Below I will go through a few _JavaScript features_ we can use when building a new web app.
+The browsers are rolling out updates to support more of the latest features of JavaScript defined by _ECMAScript_ [technical committee 39](https://github.com/tc39). Have you thought about how much can we write today without using an app bundler like [Webpack](https://webpack.js.org/), [Rollup.js](https://rollupjs.org/guide/en/) or [Parcel](https://parceljs.org/)? Below I will go through a few _JavaScript features_ we can use in today's modern web browser for when you build a new web app.
 
-It may not be a surprise but a lot of the features are not supported by Internet Explorer but Edge seems to do a decent job.
+It may not be a surprise but a lot of the features are not supported by Internet Explorer but _Edge_ seems to do a decent job.
 
-Bundlers do provide additional features which we probably want any, but I think this is a good test to think about what the latest browsers support.
+The idea behind this post is to start considering the need for a bundler, because it has become the norm to use one for lots of JS apps. A bundler is an additional dependency which you may need to configure quite extensively to get the output you need adding significant complexity before building any app features. I'm not saying we don't need them but it could be possible to start a project without it and add it in at a later stage when you find the need it. Perhaps you have a small enough project where its not needed, perhaps a Chrome extension for example.
 
-## Variables
+## New language features
 
-`let` and `const` for declaring variables is supported in browsers including destructuring assignment.
+Below are a few new JavaScript features which will work in most modern browsers.
+
+- `let` and `const` for declaring variables and [_destructuring assignment_](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+- [Template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) are string literals allowing embedded expressions and can be multiline. `string literal ${expression}`
+- [Rest/spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) `...` take remaining values (rest) or apply key/values (spread) to an object or array.
+- [Arrow function expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) `() => {}`, is a more compact syntax than the normal function expression and does not have its own `this` but instead it uses the enclosing lexical scope.
 
 ### Examples
 
@@ -39,20 +44,28 @@ const starter = {
   hello: "hello",
   world: "world"
 };
-let count = 1;
 
 const [a, b, ...rest] = letters;
 console.log(a, b); // => a b
 console.log(rest); // => ["c", "d", "e"]
+const spread = rest;
+const numsLetters = [1, 2, ...spread];
+console.log(numsLetters); // => [1, 2, "c", "d", "e"]
 
 const { hello } = starter;
 console.log(hello); // => hello
 
+let count = 1;
 count += 5;
 console.log(count) // => 6
+
+console.log(`Template literals ${starter.world}`) // => Template literals world
+
+const arrowLog = (message) => console.log(`->: ${message}`)
+arrowLog("point"); // => ->: point
 ```
 
-## Making HTTP requests
+## Async/Await and making HTTP requests
 
 You will pleased to know that `async/await` is supported in the browser which will make using native `fetch` API even easier to work with.
 
@@ -65,9 +78,10 @@ async function getRecipe() {
   console.log(data);
   return data;
 }
+
 ```
 
-## JavaScript Modules
+## JavaScript modules and organising your app files
 
 With most applications you will want to separate your app into modules. Typically you will create a new file which will export an object or function which can then be imported in the main file for example. This means it would need to support a module system.
 
@@ -121,6 +135,8 @@ It is also possible to do an inline import, see below:
 ```
 
 Read more details about [module script tag](https://hospodarets.com/native-ecmascript-modules-the-first-overview) here.
+
+Potentially you could have a small project or start a new one without the need of a bundler. If you decide to not use a bundler, I'd like to hear what challenges you faced and what you tried to solve them? Let me know on Twitter or in the comments below.
 
 # Graphql server validation errors
 

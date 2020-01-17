@@ -11,7 +11,15 @@ See all the ideas.
 
 <!--more-->
 
-# Web services
+# Some web apis you may not have heard of?
+
+MutationObserver https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
+
+Performance https://developer.mozilla.org/en-US/docs/Web/API/Performance 
+
+Visibility API https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API https://stackoverflow.com/questions/1760250/how-to-tell-if-browser-tab-is-active
+
+# Web workers
 
 # Quirks of modern javascript
 

@@ -28,13 +28,19 @@ Switching between VS Code, _LaunchDarkly_ web app and other toggle integrations 
 
 A VS Code extension to bring LaunchDarkly toggle management closer to your development environment and show **all** environment toggle states. Toggle on/off from VS Code.
 
-### Technical interest
+### VS Code Webviews and React
 
-I knew that VS Code extensions had the concept of [WebViews](https://code.visualstudio.com/api/extension-guides/webview){:target="\_blank" rel="noopener"} which enabled you to have your own custom UI features in VS Code rather than restricted to the VS Code APIs. Then I thought would it be possible to build a React application inside these WebViews. I tried this idea out and discovered it was possible.
+I knew that VS Code extensions had the concept of [WebViews](https://code.visualstudio.com/api/extension-guides/webview){:target="\_blank" rel="noopener"} which enables you to have custom UI features rather than restricted to the VS Code APIs. Then I thought would it be possible to build a [React JS](https://reactjs.org/){:target="\_blank" rel="noopener"} application inside these WebViews. I tried this idea out and discovered it was possible.
 
-VS Code limits the way you can access their APIs from a WebView via a simple pub/sub system. It does mean you can send a message to the VS Code side to trigger a built in API, like copy toggle key to the clipboard.
+VS Code limits the way you can access their APIs from a WebView through a simple pub/sub system. It does mean you can send a message to the VS Code side to trigger a built in API, like copy toggle key to the clipboard. It also means you can send messages from VS Code to the WebView. I a way you can think of _VS Code_ as the **server** and the _WebView_ as the **browser**.
 
-## Features of LanceDarkly
+If you're interested in how I set up the React application to be used in VS Code you can start here, [React WebView index](https://github.com/rkotze/lancedarkly/blob/master/src/webviews/index.js){:target="\_blank" rel="noopener"}. You will see it's wrapped in a context provider, this listens to messages sent from VS Code and relays that message on to any subscribing functions.
+
+I have used [Webpack](https://webpack.js.org/){:target="\_blank" rel="noopener"} to build both WebViews and VS Code to use latests JavaScript features like `import`. VS Code extensions uses the `package.json` **scripts** `vscode:prepublish` as a hook on publishing which will trigger a production Webpack build that minifies that code to make the extension package as small as possible. 
+
+If you are interested in contributing you can find [LanceDarkly GitHub repo](https://github.com/rkotze/lancedarkly){:target="\_blank" rel="noopener"} here and follow the contributor guidelines.
+
+## Core features of LanceDarkly
 
 ### Toggle ON/OFF
 
@@ -54,4 +60,4 @@ Search toggles by name, key or description.
 
 ![Filter toggles by name](https://user-images.githubusercontent.com/10452163/58039220-fcffaa00-7b29-11e9-8f6b-e753dfe0c40a.png)
 
-Potentially you could have a small project or start a new one without the need of a bundler. If you decide to not use a bundler, I'd like to hear what challenges you faced and what you tried to do to solve them? Let me know on [Twitter](https://twitter.com/share?text=No app bundler needed for your next project? by @richardkotze &url=https://www.richardkotze.com/coding/no-app-bundler-needed&hashtags=javascript,programming,coding){:target="\_blank" rel="noopener"}, or in the comments below.
+The downside of LaunchDarkly is it's not a free tool but it does a free trial which can give it a go. [Tweet this post](https://twitter.com/share?text=No app bundler needed for your next project? by @richardkotze &url=https://www.richardkotze.com/coding/no-app-bundler-needed&hashtags=javascript,programming,coding){:target="\_blank" rel="noopener"} if you like the idea of the extension.

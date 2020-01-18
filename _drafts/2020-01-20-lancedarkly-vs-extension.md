@@ -28,7 +28,7 @@ Switching between VS Code, _LaunchDarkly_ web app and other toggle integrations 
 
 A VS Code extension to bring LaunchDarkly toggle management closer to your development environment and show **all** environment toggle states. Toggle on/off from VS Code.
 
-### VS Code Webviews and React
+### VS Code WebViews using React
 
 I knew that VS Code extensions had the concept of [WebViews](https://code.visualstudio.com/api/extension-guides/webview){:target="\_blank" rel="noopener"} which enables you to have custom UI features rather than restricted to the VS Code APIs. Then I thought would it be possible to build a [React JS](https://reactjs.org/){:target="\_blank" rel="noopener"} application inside these WebViews. I tried this idea out and discovered it was possible.
 

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "LanceDarkly: VS Code ext for LaunchDarkly toggles"
+title: "LanceDarkly: manage your toggles in VS Code"
 date: 2020-01-18 06:00:12 +0000
-permalink: /projects/lancedarkly-vscode-ext-launchdarkly-toggles
+permalink: /projects/lancedarkly-manage-toggles-vs-code
 category: projects
 published: true
 full_image_url: "https://user-images.githubusercontent.com/10452163/58038723-ae054500-7b28-11e9-8799-2d7b5b9a72b1.png"

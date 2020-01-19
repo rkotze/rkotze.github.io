@@ -11,7 +11,7 @@ See all the ideas.
 
 <!--more-->
 
-# Universal start project
+# Universal React starter project
 
 # Some web apis you may not have heard of?
 

@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "LanceDarkly: manage feature toggles in VS Code"
-date: 2020-01-19 06:00:12 +0000
+date: 2020-01-20 06:00:12 +0000
 permalink: /projects/lancedarkly-manage-feature-toggles-vs-code
 category: projects
 published: true
 full_image_url: "https://user-images.githubusercontent.com/10452163/58038723-ae054500-7b28-11e9-8799-2d7b5b9a72b1.png"
 meta_description: >
-  Manage your LaunchDarkly toggles from VS Code
+  LanceDarkly is a VS Code extension to help manage LaunchDarkly toggles
 excerpt_separator: <!--more-->
 tags: javascript vscode react
 ---

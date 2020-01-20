@@ -1,0 +1,9 @@
+---
+layout: null
+---
+{ "posts": [{% for post in site.posts %}
+    {
+      "metaData": "{{ post.title | escape }} {{ post.excerpt | strip_html | strip_newlines | escape }}",
+      "publishDate": "{{ post.date }}",
+      "url": "{{ site.url }}{{ post.url }}"
+    } {% if post != site.posts.last %}, {% endif %} {% endfor %} ]}

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Idea/Draft posts"
-date: 2020-01-04 06:00:12 +0000
+date: 2020-01-28 06:00:12 +0000
 permalink: /ideas
 category: coding
 excerpt_separator: <!--more-->
@@ -10,6 +10,14 @@ excerpt_separator: <!--more-->
 See all the ideas.
 
 <!--more-->
+
+# Using React Context and comparing it with render props
+
+Now that React context has become more established in the community we are seeing a lot of great examples. Reflecting on a previous post about Higher-order components (HOC) vs Render props, I rarely use HOC and generally deciding between Context or Render props. How do you decide which to use?
+
+brief overview of react context
+
+Compare Render props
 
 # Universal React starter project
 

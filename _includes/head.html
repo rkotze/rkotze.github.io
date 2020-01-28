@@ -21,13 +21,13 @@
   <title>{% if page.title %}{{ page.title | escape }}{%elsif page.tag %}{{ page.tag | capitalize }}{% else %}{{ site.title | escape }}{% endif %}</title>
   <meta property="og:site_name" content="Richard Kotze" />
   <meta property="og:locale" content="en_GB" />
-  <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 }}{% else %}{{ site.description }}{% endif %}" />
+  <meta name="description" content="{% if page.meta_description %}{{ page.meta_description | truncate: 160 | strip_newlines }}{% else %}{{ site.description | strip_newlines }}{% endif %}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@richardkotze" />
   {% if page.title %}<meta name="twitter:title" content="{{ page.title }}" />{% endif %}
   <meta content="article" property="og:type">
   {% if page.title %}<meta content="{{ page.title }}" property="og:title">{% endif %}
-  {% if page.meta_description %}<meta property="og:description" content="{{ page.meta_description }}" />{% endif %}
+  {% if page.meta_description %}<meta property="og:description" content="{{ page.meta_description | strip_newlines }}" />{% endif %}
   {% if page.url %}
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   {% endif %}

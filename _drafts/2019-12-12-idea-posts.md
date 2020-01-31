@@ -15,7 +15,15 @@ See all the ideas.
 
 Now that React context has become more established in the community we are seeing a lot of great examples. Reflecting on a previous post about Higher-order components (HOC) vs Render props, I rarely use HOC and generally deciding between Context or Render props. How do you decide which to use?
 
-brief overview of react context
+## Brief overview of React Context
+
+The React docs have an in-depth post covering all aspects of [React Context](https://reactjs.org/docs/context.html){:target="\_blank" rel="noopener"}, but I will provide a summary of it and how to use it.
+
+What is the purpose of React Context?
+
+> Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+For example you might have a container component which is responsible for fetching some data which is used in several components down the component tree. The container might fetch user data like name and avatar. There might be a couple components between the container and the avatar container, so you end up passing props like `accontData={account}` down but this is never used inside the intermediate components.
 
 Compare Render props
 

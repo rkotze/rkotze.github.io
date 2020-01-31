@@ -23,7 +23,31 @@ What is the purpose of React Context?
 
 > Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-For example you might have a container component which is responsible for fetching some data which is used in several components down the component tree. The container might fetch user data like name and avatar. There might be a couple components between the container and the avatar container, so you end up passing props like `accontData={account}` down but this is never used inside the intermediate components.
+For example you might have a container component which is responsible for fetching some data that is consumed several components down the component tree. This could be user data like name and avatar. If you were building a profile page there might be a navbar component containing a dropdown component which has an image element for the avatar to show. Further down the page there is a profile wrapper and inside that a header component to render the avatar. The intermediate components don't use the data, `NavBar` and `Dropdown`, but just pass the data along.
+
+Passing data along feels like a poor approach because:
+
+- Exposing data to components that don't need to know about it
+- It's repetitive code and makes the component api more verbose
+- Difficult and frustrating developer experience to follow where the data comes from, especially in a large component tree
+
+Context removes these issues as you can:
+
+- Explicitly decide which components have access to that data
+- Less repetitive
+- Using context makes it easy to discover where the data comes from
+
+Ultimately context can make complex code easier to rationalise.
+
+## How to use it?
+
+Below is how you define a _React Context_, this one is called `ToDosContext`. This will create an object with two components `ToDosContext.Provider` and `ToDosContext.Consumer`. The `createContext` method can take one parameter which is the default value for the context which I will explain more about further along.
+
+```javascript
+const ToDosContext = React.createContext();
+```
+
+The **Provider** is the wrapping component which you supply a value to for components further down the tree to use via the **Consumer** component.
 
 Compare Render props
 

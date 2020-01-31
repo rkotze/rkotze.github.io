@@ -228,6 +228,12 @@ article {
     text-decoration: none;
     border-bottom: 1px dotted $textColor;
   }
+  blockquote {
+    p {
+      font-size: 1.3em;
+    }
+    color: $grey;
+  }
 }
 
 article h1,

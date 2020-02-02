@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why and how to use React Context "
+title: "Why and how to use React Context"
 date: 2020-01-20 06:00:12 +0000
 permalink: /coding/why-how-use-react-context
 category: coding
@@ -67,12 +67,113 @@ const TodosContext = React.createContext();
 export function TodoProvider({ children }) {
   const [todoList, dispatch] = useReducer(toDoReducer, initialState);
   return (
-    <TodosContext.Provider value={{ todoList, dispatch }}>
+    <TodosContext.Provider value={ { todoList, dispatch } }>
       {children}
     </TodosContext.Provider>
   );
 }
 ```
 
+Following the same method of abstraction lets not expose the `dispatch` function and pass actions to but instead provide the methods to manage the tasks, `add`, `remove` and `mark`.
 
-The downside of LaunchDarkly is it's not a free tool but it does have a free trial if you want to give it a go. If you have ideas or feedback for my LanceDarkly extension then please [tweet it](https://twitter.com/share?text=LanceDarkly: manage feature toggles in VS Code by @richardkotze &url=https://www.richardkotze.com/projects/lancedarkly-manage-feature-toggles-vs-code&hashtags=javascript,programming,coding){:target="\_blank" rel="noopener"}.
+```jsx
+// todo-context.js
+// ...
+export function TodoProvider({ children }) {
+  const [todoList, dispatch] = useReducer(toDoReducer, initialState);
+  const actions = {
+    add(text) {
+      dispatch(addAction(text));
+    },
+    mark(taskId, done) {
+      dispatch(markAction(taskId, done));
+    },
+    remove(taskId) {
+      dispatch(deleteAction(taskId));
+    }
+  };
+  return (
+    <TodosContext.Provider value={ { todoList, actions } }>
+      {children}
+    </TodosContext.Provider>
+  );
+}
+```
+
+From `todo-context.js` we can also export the **consumer** like so:
+
+```javascript
+export const TodosConsumer = TodosContext.Consumer;
+```
+
+Also export the main `TodosContext` on default:
+
+```javascript
+export default TodosContext;
+```
+
+Lets look at how to access and use the `add` action in the todo context. One option is to use the React hook `useContext`. This hook takes the `ToDosContext` and can access the actions, which I destruct out. Then we can call `add` in the `handleSubmit` function to add a new task. See snippet below:
+
+```javascript
+// input-task.js
+// InputTask ...
+const [task, setTask] = useState("");
+const {
+  actions: { add }
+} = useContext(TodosContext);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  add(task);
+  setTask("");
+}
+// ...
+```
+
+Another way to access the context is to use the consumer component. In the `TaskList` component I use the `TodosConsumer` to read the `todoList` array. This uses the [Render props pattern](/coding/understanding-render-props-react-js) to access the context via the `children` prop as a callback function.
+
+```jsx
+// task-list.js
+export function TaskList() {
+  return (
+    <TodosConsumer>
+      {({ todoList }) => (
+        <ol className="task-list">
+          {todoList.map((task, i) => {
+            return (
+              <li className="task-item" key={i}>
+               {/* ... */}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+    </TodosConsumer>
+  );
+}
+```
+
+Another option to control access to the consumer is to use the `useContext` hook, wrap some error logic like expect provider to be present. See code example below:
+
+```javascript
+export function useToDo(){
+  const context = React.useContext(TodosContext);
+  if (context === undefined) {
+    throw new Error('useToDo must be used within a TodoProvider')
+  }
+
+  return context
+}
+```
+
+Explore my CodeSandbox further ([Refactor ToDo app useReducer and React Context](https://codesandbox.io/s/react-todo-reducer-and-context-refactor-wuk9g?fontsize=14&hidenavigation=1&theme=dark){:target="\_blank" rel="noopener"})
+
+<iframe
+     src="https://codesandbox.io/embed/react-todo-reducer-and-context-refactor-wuk9g?fontsize=14&hidenavigation=1&theme=dark"
+     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+     title="react-todo-reducer-and-context-refactor"
+     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
+     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+   ></iframe>
+
+Hope this helps you use React Context more effectively in your day to day. Comment on [Twitter](https://twitter.com/share?text=Why and how to use React Context by @richardkotze &url=https://www.richardkotze.com/coding/why-how-use-react-context&hashtags=javascript,reactjs,coding){:target="\_blank" rel="noopener"} or below.

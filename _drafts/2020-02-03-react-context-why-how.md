@@ -2,14 +2,14 @@
 layout: post
 title: "Why and how to use React Context "
 date: 2020-01-20 06:00:12 +0000
-permalink: /projects/why-how-use-react-context
-category: projects
+permalink: /coding/why-how-use-react-context
+category: coding
 published: true
 full_image_url: "https://user-images.githubusercontent.com/10452163/58038723-ae054500-7b28-11e9-8799-2d7b5b9a72b1.png"
 meta_description: >
   Why and how to use React context
 excerpt_separator: <!--more-->
-tags: javascript react
+tags: javascript react tutorial
 ---
 
 Now that React context has become more established in the community we are seeing a lot of great examples. Reflecting on a previous post about Higher-order components (HOC) vs Render props, I rarely use HOC and generally deciding between Context or Render props. With the introduction of hooks and in particular `useContext`, React context is more accessible and has become a go to approach to solving complex state management. However, there are options to handle these cross cutting concerns and so we should be clear on why we are using context. Let's explore why and how to use React context. 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why and how to use React context"
-date: 2020-01-20 06:00:12 +0000
+date: 2020-02-03 06:00:12 +0000
 permalink: /coding/why-how-use-react-context
 category: coding
 published: true

@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 tags: javascript react tutorial
 ---
 
-Now that React context has become more established in the community we are seeing a lot of great usages of it. Reflecting on a previous post about [Higher-order components (HOC) vs Render props](/coding/hoc-vs-render-props-react), I rarely use HOC and generally deciding between Context or Render props. With the introduction of hooks and in particular `useContext` hook, React context is more accessible and has become a go to approach to solving complex state management. However, there are other options to handle these cross cutting concerns and so we should be clear on why we are using context. Let's explore why and how to use React context. 
+Now that React context has become more established in the community we are seeing a lot of great usages of it. Reflecting on a previous post about [Higher-order components (HOC) vs Render props](/coding/hoc-vs-render-props-react), I rarely use HOC and generally deciding between Context or Render props. With the introduction of hooks and in particular `useContext` hook, React context is more accessible and has become a go-to approach to solving complex state management. However, there are other options to handle these cross-cutting concerns and so we should be clear on why we are using context. Let's explore why and how to use React context. 
 
 <!--more-->
 
@@ -27,7 +27,7 @@ What is the purpose of React context?
 
 > Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-For example you might have a container component responsible for fetching user data that is consumed by several components further down the component tree. If you were building a profile page to show an avatar there might be a navbar containing a dropdown which has an image element for the avatar. Further down the page there is a profile wrapper and inside that a header component to render the avatar. The intermediate components don't use the data, `NavBar`, `Dropdown` and `ProfileWrapper`, only pass the data along.
+For example, you might have a container component responsible for fetching user data that is consumed by several components further down the component tree. If you were building a profile page to show an avatar there might be a navbar containing a dropdown which has an image element for the avatar. Further down the page, there is a profile wrapper and inside that a header component to render the avatar. The intermediate components don't use the data, `NavBar`, `Dropdown` and `ProfileWrapper`, only pass the data along.
 
 ### Passing data via props is a poor approach because:
 
@@ -46,15 +46,15 @@ Using context to manage data flow in a complex component tree can help make code
 ### Areas you might use React context
 
 - Site settings/preferences for a user
-- Styling themes, make it easy to change switch between light/dark theme
-- User details, hide/show user views depending if they are logged in
+- Styling themes, making it easy to change switch between light/dark theme
+- User details, hide/show user views depending on if they are logged in
 - E-commerce basket management, showing items added to a basket when searching and adding items 
 
-The above are typically **global** to the application however, it does not mean context should be used only for global features. It can be used further down the component tree to manage state of a complex feature. For example, multiple step form and depending on the answers determines the next questions to show.
+The above examples could be regarded as **global** to an application however, it does not mean context should be used only for global features. It can be used further down the component tree to manage the state of a complex feature. For example, multiple-step form and depending on the answers determine the next questions.
 
 ### More options 
 
-It does sound like React context can be used for anything however, there are other options for cross cutting concerns which maybe preferred. It would be excessive for handling local state with a component tree of two or three levels. For the same principle of keeping code easy to reason about here are other approaches. To handle state for a basic form you can use the [Render props](/coding/understanding-render-props-react-js) approach, like the popular form library [Formik](https://github.com/jaredpalmer/formik){:target="\_blank" rel="noopener"}. When two components share the same state you can use [lifting state up](https://reactjs.org/docs/lifting-state-up.html){:target="\_blank" rel="noopener"} as an option.
+It does sound like React context can be used for anything however, there are other options for cross-cutting concerns which may be preferred. It would be excessive for handling local state with a component tree of two or three levels. For the same principle of keeping code easy to reason about here are other approaches. To handle state for a basic form you can use the [Render props](/coding/understanding-render-props-react-js) approach, like the popular form library [Formik](https://github.com/jaredpalmer/formik){:target="\_blank" rel="noopener"}. When two components share the same state you can use [lifting state up](https://reactjs.org/docs/lifting-state-up.html){:target="\_blank" rel="noopener"} as an option.
 
 ## How to use it?
 
@@ -62,7 +62,7 @@ I wrote a post in November covering [manage complex state with React useReducer 
 
 ### Lets begin
 
-React context is made of two parts a **Provider** and a **Consumer**. The provider is where the **values** are defined that the consumer can access. Following the good practice of _encapsulation_ we won't expose the actual React provider but a wrapping component which will define the values. This simplifies the usage of `ToDosContext` and expose essential parts of the API to be used. Below is a code example show this:
+React context is made of two parts a **Provider** and a **Consumer**. The provider is where the **values** are defined that the consumer can access. Following the good practice of _encapsulation_ we won't expose the actual React provider but a wrapping component which will define the values. This simplifies the usage of `ToDosContext` and exposes essential parts of the API to be used. Below is a code example exhibits this:
 
 ```jsx
 // todo-context.js
@@ -157,7 +157,7 @@ export function TaskList() {
 }
 ```
 
-Another option to control access to the consumer is to create a custom React hook using `useContext`, wrap some error logic like expect provider to be present. See code example below:
+Another option to control access to the consumer is to create a custom React hook using `useContext`, wrap some error logic like expect todo provider to be present. See code example below:
 
 ```javascript
 export function useToDo(){

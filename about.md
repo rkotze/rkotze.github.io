@@ -1,9 +1,11 @@
 ---
 layout: page
 title: About Richard Kotze's blog
-permalink: about-me/
+permalink: about/
 sitemap:
   lastmod: 2020-02-08 17:00:12 +0000
+redirect_from:
+- /about-me
 ---
 
 This is my software engineering blog and I try to post every _Monday morning_ (but sometimes that does not happen). I write these posts because I think it's important to share knowledge and it helps me understand better what I have learned. 

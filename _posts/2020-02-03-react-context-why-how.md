@@ -17,7 +17,7 @@ Now that React context has become more established in the community we are seein
 <!--more-->
 
 ![Side view of steps in all white](https://user-images.githubusercontent.com/10452163/73617558-f1043b80-4617-11ea-8b40-d8ed375c6c45.jpg)
-_Photo by Stéphane Mingot on Unsplashe_
+_Photo by Stéphane Mingot on Unsplash_
 
 ## Why React context
 

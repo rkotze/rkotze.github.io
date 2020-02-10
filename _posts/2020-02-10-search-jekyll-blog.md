@@ -12,7 +12,7 @@ excerpt_separator: <!--more-->
 tags: javascript tutorial
 ---
 
-Now that I've written a lot of posts I thought it would be good to add search functionality. I have created the first iteration of my search, give a try. You should be able to find it on the left hand side. For context my blog is statically generated using [Jekyll](https://jekyllrb.com/){:target="\_blank" rel="noopener"} meaning every possible page to render is compiled ready to be served as just client-side code HTML, CSS and JavaScript. Essentially no queries to a database are made on request for a page. How can I added dynamic search that content? 
+Now that I've written a lot of posts I thought it would be good to add search functionality. I have created the first iteration of my search, give it a try. You should be able to find it on the left hand side. For context my blog is statically generated using [Jekyll](https://jekyllrb.com/){:target="\_blank" rel="noopener"} meaning every possible page to render is compiled ready to be served as just client-side code HTML, CSS and JavaScript. Essentially no queries to a database are made on request for a page. How can I add dynamic search that content? 
 
 <!--more-->
 

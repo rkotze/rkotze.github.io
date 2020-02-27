@@ -11,6 +11,23 @@ See all the ideas.
 
 <!--more-->
 
+# React concurrent mode and Suspense
+
+React concurrent mode:
+
+It's about making the UI more responsive and fluid for a better user experience by preventing render blocking updates. When React begins to render there is no way to stop it and begin on a higher priority change. 
+With concurrent mode it's possible to interrupt the render to show the user the latest change and the UI is not staggered as it updates.
+
+There are two key areas which concurrent mode focuses on:
+
+Interruptible rendering
+Works well for when user interactions that are quick for example tagging a person in a message is typically supported with a suggestion/auto-complete lists.
+
+Intentional loading sequences
+
+When transitioning to another page there might not be enough data to render a complete loading page so it's shows a blank page for a brief moment. It's possible to wait a little on the current page and begin rendering the loader in memory first. Then update the UI with a controlled transition to prevent a jarring experience.
+
+
 # Universal React starter project
 
 # Some web apis you may not have heard of?

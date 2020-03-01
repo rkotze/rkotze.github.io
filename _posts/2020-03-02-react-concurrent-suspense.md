@@ -21,22 +21,22 @@ _Photo by Faye Cornish on Unsplash_
 
 ## React concurrent mode
 
-It's about making the UI more responsive and fluid for better user experience by preventing render-blocking updates. When React begins to render there is no way to stop it and begin on a higher priority change. 
-With concurrent mode, it's possible to interrupt the render to show the user the latest change and preventing the UI from staggering as it updates.
+It's about making the UI more responsive and fluid for better user experience by preventing render-blocking updates. When React begins to render, there is no way to stop it and begin on a higher priority change. 
+However, with concurrent mode, it's possible to interrupt the render to show the user the latest change and prevent the UI from staggering as it updates.
 
 Two key points for concurrent mode:
 
 ### Interruptible rendering
 
-Works well for when user interactions are quick for example typing up a message and tagging a person in it is typically supported with a suggestion/auto-complete list. With a typical implementation, these lists can be quite jumpy for each character added but with concurrent mode, it can interrupt a render with the latest changes.
+Works well for when user interactions are quick, for example typing a message and tagging a person in it is typically supported with a suggestion/auto-complete list. With a typical implementation, these lists can be quite jumpy for each character added, but with concurrent mode, it can interrupt a render with the latest changes.
 
 ### Intentional loading sequences
 
-When transitioning to another page there might not be enough data to render a complete loading page so it shows a blank page for a brief moment. It's possible to wait for a little on the current page and begin rendering the loader in memory first. Then update the UI with a controlled transition to prevent a jarring experience.
+When transitioning to another page there might not be enough data to render a complete loading page, so it shows a blank page for a brief moment. It's possible to wait for a little on the current page and begin rendering the loader in memory first. Then it can update the UI with a controlled transition to prevent a jarring experience.
 
 ## React Suspense
 
-Since **React 16.6** a new component called `Suspense` was introduced which can be used to manage the loading states while resolving async requests. This is an _experimental_ component and is likely to change so keep that in mind. The interesting thing about this component is it's unaware of any data fetching API and essentially decouples fetching data from the view layer. As mentioned in the React docs, this is **not** a ready to use data client that would replace _fetch_ API, Apollo or Relay. What it does enable is a more natural React interface to integrate ways to fetch data. Data libraries would need to implement the Suspense API for consumers to use this component.
+Since **React 16.6** a new component called `Suspense` was introduced which can be used to manage the loading states while resolving async requests. This is an _experimental_ component and is likely to change - so keep that in mind. The interesting thing about this component is it's unaware of any data fetching API and essentially decouples fetching data from the view layer. As mentioned in the React docs, this is **not** a ready to use data client that would replace _fetch_ API, Apollo or Relay. What it does enable is a more natural React interface to integrate ways to fetch data. Data libraries would need to implement the Suspense API for consumers to use this component.
 
 ### Suspense in practice
 
@@ -80,7 +80,7 @@ Typical flow:
 4. Wait to resolve tweets
 5. Update state to render a list of tweets
 
-The Suspense approach is **render-as-you-fetch** meaning you begin fetching data before the component starts to render. There is no need to use life cycle events and manage state with wrapped in the `Suspense` component.
+The Suspense approach is **render-as-you-fetch** meaning you begin fetching data before the component starts to render. There is no need to use life cycle events and manage state when components are wrapped in the `Suspense` component.
 
 ```jsx
 function TwitterTimeline() {

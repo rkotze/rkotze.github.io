@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "React Suspense and concurrent mode"
+title: "Intro to React Suspense and concurrent mode"
 date: 2020-03-01 06:00:12 +0000
-permalink: /coding/react-suspense-concurrent-mode
+permalink: /coding/intro-react-suspense-concurrent-mode
 category: coding
 published: true
-full_image_url: "https://user-images.githubusercontent.com/10452163/73617558-f1043b80-4617-11ea-8b40-d8ed375c6c45.jpg"
+full_image_url: "https://user-images.githubusercontent.com/10452163/75629219-f5505400-5bd7-11ea-9e3a-5809367c87ef.jpg"
 meta_description: >
   Why do you want concurrent mode and suspense?
 excerpt_separator: <!--more-->
@@ -16,8 +16,8 @@ There has been plenty of interest in React Suspense with many articles and exper
 
 <!--more-->
 
-![Side view of steps in all white](https://user-images.githubusercontent.com/10452163/73617558-f1043b80-4617-11ea-8b40-d8ed375c6c45.jpg)
-_Photo by Stéphane Mingot on Unsplash_
+![Single tree surrounded by still water](https://user-images.githubusercontent.com/10452163/75629219-f5505400-5bd7-11ea-9e3a-5809367c87ef.jpg)
+_Photo by Faye Cornish on Unsplash_
 
 ## React concurrent mode
 

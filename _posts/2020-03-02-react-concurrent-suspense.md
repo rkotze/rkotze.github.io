@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Intro to React Suspense and concurrent mode"
-date: 2020-03-01 06:00:12 +0000
+date: 2020-03-02 06:00:12 +0000
 permalink: /coding/intro-react-suspense-concurrent-mode
 category: coding
 published: true
 full_image_url: "https://user-images.githubusercontent.com/10452163/75629219-f5505400-5bd7-11ea-9e3a-5809367c87ef.jpg"
 meta_description: >
-  Why do you want concurrent mode and suspense?
+  Why do you want React concurrent mode and suspense?
 excerpt_separator: <!--more-->
 tags: javascript react
 ---
@@ -114,4 +114,4 @@ The Suspense approach is noticeably different from the typical way. In code, you
 
 This does look like a win-win for both end-users and developers. See the Code Sandbox [Suspense example by Dan Abramov](https://codesandbox.io/s/frosty-hermann-bztrp){:target="\_blank" rel="noopener"}. I would recommend reading the React docs on Suspense to get more details if you're interested.
 
-I hope this helps you understand React Suspense and concurrent mode more. Comment on [Twitter](https://twitter.com/share?text=Why and how to use React context by @richardkotze &url=https://www.richardkotze.com/coding/why-how-use-react-context&hashtags=javascript,reactjs,coding){:target="\_blank" rel="noopener"} or below.
+I hope this helps you understand React Suspense and concurrent mode more. Comment on [Twitter](https://twitter.com/share?text=Intro to React Suspense and concurrent mode by @richardkotze &url=https://www.richardkotze.com/coding/intro-react-suspense-concurrent-mode&hashtags=javascript,reactjs,coding){:target="\_blank" rel="noopener"} or below.

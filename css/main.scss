@@ -23,7 +23,7 @@ $font-size-base: 16px;
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: local("Oxygen Light"), local("Oxygen-Light"), url(fonts/Oxygen-Regular.ttf) format("woff");
+  src: local("Oxygen"), url(fonts/Oxygen-Regular.ttf) format("truetype");
 }
 
 @import "base", "bootstrap", "icon-fonts", "visibility", "text", "syntax-highlighting", "progress";

@@ -43,7 +43,9 @@
     <meta content="{{ page.full_image_url }}" property="og:image">
   {% endif %}
 
-  <link rel="stylesheet" href="{{ "/css/main.css?v=13" | prepend: site.baseurl }}">
+  <link rel="preload" href="/css/fonts/Oxygen-Regular.ttf" as="font">
+  <link rel="preload" href="/css/fonts/icomoon.woff" as="font">
+  <link rel="stylesheet" href="{{ "/css/main.css?v=14" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}">
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">

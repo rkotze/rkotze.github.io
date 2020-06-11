@@ -5,10 +5,19 @@
       const postSearch = document.getElementById("PostSearch");
       const searchData = await fetchSearchData();
       postSearch.addEventListener("keyup", handlePostSearch(searchData), false);
+
+      const menuCheckbox = document.getElementById("menu-checkbox");
+      menuCheckbox.addEventListener("click", toggleMainMenu);
+      menuCheckbox.addEventListener("touchstart", toggleMainMenu);
     },
     false
   );
 })();
+
+function toggleMainMenu (e) {
+  const rkNav = document.getElementById("rk-nav");
+  rkNav.classList.toggle("open");
+};
 
 function handlePostSearch(searchData) {
   return function(e) {
@@ -86,18 +95,6 @@ async function fetchSearchData() {
   const response = await fetch("/article-data.json");
   return response.json();
 }
-
-$(document).ready(function() {
-  $(".menu-checkbox").on("click touchstart", function(e) {
-    var rkNav = $(".rk-nav");
-    if (e.target.checked) {
-      rkNav.addClass("open");
-    } else {
-      rkNav.removeClass("open");
-    }
-    // return false;
-  });
-});
 
 $(document).ready(function() {
   var getMax = function() {

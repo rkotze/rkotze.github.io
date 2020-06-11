@@ -98,7 +98,9 @@ async function fetchSearchData() {
 
 $(document).ready(function() {
   var getMax = function() {
-    return $(document).height() - $(window).height();
+    var windowHeight = window.innerHeight;
+    var docHeight = document.body.clientHeight;
+    return docHeight - windowHeight;
   };
 
   var getValue = function() {

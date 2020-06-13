@@ -104,24 +104,21 @@ $(document).ready(function() {
   };
 
   var getValue = function() {
-    return $(window).scrollTop();
+    return window.pageYOffset;
   };
 
   if ("max" in document.createElement("progress")) {
-    // Browser supports progress element
-    var progressBar = $("progress");
+    var progressBar = document.getElementById("progressBar");
 
-    // Set the Max attr for the first time
-    progressBar.attr({ max: getMax() });
+    progressBar.setAttribute("max", getMax());
 
-    $(document).on("scroll", function() {
-      // On scroll only Value attr needs to be calculated
-      progressBar.attr({ value: getValue() });
+    document.addEventListener("scroll", function() {
+      progressBar.setAttribute("value", getValue());
     });
 
-    $(window).resize(function() {
-      // On resize, both Max/Value attr needs to be calculated
-      progressBar.attr({ max: getMax(), value: getValue() });
+    window.addEventListener("resize", function() {
+      progressBar.setAttribute("max", getMax());
+      progressBar.setAttribute("value", getValue());
     });
   } else {
     var progressBar = $(".progress-bar"),

@@ -9,6 +9,7 @@
       const menuCheckbox = document.getElementById("menu-checkbox");
       menuCheckbox.addEventListener("click", toggleMainMenu);
       menuCheckbox.addEventListener("touchstart", toggleMainMenu);
+      articleProgressBar();
     },
     false
   );
@@ -96,14 +97,14 @@ async function fetchSearchData() {
   return response.json();
 }
 
-$(document).ready(function() {
+function articleProgressBar(){
   var getMax = function() {
     var windowHeight = window.innerHeight;
     var docHeight = document.body.clientHeight;
     return docHeight - windowHeight;
   };
 
-  var getValue = function() {
+  var scrollProgress = function() {
     return window.pageYOffset;
   };
 
@@ -111,38 +112,38 @@ $(document).ready(function() {
     var progressBar = document.getElementById("progressBar");
 
     progressBar.setAttribute("max", getMax());
+    progressBar.setAttribute("value", scrollProgress());
 
     document.addEventListener("scroll", function() {
-      progressBar.setAttribute("value", getValue());
+      progressBar.setAttribute("value", scrollProgress());
     });
 
     window.addEventListener("resize", function() {
       progressBar.setAttribute("max", getMax());
-      progressBar.setAttribute("value", getValue());
+      progressBar.setAttribute("value", scrollProgress());
     });
   } else {
-    var progressBar = $(".progress-bar"),
+    var progressBar = document.getElementById("progressBarBackup"),
       max = getMax(),
       value,
       width;
 
     var getWidth = function() {
       // Calculate width in percentage
-      value = getValue();
+      value = scrollProgress();
       width = (value / max) * 100;
       width = width + "%";
       return width;
     };
 
     var setWidth = function() {
-      progressBar.css({ width: getWidth() });
+      progressBar.style.width = getWidth();
     };
 
-    $(document).on("scroll", setWidth);
-    $(window).on("resize", function() {
-      // Need to reset the Max attr
+    document.addEventListener("scroll", setWidth);
+    window.addEventListener("resize", function() {
       max = getMax();
       setWidth();
     });
   }
-});
+};

@@ -1,7 +1,7 @@
-(function() {
+(function () {
   document.addEventListener(
     "DOMContentLoaded",
-    async function() {
+    async function () {
       const postSearch = document.getElementById("PostSearch");
       const searchData = await fetchSearchData();
       postSearch.addEventListener("keyup", handlePostSearch(searchData), false);
@@ -15,13 +15,13 @@
   );
 })();
 
-function toggleMainMenu (e) {
+function toggleMainMenu(e) {
   const rkNav = document.getElementById("rk-nav");
   rkNav.classList.toggle("open");
-};
+}
 
 function handlePostSearch(searchData) {
-  return function(e) {
+  return function (e) {
     const text = e.target.value;
     if (text && text.length > 2) {
       const results = search(text.trim(), searchData);
@@ -33,14 +33,16 @@ function handlePostSearch(searchData) {
 function updateList(searchText, results) {
   const mainContentArea = document.getElementById("MainContentArea");
   mainContentArea.innerHTML = "";
-  mainContentArea.appendChild(articleElement([titleElement("Search: " + searchText)]));
-  
+  mainContentArea.appendChild(
+    articleElement([titleElement("Search: " + searchText)])
+  );
+
   for (let result of results) {
     const article = articleElement([
       titleElement(
         linkElement({ url: result.item.url, text: result.item.title })
       ),
-      excerptElement({ excerpt: result.item.excerpt })
+      excerptElement({ excerpt: result.item.excerpt }),
     ]);
     mainContentArea.appendChild(article);
   }
@@ -57,9 +59,9 @@ function articleElement(elementList) {
 
 function titleElement(textElement) {
   const title = document.createElement("h2");
-  if(typeof textElement === 'string'){
+  if (typeof textElement === "string") {
     title.textContent = textElement;
-  }else{
+  } else {
     title.appendChild(textElement);
   }
   return title;
@@ -86,7 +88,7 @@ function search(text, searchData) {
     maxPatternLength: 32,
     minMatchCharLength: 1,
     includeMatches: true,
-    keys: ["title", "excerpt", "tags"]
+    keys: ["title", "excerpt", "tags"],
   };
   const fuse = new Fuse(searchData.posts, options);
   return fuse.search(text);
@@ -97,53 +99,54 @@ async function fetchSearchData() {
   return response.json();
 }
 
-function articleProgressBar(){
-  var getMax = function() {
+function articleProgressBar() {
+  var getMax = function () {
     var windowHeight = window.innerHeight;
     var docHeight = document.body.clientHeight;
     return docHeight - windowHeight;
   };
 
-  var scrollProgress = function() {
+  var scrollProgress = function () {
     return window.pageYOffset;
   };
 
   if ("max" in document.createElement("progress")) {
     var progressBar = document.getElementById("progressBar");
-
-    progressBar.setAttribute("max", getMax());
-    progressBar.setAttribute("value", scrollProgress());
-
-    document.addEventListener("scroll", function() {
-      progressBar.setAttribute("value", scrollProgress());
-    });
-
-    window.addEventListener("resize", function() {
+    if (progressBar) {
       progressBar.setAttribute("max", getMax());
       progressBar.setAttribute("value", scrollProgress());
-    });
+
+      document.addEventListener("scroll", function () {
+        progressBar.setAttribute("value", scrollProgress());
+      });
+
+      window.addEventListener("resize", function () {
+        progressBar.setAttribute("max", getMax());
+        progressBar.setAttribute("value", scrollProgress());
+      });
+    }
   } else {
     var progressBar = document.getElementById("progressBarBackup"),
       max = getMax(),
       value,
       width;
+    if (progressBar) {
+      var getWidth = function () {
+        value = scrollProgress();
+        width = (value / max) * 100;
+        width = width + "%";
+        return width;
+      };
 
-    var getWidth = function() {
-      // Calculate width in percentage
-      value = scrollProgress();
-      width = (value / max) * 100;
-      width = width + "%";
-      return width;
-    };
+      var setWidth = function () {
+        progressBar.style.width = getWidth();
+      };
 
-    var setWidth = function() {
-      progressBar.style.width = getWidth();
-    };
-
-    document.addEventListener("scroll", setWidth);
-    window.addEventListener("resize", function() {
-      max = getMax();
-      setWidth();
-    });
+      document.addEventListener("scroll", setWidth);
+      window.addEventListener("resize", function () {
+        max = getMax();
+        setWidth();
+      });
+    }
   }
-};
+}

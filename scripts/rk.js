@@ -4,7 +4,7 @@
     async function () {
       const postSearch = document.getElementById("PostSearch");
       const searchData = await fetchSearchData();
-      postSearch.addEventListener("keyup", handlePostSearch(searchData), false);
+      postSearch.addEventListener("keyup", debounce(handlePostSearch(searchData), 500), false);
 
       const menuCheckbox = document.getElementById("menu-checkbox");
       menuCheckbox.addEventListener("click", toggleMainMenu);
@@ -23,29 +23,43 @@ function toggleMainMenu(e) {
 function handlePostSearch(searchData) {
   return function (e) {
     const text = e.target.value;
-    if (text && text.length > 2) {
+    if (text) {
       const results = search(text.trim(), searchData);
-      updateList(text, results);
+      const mainContentArea = mainContentElement("Search: " + text);
+      updateList(mainContentArea, results.map((result) => ({
+        url: result.item.url,
+        title: result.item.title,
+        excerpt: result.item.excerpt
+      })));
+    } else {
+      const mainContentArea = mainContentElement("");
+      updateList(mainContentArea, searchData.posts.slice(0, 10));
     }
   };
 }
 
-function updateList(searchText, results) {
-  const mainContentArea = document.getElementById("MainContentArea");
-  mainContentArea.innerHTML = "";
-  mainContentArea.appendChild(
-    articleElement([titleElement("Search: " + searchText)])
-  );
-
+function updateList(mainContentArea, results) {
   for (let result of results) {
     const article = articleElement([
       titleElement(
-        linkElement({ url: result.item.url, text: result.item.title })
+        linkElement({ url: result.url, text: result.title })
       ),
-      excerptElement({ excerpt: result.item.excerpt }),
+      excerptElement({ excerpt: result.excerpt }),
     ]);
     mainContentArea.appendChild(article);
   }
+}
+
+function mainContentElement(text){
+  const mainContentArea = document.getElementById("MainContentArea");
+  mainContentArea.innerHTML = "";
+  if(text){
+    mainContentArea.appendChild(
+      articleElement([titleElement(text)])
+    );
+  }
+
+  return mainContentArea;
 }
 
 function articleElement(elementList) {
@@ -98,6 +112,21 @@ async function fetchSearchData() {
   const response = await fetch("/article-data.json");
   return response.json();
 }
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
 function articleProgressBar() {
   var getMax = function () {

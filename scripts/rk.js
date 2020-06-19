@@ -10,10 +10,30 @@
       menuCheckbox.addEventListener("click", toggleMainMenu);
       menuCheckbox.addEventListener("touchstart", toggleMainMenu);
       articleProgressBar();
+      headerLinking();
     },
     false
   );
 })();
+
+function headerLinking(){
+  var postContent = document.getElementById("postContent");
+  if(postContent){
+    var headings = postContent.querySelectorAll("h1, h2, h3, h4");
+    for(var h of headings) {
+      var link = headerLink('#' + h.id);
+      h.insertAdjacentElement('afterbegin', link);
+    }
+  }
+}
+
+function headerLink(href){
+  var a = document.createElement('a');
+  a.textContent = "#";
+  a.href = href;
+  a.classList.add('heading-link');
+  return a;
+}
 
 function toggleMainMenu(e) {
   const rkNav = document.getElementById("rk-nav");

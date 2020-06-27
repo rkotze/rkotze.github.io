@@ -16,28 +16,28 @@ I've moved away from using a Git GUI to command line, I typically used [GitExten
 
 Alternate option for [**connecting to GitHub using OpenSSH on Windows**](/top-tips/connecting-github-with-openssh-windows)
 
-## `Git push` and `pull` on Windows
+## Setup a remote connection to GitHub on Windows
 
-One thing that blocked me from a simple `git push` is the SSH setup on _windows_ can be fiddly. The simplest way round it is to use putty `choco install putty`. Then all that needs to be done is `SET` an environment variable `GIT_SSH` with the value of the path to Putty's `plink.exe`. **Plink** is similar to UNIX SSH as it creates access to your repository on a remote.
+One thing that blocked me from getting `git push` and `git pull` to work is the SSH setup on _windows_ can be fiddly. The simplest way round it is to use **Putty** `choco install putty`. Then all that needs to be done is `SET` an environment variable `GIT_SSH` with the value of the path to Putty's `plink.exe`. **Plink** is similar to UNIX SSH for establishing a connection to a remote repository.
 
 Set `GIT_SSH` variable example.
 
-```bash
-SET GIT_SSH=C:\\path\\to\\PuTTY\\plink.exe
+```
+SET GIT_SSH=C:\path\to\PuTTY\plink.exe
 ```
 
 Then you need to add the Git user to plink for the authentication to happen. `plink.exe git@github.com`
 
 Provided you have:
- - created your SSH keys to access your Git repository
- - added these to `Pageant.exe` which is the authentication agent
+ - [create your SSH keys](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account){:target="\_blank" rel="noopener"} to access your GitHub repository
+ - added these to `Pageant.exe` which is the authentication agent.
 
-To test out if you can connect to your github.com remote, enter: `plink.exe -v git@github.com`.
+Command line example to add keys to **pageant**:
+
+```
+C:\path\to\PuTTY\pageant.exe d:\path\to\key-a.ppk d:\path\to\key-b.ppk
+```
+
+To test out if you can connect to github.com, enter: `plink.exe -v git@github.com`.
 
 If you see a successful authentication message, it should now be possible to `git push` on the command line to your repository.
-
-How to add your SSH key to Pageant.
-
-```bash
-C:\\path\\to\\PuTTY\\pageant.exe c:\\path\\to\\private-ssh-key.ppk`
-```

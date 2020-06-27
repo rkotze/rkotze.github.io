@@ -11,6 +11,28 @@ See all the ideas.
 
 <!--more-->
 
+- [Manage multiple ssh keys for different git repository hosts](#manage-multiple-ssh-keys-for-different-git-repository-hosts)
+- [Rewrite history with Git](#rewrite-history-with-git)
+- [Working as an engineering team pair programming](#working-as-an-engineering-team-pair-programming)
+- [Universal React starter project](#universal-react-starter-project)
+- [Some web apis you may not have heard of?](#some-web-apis-you-may-not-have-heard-of)
+- [Web workers](#web-workers)
+- [Quirks of modern javascript](#quirks-of-modern-javascript)
+- [Dockerise create react app run on windows](#dockerise-create-react-app-run-on-windows)
+- [How to make a chrome extension](#how-to-make-a-chrome-extension)
+- [Graphql server validation errors](#graphql-server-validation-errors)
+- [Consistent complexity scoring](#consistent-complexity-scoring)
+- [Azure pipeline thoughts](#azure-pipeline-thoughts)
+    - [Why have a delivery pipeline?](#why-have-a-delivery-pipeline)
+    - [What I like Azure pipeline](#what-i-like-azure-pipeline)
+
+# Manage multiple ssh keys for different git repository hosts
+
+# Rewrite history with Git
+
+Interactive rebase
+
+# Working as an engineering team pair programming
 
 # Universal React starter project
 

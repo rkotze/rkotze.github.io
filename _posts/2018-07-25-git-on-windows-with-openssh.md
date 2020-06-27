@@ -18,6 +18,8 @@ I use Windows as my main OS and **Cmder** as my console emulator. Installing the
 
 <!--more-->
 
+An alternative option is to use [Putty for Windows command line](/top-tips/git-on-windows-in-command-line).
+
 ![Retro arcade showing Pacman](/images/retro-arcade-gaming.jpg)
 _Photo by Rebecca Oliver on Unsplash_
 

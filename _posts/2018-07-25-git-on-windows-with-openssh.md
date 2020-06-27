@@ -42,7 +42,7 @@ With this setup, you **should now be able to push/pull/clone** a GitHub reposito
 You might get asked when connecting for the first time:
 
 > The authenticity of host 'github.com (ip.ad.dre.ss)' can't be established. <br/>
-> RSA key fingerprint is SHA256:nTsAg6kXaklskaeeseweRYHXTxdCARteiKw6E5SY8. <br />
+> RSA key fingerprint is SHA256:<rsaFingerPrint>. <br />
 > Are you sure you want to continue connecting (yes/no)?
 
 You decide, but "yes" if you want to connect and push your code.

@@ -6,6 +6,7 @@ permalink: /top-tips/using-git-ftp-and-git-python
 category: top-tips
 meta_description: >
  Useful tool git ftp to control the version uploaded to live server.
+tags: git
 ---
 
 GIT is an excellent version control system with its GUI GIT Extensions. Something I was thinking about was finding a way to push only the project file changes to the live server. Ideally being able to choose a committed version to push live, or roll back too. There are ways like bundling the project into a .zip or .tar file and deploying it.

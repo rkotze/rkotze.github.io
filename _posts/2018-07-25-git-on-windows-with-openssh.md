@@ -9,6 +9,7 @@ image: retro-arcade-gaming.jpg
 meta_description: >
  How to setup OpenSSH with Git on Windows using commander
 excerpt_separator: <!--more-->
+tags: git
 ---
 
 Here are the steps to setup **OpenSSH** with **Git** to connect to a repository on GitHub.

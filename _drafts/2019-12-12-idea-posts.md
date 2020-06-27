@@ -14,6 +14,7 @@ See all the ideas.
 - [Manage multiple ssh keys for different git repository hosts](#manage-multiple-ssh-keys-for-different-git-repository-hosts)
 - [Rewrite history with Git](#rewrite-history-with-git)
 - [Working as an engineering team pair programming](#working-as-an-engineering-team-pair-programming)
+- [Make your first VS Code extension](#make-your-first-vs-code-extension)
 - [Universal React starter project](#universal-react-starter-project)
 - [Some web apis you may not have heard of?](#some-web-apis-you-may-not-have-heard-of)
 - [Web workers](#web-workers)
@@ -33,6 +34,8 @@ See all the ideas.
 Interactive rebase
 
 # Working as an engineering team pair programming
+
+# Make your first VS Code extension
 
 # Universal React starter project
 

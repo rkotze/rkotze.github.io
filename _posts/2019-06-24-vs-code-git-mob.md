@@ -9,6 +9,7 @@ full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b
 meta_description: >
   Co-author commits with Git Mob in Visual Studio Code which will show in GitHub
 excerpt_separator: <!--more-->
+tags: git
 ---
 
 As the co-creator of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank" rel="noopener"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in Visual Studio Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank" rel="noopener"} to GitHub. See [Git Mob for Visual Studio Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank" rel="noopener"} repository to get started.

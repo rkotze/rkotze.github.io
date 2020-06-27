@@ -6,9 +6,15 @@ permalink: top-tips/git-on-windows-in-command-line
 category: top-tips
 meta_description: >
  How to setup Git with PUTTY on Windows from the command line rather than a Git GUI.
+excerpt_separator: <!--more-->
+tags: git
 ---
 
-I've moved away from using a Git GUI to command line, I typically used [GitExtensions][1]. The reason being, it's a little annoying having to open any GUI to make a commit and push. It is quicker to use the command line and you learn more about how Git works.
+I've moved away from using a Git GUI to command line, I typically used [GitExtensions][1]. The reason being, it's a little slow having to open any GUI to make a commit and push. It is quicker to use the command line and a side benefit you learn more about how Git works.
+
+<!--more-->
+
+Alternate option for [**connecting to GitHub using OpenSSH on Windows**](/top-tips/connecting-github-with-openssh-windows)
 
 ## `Git push` and `pull` on Windows
 
@@ -20,7 +26,7 @@ Set `GIT_SSH` variable example.
 SET GIT_SSH=C:\path\to\PuTTY\plink.exe
 {% endhighlight %}
 
-Then you need to add the Git user to plink for the authenication to happen. `plink.exe git@github.com`
+Then you need to add the Git user to plink for the authentication to happen. `plink.exe git@github.com`
 
 Provided you have:
  - created your SSH keys to access your Git repository
@@ -33,14 +39,12 @@ If you see a successful authentication message, it should now be possible to `gi
 How to add your SSH key to Pageant.
 
 {% highlight bash %}
-C:\path\to\PuTTY\pageant.exe c:\pathtoprivate-ssh-key.ppk`
+C:\path\to\PuTTY\pageant.exe c:\path\to\private-ssh-key.ppk`
 {% endhighlight %}
 
 ## Git in Sublime
 
 Try out [SublimeGit package][2]. You have most of the Git functionality and you don't need to leave Sublime.
-
-See my post for [**connecting to GitHub with OpenSSH on Windows**](/top-tips/connecting-github-with-openssh-windows)
 
 [1]: https://sourceforge.net/projects/gitextensions/
 [2]: https://packagecontrol.io/packages/SublimeGit

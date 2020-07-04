@@ -5,6 +5,7 @@
       const postSearch = document.getElementById("PostSearch");
       const searchData = await fetchSearchData();
       postSearch.addEventListener("keyup", debounce(handlePostSearch(searchData), 500), false);
+      postSearch.addEventListener("click", gaClickSearch, false);
 
       const menuCheckbox = document.getElementById("menu-checkbox");
       menuCheckbox.addEventListener("click", toggleMainMenu);
@@ -15,6 +16,14 @@
     false
   );
 })();
+
+function gaClickSearch(){
+  typeof ga !== 'undefined' && ga('send', 'event', "SearchInput", "click");
+}
+
+function gaSearchText(input){
+  typeof ga !== 'undefined' && ga('send', 'event', "SearchInput", "Key", input);
+}
 
 function headerLinking(){
   var postContent = document.getElementById("postContent");
@@ -44,6 +53,7 @@ function handlePostSearch(searchData) {
   return function (e) {
     const text = e.target.value;
     if (text) {
+      gaSearchText(text);
       const results = search(text.trim(), searchData);
       const mainContentArea = mainContentElement("Search: " + text);
       updateList(mainContentArea, results.map((result) => ({

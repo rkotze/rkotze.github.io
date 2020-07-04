@@ -18,11 +18,16 @@
 })();
 
 function gaClickSearch(){
-  typeof ga !== 'undefined' && ga('send', 'event', "SearchInput", "click");
+  typeof gtag !== 'undefined' && gtag('event', "click", {
+    "event_category":"SearchInput" 
+  });
 }
 
 function gaSearchText(input){
-  typeof ga !== 'undefined' && ga('send', 'event', "SearchInput", "Key", input);
+  typeof gtag !== 'undefined' && gtag('event', "input", { 
+    "event_category":"SearchInput", 
+    "event_label": input
+  });
 }
 
 function headerLinking(){

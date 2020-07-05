@@ -14,7 +14,7 @@ See all the ideas.
 - [Manage multiple ssh keys for different git repository hosts](#manage-multiple-ssh-keys-for-different-git-repository-hosts)
 - [Rewrite history with Git](#rewrite-history-with-git)
 - [Working as an engineering team pair programming](#working-as-an-engineering-team-pair-programming)
-- [Make your first VS Code extension](#make-your-first-vs-code-extension)
+- [Multiple events to a element and toggle:](#multiple-events-to-a-element-and-toggle)
 - [Universal React starter project](#universal-react-starter-project)
 - [Some web apis you may not have heard of?](#some-web-apis-you-may-not-have-heard-of)
 - [Web workers](#web-workers)
@@ -35,7 +35,9 @@ Interactive rebase
 
 # Working as an engineering team pair programming
 
-# Make your first VS Code extension
+# Multiple events to a element and toggle:
+
+https://gomakethings.com/listening-to-multiple-events-in-vanilla-js
 
 # Universal React starter project
 

@@ -210,4 +210,4 @@ You can play around with the above code examples in the GitHub repo I created [S
 git clone git@github.com:rkotze/starwars-react-app-tests.git
 ```
 
-If you have any feedback please write in the comments below or [tweet me](https://twitter.com/share?text=Mocking React hooks when unit testing using Jest @richardkotze &url=https://www.richardkotze.com/coding/mocking-react-hooks-unit-testing-jest&hashtags=javascript,reactjs,testing){:target="\_blank" rel="noopener"}.
+If you have any feedback please write in the comments below or [share on Twitter](https://twitter.com/share?text=Mocking React hooks when unit testing using Jest @richardkotze &url=https://www.richardkotze.com/coding/mocking-react-hooks-unit-testing-jest&hashtags=javascript,reactjs,testing){:target="\_blank" rel="noopener"}.

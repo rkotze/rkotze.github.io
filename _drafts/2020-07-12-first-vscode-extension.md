@@ -64,6 +64,14 @@ vscode.commands.registerCommand("awesomeExt.helloWorld", () => {
 });
 ```
 
-This is all in the generated projected, press F5 to launch the extension and search the command palette to find your hello world command.
+This is all in the generated project, once you `npm i` and press F5 to launch the extension. Then search the command palette to find your hello world command.
+
+You are now well on your way to making your first VS Code extension.
+
+## How easy is it to unit test my extension?
+
+To help getting started with **unit testing** your extension see my post on [unit tests and mocking VS Code API using Jest](/coding/unit-test-mock-vs-code-extension-api-jest). It provides working unit test examples for mocking the API based off my Git Mob VS code extension.
+
+## More example code
 
 VS Code have created helpful [code extension examples](https://github.com/Microsoft/vscode-extension-samples/){:target="\_blank" rel="noopener"} demonstrating the API on GitHub.

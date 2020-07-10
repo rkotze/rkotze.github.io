@@ -12,17 +12,17 @@ excerpt_separator: <!--more-->
 tags: javascript tutorial vs-code
 ---
 
-I've built two VS Code extensions and thought it would be good to share my thoughts on the best way to building your *first extension*. Hopefully this will save you some time.
+I've built two *VS Code extensions* and thought it would be good to share my thoughts on the best way to kick start building your *first extension*. Key topics I wil cover here is the basics about the build, unit testing and a deployment pipeline. 
 
 <!--more-->
 
-## Easy to get started 
+## Basics around building an extension
 
 VS Code does a great job to help with getting started on [your first extension](https://code.visualstudio.com/api/get-started/your-first-extension){:target="\_blank" rel="noopener"}. They use a Yeoman generator to set up a basic hello world project which is configured to debug. Debugging is essential and has helped me learn about the VS Code API. All the basics are covered here and is worth reading the whole getting started section.
 
 When you open the project find the main entry file `src/extension.ts` and you should see two functions `activate` `deactivate`. **Activate** is called when your extension is used, for example calling a command via the command palette. **Deactivate** is called when the extension is disabled or uninstalled.
 
-## Things start to get a bit complicated
+### Things start to get a bit complicated
 
 This is not to scare you but to prepare yourself to be a little patient. The [VS code API](https://code.visualstudio.com/api/references/vscode-api){:target="\_blank" rel="noopener"} is documented but not to the extent everything has example snippets, so there will be a bit of trial and error.
 
@@ -66,11 +66,15 @@ vscode.commands.registerCommand("awesomeExt.helloWorld", () => {
 
 This is all in the generated project, once you `npm i` and press F5 to launch the extension. Then search the command palette to find your hello world command.
 
-You are now well on your way to making your first VS Code extension.
+You are now well on your way to *making your own* VS Code extension.
 
 ## How easy is it to unit test my extension?
 
-To help getting started with **unit testing** your extension see my post on [unit tests and mocking VS Code API using Jest](/coding/unit-test-mock-vs-code-extension-api-jest). It provides working unit test examples for mocking the API based off my Git Mob VS code extension.
+The vs code extension is essentially still a JavaScript project and so you can use any testing framework you like. To help with this I've written a post on [unit tests and mocking VS Code API using Jest](/coding/unit-test-mock-vs-code-extension-api-jest). It provides **working unit test examples** for mocking the API based off my Git Mob VS Code extension.
+
+## Publish your extension
+
+To help speed up the process of publishing to the **Visual Studio Market Place** I've created a post about [deploy VS code extension via Azure pipeline](/coding/deploy-vscode-extension-azure-pipeline). This covers how to build and deploy your extension but also from an automated pipeline. To further improve the pipeline to run unit tests I've also publish this, [build a CD Azure pipeline](/coding/build-ci-azure-pipeline-vscode-extension).
 
 ## More example code
 

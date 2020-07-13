@@ -7,14 +7,16 @@ category: projects
 published: true
 full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
 meta_description: >
-  Co-author commits with Git Mob in Visual Studio Code which will show in GitHub
+  Add co-authors to commits with Git Mob in VS Code to show on GitHub
 excerpt_separator: <!--more-->
 tags: git
 ---
 
-As the co-creator of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank" rel="noopener"}, a console app to _manage your co-authors_ you pair with, I thought a good addition would be to build a UI around it in Visual Studio Code. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank" rel="noopener"} to GitHub. See [Git Mob for Visual Studio Code](https://github.com/rkotze/git-mob-vs-code){:target="\_blank" rel="noopener"} repository to get started.
+As the co-creator of [Git Mob](https://github.com/findmypast-oss/git-mob){:target="\_blank" rel="noopener"}, a CLI tool to _add multiple co-authors to a commit_, I thought a good addition would be to build a UI around it in <abbr title="Visual Studio Code">VS Code</abbr>. This makes it super simple to see who you are co-authoring with and change without needing to remember any commands. Most importantly it consistently generates the meta data for [_co-authoring commits_](https://help.github.com/en/articles/creating-a-commit-with-multiple-authors){:target="\_blank" rel="noopener"} to GitHub. See [Git Mob for VS Code](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob){:target="\_blank" rel="noopener"} to get started.
 
 <!--more-->
+
+> Add multiple co-authors to a commit
 
 {:.noWidth}
 [![Git Mob vs marketplace](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-mob.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-mob)&nbsp;![Git Mob project stars on GitHub](https://img.shields.io/github/stars/rkotze/git-mob-vs-code.svg?style=social&label=Star)&nbsp;![Git Mob project watchers on GitHub](https://img.shields.io/github/watchers/rkotze/git-mob-vs-code.svg?style=social&label=Watch)
@@ -24,7 +26,7 @@ _Demo of Git Mob in Visual Studio Code_
 
 ## Features of Git Mob for Visual Studio Code
 
-The _VS Code extension_ needs Git Mob console app to be install for it work. The reason for this is if you are switching between console and VS Code the state of selected authors in sync.
+The _VS Code extension_ needs Git Mob CLI to be install for it work. The reason for this is if you are switching between console and VS Code the state of selected authors in sync.
 
 Git Mob is integrated with the Git tab in VS Code so it's there to remind you to update/change your co-authors when pair programming.
 

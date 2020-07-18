@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Kick start your first VS Code extension"
-date: 2020-07-05 06:00:12 +0000
+date: 2020-07-20 06:00:12 +0000
 permalink: /coding/kick-start-your-first-vscode-extension
 category: coding
 published: true

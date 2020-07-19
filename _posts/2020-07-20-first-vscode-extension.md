@@ -21,13 +21,13 @@ _Photo by Simon Abrams on Unsplash_
 
 ## Basics around building an extension
 
-VS Code does a great job to help with getting started on [your first extension](https://code.visualstudio.com/api/get-started/your-first-extension){:target="\_blank" rel="noopener"}. They use a Yeoman generator to set up a basic hello world project which is configured to debug. Debugging is essential and has helped me learn about the VS Code API. All the basics are covered here and are worth reading the whole getting started section.
+VS Code does a great job to help with getting started on [your first extension](https://code.visualstudio.com/api/get-started/your-first-extension){:target="\_blank" rel="noopener"}. They use a Yeoman generator to set up a basic hello world project which is configured to debug. Debugging is essential and has helped me learn about the VS Code API. All the basics are covered here and I'd recommend reading the whole getting started section.
 
-When you open the project the main entry file `extension.ts` and you should see two functions `activate` `deactivate`. **Activate** is called when an event is fired in VS Code your extension is bound to, for example calling a command via the command palette. **Deactivate** is called when the extension is disabled or uninstalled.
+When you open the project main entry file `extension.ts` you should see two functions: `activate` and `deactivate`. **Activate** is called when an event is fired in VS Code that your extension is bound to, for example calling a command via the command palette. **Deactivate** is called when the extension is disabled or uninstalled.
 
 ### When things start to get tricky
 
-This is not to scare you but to prepare yourself to be a little patient. The [VS code API](https://code.visualstudio.com/api/references/vscode-api){:target="\_blank" rel="noopener"} is documented but not to the extent everything has example snippets, so there will be a bit of trial and error.
+This is not to scare you but to prepare yourself to be a little patient. The [VS Code API](https://code.visualstudio.com/api/references/vscode-api){:target="\_blank" rel="noopener"} is documented but not to the extent everything has example snippets, so there will be a bit of trial and error.
 
 The key thing to understand is VS Code reads certain properties in your extension `package.json` to bind the UI to your extension commands.
 
@@ -40,7 +40,7 @@ The key thing to understand is VS Code reads certain properties in your extensio
 }
 ```
 
-Next is **Contribution Points** which enable you to extend VS Code UI. To help make the command above easy to find, you can give is a searchable title in the command palette. To do this use the `commands` contribution point. See the `package.json` example below:
+Next is **Contribution Points** which enable you to extend the VS Code UI. To help make the command above easy to find, you can give it a searchable title in the command palette. To do this use the `commands` contribution point. See the `package.json` example below:
 
 ```json
 {
@@ -79,12 +79,12 @@ The VS Code extension is essentially still a JavaScript project and so you can u
 
 ## Publish your extension
 
-To help speed up the process of publishing to the **Visual Studio Market Place** I've created a post about [deploy VS code extension via Azure pipeline](/coding/deploy-vscode-extension-azure-pipeline). This covers how to build and deploy your extension but also from an automated pipeline. To further improve the pipeline like running unit tests I've also publish this, [build a CD Azure pipeline](/coding/build-ci-azure-pipeline-vscode-extension).
+To help you speed up the process of publishing to the **Visual Studio Market Place** I've created a post about [deploy VS code extension via Azure pipeline](/coding/deploy-vscode-extension-azure-pipeline). This covers how to build and deploy your extension but also from an automated pipeline viewpoint. To further improve the pipeline like running unit tests I've also published this: [build a CD Azure pipeline](/coding/build-ci-azure-pipeline-vscode-extension).
 
 ## More example code
 
-To understand more about how the VS Code API, here is a repo full of working examples you can try out, code extension examples](https://github.com/Microsoft/vscode-extension-samples/){:target="\_blank" rel="noopener"}. I recommend cloning the repo, run the extensions and placing some debug points to explore the examples.
+To understand more about how the VS Code API fits together, here is a repo full of working examples you can try out, [code extension examples](https://github.com/Microsoft/vscode-extension-samples/){:target="\_blank" rel="noopener"}. I recommend cloning the repo, running the extensions and placing some debug points to explore the examples.
 
-Hope this helps you accelerate the development of your VS code extension but if you know of more resources please to put a link in the comments below.
+Hope this helps you accelerate the development of your VS code extension and if you know of more resources please share here and put a link in the comments below.
 
 [Share on Twitter](https://twitter.com/share?text=Building your first VS Code extension by @richardkotze &url=https://www.richardkotze.com/coding/building-your-first-vscode-extension&hashtags=javascript,vscode){:target="\_blank" rel="noopener"}.

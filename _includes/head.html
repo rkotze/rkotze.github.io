@@ -6,7 +6,9 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'UA-6776260-5');
+      gtag('config', 'UA-6776260-5', {
+        'client_storage': 'none'
+      });
     </script>
 
   {% endif %}

@@ -25,7 +25,11 @@ permalink: "/:categories/:title"
 # Build settings
 markdown: kramdown
 
-exclude: ["readme.md"]
+exclude:
+  - readme.md
+  - Gemfile
+  - Gemfile.lock
+  - netlify.toml
 
 plugins:
   - jekyll-redirect-from

@@ -13,11 +13,11 @@ This project was about using Ionic Framework to build a mobile app and publish i
 
 <!--more-->
 
-[London Traveller][1] on Android play store, built using&nbsp;[Ionic framework][2].
+London Traveller was on Android play store, built using&nbsp;[Ionic framework][2]{:target="\_blank" rel="noopener"}. I have removed this from the store as I no longer maintain it.
 
 ![Oyster balance][3]&nbsp;![Distruptions][4]&nbsp;![Line Status][5]
 
-I built the London Traveller mostly to see what it was like to get a mobile application out to the world. The steps to preparing the app for release was a little fiddly but not difficult. Ionic, the framework I chose to use provided good instruction to get an app [published][6]. I'm on a Windows machine so had to ensure certain tools were added to the path. What was needed is jarsigner, this is part of the JDK and zipalign in the Android sdk.
+I built the London Traveller mostly to see what it was like to get a mobile application out to the world. The steps to preparing the app for release was a little fiddly but not difficult. Ionic, the framework I chose to use provided good instruction to get an app [published][6]{:target="\_blank" rel="noopener"}. I'm on a Windows machine so had to ensure certain tools were added to the path. What was needed is jarsigner, this is part of the JDK and zipalign in the Android sdk.
 
 After completing the steps in the Ionic post, uploading the APK to the store is simple. Even though there is a surprising amount of admin work before you can publish it.
 
@@ -31,7 +31,7 @@ I find that it works so well when developing that it more fun than normal and I 
 
 ## Development on a device
 
-The more painful part is setting up your environment to build and test an app on a Android device especially using Windows. To help users [get started with Ionic for Android][7] I did a presentation to help reduce the pain of setup. In Google Chrome it's possible to remote debug an app on a device using chrome://inspect/#devices. Then as I mentioned before a little more fiddling to get your app published.
+The more painful part is setting up your environment to build and test an app on a Android device especially using Windows. To help users [get started with Ionic for Android][7]{:target="\_blank" rel="noopener"} I did a presentation to help reduce the pain of setup. In Google Chrome it's possible to remote debug an app on a device using chrome://inspect/#devices. Then as I mentioned before a little more fiddling to get your app published.
 
 ## It's hybrid
 
@@ -43,23 +43,20 @@ Another downside is you can't take advantage of all the native features of the O
 
 ## Plugins
 
-To access the native APIs you can use [Cordova plugins][8] and with such a strong community there are plenty to choose from. To help make them work better in an AngularJS environment [ngCordova][9] extension library was built. All the plugins I used had an ngCordova wrapper and made it simple to access the native features. One annoying part of this is you can only access the API when 'device is ready' and you need to check the Cordova plugin is available. Mostly to avoid your app breaking during development in a desktop browser. This does add an annoying amount of boiler code.
+To access the native APIs you can use Cordova plugins and with such a strong community there are plenty to choose from. To help make them work better in an AngularJS environment ngCordova extension library was built. All the plugins I used had an ngCordova wrapper and made it simple to access the native features. One annoying part of this is you can only access the API when 'device is ready' and you need to check the Cordova plugin is available. Mostly to avoid your app breaking during development in a desktop browser. This does add an annoying amount of boiler code.
 
 ## Should you use Ionic?
 
-It's a tricky question to answer now simply because there are a few more competitors emerging in the hybrid class. You have [React Native][10], [Native Script][11] and [Xamarin][12] to name some of them, each with their own pros and cons. To me this is a sign of a clear future in hybrid app development and it's more about which one to use. If you know you will need to take advantage of unique native features then you should probably go native.
+It's a tricky question to answer now simply because there are a few more competitors emerging in the hybrid class. You have [React Native][10]{:target="\_blank" rel="noopener"}, [Native Script][11]{:target="\_blank" rel="noopener"} and [Xamarin][12]{:target="\_blank" rel="noopener"} to name some of them, each with their own pros and cons. To me this is a sign of a clear future in hybrid app development and it's more about which one to use. If you know you will need to take advantage of unique native features then you should probably go native.
 
 The great thing about Ionic is it's so fast to develop with, it might be the tool to get your great app idea out there quickly to test the market.
 
-[1]: https://play.google.com/store/apps/details?id=com.ionicframework.oysterbalance749927
 [2]: http://ionicframework.com/
 [3]: /images/london-traveller-oyster-balance.png
 [4]: /images/london-traveller-disruptions.png
 [5]: /images/london-traveller-line-status.png
 [6]: http://ionicframework.com/docs/guide/publishing.html
 [7]: http://slides.com/rkotze/deck#/
-[8]: http://plugins.cordova.io/npm/index.html
-[9]: http://ngcordova.com/
 [10]: https://facebook.github.io/react-native/
 [11]: https://www.nativescript.org/
 [12]: http://xamarin.com/

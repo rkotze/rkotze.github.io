@@ -37,11 +37,11 @@ npm i -D jest
 
 ## Mock VS Code node module
 
-Jest provides a few options for mocking, but because we want to mock the whole of the _vscode node module_ the easiest option is to create a `__mock__` folder on the same level as the node_modules folder (typically the root folder) and add a file with the same name as the module to be mocked (`vscode.js`).
+Jest provides a few options for mocking, but because we want to mock the whole of the _vscode node module_ the easiest option is to create a `__mocks__` folder on the same level as the node_modules folder (typically the root folder) and add a file with the same name as the module to be mocked (`vscode.js`).
 
 You won't need to import the module into your test file, the mock is automatically applied. Jest calls this [manual mocks](https://jestjs.io/docs/en/manual-mocks){:target="\_blank" rel="noopener"}.
 
-The **great thing** about this approach is it keeps your test files clean from all the mock set-up code, making it easy to reason about. A **minor downside** is new contributors to your codebase will need to be made aware of the `__mock__` folder, because there no explicit connection to indicate that the VS Code module is mocked.
+The **great thing** about this approach is it keeps your test files clean from all the mock set-up code, making it easy to reason about. A **minor downside** is new contributors to your codebase will need to be made aware of the `__mocks__` folder, because there no explicit connection to indicate that the VS Code module is mocked.
 
 Below is the _mock_ of the _VS Code_ dependency. It's not the entire API so you should adjust it to your needs.
 

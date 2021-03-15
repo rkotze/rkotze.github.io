@@ -78,17 +78,9 @@ You can see how clean and simple the _unit tests_ are for the reducer in the `to
   - `TaskList` reads the `todoList` state and renders a numbered task list
   - `Action` is a generic button component which has access to `dispatch` to trigger done, undo and delete actions.
 
-Explore the CodeSandbox ([useReducer and useContext React todo app](https://codesandbox.io/s/react-todo-reducer-and-context-mz1mo){:target="\_blank" rel="noopener"}) below to see how it's all connected. 
+Explore the CodeSandbox [useReducer and useContext React todo app](https://codesandbox.io/s/react-todo-reducer-and-context-mz1mo){:target="\_blank" rel="noopener"} below to see how it's all connected. 
 
 See my new post refactoring the above CodeSandbox [why and how to use React context](/coding/why-how-use-react-context).
-
-<iframe
-     src="https://codesandbox.io/embed/todo-reducer-and-context-mz1mo?autoresize=1&fontsize=14"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="todo-reducer-and-context"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
 
 Hope this helps you tackle managing state in the next React feature you build.
 

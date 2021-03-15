@@ -173,14 +173,6 @@ export function useToDo(){
 }
 ```
 
-Explore my CodeSandbox further ([Refactor ToDo app useReducer and React Context](https://codesandbox.io/s/react-todo-reducer-and-context-refactor-wuk9g?fontsize=14&hidenavigation=1&theme=dark){:target="\_blank" rel="noopener"})
-
-<iframe
-     src="https://codesandbox.io/embed/react-todo-reducer-and-context-refactor-wuk9g?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="react-todo-reducer-and-context-refactor"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+Explore my CodeSandbox further, [Refactor ToDo app useReducer and React Context](https://codesandbox.io/s/react-todo-reducer-and-context-refactor-wuk9g?fontsize=14&hidenavigation=1&theme=dark){:target="\_blank" rel="noopener"}
 
 I hope this helps you use React context more effectively in your day to day coding. Comment on [Twitter](https://twitter.com/share?text=Why and how to use React context by @richardkotze &url=https://www.richardkotze.com/coding/why-how-use-react-context&hashtags=javascript,reactjs,coding){:target="\_blank" rel="noopener"} or below.

@@ -29,7 +29,7 @@ As of writing this post, Git Ease is in its beta/preview stage v0.5.0.
 
 The key feature is to link commits to relevant external sources like GitHub and Jira issues. By default _Git Ease_ will link issues by scanning for a hash followed by a number to the repository _origin_ remote like GitHub or BitBucket.
 
-If you use other issue tracking tools like Jira you can add the issue id in the commit and update the Git Ease config with the id pattern to link. See [Git Ease settings](https://github.com/rkotze/git-ease#commit-log---linkpatternshttps://github.com/rkotze/git-ease#commit-log---linkpatterns){:target="\_blank" rel="noopener"} for more details. You can add multiple patterns and links to search for to the config, making it flexible to link to many documents you use.
+If you use other issue tracking tools like Jira you can add the issue id in the commit and update the Git Ease config with the id pattern to link. See [Git Ease settings](https://github.com/rkotze/git-ease#commit-log---linkpatterns){:target="\_blank" rel="noopener"} for more details. You can add multiple patterns and links to search for to the config, making it flexible to link to many documents you use.
 
 ### Copy commit message
 

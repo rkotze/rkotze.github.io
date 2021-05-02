@@ -5,7 +5,7 @@ date: 2021-05-02 12:00:12 +0000
 permalink: /projects/improved-git-log-vs-code-git-ease
 category: projects
 published: true
-full_image_url: https://user-images.githubusercontent.com/10452163/51446144-cc3b6f80-1d05-11e9-87fa-96622a25eedc.gif
+full_image_url: https://user-images.githubusercontent.com/10452163/114325414-f1576b00-9b27-11eb-9f69-753c6418a27c.png
 meta_description: >
   Git Ease, improve the Git log view and make connecting documents more discoverable
 excerpt_separator: <!--more-->

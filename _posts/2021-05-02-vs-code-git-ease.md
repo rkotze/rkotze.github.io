@@ -5,7 +5,7 @@ date: 2021-05-02 12:00:12 +0000
 permalink: /projects/improved-git-log-vs-code-git-ease
 category: projects
 published: true
-full_image_url: https://user-images.githubusercontent.com/10452163/114325414-f1576b00-9b27-11eb-9f69-753c6418a27c.png
+full_image_url: https://user-images.githubusercontent.com/10452163/116859516-03449f00-abf8-11eb-9d53-a3236db634ef.png
 meta_description: >
   Git Ease, improve the Git log view and make connecting documents more discoverable
 excerpt_separator: <!--more-->
@@ -18,7 +18,7 @@ tags: git vs-code
 
 ![](https://vsmarketplacebadge.apphb.com/installs/RichardKotze.git-ease.svg) [![](https://vsmarketplacebadge.apphb.com/downloads-short/RichardKotze.git-ease.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-ease.svg)&nbsp;[![Git Ease VS marketplace](https://vsmarketplacebadge.apphb.com/version-short/RichardKotze.git-ease.svg)](https://marketplace.visualstudio.com/items?itemName=RichardKotze.git-ease)
 
-<img title="Preview of Git Ease" src="https://user-images.githubusercontent.com/10452163/114325414-f1576b00-9b27-11eb-9f69-753c6418a27c.png" width="350" />
+<img title="Preview of Git Ease" src="https://user-images.githubusercontent.com/10452163/116859516-03449f00-abf8-11eb-9d53-a3236db634ef.png" width="350" />
 _Demo of Git Ease in VS Code_
 
 As of writing this post, Git Ease is in its beta/preview stage v0.5.0.
@@ -40,6 +40,8 @@ Any commit message can be copied directly to the Git SCM input box, making it ea
 Each commit is collapsed and shows only the title of the commit. They can be expanded to see the whole message including authors, co-authors and changed files. Git Emojis are supported in the log view. You will find the Git Ease view in VS Code Git panel to keep in the context of version control.
 
 The **file list** shows the file state like _new_, _modified_, _deleted_ and the other Git states. Clicking on the file name will show the **diff** and clicking the file icon will open it.
+
+Worth mentioning even though it might be expected is when completing a Git action like pull, push or commit the log UI will updated automatically.
 
 ### Technologies
 

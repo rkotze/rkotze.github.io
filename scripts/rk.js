@@ -8,8 +8,7 @@
       postSearch.addEventListener("click", gaClickSearch, false);
 
       const menuCheckbox = document.getElementById("menu-checkbox");
-      menuCheckbox.addEventListener("click", toggleMainMenu);
-      menuCheckbox.addEventListener("touchstart", toggleMainMenu);
+      menuCheckbox.addEventListener("pointerdown", toggleMainMenu);
       articleProgressBar();
       headerLinking();
     },

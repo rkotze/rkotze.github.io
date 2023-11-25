@@ -3,7 +3,6 @@ layout: post
 title: "Understanding Veganism"
 date: 2023-11-05 12:00:12 +0000
 permalink: /understanding-veganism
-published: false
 meta_description: >
   Understanding Veganism
 excerpt_separator: <!--more-->

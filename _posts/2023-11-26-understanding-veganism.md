@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Understanding Veganism"
-date: 2023-11-05 12:00:12 +0000
+date: 2023-11-26 12:00:12 +0000
 permalink: /understanding-veganism
 meta_description: >
   What is Veganism? It's not a diet but a principled position about not exploiting and to cause suffering to sentient animals.

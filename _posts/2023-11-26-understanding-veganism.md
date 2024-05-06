@@ -16,7 +16,7 @@ If you think veganism is a diet choice then please read on.
 
 <!--more-->
 
-Veganism is a principled position about not exploiting and to cause suffering to sentient animals. Meaning it's not about having a healthier diet or saving the environment even though it has benefits. It's about recognising there is a __victim__ who wants to live their life freely without being oppressed and/or killed.
+Veganism is a principled position about not exploiting and to cause suffering to sentient animals. Meaning it's not about having a healthier diet or saving the environment even though it has those benefits. It's about recognising there is a __victim__ who wants to live their life freely without being oppressed and/or killed.
 
 In our current "food" system there is so much [suffering and death in farming animals](https://www.youtube.com/watch?v=LQRAfJyEsko) it can't be considered [humane](https://www.merriam-webster.com/dictionary/humane). It really is an **oxymoron** to say animals are "humanely slaughtered" as this act can not been seen as compassionate and in the best interest for such **young** individuals. [Hundred of millions of animals **killed per day**](https://ourworldindata.org/how-many-animals-get-slaughtered-every-day) and we do this unnecessarily for a meal that _lasts 15 minutes_.
 
